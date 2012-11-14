@@ -26,6 +26,9 @@
 		05B1FE231653E84F0079FE20 /* CHPBizKimizTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE221653E84F0079FE20 /* CHPBizKimizTableViewController.m */; };
 		05B1FE291653E89F0079FE20 /* CHPYoneticilerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE281653E89F0079FE20 /* CHPYoneticilerTableViewController.m */; };
 		05B1FE2C1653EADE0079FE20 /* CHPHaberCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE2B1653EADE0079FE20 /* CHPHaberCollectionViewController.m */; };
+		05B1FE321653EF040079FE20 /* CHPHaberNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE311653EF040079FE20 /* CHPHaberNavigationController.m */; };
+		05B1FE351653EF810079FE20 /* CHPYoneticilerNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE341653EF810079FE20 /* CHPYoneticilerNavigationController.m */; };
+		05B1FE381653F1490079FE20 /* CHPBizKimizNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE371653F1490079FE20 /* CHPBizKimizNavigationController.m */; };
 		416A7DD51653E47C0005E9E3 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DC31653E47C0005E9E3 /* NSData+Base64.m */; };
 		416A7DD61653E47C0005E9E3 /* NSDate+RFC1123.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DC51653E47C0005E9E3 /* NSDate+RFC1123.m */; };
 		416A7DD71653E47C0005E9E3 /* NSDictionary+RequestEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DC71653E47C0005E9E3 /* NSDictionary+RequestEncoding.m */; };
@@ -68,6 +71,12 @@
 		05B1FE281653E89F0079FE20 /* CHPYoneticilerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPYoneticilerTableViewController.m; sourceTree = "<group>"; };
 		05B1FE2A1653EADE0079FE20 /* CHPHaberCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPHaberCollectionViewController.h; sourceTree = "<group>"; };
 		05B1FE2B1653EADE0079FE20 /* CHPHaberCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPHaberCollectionViewController.m; sourceTree = "<group>"; };
+		05B1FE301653EF040079FE20 /* CHPHaberNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPHaberNavigationController.h; sourceTree = "<group>"; };
+		05B1FE311653EF040079FE20 /* CHPHaberNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPHaberNavigationController.m; sourceTree = "<group>"; };
+		05B1FE331653EF810079FE20 /* CHPYoneticilerNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPYoneticilerNavigationController.h; sourceTree = "<group>"; };
+		05B1FE341653EF810079FE20 /* CHPYoneticilerNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPYoneticilerNavigationController.m; sourceTree = "<group>"; };
+		05B1FE361653F1490079FE20 /* CHPBizKimizNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPBizKimizNavigationController.h; sourceTree = "<group>"; };
+		05B1FE371653F1490079FE20 /* CHPBizKimizNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPBizKimizNavigationController.m; sourceTree = "<group>"; };
 		416A7DC21653E47C0005E9E3 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		416A7DC31653E47C0005E9E3 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		416A7DC41653E47C0005E9E3 /* NSDate+RFC1123.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RFC1123.h"; sourceTree = "<group>"; };
@@ -170,6 +179,39 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		05B1FE2D1653EE210079FE20 /* HaberTabControllers */ = {
+			isa = PBXGroup;
+			children = (
+				05B1FE301653EF040079FE20 /* CHPHaberNavigationController.h */,
+				05B1FE311653EF040079FE20 /* CHPHaberNavigationController.m */,
+				05B1FE2A1653EADE0079FE20 /* CHPHaberCollectionViewController.h */,
+				05B1FE2B1653EADE0079FE20 /* CHPHaberCollectionViewController.m */,
+			);
+			name = HaberTabControllers;
+			sourceTree = "<group>";
+		};
+		05B1FE2E1653EE3C0079FE20 /* BizKimizTabControllers */ = {
+			isa = PBXGroup;
+			children = (
+				05B1FE361653F1490079FE20 /* CHPBizKimizNavigationController.h */,
+				05B1FE371653F1490079FE20 /* CHPBizKimizNavigationController.m */,
+				05B1FE211653E84F0079FE20 /* CHPBizKimizTableViewController.h */,
+				05B1FE221653E84F0079FE20 /* CHPBizKimizTableViewController.m */,
+			);
+			name = BizKimizTabControllers;
+			sourceTree = "<group>";
+		};
+		05B1FE2F1653EE4C0079FE20 /* YoneticilerTabControllers */ = {
+			isa = PBXGroup;
+			children = (
+				05B1FE331653EF810079FE20 /* CHPYoneticilerNavigationController.h */,
+				05B1FE341653EF810079FE20 /* CHPYoneticilerNavigationController.m */,
+				05B1FE271653E89F0079FE20 /* CHPYoneticilerTableViewController.h */,
+				05B1FE281653E89F0079FE20 /* CHPYoneticilerTableViewController.m */,
+			);
+			name = YoneticilerTabControllers;
+			sourceTree = "<group>";
+		};
 		416A7DBE1653E47C0005E9E3 /* MKNetworkKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,12 +269,9 @@
 			children = (
 				05B1FE1A1653E7200079FE20 /* CHPMainTabBarViewController.h */,
 				05B1FE1B1653E7200079FE20 /* CHPMainTabBarViewController.m */,
-				05B1FE2A1653EADE0079FE20 /* CHPHaberCollectionViewController.h */,
-				05B1FE2B1653EADE0079FE20 /* CHPHaberCollectionViewController.m */,
-				05B1FE211653E84F0079FE20 /* CHPBizKimizTableViewController.h */,
-				05B1FE221653E84F0079FE20 /* CHPBizKimizTableViewController.m */,
-				05B1FE271653E89F0079FE20 /* CHPYoneticilerTableViewController.h */,
-				05B1FE281653E89F0079FE20 /* CHPYoneticilerTableViewController.m */,
+				05B1FE2D1653EE210079FE20 /* HaberTabControllers */,
+				05B1FE2E1653EE3C0079FE20 /* BizKimizTabControllers */,
+				05B1FE2F1653EE4C0079FE20 /* YoneticilerTabControllers */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -324,6 +363,9 @@
 				05B1FE231653E84F0079FE20 /* CHPBizKimizTableViewController.m in Sources */,
 				05B1FE291653E89F0079FE20 /* CHPYoneticilerTableViewController.m in Sources */,
 				05B1FE2C1653EADE0079FE20 /* CHPHaberCollectionViewController.m in Sources */,
+				05B1FE321653EF040079FE20 /* CHPHaberNavigationController.m in Sources */,
+				05B1FE351653EF810079FE20 /* CHPYoneticilerNavigationController.m in Sources */,
+				05B1FE381653F1490079FE20 /* CHPBizKimizNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
