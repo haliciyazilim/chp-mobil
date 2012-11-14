@@ -8,11 +8,20 @@
 
 #import "CHPAppDelegate.h"
 
+#import "APIManager.h"
+
 @implementation CHPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+//    [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSString *response) {
+    
+//    } onError:^(NSError *error) {
+    
+//    }];
+    
     return YES;
 }
 							
