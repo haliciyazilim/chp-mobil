@@ -8,6 +8,14 @@
 
 #import "MKNetworkEngine.h"
 
+typedef void (^CompletionBlock) (NSString *response);
+typedef void (^ErrorBlock) (NSError *error);
+
 @interface APIManager : MKNetworkEngine
+
++ (APIManager *)sharedInstance;
+
+- (MKNetworkOperation *)getLatestNewsOnCompletion:(CompletionBlock)completionBlock
+                                          onError:(ErrorBlock)errorBlock;
 
 @end
