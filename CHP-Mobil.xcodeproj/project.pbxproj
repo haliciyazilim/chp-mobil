@@ -18,12 +18,14 @@
 		05B1FDFC1653E16F0079FE20 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B1FDFB1653E16F0079FE20 /* Default-568h@2x.png */; };
 		05B1FDFF1653E16F0079FE20 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B1FDFD1653E16F0079FE20 /* MainStoryboard_iPhone.storyboard */; };
 		05B1FE021653E16F0079FE20 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B1FE001653E16F0079FE20 /* MainStoryboard_iPad.storyboard */; };
-		05B1FE051653E16F0079FE20 /* CHPFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE041653E16F0079FE20 /* CHPFirstViewController.m */; };
 		05B1FE071653E16F0079FE20 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B1FE061653E16F0079FE20 /* first.png */; };
 		05B1FE091653E16F0079FE20 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B1FE081653E16F0079FE20 /* first@2x.png */; };
-		05B1FE0C1653E16F0079FE20 /* CHPSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE0B1653E16F0079FE20 /* CHPSecondViewController.m */; };
 		05B1FE0E1653E16F0079FE20 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B1FE0D1653E16F0079FE20 /* second.png */; };
 		05B1FE101653E16F0079FE20 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B1FE0F1653E16F0079FE20 /* second@2x.png */; };
+		05B1FE1C1653E7200079FE20 /* CHPMainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE1B1653E7200079FE20 /* CHPMainTabBarViewController.m */; };
+		05B1FE231653E84F0079FE20 /* CHPBizKimizTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE221653E84F0079FE20 /* CHPBizKimizTableViewController.m */; };
+		05B1FE291653E89F0079FE20 /* CHPYoneticilerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE281653E89F0079FE20 /* CHPYoneticilerTableViewController.m */; };
+		05B1FE2C1653EADE0079FE20 /* CHPHaberCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE2B1653EADE0079FE20 /* CHPHaberCollectionViewController.m */; };
 		416A7DD51653E47C0005E9E3 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DC31653E47C0005E9E3 /* NSData+Base64.m */; };
 		416A7DD61653E47C0005E9E3 /* NSDate+RFC1123.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DC51653E47C0005E9E3 /* NSDate+RFC1123.m */; };
 		416A7DD71653E47C0005E9E3 /* NSDictionary+RequestEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DC71653E47C0005E9E3 /* NSDictionary+RequestEncoding.m */; };
@@ -54,14 +56,18 @@
 		05B1FDFB1653E16F0079FE20 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		05B1FDFE1653E16F0079FE20 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		05B1FE011653E16F0079FE20 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		05B1FE031653E16F0079FE20 /* CHPFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHPFirstViewController.h; sourceTree = "<group>"; };
-		05B1FE041653E16F0079FE20 /* CHPFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHPFirstViewController.m; sourceTree = "<group>"; };
 		05B1FE061653E16F0079FE20 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		05B1FE081653E16F0079FE20 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		05B1FE0A1653E16F0079FE20 /* CHPSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHPSecondViewController.h; sourceTree = "<group>"; };
-		05B1FE0B1653E16F0079FE20 /* CHPSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHPSecondViewController.m; sourceTree = "<group>"; };
 		05B1FE0D1653E16F0079FE20 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		05B1FE0F1653E16F0079FE20 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		05B1FE1A1653E7200079FE20 /* CHPMainTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPMainTabBarViewController.h; sourceTree = "<group>"; };
+		05B1FE1B1653E7200079FE20 /* CHPMainTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPMainTabBarViewController.m; sourceTree = "<group>"; };
+		05B1FE211653E84F0079FE20 /* CHPBizKimizTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPBizKimizTableViewController.h; sourceTree = "<group>"; };
+		05B1FE221653E84F0079FE20 /* CHPBizKimizTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPBizKimizTableViewController.m; sourceTree = "<group>"; };
+		05B1FE271653E89F0079FE20 /* CHPYoneticilerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPYoneticilerTableViewController.h; sourceTree = "<group>"; };
+		05B1FE281653E89F0079FE20 /* CHPYoneticilerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPYoneticilerTableViewController.m; sourceTree = "<group>"; };
+		05B1FE2A1653EADE0079FE20 /* CHPHaberCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPHaberCollectionViewController.h; sourceTree = "<group>"; };
+		05B1FE2B1653EADE0079FE20 /* CHPHaberCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPHaberCollectionViewController.m; sourceTree = "<group>"; };
 		416A7DC21653E47C0005E9E3 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		416A7DC31653E47C0005E9E3 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		416A7DC41653E47C0005E9E3 /* NSDate+RFC1123.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RFC1123.h"; sourceTree = "<group>"; };
@@ -219,10 +225,14 @@
 		416A7DE81653E5D70005E9E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				05B1FE031653E16F0079FE20 /* CHPFirstViewController.h */,
-				05B1FE041653E16F0079FE20 /* CHPFirstViewController.m */,
-				05B1FE0A1653E16F0079FE20 /* CHPSecondViewController.h */,
-				05B1FE0B1653E16F0079FE20 /* CHPSecondViewController.m */,
+				05B1FE1A1653E7200079FE20 /* CHPMainTabBarViewController.h */,
+				05B1FE1B1653E7200079FE20 /* CHPMainTabBarViewController.m */,
+				05B1FE2A1653EADE0079FE20 /* CHPHaberCollectionViewController.h */,
+				05B1FE2B1653EADE0079FE20 /* CHPHaberCollectionViewController.m */,
+				05B1FE211653E84F0079FE20 /* CHPBizKimizTableViewController.h */,
+				05B1FE221653E84F0079FE20 /* CHPBizKimizTableViewController.m */,
+				05B1FE271653E89F0079FE20 /* CHPYoneticilerTableViewController.h */,
+				05B1FE281653E89F0079FE20 /* CHPYoneticilerTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -301,8 +311,6 @@
 			files = (
 				05B1FDF21653E16F0079FE20 /* main.m in Sources */,
 				05B1FDF61653E16F0079FE20 /* CHPAppDelegate.m in Sources */,
-				05B1FE051653E16F0079FE20 /* CHPFirstViewController.m in Sources */,
-				05B1FE0C1653E16F0079FE20 /* CHPSecondViewController.m in Sources */,
 				416A7DD51653E47C0005E9E3 /* NSData+Base64.m in Sources */,
 				416A7DD61653E47C0005E9E3 /* NSDate+RFC1123.m in Sources */,
 				416A7DD71653E47C0005E9E3 /* NSDictionary+RequestEncoding.m in Sources */,
@@ -312,6 +320,10 @@
 				416A7DDB1653E47C0005E9E3 /* MKNetworkOperation.m in Sources */,
 				416A7DDC1653E47C0005E9E3 /* Reachability.m in Sources */,
 				416A7DE61653E56E0005E9E3 /* APIManager.m in Sources */,
+				05B1FE1C1653E7200079FE20 /* CHPMainTabBarViewController.m in Sources */,
+				05B1FE231653E84F0079FE20 /* CHPBizKimizTableViewController.m in Sources */,
+				05B1FE291653E89F0079FE20 /* CHPYoneticilerTableViewController.m in Sources */,
+				05B1FE2C1653EADE0079FE20 /* CHPHaberCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  CHPFirstViewController.h
+//  CHPHaberCollectionViewController.h
 //  CHP-Mobil
 //
 //  Created by Alperen Kavun on 14.11.2012.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CHPFirstViewController : UIViewController
+@interface CHPHaberCollectionViewController : UICollectionViewController
 
 @end
