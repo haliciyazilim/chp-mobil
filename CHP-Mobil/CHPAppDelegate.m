@@ -16,11 +16,12 @@
 {
     // Override point for customization after application launch.
     
-//    [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSString *response) {
-    
-//    } onError:^(NSError *error) {
-    
-//    }];
+//    [[APIManager sharedInstance] getAboutInfoForType:@"Program"
+//                                        onCompletion:^(NSString *response) {
+//                                            
+//                                        } onError:^(NSError *error) {
+//                                            
+//                                        }];
     
     return YES;
 }

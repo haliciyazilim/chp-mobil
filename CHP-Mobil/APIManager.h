@@ -18,4 +18,8 @@ typedef void (^ErrorBlock) (NSError *error);
 - (MKNetworkOperation *)getLatestNewsOnCompletion:(CompletionBlock)completionBlock
                                           onError:(ErrorBlock)errorBlock;
 
+- (MKNetworkOperation *)getAboutInfoForType:(NSString *)type
+                               onCompletion:(CompletionBlock)completionBlock
+                                    onError:(ErrorBlock)errorBlock;
+
 @end
