@@ -136,19 +136,13 @@
 		05B1FDEB1653E16F0079FE20 /* CHP-Mobil */ = {
 			isa = PBXGroup;
 			children = (
+				416A7DE81653E5D70005E9E3 /* Controllers */,
+				416A7DE71653E5C60005E9E3 /* Images */,
 				416A7DBE1653E47C0005E9E3 /* MKNetworkKit */,
 				05B1FDF41653E16F0079FE20 /* CHPAppDelegate.h */,
 				05B1FDF51653E16F0079FE20 /* CHPAppDelegate.m */,
 				05B1FDFD1653E16F0079FE20 /* MainStoryboard_iPhone.storyboard */,
 				05B1FE001653E16F0079FE20 /* MainStoryboard_iPad.storyboard */,
-				05B1FE031653E16F0079FE20 /* CHPFirstViewController.h */,
-				05B1FE041653E16F0079FE20 /* CHPFirstViewController.m */,
-				05B1FE061653E16F0079FE20 /* first.png */,
-				05B1FE081653E16F0079FE20 /* first@2x.png */,
-				05B1FE0A1653E16F0079FE20 /* CHPSecondViewController.h */,
-				05B1FE0B1653E16F0079FE20 /* CHPSecondViewController.m */,
-				05B1FE0D1653E16F0079FE20 /* second.png */,
-				05B1FE0F1653E16F0079FE20 /* second@2x.png */,
 				05B1FDEC1653E16F0079FE20 /* Supporting Files */,
 				416A7DE41653E56E0005E9E3 /* APIManager.h */,
 				416A7DE51653E56E0005E9E3 /* APIManager.m */,
@@ -209,6 +203,28 @@
 				416A7DD31653E47C0005E9E3 /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		416A7DE71653E5C60005E9E3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				05B1FE061653E16F0079FE20 /* first.png */,
+				05B1FE081653E16F0079FE20 /* first@2x.png */,
+				05B1FE0D1653E16F0079FE20 /* second.png */,
+				05B1FE0F1653E16F0079FE20 /* second@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		416A7DE81653E5D70005E9E3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				05B1FE031653E16F0079FE20 /* CHPFirstViewController.h */,
+				05B1FE041653E16F0079FE20 /* CHPFirstViewController.m */,
+				05B1FE0A1653E16F0079FE20 /* CHPSecondViewController.h */,
+				05B1FE0B1653E16F0079FE20 /* CHPSecondViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
