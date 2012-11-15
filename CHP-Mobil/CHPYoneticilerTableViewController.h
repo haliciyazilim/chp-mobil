@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CHPYoneticilerTableViewController : UITableViewController
+@interface CHPYoneticilerTableViewController : UITableViewController <UITableViewDelegate>
 
 @property (strong, nonatomic) NSArray *unvanArray;
 

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CHPYoneticilerDetailViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+@property (strong, nonatomic) NSString *surname;
 
 @end

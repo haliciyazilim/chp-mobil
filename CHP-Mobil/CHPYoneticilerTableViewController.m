@@ -7,6 +7,7 @@
 //
 
 #import "CHPYoneticilerTableViewController.h"
+#import "CHPYoneticilerDetailViewController.h"
 
 @interface CHPYoneticilerTableViewController ()
 
@@ -89,19 +90,29 @@
     
     [[cell textLabel] setText:[self.unvanArray objectAtIndex:indexPath.row]];
     
-    UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
-    selectedView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
-    
-    cell.selectedBackgroundView = selectedView;
+//    UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+//    selectedView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+//    
+//    cell.selectedBackgroundView = selectedView;
     
     return cell;
 }
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.row == 0) {
         [self performSegueWithIdentifier:@"DetailSegue" sender:self];
     }
     else{
         [self performSegueWithIdentifier:@"KategoriSegue" sender:self];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([[segue identifier] isEqualToString:@"DetailSegue"]){
+        CHPYoneticilerDetailViewController *chpYoneticilerDetailViewController = [segue destinationViewController];
+        [chpYoneticilerDetailViewController setSurname:@"Kilicdaroglu"];
+    }
+    else if([[segue identifier] isEqualToString:@"KategoriSegue"]){
+        
     }
 }
 
