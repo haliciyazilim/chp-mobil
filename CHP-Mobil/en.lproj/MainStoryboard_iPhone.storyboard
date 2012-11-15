@@ -328,6 +328,18 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Yöneticiler" id="Bkz-Bb-J5c"/>
                     <navigationItem key="navigationItem" id="yhB-Uh-zYL"/>
+                    <connections>
+                        <outlet property="eighthCell" destination="8Jg-gV-2pq" id="7CQ-my-7D6"/>
+                        <outlet property="fifthCell" destination="vFi-WA-IfG" id="L76-OB-xR3"/>
+                        <outlet property="firstCell" destination="KA5-tj-beL" id="ljx-Qw-RWi"/>
+                        <outlet property="fourthCell" destination="qax-HS-qws" id="Qjt-wh-0o3"/>
+                        <outlet property="ninthCell" destination="CkY-Is-5OU" id="QvF-2Y-Ms5"/>
+                        <outlet property="secondCell" destination="9NO-6u-nAT" id="fVO-hA-nkV"/>
+                        <outlet property="seventhCell" destination="2ib-97-pnf" id="9W0-m8-fF2"/>
+                        <outlet property="sixthCell" destination="ATG-3r-dOf" id="WAQ-Fj-R6p"/>
+                        <outlet property="tenthCell" destination="PW2-Pj-qPv" id="z7g-ve-Os5"/>
+                        <outlet property="thirdCell" destination="hif-zk-6zJ" id="JIx-DR-pFr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXC-OV-Ubl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

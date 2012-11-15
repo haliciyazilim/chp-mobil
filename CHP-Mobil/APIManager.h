@@ -8,7 +8,7 @@
 
 #import "MKNetworkEngine.h"
 
-typedef void (^CompletionBlock) (NSString *response);
+typedef void (^CompletionBlock) (NSDictionary *responseDictionary);
 typedef void (^ErrorBlock) (NSError *error);
 
 @interface APIManager : MKNetworkEngine
@@ -21,5 +21,13 @@ typedef void (^ErrorBlock) (NSError *error);
 - (MKNetworkOperation *)getAboutInfoForType:(NSString *)type
                                onCompletion:(CompletionBlock)completionBlock
                                     onError:(ErrorBlock)errorBlock;
+
+- (MKNetworkOperation *)getManagerListForPosition:(NSString *)position
+                                     onCompletion:(CompletionBlock)completionBlock
+                                          onError:(ErrorBlock)errorBlock;
+
+- (MKNetworkOperation *)getManagerWithId:(NSString *)managerId
+                            onCompletion:(CompletionBlock)completionBlock
+                                 onError:(ErrorBlock)errorBlock;
 
 @end

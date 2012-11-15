@@ -66,12 +66,10 @@ static APIManager *sharedInstance = nil;
     return [NSString stringWithFormat:@"MobilService.asmx?op=%@", operation];
 }
 
-- (NSString *)createSoapRequestForNews {
-    return [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><HaberleriGetir xmlns=\"http://tempuri.org/\" /></soap:Body></soap:Envelope>"];
-}
-
 - (MKNetworkOperation *)createNetworkOperationForOperation:(NSString *)operationName
-                                             andParameters:(NSDictionary *)parameters {
+                                             andParameters:(NSDictionary *)parameters
+                                              onCompletion:(CompletionBlock)completionBlock
+                                                   onError:(ErrorBlock)errorBlock {
     __block NSString *parametersString = @"";
     
     [parameters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -93,7 +91,36 @@ static APIManager *sharedInstance = nil;
     }
                                  forType:@"text/xml"];
     
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        DLog(@"Response: %@", [completedOperation responseString]);
+        NSDictionary *responseDictionary = [self getDictionaryFromResponse:[completedOperation responseString]
+                                                              forOperation:operationName];
+        
+        if([[responseDictionary valueForKey:@"HataKodu"] integerValue] == 1){
+            NSError *apiError = [NSError errorWithDomain:@"APIError"
+                                                    code:-101
+                                                userInfo:@{NSLocalizedDescriptionKey : [responseDictionary valueForKey:operationName]}];
+            errorBlock(apiError);
+        }
+        else{
+            completionBlock(responseDictionary);
+        }
+        DLog(@"%@", responseDictionary);
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+        if (error.domain == NSURLErrorDomain && error.code == -1009) {
+            NSError *connectionError = [NSError errorWithDomain:@"ConnectionError"
+                                                           code:-102
+                                                       userInfo:@{NSLocalizedDescriptionKey : @"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz."}];
+            errorBlock(connectionError);
+        } else {
+            NSLog(@"%@", error);
+            errorBlock(error);
+        }
+    }];
+    
+    [self enqueueOperation:op];
     return op;
+
 }
 
 - (NSDictionary *) getDictionaryFromResponse:(NSString *)response
@@ -124,76 +151,54 @@ static APIManager *sharedInstance = nil;
 
 - (MKNetworkOperation *)getLatestNewsOnCompletion:(CompletionBlock)completionBlock
                                           onError:(ErrorBlock)errorBlock {
-    NSString *operationName = @"HaberleriGetir";
-    MKNetworkOperation *op = [self createNetworkOperationForOperation:operationName
-                                                        andParameters:nil];
-    
-    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-        NSDictionary *responseDictionary = [self getDictionaryFromResponse:[completedOperation responseString]
-                                                              forOperation:operationName];
-        
-        if([[responseDictionary valueForKey:@"HataKodu"] integerValue] == 1){
-            NSError *apiError = [NSError errorWithDomain:@"APIError"
-                                                    code:-101
-                                                userInfo:@{NSLocalizedDescriptionKey : [responseDictionary valueForKey:@"HataAciklamasi"]}];
-            errorBlock(apiError);
-        }
-        else{
-            completionBlock(@"");
-        }
-        DLog(@"%@", responseDictionary);
-    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-        if (error.domain == NSURLErrorDomain && error.code == -1009) {
-            NSError *connectionError = [NSError errorWithDomain:@"ConnectionError"
-                                                           code:-102
-                                                       userInfo:@{NSLocalizedDescriptionKey : @"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz."}];
-            errorBlock(connectionError);
-        } else {
-            NSLog(@"%@", error);
-            errorBlock(error);
-        }
-    }];
-    
-    [self enqueueOperation:op];
-    return op;
+    return [self createNetworkOperationForOperation:@"HaberleriGetir"
+                                      andParameters:nil
+                                       onCompletion:^(NSDictionary *responseDictionary) {
+                                            completionBlock(responseDictionary);
+                                       }
+                                            onError:^(NSError *error) {
+                                                errorBlock(error);
+                                            }];
 }
 
 - (MKNetworkOperation *)getAboutInfoForType:(NSString *)type
                                onCompletion:(CompletionBlock)completionBlock
                                     onError:(ErrorBlock)errorBlock {
-    NSString *operationName = @"BizKimizBilgisiGetir";
-    MKNetworkOperation *op = [self createNetworkOperationForOperation:operationName
-                                                        andParameters:@{@"baslik" : type}];
-    
-    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-        NSDictionary *responseDictionary = [self getDictionaryFromResponse:[completedOperation responseString]
-                                                              forOperation:operationName];
-        
-        if([[responseDictionary valueForKey:@"HataKodu"] integerValue] == 1){
-            NSError *apiError = [NSError errorWithDomain:@"APIError"
-                                                    code:-101
-                                                userInfo:@{NSLocalizedDescriptionKey : [responseDictionary valueForKey:@"HataAciklamasi"]}];
-            errorBlock(apiError);
-        }
-        else{
-            completionBlock(@"");
-        }
-        DLog(@"%@", responseDictionary);
-    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-        if (error.domain == NSURLErrorDomain && error.code == -1009) {
-            NSError *connectionError = [NSError errorWithDomain:@"ConnectionError"
-                                                           code:-102
-                                                       userInfo:@{NSLocalizedDescriptionKey : @"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz."}];
-            errorBlock(connectionError);
-        } else {
-            NSLog(@"%@", error);
-            errorBlock(error);
-        }
-    }];
-    
-    [self enqueueOperation:op];
-    return op;
+    return [self createNetworkOperationForOperation:@"BizKimizBilgisiGetir"
+                                      andParameters:@{@"baslik" : type}
+                                       onCompletion:^(NSDictionary *responseDictionary) {
+                                           completionBlock(responseDictionary);
+                                       }
+                                            onError:^(NSError *error) {
+                                                errorBlock(error);
+                                            }];
 }
+
+- (MKNetworkOperation *)getManagerListForPosition:(NSString *)position
+                                     onCompletion:(CompletionBlock)completionBlock
+                                          onError:(ErrorBlock)errorBlock {
+    return [self createNetworkOperationForOperation:@"YoneticiListesiGetir"
+                                      andParameters:@{@"unvanId" : position}
+                                       onCompletion:^(NSDictionary *responseDictionary) {
+                                           completionBlock(responseDictionary);
+                                       }
+                                            onError:^(NSError *error) {
+                                                errorBlock(error);
+                                            }];
+}
+
+- (MKNetworkOperation *)getManagerWithId:(NSString *)managerId
+                            onCompletion:(CompletionBlock)completionBlock
+                                 onError:(ErrorBlock)errorBlock {
+    return [self createNetworkOperationForOperation:@"YoneticiDetayGetir"
+                                      andParameters:@{@"yoneticiId" : managerId}
+                                       onCompletion:^(NSDictionary *responseDictionary) {
+                                           completionBlock(responseDictionary);
+                                       }
+                                            onError:^(NSError *error) {
+                                                errorBlock(error);
+                                            }];
+};
 
 
 @end
