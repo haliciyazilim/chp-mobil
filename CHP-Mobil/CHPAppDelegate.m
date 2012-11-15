@@ -15,13 +15,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-//    [[APIManager sharedInstance] getAboutInfoForType:@"Program"
-//                                        onCompletion:^(NSString *response) {
-//                                            
-//                                        } onError:^(NSError *error) {
-//                                            
-//                                        }];
+
+//    [[APIManager sharedInstance] getManagerWithId:@"2200"
+//                                     onCompletion:^(NSDictionary *responseDictionary) {
+//                                         
+//                                     } onError:^(NSError *error) {
+//                                         
+//                                     }];
     
     return YES;
 }
