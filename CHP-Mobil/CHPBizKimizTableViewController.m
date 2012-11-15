@@ -8,6 +8,8 @@
 
 #import "CHPBizKimizTableViewController.h"
 
+#import "CHPBizKimizDetailViewController.h"
+
 @interface CHPBizKimizTableViewController ()
 
 @end
@@ -27,7 +29,12 @@
 {
     [super viewDidLoad];
 
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
     [[self navigationController] setNavigationBarHidden:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,5 +42,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+   
+    if([[segue destinationViewController] isMemberOfClass:[CHPBizKimizDetailViewController class]] == YES)
+    {
+        [[segue destinationViewController] setContent:[segue identifier]];
+    }
+    
+}
 @end
