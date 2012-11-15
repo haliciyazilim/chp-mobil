@@ -27,16 +27,22 @@
 {
     [super viewDidLoad];
     
-    UIImage *image = [UIImage imageNamed:@"main_bg.png"];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.contentMode = UIViewContentModeLeft;
     
-    // Add image view on top of table view
-    //[self.tableView addSubview:imageView];
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        UIImage *image = [UIImage imageNamed:@"main_bg-568h@2x.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        self.tableView.backgroundView = imageView;
+    }
+    else{
+        UIImage *image = [UIImage imageNamed:@"main_bg.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        self.tableView.backgroundView = imageView;
+    }
     
-    // Set the background view of the table view
-    self.tableView.backgroundView = imageView;
-    
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
 }
 
 - (void)didReceiveMemoryWarning
