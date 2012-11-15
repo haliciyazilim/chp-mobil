@@ -72,7 +72,6 @@
       [UIColor whiteColor], UITextAttributeTextColor,
       [UIColor blackColor], UITextAttributeTextShadowColor,
       nil] forState:UIControlStateSelected];
-    
 }
 
 - (void)didReceiveMemoryWarning
