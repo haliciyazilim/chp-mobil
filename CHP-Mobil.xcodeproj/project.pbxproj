@@ -29,6 +29,15 @@
 		05B1FE321653EF040079FE20 /* CHPHaberNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE311653EF040079FE20 /* CHPHaberNavigationController.m */; };
 		05B1FE351653EF810079FE20 /* CHPYoneticilerNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE341653EF810079FE20 /* CHPYoneticilerNavigationController.m */; };
 		05B1FE381653F1490079FE20 /* CHPBizKimizNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE371653F1490079FE20 /* CHPBizKimizNavigationController.m */; };
+		05C84AF21654E3A700681CCC /* main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C84AEC1654E3A700681CCC /* main_bg.png */; };
+		05C84AF41654E3A700681CCC /* tab_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C84AEE1654E3A700681CCC /* tab_bg.png */; };
+		05C84AF51654E3A700681CCC /* tab_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C84AEF1654E3A700681CCC /* tab_bg@2x.png */; };
+		05C84AF61654E3A700681CCC /* tab_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C84AF01654E3A700681CCC /* tab_shadow.png */; };
+		05C84AF71654E3A700681CCC /* tab_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C84AF11654E3A700681CCC /* tab_shadow@2x.png */; };
+		05C84AFB1654E53D00681CCC /* chp_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C84AF91654E53D00681CCC /* chp_logo.png */; };
+		05C84AFC1654E53D00681CCC /* chp_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C84AFA1654E53D00681CCC /* chp_logo@2x.png */; };
+		05C84B001654EDBD00681CCC /* main_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C84AFF1654EDBD00681CCC /* main_bg@2x.png */; };
+		05C84B021654EE2D00681CCC /* main_bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C84B011654EE2D00681CCC /* main_bg-568h@2x.png */; };
 		416A7DD51653E47C0005E9E3 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DC31653E47C0005E9E3 /* NSData+Base64.m */; };
 		416A7DD61653E47C0005E9E3 /* NSDate+RFC1123.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DC51653E47C0005E9E3 /* NSDate+RFC1123.m */; };
 		416A7DD71653E47C0005E9E3 /* NSDictionary+RequestEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DC71653E47C0005E9E3 /* NSDictionary+RequestEncoding.m */; };
@@ -77,6 +86,15 @@
 		05B1FE341653EF810079FE20 /* CHPYoneticilerNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPYoneticilerNavigationController.m; sourceTree = "<group>"; };
 		05B1FE361653F1490079FE20 /* CHPBizKimizNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPBizKimizNavigationController.h; sourceTree = "<group>"; };
 		05B1FE371653F1490079FE20 /* CHPBizKimizNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPBizKimizNavigationController.m; sourceTree = "<group>"; };
+		05C84AEC1654E3A700681CCC /* main_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_bg.png; sourceTree = "<group>"; };
+		05C84AEE1654E3A700681CCC /* tab_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_bg.png; sourceTree = "<group>"; };
+		05C84AEF1654E3A700681CCC /* tab_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_bg@2x.png"; sourceTree = "<group>"; };
+		05C84AF01654E3A700681CCC /* tab_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_shadow.png; sourceTree = "<group>"; };
+		05C84AF11654E3A700681CCC /* tab_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_shadow@2x.png"; sourceTree = "<group>"; };
+		05C84AF91654E53D00681CCC /* chp_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chp_logo.png; sourceTree = "<group>"; };
+		05C84AFA1654E53D00681CCC /* chp_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chp_logo@2x.png"; sourceTree = "<group>"; };
+		05C84AFF1654EDBD00681CCC /* main_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_bg@2x.png"; sourceTree = "<group>"; };
+		05C84B011654EE2D00681CCC /* main_bg-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_bg-568h@2x.png"; sourceTree = "<group>"; };
 		416A7DC21653E47C0005E9E3 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		416A7DC31653E47C0005E9E3 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		416A7DC41653E47C0005E9E3 /* NSDate+RFC1123.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RFC1123.h"; sourceTree = "<group>"; };
@@ -256,6 +274,15 @@
 		416A7DE71653E5C60005E9E3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				05C84AF91654E53D00681CCC /* chp_logo.png */,
+				05C84AFA1654E53D00681CCC /* chp_logo@2x.png */,
+				05C84AEC1654E3A700681CCC /* main_bg.png */,
+				05C84AFF1654EDBD00681CCC /* main_bg@2x.png */,
+				05C84B011654EE2D00681CCC /* main_bg-568h@2x.png */,
+				05C84AEE1654E3A700681CCC /* tab_bg.png */,
+				05C84AEF1654E3A700681CCC /* tab_bg@2x.png */,
+				05C84AF01654E3A700681CCC /* tab_shadow.png */,
+				05C84AF11654E3A700681CCC /* tab_shadow@2x.png */,
 				05B1FE061653E16F0079FE20 /* first.png */,
 				05B1FE081653E16F0079FE20 /* first@2x.png */,
 				05B1FE0D1653E16F0079FE20 /* second.png */,
@@ -338,6 +365,15 @@
 				05B1FE091653E16F0079FE20 /* first@2x.png in Resources */,
 				05B1FE0E1653E16F0079FE20 /* second.png in Resources */,
 				05B1FE101653E16F0079FE20 /* second@2x.png in Resources */,
+				05C84AF21654E3A700681CCC /* main_bg.png in Resources */,
+				05C84AF41654E3A700681CCC /* tab_bg.png in Resources */,
+				05C84AF51654E3A700681CCC /* tab_bg@2x.png in Resources */,
+				05C84AF61654E3A700681CCC /* tab_shadow.png in Resources */,
+				05C84AF71654E3A700681CCC /* tab_shadow@2x.png in Resources */,
+				05C84AFB1654E53D00681CCC /* chp_logo.png in Resources */,
+				05C84AFC1654E53D00681CCC /* chp_logo@2x.png in Resources */,
+				05C84B001654EDBD00681CCC /* main_bg@2x.png in Resources */,
+				05C84B021654EE2D00681CCC /* main_bg-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
