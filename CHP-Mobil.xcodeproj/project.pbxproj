@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		056C07E916554198005D5D5D /* CHPYoneticilerKategoriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C07E816554198005D5D5D /* CHPYoneticilerKategoriViewController.m */; };
+		056C07ED1655487B005D5D5D /* CHPYoneticilerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C07EC1655487B005D5D5D /* CHPYoneticilerDetailViewController.m */; };
 		05A17934165510D500A6ED90 /* btn_haber_beyaz_.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1792C165510D500A6ED90 /* btn_haber_beyaz_.png */; };
 		05A17935165510D500A6ED90 /* btn_haber_beyaz_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1792D165510D500A6ED90 /* btn_haber_beyaz_@2x.png */; };
 		05A17936165510D500A6ED90 /* btn_haber_kirmizi_.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1792E165510D500A6ED90 /* btn_haber_kirmizi_.png */; };
@@ -65,6 +67,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		056C07E716554198005D5D5D /* CHPYoneticilerKategoriViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPYoneticilerKategoriViewController.h; sourceTree = "<group>"; };
+		056C07E816554198005D5D5D /* CHPYoneticilerKategoriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPYoneticilerKategoriViewController.m; sourceTree = "<group>"; };
+		056C07EB1655487B005D5D5D /* CHPYoneticilerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPYoneticilerDetailViewController.h; sourceTree = "<group>"; };
+		056C07EC1655487B005D5D5D /* CHPYoneticilerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPYoneticilerDetailViewController.m; sourceTree = "<group>"; };
 		05A1792C165510D500A6ED90 /* btn_haber_beyaz_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_haber_beyaz_.png; sourceTree = "<group>"; };
 		05A1792D165510D500A6ED90 /* btn_haber_beyaz_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_haber_beyaz_@2x.png"; sourceTree = "<group>"; };
 		05A1792E165510D500A6ED90 /* btn_haber_kirmizi_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_haber_kirmizi_.png; sourceTree = "<group>"; };
@@ -255,6 +261,10 @@
 				05B1FE341653EF810079FE20 /* CHPYoneticilerNavigationController.m */,
 				05B1FE271653E89F0079FE20 /* CHPYoneticilerTableViewController.h */,
 				05B1FE281653E89F0079FE20 /* CHPYoneticilerTableViewController.m */,
+				056C07E716554198005D5D5D /* CHPYoneticilerKategoriViewController.h */,
+				056C07E816554198005D5D5D /* CHPYoneticilerKategoriViewController.m */,
+				056C07EB1655487B005D5D5D /* CHPYoneticilerDetailViewController.h */,
+				056C07EC1655487B005D5D5D /* CHPYoneticilerDetailViewController.m */,
 			);
 			name = YoneticilerTabControllers;
 			sourceTree = "<group>";
@@ -462,6 +472,8 @@
 				05B1FE381653F1490079FE20 /* CHPBizKimizNavigationController.m in Sources */,
 				AE95D7ED1654D8DA000AE76A /* CHPBizKimizDetailViewController.m in Sources */,
 				41BFE50B165533FF00EB2EA0 /* CHPNewsItem.m in Sources */,
+				056C07E916554198005D5D5D /* CHPYoneticilerKategoriViewController.m in Sources */,
+				056C07ED1655487B005D5D5D /* CHPYoneticilerDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
