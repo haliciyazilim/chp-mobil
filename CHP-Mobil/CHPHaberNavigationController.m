@@ -27,6 +27,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+//    UITabBarItem *haberItem = [[UITabBarItem alloc] initWithTitle:@"Haberler" image:[UIImage imageNamed:@"btn_haber_beyaz_.png"] tag:0];
+//    [haberItem setFinishedSelectedImage:[UIImage imageNamed:@"btn_haber_kirmizi_.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"btn_haber_beyaz_.png"]];
+//    [self setTabBarItem:haberItem];
 }
 
 - (void)didReceiveMemoryWarning
