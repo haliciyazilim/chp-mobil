@@ -39,6 +39,12 @@
         self.tableView.backgroundView = imageView;
     }
     
+    self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+    
+    UIView *selectedView1 = [[UIView alloc] initWithFrame:CGRectMake(self.firstCell.frame.origin.x, self.firstCell.frame.origin.y, self.firstCell.frame.size.width, self.firstCell.frame.size.height)];
+    selectedView1.backgroundColor = [UIColor redColor];
+    self.firstCell.selectedBackgroundView = selectedView1;
+    
 }
 
 
