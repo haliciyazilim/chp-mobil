@@ -27,13 +27,35 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-
+    
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        UIImage *image = [UIImage imageNamed:@"main_bg-568h@2x.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        self.tableView.backgroundView = imageView;
+    }
+    else{
+        UIImage *image = [UIImage imageNamed:@"main_bg.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        self.tableView.backgroundView = imageView;
+    }
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[self navigationController] setNavigationBarHidden:YES];
+//    [[self navigationController] setNavigationBarHidden:YES];
+    [[self tuzukCell] setSelected:NO animated:YES];
+    [[self tarihceCell] setSelected:NO animated:YES];
+    [[self programCell] setSelected:NO animated:YES];
+    
+//    [[[self tuzukCell] selectedBackgroundView] setBackgroundColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.8]];
+    //    UITableViewCellSelectionStyle s = self.tuzukCell.selectionStyle;
+    self.tuzukCell.selectionStyle = UITableViewCellSelectionStyleGray;
+    self.tarihceCell.selectionStyle = UITableViewCellSelectionStyleGray;
+    self.programCell.selectionStyle = UITableViewCellSelectionStyleGray;
+    
     
 }
 
