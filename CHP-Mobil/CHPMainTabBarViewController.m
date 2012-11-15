@@ -27,6 +27,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    UITabBar *appTabBar = [self tabBar];
+    
+    [appTabBar setBackgroundImage:[UIImage imageNamed:@"tab_bg.png"]];
+    [appTabBar setShadowImage:[UIImage imageNamed:@"tab_shadow.png"]];
+
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
