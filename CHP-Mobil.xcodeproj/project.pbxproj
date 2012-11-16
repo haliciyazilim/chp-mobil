@@ -15,6 +15,7 @@
 		0578DB691656454100131BD8 /* header_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0578DB661656454100131BD8 /* header_shadow@2x.png */; };
 		0578DB6B1656454A00131BD8 /* header_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0578DB6A1656454A00131BD8 /* header_bg.png */; };
 		0578DB6E165668F400131BD8 /* CHPContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 0578DB6D165668F400131BD8 /* CHPContact.m */; };
+		0578DB73165672DD00131BD8 /* btn_kurumsal_beyaz_.png in Resources */ = {isa = PBXBuildFile; fileRef = 0578DB72165672DD00131BD8 /* btn_kurumsal_beyaz_.png */; };
 		05A17934165510D500A6ED90 /* btn_haber_beyaz_.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1792C165510D500A6ED90 /* btn_haber_beyaz_.png */; };
 		05A17935165510D500A6ED90 /* btn_haber_beyaz_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1792D165510D500A6ED90 /* btn_haber_beyaz_@2x.png */; };
 		05A17936165510D500A6ED90 /* btn_haber_kirmizi_.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1792E165510D500A6ED90 /* btn_haber_kirmizi_.png */; };
@@ -83,6 +84,7 @@
 		0578DB6A1656454A00131BD8 /* header_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_bg.png; sourceTree = "<group>"; };
 		0578DB6C165668F400131BD8 /* CHPContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPContact.h; sourceTree = "<group>"; };
 		0578DB6D165668F400131BD8 /* CHPContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPContact.m; sourceTree = "<group>"; };
+		0578DB72165672DD00131BD8 /* btn_kurumsal_beyaz_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_kurumsal_beyaz_.png; sourceTree = "<group>"; };
 		05A1792C165510D500A6ED90 /* btn_haber_beyaz_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_haber_beyaz_.png; sourceTree = "<group>"; };
 		05A1792D165510D500A6ED90 /* btn_haber_beyaz_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_haber_beyaz_@2x.png"; sourceTree = "<group>"; };
 		05A1792E165510D500A6ED90 /* btn_haber_kirmizi_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_haber_kirmizi_.png; sourceTree = "<group>"; };
@@ -179,6 +181,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0578DB6F1656726C00131BD8 /* navigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				0578DB621656451A00131BD8 /* chp_logo.png */,
+				05C84AFA1654E53D00681CCC /* chp_logo@2x.png */,
+				0578DB6A1656454A00131BD8 /* header_bg.png */,
+				0578DB641656454100131BD8 /* header_bg@2x.png */,
+				0578DB651656454100131BD8 /* header_shadow.png */,
+				0578DB661656454100131BD8 /* header_shadow@2x.png */,
+			);
+			name = navigationBar;
+			sourceTree = "<group>";
+		};
+		0578DB701656729100131BD8 /* tabBar */ = {
+			isa = PBXGroup;
+			children = (
+				05C84AEE1654E3A700681CCC /* tab_bg.png */,
+				05C84AEF1654E3A700681CCC /* tab_bg@2x.png */,
+				05C84AF01654E3A700681CCC /* tab_shadow.png */,
+				05C84AF11654E3A700681CCC /* tab_shadow@2x.png */,
+				05A1792C165510D500A6ED90 /* btn_haber_beyaz_.png */,
+				05A1792D165510D500A6ED90 /* btn_haber_beyaz_@2x.png */,
+				05A1792E165510D500A6ED90 /* btn_haber_kirmizi_.png */,
+				05A1792F165510D500A6ED90 /* btn_haber_kirmizi_@2x.png */,
+				05A17930165510D500A6ED90 /* btn_yonetim_beyaz_.png */,
+				05A17931165510D500A6ED90 /* btn_yonetim_beyaz_@2x.png */,
+				05A17932165510D500A6ED90 /* btn_yonetim_kirmizi_.png */,
+				05A17933165510D500A6ED90 /* btn_yonetim_kirmizi_@2x.png */,
+				0578DB72165672DD00131BD8 /* btn_kurumsal_beyaz_.png */,
+				05A17946165527A300A6ED90 /* btn_kurumsal_beyaz_@2x.png */,
+				05A17947165527A300A6ED90 /* btn_kurumsal_kirmizi_.png */,
+				05A17948165527A300A6ED90 /* btn_kurumsal_kirmizi_@2x.png */,
+			);
+			name = tabBar;
+			sourceTree = "<group>";
+		};
+		0578DB71165672B200131BD8 /* background */ = {
+			isa = PBXGroup;
+			children = (
+				05A1794016551A9400A6ED90 /* main_bg-568h@2x.png */,
+				05A1794116551A9400A6ED90 /* main_bg.png */,
+				05A1794216551A9400A6ED90 /* main_bg@2x.png */,
+			);
+			name = background;
+			sourceTree = "<group>";
+		};
 		05B1FDD61653E16F0079FE20 = {
 			isa = PBXGroup;
 			children = (
@@ -324,30 +372,9 @@
 		416A7DE71653E5C60005E9E3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				0578DB621656451A00131BD8 /* chp_logo.png */,
-				05C84AFA1654E53D00681CCC /* chp_logo@2x.png */,
-				05C84AEE1654E3A700681CCC /* tab_bg.png */,
-				05C84AEF1654E3A700681CCC /* tab_bg@2x.png */,
-				05C84AF01654E3A700681CCC /* tab_shadow.png */,
-				05C84AF11654E3A700681CCC /* tab_shadow@2x.png */,
-				0578DB6A1656454A00131BD8 /* header_bg.png */,
-				0578DB641656454100131BD8 /* header_bg@2x.png */,
-				0578DB651656454100131BD8 /* header_shadow.png */,
-				0578DB661656454100131BD8 /* header_shadow@2x.png */,
-				05A1794016551A9400A6ED90 /* main_bg-568h@2x.png */,
-				05A1794116551A9400A6ED90 /* main_bg.png */,
-				05A1794216551A9400A6ED90 /* main_bg@2x.png */,
-				05A1792C165510D500A6ED90 /* btn_haber_beyaz_.png */,
-				05A1792D165510D500A6ED90 /* btn_haber_beyaz_@2x.png */,
-				05A1792E165510D500A6ED90 /* btn_haber_kirmizi_.png */,
-				05A1792F165510D500A6ED90 /* btn_haber_kirmizi_@2x.png */,
-				05A17930165510D500A6ED90 /* btn_yonetim_beyaz_.png */,
-				05A17931165510D500A6ED90 /* btn_yonetim_beyaz_@2x.png */,
-				05A17932165510D500A6ED90 /* btn_yonetim_kirmizi_.png */,
-				05A17933165510D500A6ED90 /* btn_yonetim_kirmizi_@2x.png */,
-				05A17946165527A300A6ED90 /* btn_kurumsal_beyaz_@2x.png */,
-				05A17947165527A300A6ED90 /* btn_kurumsal_kirmizi_.png */,
-				05A17948165527A300A6ED90 /* btn_kurumsal_kirmizi_@2x.png */,
+				0578DB71165672B200131BD8 /* background */,
+				0578DB701656729100131BD8 /* tabBar */,
+				0578DB6F1656726C00131BD8 /* navigationBar */,
 				05B1FE061653E16F0079FE20 /* first.png */,
 				05B1FE0D1653E16F0079FE20 /* second.png */,
 				05B1FE0F1653E16F0079FE20 /* second@2x.png */,
@@ -463,6 +490,7 @@
 				0578DB681656454100131BD8 /* header_shadow.png in Resources */,
 				0578DB691656454100131BD8 /* header_shadow@2x.png in Resources */,
 				0578DB6B1656454A00131BD8 /* header_bg.png in Resources */,
+				0578DB73165672DD00131BD8 /* btn_kurumsal_beyaz_.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
