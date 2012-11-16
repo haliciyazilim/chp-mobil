@@ -54,12 +54,37 @@ static CHPContactManager *sharedInstance = nil;
                             andInfoLevel:(InfoLevel)infoLevel
                             onCompletion:(ContactBlock)contactBlock
                                  onError:(ErrorBlock)errorBlock {
-    return nil;
+    for (CHPContact *contact in self.contacts) {
+        if ([contact.contactId isEqualToString:contactId]) {
+            if (infoLevel < contact.infoLevel) {
+                contactBlock(contact);
+                
+                return nil;
+            } else {
+                return [[APIManager sharedInstance] getContactWithId:contactId
+                                                        onCompletion:^(CHPContact *newContact) {
+                                                            [contact mergeInfoFromContact:newContact];
+                                                            contactBlock(contact);
+                                                        } onError:^(NSError *error) {
+                                                            errorBlock(error);
+                                                        }];
+            }
+        }
+    }
+    
+    return [[APIManager sharedInstance] getContactWithId:contactId
+                                            onCompletion:^(CHPContact *contact) {
+                                                [self.contacts addObject:contact];
+                                                contactBlock(contact);
+                                            } onError:^(NSError *error) {
+                                                errorBlock(error);
+                                            }];
 }
 
 - (MKNetworkOperation *)getContactsWithPosition:(CHPPosition)position
                                    onCompletion:(ArrayBlock)contactArrayBlock
                                         onError:(ErrorBlock)errorBlock {
+    
     return nil;
 }
 
