@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface CHPBizKimizTableViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UITableViewCell *tarihceCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *programCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *tuzukCell;
+
 
 @end

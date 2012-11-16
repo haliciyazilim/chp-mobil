@@ -43,11 +43,12 @@ NSString* contentType;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self configureView];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    [[self navigationController] setNavigationBarHidden:NO];
+//    [[self navigationController] setNavigationBarHidden:NO animated:YES];
     [[self textView] setText:contentType];
     [self setTitle:contentType];
     

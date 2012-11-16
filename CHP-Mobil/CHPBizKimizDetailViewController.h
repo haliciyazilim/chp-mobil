@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CHPBizKimizDetailViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 -(void) setContent:(NSString*) i;
 @end
