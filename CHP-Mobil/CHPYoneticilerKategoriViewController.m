@@ -26,17 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    if([[UIScreen mainScreen] bounds].size.height == 568){
-        UIImage *image = [UIImage imageNamed:@"main_bg-568h@2x.png"];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        self.tableView.backgroundView = imageView;
-    }
-    else{
-        UIImage *image = [UIImage imageNamed:@"main_bg.png"];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        self.tableView.backgroundView = imageView;
-    }
     
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
 }
