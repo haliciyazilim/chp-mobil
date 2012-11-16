@@ -8,6 +8,8 @@
 
 #import "APIManager.h"
 
+#import "CHPNewsItem.h"
+
 @implementation APIManager
 
 static APIManager *sharedInstance = nil;
@@ -149,12 +151,18 @@ static APIManager *sharedInstance = nil;
 
 #pragma mark - News
 
-- (MKNetworkOperation *)getLatestNewsOnCompletion:(CompletionBlock)completionBlock
+- (MKNetworkOperation *)getLatestNewsOnCompletion:(ArrayBlock)newsArrayBlock
                                           onError:(ErrorBlock)errorBlock {
     return [self createNetworkOperationForOperation:@"HaberleriGetir"
                                       andParameters:nil
                                        onCompletion:^(NSDictionary *responseDictionary) {
-                                            completionBlock(responseDictionary);
+                                           NSMutableArray *newsArray = [NSMutableArray arrayWithCapacity:5];
+                                           
+                                           for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
+                                               [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
+                                           }
+                                           
+                                           newsArrayBlock(newsArray);
                                        }
                                             onError:^(NSError *error) {
                                                 errorBlock(error);

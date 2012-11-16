@@ -15,13 +15,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-
-//    [[APIManager sharedInstance] getManagerWithId:@"2200"
-//                                     onCompletion:^(NSDictionary *responseDictionary) {
-//                                         
-//                                     } onError:^(NSError *error) {
-//                                         
-//                                     }];
     _window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"main_bg-568h@2x.png"]];
     
     return YES;
