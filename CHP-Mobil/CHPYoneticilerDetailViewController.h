@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class CHPContact;
+
 @interface CHPYoneticilerDetailViewController : UITableViewController
+
+@property (strong, nonatomic) CHPContact *chpContact;
+
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (strong, nonatomic) NSString *surname;
 

@@ -10,4 +10,22 @@
 
 @implementation CHPNewsItem
 
++ (id) newsItemFromDictionary:(NSDictionary *)aDictionary {
+    return [[CHPNewsItem alloc] initFromDictionary:aDictionary];
+}
+
+- (id) initFromDictionary:(NSDictionary *)aDictionary {
+    if(self = [super init]) {
+        _date = aDictionary[@"Tarih"];
+        _title = aDictionary[@"Baslik"];
+        _content = aDictionary[@"Icerik"];
+       _imageAddress = [NSURL URLWithString:aDictionary[@"HaberResmi"]];
+        
+        return self;
+    }
+    
+    return nil;
+}
+
+
 @end

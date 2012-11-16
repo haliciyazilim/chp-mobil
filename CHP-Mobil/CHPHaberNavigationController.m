@@ -8,6 +8,10 @@
 
 #import "CHPHaberNavigationController.h"
 
+#import "APIManager.h"
+
+#import "CHPHaberCollectionViewController.h"
+
 @interface CHPHaberNavigationController ()
 
 @end
@@ -27,15 +31,31 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-//    UITabBarItem *haberItem = [[UITabBarItem alloc] initWithTitle:@"Haberler" image:[UIImage imageNamed:@"btn_haber_beyaz_.png"] tag:0];
-//    [haberItem setFinishedSelectedImage:[UIImage imageNamed:@"btn_haber_kirmizi_.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"btn_haber_beyaz_.png"]];
-//    [self setTabBarItem:haberItem];
+    [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSArray *newsArray) {
+        ((CHPHaberCollectionViewController*)self.viewControllers[0]).newsItemArray = newsArray;
+    } onError:^(NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if([[segue destinationViewController] isMemberOfClass:[CHPHaberCollectionViewController class]] == YES)
+    {
+        [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSArray *newsArray) {
+            ((CHPHaberCollectionViewController*)[segue destinationViewController]).newsItemArray = newsArray;
+        } onError:^(NSError *error) {
+            
+        }];
+    }
+    
 }
 
 @end

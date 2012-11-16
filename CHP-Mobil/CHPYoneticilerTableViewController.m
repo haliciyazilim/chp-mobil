@@ -43,22 +43,28 @@
     }
     
     
-//    if([[UIScreen mainScreen] bounds].size.height == 568){
-//        UIImage *image = [UIImage imageNamed:@"main_bg-568h@2x.png"];
-//        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-//        self.tableView.backgroundView = imageView;
-//    }
-//    else{
-//        UIImage *image = [UIImage imageNamed:@"main_bg.png"];
-//        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-//        self.tableView.backgroundView = imageView;
-//    }
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        UIImage *image = [UIImage imageNamed:@"main_bg-568h@2x.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        self.tableView.backgroundView = imageView;
+    }
+    else{
+        UIImage *image = [UIImage imageNamed:@"main_bg.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        self.tableView.backgroundView = imageView;
+    }
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Geri"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:nil];
+    
+    self.navigationItem.backBarButtonItem = backButton;
     
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
 }
 
-
-- (void)viewWillAppear:(BOOL)animated {
+-(void)viewWillAppear:(BOOL)animated{
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 }
 

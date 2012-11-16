@@ -10,4 +10,6 @@
 
 @interface CHPHaberCollectionViewController : UICollectionViewController
 
+@property (nonatomic, strong) NSArray *newsItemArray;
+
 @end
