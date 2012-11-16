@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     
-    self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.detailLabel.text = self.surname;
@@ -51,10 +51,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0){
-        return 0;
+        return 5;
     }
     else if(section == 1){
-        return 2;
+        return 3;
     }
     else {
         return 0;
@@ -65,13 +65,14 @@
         return nil;
     }
     else{
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50.0, 30.0)];
         
         [headerView setBackgroundColor:[UIColor colorWithRed:0.420 green:0.227 blue:0.227 alpha:0.85]];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, tableView.bounds.size.width - 10, 18)];
         label.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
         label.font = [UIFont fontWithName:@"Futura" size:14];
+        label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.75];
         label.backgroundColor = [UIColor clearColor];
         [headerView addSubview:label];
