@@ -43,16 +43,16 @@
     }
     
     
-    if([[UIScreen mainScreen] bounds].size.height == 568){
-        UIImage *image = [UIImage imageNamed:@"main_bg-568h@2x.png"];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        self.tableView.backgroundView = imageView;
-    }
-    else{
-        UIImage *image = [UIImage imageNamed:@"main_bg.png"];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        self.tableView.backgroundView = imageView;
-    }
+//    if([[UIScreen mainScreen] bounds].size.height == 568){
+//        UIImage *image = [UIImage imageNamed:@"main_bg-568h@2x.png"];
+//        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//        self.tableView.backgroundView = imageView;
+//    }
+//    else{
+//        UIImage *image = [UIImage imageNamed:@"main_bg.png"];
+//        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//        self.tableView.backgroundView = imageView;
+//    }
     
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
 }
@@ -90,10 +90,10 @@
     
     [[cell textLabel] setText:[self.unvanArray objectAtIndex:indexPath.row]];
     
-//    UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
-//    selectedView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
-//    
-//    cell.selectedBackgroundView = selectedView;
+    UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+    selectedView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+    
+    cell.selectedBackgroundView = selectedView;
     
     return cell;
 }
