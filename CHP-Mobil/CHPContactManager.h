@@ -8,6 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+#import "CHPContact.h"
+#import "APIManager.h"
+
 @interface CHPContactManager : NSObject
+
+@property (nonatomic, strong) NSMutableArray *contacts;
+
++ (CHPContactManager *)sharedInstance;
+
+- (MKNetworkOperation *)getContactWithId:(NSString *)contactId
+                            andInfoLevel:(InfoLevel)infoLevel
+                            onCompletion:(ContactBlock)contactBlock
+                                 onError:(ErrorBlock)errorBlock;
+
+- (MKNetworkOperation *)getContactsWithPosition:(CHPPosition)position
+                                   onCompletion:(ArrayBlock)contactArrayBlock
+                                        onError:(ErrorBlock)errorBlock;
 
 @end
