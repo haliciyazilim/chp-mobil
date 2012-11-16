@@ -184,7 +184,7 @@ static APIManager *sharedInstance = nil;
 }
 
 - (MKNetworkOperation *)getContactListForPosition:(NSString *)position
-                                     onCompletion:(CompletionBlock)completionBlock
+                                     onCompletion:(ArrayBlock)contactArrayBlock
                                           onError:(ErrorBlock)errorBlock {
     return [self createNetworkOperationForOperation:@"YoneticiListesiGetir"
                                       andParameters:@{@"unvanId" : position}

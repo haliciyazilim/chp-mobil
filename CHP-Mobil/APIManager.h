@@ -29,7 +29,7 @@ typedef void (^ContactBlock) (CHPContact *contact);
                                     onError:(ErrorBlock)errorBlock;
 
 - (MKNetworkOperation *)getContactListForPosition:(NSString *)position
-                                     onCompletion:(CompletionBlock)completionBlock
+                                     onCompletion:(ArrayBlock)contactArrayBlock
                                           onError:(ErrorBlock)errorBlock;
 
 - (MKNetworkOperation *)getContactWithId:(NSString *)contactId
