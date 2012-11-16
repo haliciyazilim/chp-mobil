@@ -189,7 +189,7 @@ static APIManager *sharedInstance = nil;
     return [self createNetworkOperationForOperation:@"YoneticiListesiGetir"
                                       andParameters:@{@"unvanId" : position}
                                        onCompletion:^(NSDictionary *responseDictionary) {
-                                           completionBlock(responseDictionary);
+                                           contactArrayBlock(nil);
                                        }
                                             onError:^(NSError *error) {
                                                 errorBlock(error);
