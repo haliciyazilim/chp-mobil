@@ -50,7 +50,7 @@ NSString* contentType;
 {
 //    [[self navigationController] setNavigationBarHidden:NO animated:YES];
     [[self textView] setText:contentType];
-    [self setTitle:contentType];
+//    [self setTitle:contentType];
     
 }
 
