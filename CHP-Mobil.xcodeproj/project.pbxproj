@@ -397,7 +397,6 @@
 			isa = PBXGroup;
 			children = (
 				AE257C44165671AD007EC17F /* biz_kimiz */,
-				05C84AF91654E53D00681CCC /* chp_logo.png */,
 				05C84AFA1654E53D00681CCC /* chp_logo@2x.png */,
 				05C84AEE1654E3A700681CCC /* tab_bg.png */,
 				05C84AEF1654E3A700681CCC /* tab_bg@2x.png */,
