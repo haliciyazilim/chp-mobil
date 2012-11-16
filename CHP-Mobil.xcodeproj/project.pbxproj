@@ -567,7 +567,6 @@
 				0578DB691656454100131BD8 /* header_shadow@2x.png in Resources */,
 				0578DB6B1656454A00131BD8 /* header_bg.png in Resources */,
 				0578DB73165672DD00131BD8 /* btn_kurumsal_beyaz_.png in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
