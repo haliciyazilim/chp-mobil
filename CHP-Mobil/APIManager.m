@@ -189,6 +189,9 @@ static APIManager *sharedInstance = nil;
     return [self createNetworkOperationForOperation:@"YoneticiListesiGetir"
                                       andParameters:@{@"unvanId" : position}
                                        onCompletion:^(NSDictionary *responseDictionary) {
+                                           
+                                           
+                                           
                                            contactArrayBlock(nil);
                                        }
                                             onError:^(NSError *error) {
@@ -202,7 +205,10 @@ static APIManager *sharedInstance = nil;
     return [self createNetworkOperationForOperation:@"YoneticiDetayGetir"
                                       andParameters:@{@"yoneticiId" : contactId}
                                        onCompletion:^(NSDictionary *responseDictionary) {
-                                           contactBlock([CHPContact contactFromDictionary:[responseDictionary[@"result"] objectAtIndex:0]]);
+                                           CHPContact *contact = [CHPContact contactFromDictionary:[responseDictionary[@"result"] objectAtIndex:0]];
+                                           contact.contactId = contactId;
+                                           contact.infoLevel = ContactInfoLevelFull;
+                                           contactBlock(contact);
                                        }
                                             onError:^(NSError *error) {
                                                 errorBlock(error);
