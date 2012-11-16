@@ -40,6 +40,21 @@
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         self.tableView.backgroundView = imageView;
     }
+    self.tableView.separatorColor = [UIColor clearColor];
+//    CALayer* layer = [self.tuzukCell.layer];
+//    layer.position;
+//    self.tuzukCell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tuzuk_btn-1.png"]];
+    
+    
+    self.tuzukCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tuzuk_btn.png"]];
+    self.tuzukCell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tuzuk_btn_selected.png"]];
+    
+    self.tarihceCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tarihce_btn.png"]];
+    self.tarihceCell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tarihce_btn_selected.png"]];
+    
+    self.programCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"program_btn.png"]];
+    self.programCell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"program_btn_selected.png"]];
+    
     
 }
 
