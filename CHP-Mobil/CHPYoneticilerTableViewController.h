@@ -10,6 +10,7 @@
 
 @interface CHPYoneticilerTableViewController : UITableViewController <UITableViewDelegate>
 
-@property (strong, nonatomic) NSArray *unvanArray;
+@property (strong, nonatomic) NSArray *unvanTitleArray;
+@property (strong, nonatomic) NSMutableDictionary *managerList;
 
 @end

@@ -27,8 +27,8 @@
 {
     [super viewDidLoad];
     
-    if(self.unvanArray == nil) {
-        self.unvanArray = @[
+    if(self.unvanTitleArray == nil) {
+        self.unvanTitleArray = @[
         @"Genel Başkan",
         @"MYK Üyesi",
         @"PM Üyesi",
@@ -50,6 +50,8 @@
     self.navigationItem.backBarButtonItem = backButton;
     
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -82,7 +84,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    [[cell textLabel] setText:[self.unvanArray objectAtIndex:indexPath.row]];
+    [[cell textLabel] setText:[self.unvanTitleArray objectAtIndex:indexPath.row]];
     [[cell textLabel] setShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
     
     UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
