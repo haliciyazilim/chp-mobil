@@ -42,18 +42,6 @@
         ];
     }
     
-    
-    if([[UIScreen mainScreen] bounds].size.height == 568){
-        UIImage *image = [UIImage imageNamed:@"main_bg-568h@2x.png"];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        self.tableView.backgroundView = imageView;
-    }
-    else{
-        UIImage *image = [UIImage imageNamed:@"main_bg.png"];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        self.tableView.backgroundView = imageView;
-    }
-    
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Geri"
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self
@@ -95,6 +83,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     [[cell textLabel] setText:[self.unvanArray objectAtIndex:indexPath.row]];
+    [[cell textLabel] setShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
     
     UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
     selectedView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
