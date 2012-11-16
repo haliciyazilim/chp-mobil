@@ -31,9 +31,10 @@ typedef enum {
 @interface CHPContact : NSObject
 
 // properties
-@property (strong, nonatomic) NSString* name;
-@property (strong, nonatomic) NSArray* phones;
-@property (strong, nonatomic) NSArray* eMails;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSArray *phones;
+@property (strong, nonatomic) NSArray *eMails;
+@property (strong, nonatomic) NSString *contactId;
 @property (nonatomic) InfoLevel infoLevel;
 @property (nonatomic) int position;
 
@@ -51,6 +52,10 @@ typedef enum {
 
 
 -(id) initFromDictionary:(NSDictionary *)aDictionary;
+
+-(CHPContact *) mergeInfoFromContact:(CHPContact *)otherContact;
+
+-(CHPContact *) addPosition:(CHPPosition)newPosition;
 
 
 @end
