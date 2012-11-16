@@ -15,13 +15,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-
-//    [[APIManager sharedInstance] getManagerWithId:@"2200"
-//                                     onCompletion:^(NSDictionary *responseDictionary) {
-//                                         
-//                                     } onError:^(NSError *error) {
-//                                         
-//                                     }];
     
     return YES;
 }
