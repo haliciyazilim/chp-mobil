@@ -16,13 +16,19 @@
 @property (strong, nonatomic) NSArray* eMails;
 
 // class methods
-+ (id) chpContactWithName:(NSString *)name
++(id) contactFromDictionary:(NSDictionary *)aDictionary;
+
++(id) chpContactWithName:(NSString *)name
                 phones:(NSArray *)phones
                 eMails:(NSArray *)eMails;
 
 // instance methods
-- (id) initWithName:(NSString *)name
+-(id) initWithName:(NSString *)name
              phones:(NSArray *)phones
              eMails:(NSArray *)eMails;
+
+
+-(id) initFromDictionary:(NSDictionary *)aDictionary;
+
 
 @end
