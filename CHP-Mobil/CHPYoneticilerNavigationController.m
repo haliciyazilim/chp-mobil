@@ -26,9 +26,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    UINavigationBar *navBar = self.navigationBar;
+    UIImage *image = [UIImage imageNamed:@"header_bg.png"];
+    UIImage *shadowImage = [UIImage imageNamed:@"header_shadow.png"];
+    
+    [navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    [navBar setShadowImage:shadowImage];
+    
 }
-
+-(void)viewWillAppear:(BOOL)animated {
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chp_logo.png"]];
+    logoView.frame = CGRectMake(62,20,196,55);
+    [self.navigationBar.superview addSubview:logoView];
+}
 
 - (void)didReceiveMemoryWarning
 {
