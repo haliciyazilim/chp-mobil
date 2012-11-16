@@ -10,6 +10,8 @@
 
 #import "CHPNewsItem.h"
 
+#import "APIManager.h"
+
 @interface CHPHaberCollectionViewController ()
 
 @end
@@ -29,6 +31,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSArray *newsArray) {
+        self.newsItemArray = newsArray;
+    } onError:^(NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning

@@ -81,6 +81,7 @@
 		AE257C72165672A2007EC17F /* tuzuk_btn_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE257C66165672A2007EC17F /* tuzuk_btn_selected@2x.png */; };
 		AE257C73165672A2007EC17F /* tuzuk_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = AE257C67165672A2007EC17F /* tuzuk_btn.png */; };
 		AE257C74165672A2007EC17F /* tuzuk_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE257C68165672A2007EC17F /* tuzuk_btn@2x.png */; };
+		AE257C7C1656851D007EC17F /* CHPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE257C7B1656851C007EC17F /* CHPNavigationController.m */; };
 		AE95D7ED1654D8DA000AE76A /* CHPBizKimizDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE95D7EC1654D8DA000AE76A /* CHPBizKimizDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -184,6 +185,8 @@
 		AE257C66165672A2007EC17F /* tuzuk_btn_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tuzuk_btn_selected@2x.png"; path = "biz_kimiz_images/tuzuk_btn_selected@2x.png"; sourceTree = "<group>"; };
 		AE257C67165672A2007EC17F /* tuzuk_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tuzuk_btn.png; path = biz_kimiz_images/tuzuk_btn.png; sourceTree = "<group>"; };
 		AE257C68165672A2007EC17F /* tuzuk_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tuzuk_btn@2x.png"; path = "biz_kimiz_images/tuzuk_btn@2x.png"; sourceTree = "<group>"; };
+		AE257C7A1656851C007EC17F /* CHPNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPNavigationController.h; sourceTree = "<group>"; };
+		AE257C7B1656851C007EC17F /* CHPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPNavigationController.m; sourceTree = "<group>"; };
 		AE95D7EB1654D8DA000AE76A /* CHPBizKimizDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPBizKimizDetailViewController.h; sourceTree = "<group>"; };
 		AE95D7EC1654D8DA000AE76A /* CHPBizKimizDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPBizKimizDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -434,6 +437,8 @@
 				05B1FE2D1653EE210079FE20 /* HaberTabControllers */,
 				05B1FE2E1653EE3C0079FE20 /* BizKimizTabControllers */,
 				05B1FE2F1653EE4C0079FE20 /* YoneticilerTabControllers */,
+				AE257C7A1656851C007EC17F /* CHPNavigationController.h */,
+				AE257C7B1656851C007EC17F /* CHPNavigationController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -599,6 +604,7 @@
 				056C07E916554198005D5D5D /* CHPYoneticilerKategoriViewController.m in Sources */,
 				056C07ED1655487B005D5D5D /* CHPYoneticilerDetailViewController.m in Sources */,
 				0578DB6E165668F400131BD8 /* CHPContact.m in Sources */,
+				AE257C7C1656851D007EC17F /* CHPNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
