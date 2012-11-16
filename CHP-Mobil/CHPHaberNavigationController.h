@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CHPNavigationController.h"
 
-@interface CHPHaberNavigationController : UINavigationController
+@interface CHPHaberNavigationController : CHPNavigationController
 
 @end
