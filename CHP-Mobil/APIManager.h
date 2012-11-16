@@ -8,11 +8,14 @@
 
 #import "MKNetworkEngine.h"
 
+@class CHPContact;
 
 typedef void (^CompletionBlock) (NSDictionary *responseDictionary);
 typedef void (^ErrorBlock) (NSError *error);
 
 typedef void (^ArrayBlock) (NSArray *newsArray);
+
+typedef void (^ContactBlock) (CHPContact *contact);
 
 @interface APIManager : MKNetworkEngine
 
@@ -25,12 +28,12 @@ typedef void (^ArrayBlock) (NSArray *newsArray);
                                onCompletion:(CompletionBlock)completionBlock
                                     onError:(ErrorBlock)errorBlock;
 
-- (MKNetworkOperation *)getManagerListForPosition:(NSString *)position
+- (MKNetworkOperation *)getContactListForPosition:(NSString *)position
                                      onCompletion:(CompletionBlock)completionBlock
                                           onError:(ErrorBlock)errorBlock;
 
-- (MKNetworkOperation *)getManagerWithId:(NSString *)managerId
-                            onCompletion:(CompletionBlock)completionBlock
+- (MKNetworkOperation *)getContactWithId:(NSString *)contactId
+                            onCompletion:(ContactBlock)contactBlock
                                  onError:(ErrorBlock)errorBlock;
 
 @end

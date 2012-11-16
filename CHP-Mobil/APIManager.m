@@ -9,6 +9,7 @@
 #import "APIManager.h"
 
 #import "CHPNewsItem.h"
+#import "CHPContact.h"
 
 @implementation APIManager
 
@@ -182,7 +183,7 @@ static APIManager *sharedInstance = nil;
                                             }];
 }
 
-- (MKNetworkOperation *)getManagerListForPosition:(NSString *)position
+- (MKNetworkOperation *)getContactListForPosition:(NSString *)position
                                      onCompletion:(CompletionBlock)completionBlock
                                           onError:(ErrorBlock)errorBlock {
     return [self createNetworkOperationForOperation:@"YoneticiListesiGetir"
@@ -195,13 +196,13 @@ static APIManager *sharedInstance = nil;
                                             }];
 }
 
-- (MKNetworkOperation *)getManagerWithId:(NSString *)managerId
-                            onCompletion:(CompletionBlock)completionBlock
+- (MKNetworkOperation *)getContactWithId:(NSString *)contactId
+                            onCompletion:(ContactBlock)contactBlock
                                  onError:(ErrorBlock)errorBlock {
     return [self createNetworkOperationForOperation:@"YoneticiDetayGetir"
-                                      andParameters:@{@"yoneticiId" : managerId}
+                                      andParameters:@{@"yoneticiId" : contactId}
                                        onCompletion:^(NSDictionary *responseDictionary) {
-                                           completionBlock(responseDictionary);
+                                           contactBlock([CHPContact contactFromDictionary:[responseDictionary[@"result"] objectAtIndex:0]]);
                                        }
                                             onError:^(NSError *error) {
                                                 errorBlock(error);
