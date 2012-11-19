@@ -31,7 +31,7 @@ static CHPContactManager *sharedInstance = nil;
     self = [super init];
     if (self) {
         // Initialization code here.
-        self.contacts = [NSMutableArray arrayWithCapacity:200];
+        self.contacts = [NSMutableDictionary dictionaryWithCapacity:200];
     }
     
     return self;
@@ -54,38 +54,52 @@ static CHPContactManager *sharedInstance = nil;
                             andInfoLevel:(InfoLevel)infoLevel
                             onCompletion:(ContactBlock)contactBlock
                                  onError:(ErrorBlock)errorBlock {
-    for (CHPContact *contact in self.contacts) {
-        if ([contact.contactId isEqualToString:contactId]) {
-            if (infoLevel < contact.infoLevel) {
-                contactBlock(contact);
-                
-                return nil;
-            } else {
-                return [[APIManager sharedInstance] getContactWithId:contactId
-                                                        onCompletion:^(CHPContact *newContact) {
-                                                            [contact mergeInfoFromContact:newContact];
-                                                            contactBlock(contact);
-                                                        } onError:^(NSError *error) {
-                                                            errorBlock(error);
-                                                        }];
-            }
-        }
-    }
     
-    return [[APIManager sharedInstance] getContactWithId:contactId
-                                            onCompletion:^(CHPContact *contact) {
-                                                [self.contacts addObject:contact];
-                                                contactBlock(contact);
-                                            } onError:^(NSError *error) {
-                                                errorBlock(error);
-                                            }];
+    CHPContact *contact = [self.contacts objectForKey:contactId];
+    
+    if (contact) {
+        if (infoLevel > contact.infoLevel) {
+            return [[APIManager sharedInstance] getContactWithId:contactId
+                                                    onCompletion:^(CHPContact *newContact) {
+                                                        [contact mergeInfoFromContact:newContact];
+                                                        contactBlock(contact);
+                                                    } onError:^(NSError *error) {
+                                                        errorBlock(error);
+                                                    }];
+        } else {
+            contactBlock(contact);
+            return nil;
+        }
+
+    } else {    
+        return [[APIManager sharedInstance] getContactWithId:contactId
+                                                onCompletion:^(CHPContact *newContact) {
+                                                    [self.contacts setObject:newContact forKey:newContact.contactId];
+                                                    contactBlock(newContact);
+                                                } onError:^(NSError *error) {
+                                                    errorBlock(error);
+                                                }];
+    }
 }
 
 - (MKNetworkOperation *)getContactsWithPosition:(CHPPosition)position
                                    onCompletion:(ArrayBlock)contactArrayBlock
                                         onError:(ErrorBlock)errorBlock {
-    
-    return nil;
+    return [[APIManager sharedInstance] getContactListForPosition:position
+                                                     onCompletion:^(NSArray *resultArray) {
+                                                         for (CHPContact *newContact in resultArray) {
+                                                             CHPContact *oldContact = [self.contacts objectForKey:newContact.contactId];
+                                                             if (oldContact) {
+                                                                 [oldContact mergeInfoFromContact:newContact];
+                                                             } else {
+                                                                 [self.contacts setObject:newContact forKey:newContact.contactId];
+                                                             }
+                                                         }
+                                                         
+                                                         contactArrayBlock(resultArray);
+                                                     } onError:^(NSError *error) {
+                                                         errorBlock(error);
+                                                     }];
 }
 
 @end

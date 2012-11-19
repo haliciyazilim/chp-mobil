@@ -8,12 +8,12 @@
 
 #import "MKNetworkEngine.h"
 
-@class CHPContact;
+#import "CHPContact.h"
 
 typedef void (^CompletionBlock) (NSDictionary *responseDictionary);
 typedef void (^ErrorBlock) (NSError *error);
 
-typedef void (^ArrayBlock) (NSArray *newsArray);
+typedef void (^ArrayBlock) (NSArray *resultArray);
 
 typedef void (^ContactBlock) (CHPContact *contact);
 
@@ -28,7 +28,7 @@ typedef void (^ContactBlock) (CHPContact *contact);
                                onCompletion:(CompletionBlock)completionBlock
                                     onError:(ErrorBlock)errorBlock;
 
-- (MKNetworkOperation *)getContactListForPosition:(NSString *)position
+- (MKNetworkOperation *)getContactListForPosition:(CHPPosition)position
                                      onCompletion:(ArrayBlock)contactArrayBlock
                                           onError:(ErrorBlock)errorBlock;
 
