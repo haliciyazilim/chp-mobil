@@ -16,23 +16,37 @@
 
 @implementation CHPYoneticilerDetailViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,320.0,240.0)];
+    UIImageView *vesikaHolder = [[UIImageView alloc] initWithFrame:CGRectMake(82.0, 20.0, 156.0, 198.0)];
+    vesikaHolder.image = [UIImage imageNamed:@"vesika_imageholder.png"];
+
+    UIImageView *vesikaImage = [[UIImageView alloc] initWithFrame:CGRectMake(97.0, 31.0, 128.0, 167.0)];
+    vesikaImage.image = [UIImage imageNamed:@"deneme.jpg"];
+    
+    [tableHeaderView addSubview:vesikaHolder];
+    [tableHeaderView addSubview:vesikaImage];
+    
+    UILabel *managerName = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 210.0, 320.0, 32.0)];
+    managerName.text = @"Mehmet Emrehan HALICI";
+    managerName.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:18];
+    managerName.shadowColor = [UIColor blackColor];
+    managerName.textAlignment = NSTextAlignmentCenter;
+    managerName.backgroundColor = [UIColor clearColor];
+    managerName.textColor = [UIColor whiteColor];
+    
+    [tableHeaderView addSubview:managerName];
+    
+    self.tableView.tableHeaderView = tableHeaderView;
 }
 - (void)viewWillAppear:(BOOL)animated {
-    self.detailLabel.text = self.surname;
+    NSLog(@"here");
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,60 +57,24 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
-    // Return the number of sections.
-    return 2;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0){
-        return 5;
+    if(section == 0){
+        return 2;
     }
     else if(section == 1){
-        return 3;
+        return 1;
     }
-    else {
-        return 0;
+    else if(section == 2){
+        return 1;
     }
-}
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if ([tableView.dataSource tableView:tableView numberOfRowsInSection:section] == 0) {
-        return nil;
+    else if(section == 3){
+        return 1;
     }
-    else{
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50.0, 30.0)];
-        
-        [headerView setBackgroundColor:[UIColor colorWithRed:0.420 green:0.227 blue:0.227 alpha:0.85]];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, tableView.bounds.size.width - 10, 18)];
-        label.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-        label.font = [UIFont fontWithName:@"Futura" size:14];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.75];
-        label.backgroundColor = [UIColor clearColor];
-        [headerView addSubview:label];
-        
-        return headerView;
-    }
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if ([tableView.dataSource tableView:tableView numberOfRowsInSection:section] == 0) {
-        return 0;
-    }
-    else{
-        return 32;
-    }
-}
-
-
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section == 0){
-        return @"Telefon";
-    }
-    else {
-        return @"E-posta";
-    }
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -104,8 +82,131 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    if(indexPath.section == 0){
+        [(UILabel *) [cell viewWithTag:2] setText:@"Milletvekili   "];
+        [(UIImageView *) [cell viewWithTag:3] setImage:nil];
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+        cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+        ((UILabel *)[cell viewWithTag:2]).highlightedTextColor = [UIColor whiteColor];
+        ((UILabel *) [cell viewWithTag:2]).font = [UIFont fontWithName:@"Futura-Medium" size:16];
+        ((UILabel *) [cell viewWithTag:2]).textColor = [UIColor whiteColor];
+        ((UILabel *) [cell viewWithTag:2]).textAlignment = NSTextAlignmentCenter;
+    }
+    else if(indexPath.section == 1){
+        [(UILabel *) [cell viewWithTag:2] setText:@"0312-222-22-22"];
+        [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_phone.png"]];
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+        cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+        ((UILabel *)[cell viewWithTag:2]).highlightedTextColor = [UIColor colorWithRed:0.0 green:0.871 blue:1.0 alpha:1];
+        ((UILabel *) [cell viewWithTag:2]).font = [UIFont fontWithName:@"Futura-Medium" size:16];
+        ((UILabel *) [cell viewWithTag:2]).textColor = [UIColor colorWithRed:0.694 green:0.694 blue:0.694 alpha:1];
+        ((UILabel *) [cell viewWithTag:2]).textAlignment = NSTextAlignmentLeft;
+    }
+    else if(indexPath.section == 2){
+        [(UILabel *) [cell viewWithTag:2] setText:@"0555-555-55-55"];
+        [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_cellphone.png"]];
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+        cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+        ((UILabel *)[cell viewWithTag:2]).highlightedTextColor = [UIColor colorWithRed:0.0 green:0.871 blue:1.0 alpha:1];
+        ((UILabel *) [cell viewWithTag:2]).font = [UIFont fontWithName:@"Futura-Medium" size:16];
+        ((UILabel *) [cell viewWithTag:2]).textColor = [UIColor colorWithRed:0.694 green:0.694 blue:0.694 alpha:1];
+        ((UILabel *) [cell viewWithTag:2]).textAlignment = NSTextAlignmentLeft;
+    }
+    else if(indexPath.section == 3){
+        [(UILabel *) [cell viewWithTag:2] setText:@"emrehan@halici.com.tr"];
+        [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_mail.png"]];
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+        cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+        ((UILabel *)[cell viewWithTag:2]).highlightedTextColor = [UIColor colorWithRed:0.0 green:0.871 blue:1.0 alpha:1];
+        ((UILabel *) [cell viewWithTag:2]).font = [UIFont fontWithName:@"Futura-Medium" size:16];
+        ((UILabel *) [cell viewWithTag:2]).textColor = [UIColor colorWithRed:0.694 green:0.694 blue:0.694 alpha:1];
+        ((UILabel *) [cell viewWithTag:2]).textAlignment = NSTextAlignmentLeft;
+    }
+    
     
     return cell;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if(section == 0){
+        return nil;
+    }
+    else if(section == 1){
+        UIView *section1Header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+        UIImageView *separatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 4.0, 280.0, 1.0)];
+        separatorLine.image = [UIImage imageNamed:@"seperator_yonetici.png"];
+        [section1Header addSubview:separatorLine];
+        return section1Header;
+    }
+    else if(section == 2){
+        return nil;
+    }
+    else if(section == 3){
+        UIView *section2Header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+        UIImageView *separatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 4.0, 280.0, 1.0)];
+        separatorLine.image = [UIImage imageNamed:@"seperator_yonetici.png"];
+        [section2Header addSubview:separatorLine];
+        return section2Header;
+    }
+    return nil;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        return 0.0;
+    }
+    else if(section == 1){
+        return 12.0;
+    }
+    else if(section == 2){
+        return 0.0;
+    }
+    else{
+        return 12.0;
+    }
+    return 0.0;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0){
+        return 30.0;
+    }
+    else{
+        return 44;
+    }
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 1 || indexPath.section == 2){
+        UIDevice *device = [UIDevice currentDevice];
+        if ([[device model] isEqualToString:@"iPhone Simulator"] ) {
+            NSString *phoneNumber = [(UILabel*)[[tableView cellForRowAtIndexPath:indexPath] viewWithTag:2] text];
+            NSString *phoneUrl = [NSString stringWithFormat:@"tel:%@",phoneNumber];
+            NSLog(@"%@",phoneNumber);
+            NSLog(@"%@",phoneUrl);
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneUrl]];
+        } else {
+            UIAlertView *Notpermitted=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Your device doesn't support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [Notpermitted show];
+        }
+    }
+    else if(indexPath.section == 3){
+        
+    }
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if(section == 0){
+        return 10.0;
+    }
+    else{
+        return 0.0;
+    }
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (section == 0){
+        UIView *footerView = [[UIView alloc] init];
+        return footerView;
+    }
+    else{
+        return nil;
+    }
 }
 
 - (void)setChpContact:(CHPContact *)chpContact{
