@@ -96,6 +96,8 @@
 		AE257C74165672A2007EC17F /* tuzuk_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE257C68165672A2007EC17F /* tuzuk_btn@2x.png */; };
 		AE257C7C1656851D007EC17F /* CHPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE257C7B1656851C007EC17F /* CHPNavigationController.m */; };
 		AE95D7ED1654D8DA000AE76A /* CHPBizKimizDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE95D7EC1654D8DA000AE76A /* CHPBizKimizDetailViewController.m */; };
+		AEBA5344165A5AF80056E596 /* CHPHaberDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBA5343165A5AF80056E596 /* CHPHaberDetailTableViewController.m */; };
+		AEBA5347165A65650056E596 /* CHPHaberFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBA5346165A65650056E596 /* CHPHaberFlowLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -216,6 +218,10 @@
 		AE257C7B1656851C007EC17F /* CHPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPNavigationController.m; sourceTree = "<group>"; };
 		AE95D7EB1654D8DA000AE76A /* CHPBizKimizDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPBizKimizDetailViewController.h; sourceTree = "<group>"; };
 		AE95D7EC1654D8DA000AE76A /* CHPBizKimizDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPBizKimizDetailViewController.m; sourceTree = "<group>"; };
+		AEBA5342165A5AF80056E596 /* CHPHaberDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPHaberDetailTableViewController.h; sourceTree = "<group>"; };
+		AEBA5343165A5AF80056E596 /* CHPHaberDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPHaberDetailTableViewController.m; sourceTree = "<group>"; };
+		AEBA5345165A65650056E596 /* CHPHaberFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPHaberFlowLayout.h; sourceTree = "<group>"; };
+		AEBA5346165A65650056E596 /* CHPHaberFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPHaberFlowLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +355,8 @@
 				05B1FE311653EF040079FE20 /* CHPHaberNavigationController.m */,
 				05B1FE2A1653EADE0079FE20 /* CHPHaberCollectionViewController.h */,
 				05B1FE2B1653EADE0079FE20 /* CHPHaberCollectionViewController.m */,
+				AEBA5342165A5AF80056E596 /* CHPHaberDetailTableViewController.h */,
+				AEBA5343165A5AF80056E596 /* CHPHaberDetailTableViewController.m */,
 			);
 			name = HaberTabControllers;
 			sourceTree = "<group>";
@@ -488,6 +496,8 @@
 				41BFE50A165533FF00EB2EA0 /* CHPNewsItem.m */,
 				0578DB6C165668F400131BD8 /* CHPContact.h */,
 				0578DB6D165668F400131BD8 /* CHPContact.m */,
+				AEBA5345165A65650056E596 /* CHPHaberFlowLayout.h */,
+				AEBA5346165A65650056E596 /* CHPHaberFlowLayout.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -667,6 +677,8 @@
 				0578DB6E165668F400131BD8 /* CHPContact.m in Sources */,
 				AE257C7C1656851D007EC17F /* CHPNavigationController.m in Sources */,
 				41BFE53E16568BB900EB2EA0 /* CHPContactManager.m in Sources */,
+				AEBA5344165A5AF80056E596 /* CHPHaberDetailTableViewController.m in Sources */,
+				AEBA5347165A65650056E596 /* CHPHaberFlowLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
