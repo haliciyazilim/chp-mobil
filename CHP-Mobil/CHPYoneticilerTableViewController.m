@@ -8,6 +8,7 @@
 
 #import "CHPYoneticilerTableViewController.h"
 #import "CHPYoneticilerDetailViewController.h"
+#import "CHPYoneticilerKategoriViewController.h"
 
 @interface CHPYoneticilerTableViewController ()
 
@@ -102,7 +103,7 @@
         
     }
     else if([[segue identifier] isEqualToString:@"KategoriSegue"]){
-        
+        CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
     }
 }
 
