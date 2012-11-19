@@ -8,8 +8,6 @@
 
 #import "CHPAppDelegate.h"
 
-#import "APIManager.h"
-
 @implementation CHPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -22,7 +20,7 @@
     else{
         _window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"main_bg.png"]];
     }
-    
+        
     return YES;
 }
 							

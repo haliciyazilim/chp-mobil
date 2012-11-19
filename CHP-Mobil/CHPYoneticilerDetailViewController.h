@@ -10,11 +10,8 @@
 
 @class CHPContact;
 
-@interface CHPYoneticilerDetailViewController : UITableViewController
+@interface CHPYoneticilerDetailViewController : UITableViewController <UITableViewDelegate>
 
 @property (strong, nonatomic) CHPContact *chpContact;
-
-@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
-@property (strong, nonatomic) NSString *surname;
 
 @end

@@ -107,12 +107,14 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Yöneticiler" id="Bkz-Bb-J5c"/>
-                    <navigationItem key="navigationItem" id="yhB-Uh-zYL"/>
+                    <navigationItem key="navigationItem" id="yhB-Uh-zYL">
+                        <barButtonItem key="backBarButtonItem" title="Geri" id="KC4-mB-uTx"/>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <connections>
-                        <segue destination="7na-ZZ-CUb" kind="push" identifier="DetailSegue" id="sjO-zu-A6w"/>
                         <segue destination="HF4-DS-VP6" kind="push" identifier="KategoriSegue" id="lSJ-Sw-LeM"/>
+                        <segue destination="CaI-fR-uCG" kind="push" identifier="DetailSegue" id="4wa-Ih-48h"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXC-OV-Ubl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -120,37 +122,53 @@
             <point key="canvasLocation" x="157" y="881"/>
         </scene>
         <!--Yoneticiler Detail View Controller-->
-        <scene sceneID="9vM-ZG-hQ8">
+        <scene sceneID="hU5-vC-cVW">
             <objects>
-                <tableViewController id="7na-ZZ-CUb" customClass="CHPYoneticilerDetailViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="lFZ-Af-RBQ">
+                <viewController id="CaI-fR-uCG" customClass="CHPYoneticilerDetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QYO-aO-orD">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" id="1D1-yB-4yx">
-                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" id="ggu-pg-ElE">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbJ-HP-iwX">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="244" id="sTb-a0-gZN"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqB-1l-B70">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="17" id="SZi-cv-L4C"/>
+                                                <constraint firstAttribute="height" constant="17" id="mey-Jb-6MP"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="fbJ-HP-iwX" firstAttribute="leading" secondItem="ggu-pg-ElE" secondAttribute="leading" constant="46" id="1RE-ce-qV5"/>
+                                    <constraint firstItem="aqB-1l-B70" firstAttribute="leading" secondItem="ggu-pg-ElE" secondAttribute="leading" constant="20" type="default" id="AwP-ZV-BcD"/>
+                                    <constraint firstItem="fbJ-HP-iwX" firstAttribute="top" secondItem="ggu-pg-ElE" secondAttribute="top" constant="11" id="BBt-qq-xYN"/>
+                                    <constraint firstItem="aqB-1l-B70" firstAttribute="centerY" secondItem="fbJ-HP-iwX" secondAttribute="centerY" type="default" id="DlD-WY-uxh"/>
+                                </constraints>
                             </tableViewCell>
                         </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="7na-ZZ-CUb" id="enZ-cm-cyL"/>
-                            <outlet property="delegate" destination="7na-ZZ-CUb" id="LEx-HX-2bZ"/>
-                        </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="BNI-mC-Iod"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vtc-Jp-23R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <navigationItem key="navigationItem" id="MeF-h9-Q5d"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RR7-9E-9fa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="240" y="1561"/>
+            <point key="canvasLocation" x="157" y="1588"/>
         </scene>
         <!--Yoneticiler Kategori View Controller-->
         <scene sceneID="KQk-ea-ZvK">
@@ -161,14 +179,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KategoriCell" id="dNc-0k-d2n">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KategoriCell" id="dNc-0k-d2n">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="CaI-fR-uCG" kind="push" identifier="KategoriToDetailSegue" id="aju-Ss-hiq"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -567,6 +588,7 @@
         <class className="CHPHaberCollectionViewController" superclassName="UICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberCollectionViewController.h"/>
         </class>
+<<<<<<< HEAD
         <class className="CHPHaberDetailTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberDetailTableViewController.h"/>
             <relationships>
@@ -575,6 +597,8 @@
                 <relationship kind="outlet" name="newsTitle" candidateClass="UILabel"/>
             </relationships>
         </class>
+=======
+>>>>>>> 32b97e11b83d9f90743bf12126ea5b096c7a1976
         <class className="CHPHaberNavigationController" superclassName="CHPNavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberNavigationController.h"/>
         </class>
@@ -586,9 +610,6 @@
         </class>
         <class className="CHPYoneticilerDetailViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPYoneticilerDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
-            </relationships>
         </class>
         <class className="CHPYoneticilerKategoriViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPYoneticilerKategoriViewController.h"/>
@@ -625,5 +646,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="edE-U7-IWX"/>
+        <segue reference="4wa-Ih-48h"/>
     </inferredMetricsTieBreakers>
 </document>

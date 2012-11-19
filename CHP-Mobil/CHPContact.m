@@ -39,6 +39,8 @@
             _eMails = @[];
         }
         
+        _infoLevel = ContactInfoLevelNone;
+        
         return self;
     }
     return nil;
@@ -50,9 +52,40 @@
         _name = name;
         _phones = phones;
         _eMails = eMails;
+        _infoLevel = ContactInfoLevelNone;
         return self;
     }
     return nil;
+}
+
+-(CHPContact *) mergeInfoFromContact:(CHPContact *)otherContact {
+    if (otherContact.name) {
+        self.name = otherContact.name;
+    }
+    
+    if (otherContact.phones.count > 0) {
+        self.phones = otherContact.phones;
+    }
+    
+    if (otherContact.eMails.count > 0) {
+        self.eMails = otherContact.eMails;
+    }
+    
+    if (otherContact.infoLevel > self.infoLevel) {
+        self.infoLevel = otherContact.infoLevel;
+    }
+    
+    self.contactId = otherContact.contactId;
+    
+    self.position = self.position | otherContact.position;
+    
+    return self;
+}
+
+-(CHPContact *) addPosition:(CHPPosition)newPosition {
+    self.position = self.position | newPosition;
+
+    return self;
 }
 
 @end
