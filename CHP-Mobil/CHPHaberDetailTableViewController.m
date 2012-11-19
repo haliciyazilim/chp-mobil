@@ -7,18 +7,25 @@
 //
 
 #import "CHPHaberDetailTableViewController.h"
+#import "CHPNewsItem.h"
+
+#import "CHPHaberFlowLayout.h"
 
 @interface CHPHaberDetailTableViewController ()
 
 @end
 
 @implementation CHPHaberDetailTableViewController
+{
+    CHPNewsItem* currentItem;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        currentItem = nil;
     }
     return self;
 }
@@ -32,6 +39,28 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self configureUI];
+}
+
+- (void)setNewsObject:(CHPNewsItem*)item
+{
+    if(item != currentItem){
+        currentItem = item;
+        [self configureUI];
+    }
+}
+
+-(void) configureUI
+{
+    if(currentItem == nil)
+        return;
+    [[self newsTitle] setText:currentItem.title];
+    [[self newsContent] setText:currentItem.content];
+    NSURL * imageURL = [currentItem imageAddress];
+    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage * image = [UIImage imageWithData:imageData];
+    [[self newsImage] setImage:image];
+    
 }
 
 - (void)didReceiveMemoryWarning
