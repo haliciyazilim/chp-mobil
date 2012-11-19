@@ -56,6 +56,8 @@
     self.programCell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"program_btn_selected.png"]];
     
     
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
