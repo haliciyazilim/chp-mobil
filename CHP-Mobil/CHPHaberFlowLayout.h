@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CHPHaberFlowLayout : UICollectionViewFlowLayout
-- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath;
+
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind ;
-- (void) setDifference:(int)i;
 @end
