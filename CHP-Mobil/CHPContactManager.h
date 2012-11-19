@@ -13,7 +13,7 @@
 
 @interface CHPContactManager : NSObject
 
-@property (nonatomic, strong) NSMutableArray *contacts;
+@property (nonatomic, strong) NSMutableDictionary *contacts;
 
 + (CHPContactManager *)sharedInstance;
 

@@ -183,16 +183,29 @@ static APIManager *sharedInstance = nil;
                                             }];
 }
 
-- (MKNetworkOperation *)getContactListForPosition:(NSString *)position
+- (MKNetworkOperation *)getContactListForPosition:(CHPPosition)position
                                      onCompletion:(ArrayBlock)contactArrayBlock
                                           onError:(ErrorBlock)errorBlock {
+    int index = 1;
+    int power = 1;
+    while (!(position & power)) {
+        power *= 2;
+        index++;
+    }
+    
     return [self createNetworkOperationForOperation:@"YoneticiListesiGetir"
-                                      andParameters:@{@"unvanId" : position}
+                                      andParameters:@{@"unvanId" : [NSString stringWithFormat:@"%d", index]}
                                        onCompletion:^(NSDictionary *responseDictionary) {
+                                           NSMutableArray *contactArray = [NSMutableArray arrayWithCapacity:10];
                                            
+                                           for (NSDictionary *contactDictionary in responseDictionary[@"result"]) {
+                                               CHPContact *contact = [CHPContact contactFromDictionary:contactDictionary];
+                                               contact.position = index;
+                                               contact.infoLevel = ContactInfoLevelBasic;
+                                               [contactArray addObject:contact];
+                                           }
                                            
-                                           
-                                           contactArrayBlock(nil);
+                                           contactArrayBlock(contactArray);
                                        }
                                             onError:^(NSError *error) {
                                                 errorBlock(error);

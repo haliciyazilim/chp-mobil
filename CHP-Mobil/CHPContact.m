@@ -25,18 +25,24 @@
         _name = aDictionary[@"AdSoyad"];
         
         NSMutableArray *phonesArray = [NSMutableArray array];
-        if (![aDictionary[@"CepTelefonu"] isKindOfClass:[NSNull class]]) {
+        if (aDictionary[@"CepTelefonu"] && ![aDictionary[@"CepTelefonu"] isKindOfClass:[NSNull class]]) {
             [phonesArray addObject:[NSString stringWithFormat:@"+90%@", aDictionary[@"CepTelefonu"]]];
         }
-        if (![aDictionary[@"PartiTelefonu"] isKindOfClass:[NSNull class]]) {
+        if (aDictionary[@"PartiTelefonu"] && ![aDictionary[@"PartiTelefonu"] isKindOfClass:[NSNull class]]) {
             [phonesArray addObject:[NSString stringWithFormat:@"+90%@", aDictionary[@"PartiTelefonu"]]];
         }
         _phones = phonesArray;
 
-        if (![aDictionary[@"Email"] isKindOfClass:[NSNull class]]) {
+        if (aDictionary[@"Email"] && ![aDictionary[@"Email"] isKindOfClass:[NSNull class]]) {
             _eMails = @[aDictionary[@"Email"]];
         } else {
             _eMails = @[];
+        }
+        
+        if (aDictionary[@"YoneticiId"] && ![aDictionary[@"YoneticiId"] isKindOfClass:[NSNull class]]) {
+            _contactId = [aDictionary objectForKey:@"YoneticiId"];
+        } else {
+            _contactId = nil;
         }
         
         _infoLevel = ContactInfoLevelNone;
