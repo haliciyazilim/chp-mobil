@@ -588,7 +588,6 @@
         <class className="CHPHaberCollectionViewController" superclassName="UICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberCollectionViewController.h"/>
         </class>
-<<<<<<< HEAD
         <class className="CHPHaberDetailTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberDetailTableViewController.h"/>
             <relationships>
@@ -597,8 +596,6 @@
                 <relationship kind="outlet" name="newsTitle" candidateClass="UILabel"/>
             </relationships>
         </class>
-=======
->>>>>>> 32b97e11b83d9f90743bf12126ea5b096c7a1976
         <class className="CHPHaberNavigationController" superclassName="CHPNavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberNavigationController.h"/>
         </class>
