@@ -9,6 +9,7 @@
 #import "CHPYoneticilerTableViewController.h"
 #import "CHPYoneticilerDetailViewController.h"
 #import "CHPYoneticilerKategoriViewController.h"
+#import "CHPContactManager.h"
 
 @interface CHPYoneticilerTableViewController ()
 
@@ -104,7 +105,14 @@
     }
     else if([[segue identifier] isEqualToString:@"KategoriSegue"]){
         CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
+        [[CHPContactManager sharedInstance] getContactsWithPosition:1<<5
+                                                       onCompletion:^(NSArray *resultArray) {
+                                                           
+                                                       } onError:^(NSError *error) {
+                                                           
+                                                       }];
     }
+
 }
 
 @end
