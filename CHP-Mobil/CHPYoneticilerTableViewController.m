@@ -42,13 +42,6 @@
         ];
     }
     
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Geri"
-                                                                   style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:nil];
-    
-    self.navigationItem.backBarButtonItem = backButton;
-    
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
     
     
@@ -101,12 +94,12 @@
     else{
         [self performSegueWithIdentifier:@"KategoriSegue" sender:self];
     }
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"DetailSegue"]){
-        CHPYoneticilerDetailViewController *chpYoneticilerDetailViewController = [segue destinationViewController];
-        [chpYoneticilerDetailViewController setSurname:@"Kilicdaroglu"];
+        
     }
     else if([[segue identifier] isEqualToString:@"KategoriSegue"]){
         
