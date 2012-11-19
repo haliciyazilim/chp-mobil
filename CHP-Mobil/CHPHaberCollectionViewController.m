@@ -12,6 +12,8 @@
 
 #import "APIManager.h"
 
+#import "CHPHaberFlowLayout.h"
+
 @interface CHPHaberCollectionViewController ()
 
 @end
@@ -36,6 +38,17 @@
     } onError:^(NSError *error) {
         
     }];
+    
+    
+    // Configure layout
+    CHPHaberFlowLayout *flowLayout = [[CHPHaberFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(156, 180)];
+    [flowLayout setMinimumInteritemSpacing:8];
+    [flowLayout setMinimumLineSpacing:8];
+    
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [self.collectionView setCollectionViewLayout:flowLayout];
+//    flowLayout layoutAttributesForItemAtIndexPath:<#(NSIndexPath *)#>
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,7 +71,20 @@
     
     CHPNewsItem *item = (CHPNewsItem*)self.newsItemArray[indexPath.row];
     
+    //set title
     [(UILabel *)[cell viewWithTag:1] setText:item.title];
+    
+    NSLog(@"\nObject at index:\n%d\n",indexPath.item);
+    
+    //set image
+    NSURL * imageURL = item.imageAddress;
+    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage * image = [UIImage imageWithData:imageData];
+    [(UIImageView *)[cell viewWithTag:2] setImage:image];
+    
+    
+//    set background
+    
     
     return cell;
 }
@@ -67,6 +93,14 @@
     _newsItemArray = newsItemArray;
     
     [self.collectionView reloadData];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    UITableViewCell* cell = (UITableViewCell*) sender;
+    
+    
+    
 }
 
 
