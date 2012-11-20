@@ -8,7 +8,7 @@
 
 #import "CHPHaberDetailTableViewController.h"
 #import "CHPNewsItem.h"
-
+#import "APIManager.h"
 #import "CHPHaberFlowLayout.h"
 
 @interface CHPHaberDetailTableViewController ()
@@ -57,10 +57,13 @@
         return;
     [[self newsTitle] setText:currentItem.title];
     [[self newsContent] setText:currentItem.content];
-    NSURL * imageURL = [currentItem imageAddress];
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage * image = [UIImage imageWithData:imageData];
-    [[self newsImage] setImage:image];
+    [[APIManager sharedInstance] getImageWithURLString:[currentItem imageAddress]
+                                          onCompletion:^(UIImage *resultImage) {
+                                              [[self newsImage] setImage:resultImage];
+                                          } onError:^(NSError *error) {
+                                              
+                                          }];
+
     
 //    NSLog(@"\n\nheight: %f\nwidth: %f\n\n",[[self newsContent] contentSize].height,[[self newsContent] contentSize].width);
 //    self.newsContentCell.frame.origin.

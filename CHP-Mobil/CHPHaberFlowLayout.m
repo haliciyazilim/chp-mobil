@@ -10,6 +10,14 @@
 
 @implementation CHPHaberFlowLayout
 
+- (CGSize)collectionViewContentSize
+{
+    int count = [[self collectionView] numberOfItemsInSection:0];
+    return CGSizeMake(
+                      [self itemSize].width * 2 + [self minimumInteritemSpacing],
+                      [self itemSize].height * (floor(count/2)+1) + floor(count/2)*self.minimumLineSpacing
+                      );
+}
 
 -(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
@@ -21,14 +29,14 @@
     NSMutableArray* mutArr = [arr mutableCopy];
     int startOffset = [(UICollectionViewLayoutAttributes*)[arr objectAtIndex:0] indexPath].item;
     for (UICollectionViewLayoutAttributes* attr in arr) {
-        if(attr.indexPath.item == 0){
+        if(attr.indexPath.row == 0){
             attr.frame = CGRectMake(
                                     attr.frame.origin.x,
                                     attr.frame.origin.y,
                                     attr.frame.size.width + attr.frame.size.width + self.minimumInteritemSpacing,
                                     attr.frame.size.height);
         }
-        else if(attr.indexPath.item % 2 == 0){
+        else if(attr.indexPath.row % 2 == 0){
             attr.frame = CGRectMake(
                                     attr.frame.origin.x + attr.frame.size.width+ self.minimumInteritemSpacing,
                                     attr.frame.origin.y,

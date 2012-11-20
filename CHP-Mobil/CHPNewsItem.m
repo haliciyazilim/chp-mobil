@@ -19,7 +19,7 @@
         _date = aDictionary[@"Tarih"];
         _title = aDictionary[@"Baslik"];
         _content = aDictionary[@"Icerik"];
-       _imageAddress = [NSURL URLWithString:aDictionary[@"HaberResmi"]];
+       _imageAddress = aDictionary[@"HaberResmi"];
         
         return self;
     }

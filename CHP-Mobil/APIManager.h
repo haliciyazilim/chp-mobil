@@ -14,26 +14,33 @@ typedef void (^CompletionBlock) (NSDictionary *responseDictionary);
 typedef void (^ErrorBlock) (NSError *error);
 
 typedef void (^ArrayBlock) (NSArray *resultArray);
-
-typedef void (^ContactBlock) (CHPContact *contact);
+typedef void (^ContactBlock) (CHPContact *resultContact);
+typedef void (^StringBlock) (NSString *resultString);
+typedef void (^ImageBlock) (UIImage *resultImage);
 
 @interface APIManager : MKNetworkEngine
 
 + (APIManager *)sharedInstance;
 
-- (MKNetworkOperation *)getLatestNewsOnCompletion:(ArrayBlock)newsArrayBlock
+- (MKNetworkOperation *)getLatestNewsOnCompletion:(ArrayBlock)completionBlock
                                           onError:(ErrorBlock)errorBlock;
 
 - (MKNetworkOperation *)getAboutInfoForType:(NSString *)type
-                               onCompletion:(CompletionBlock)completionBlock
+                               onCompletion:(StringBlock)completionBlock
                                     onError:(ErrorBlock)errorBlock;
 
 - (MKNetworkOperation *)getContactListForPosition:(CHPPosition)position
-                                     onCompletion:(ArrayBlock)contactArrayBlock
+                                     onCompletion:(ArrayBlock)completionBlock
                                           onError:(ErrorBlock)errorBlock;
 
 - (MKNetworkOperation *)getContactWithId:(NSString *)contactId
-                            onCompletion:(ContactBlock)contactBlock
+                            onCompletion:(ContactBlock)completionBlock
                                  onError:(ErrorBlock)errorBlock;
+
+
+- (MKNetworkOperation *)getImageWithURLString:(NSString *)urlString
+                                 onCompletion:(ImageBlock)completionBlock
+                                      onError:(ErrorBlock)errorBlock;
+
 
 @end
