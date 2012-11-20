@@ -59,12 +59,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"detailCell";
+    static NSString *CellIdentifier2 = @"detailUnvanCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell;
+    if(indexPath.section == 0){
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2];
+    }
+    else{
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
     
     if(indexPath.section == 0){
         [(UILabel *) [cell viewWithTag:2] setText:[self.positionsOfContact objectAtIndex:indexPath.row]];
-        [(UIImageView *) [cell viewWithTag:3] setImage:nil];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
         ((UILabel *)[cell viewWithTag:2]).highlightedTextColor = [UIColor whiteColor];
@@ -111,21 +117,31 @@
         return nil;
     }
     else if(section == 1){
-        UIView *section1Header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
-        UIImageView *separatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 4.0, 280.0, 1.0)];
-        separatorLine.image = [UIImage imageNamed:@"seperator_yonetici.png"];
-        [section1Header addSubview:separatorLine];
-        return section1Header;
+        if([[self.chpContact phones] count] != 0){
+            UIView *section1Header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+            UIImageView *separatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 4.0, 280.0, 1.0)];
+            separatorLine.image = [UIImage imageNamed:@"seperator_yonetici.png"];
+            [section1Header addSubview:separatorLine];
+            return section1Header;
+        }
+        else{
+            return nil;
+        }
     }
     else if(section == 2){
         return nil;
     }
     else if(section == 3){
-        UIView *section2Header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
-        UIImageView *separatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 4.0, 280.0, 1.0)];
-        separatorLine.image = [UIImage imageNamed:@"seperator_yonetici.png"];
-        [section2Header addSubview:separatorLine];
-        return section2Header;
+        if([[self.chpContact eMails] count] != 0){
+            UIView *section2Header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+            UIImageView *separatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 4.0, 280.0, 1.0)];
+            separatorLine.image = [UIImage imageNamed:@"seperator_yonetici.png"];
+            [section2Header addSubview:separatorLine];
+            return section2Header;
+        }
+        else{
+            return nil;
+        }
     }
     return nil;
 }
@@ -134,13 +150,23 @@
         return 0.0;
     }
     else if(section == 1){
-        return 12.0;
+        if([[self.chpContact phones] count] != 0){
+            return 12.0;
+        }
+        else{
+            return 0.0;
+        }
     }
     else if(section == 2){
         return 0.0;
     }
     else{
-        return 12.0;
+        if([[self.chpContact eMails] count] != 0){
+            return 12.0;
+        }
+        else{
+            return 0.0;
+        }
     }
     return 0.0;
 }
