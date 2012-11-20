@@ -33,7 +33,9 @@ typedef enum {
 // properties
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *phones;
+@property (strong, nonatomic) NSArray *cellphones;
 @property (strong, nonatomic) NSArray *eMails;
+@property (strong, nonatomic) NSURL *contactImage;
 @property (strong, nonatomic) NSString *contactId;
 @property (nonatomic) InfoLevel infoLevel;
 @property (nonatomic) int position;
@@ -41,16 +43,7 @@ typedef enum {
 // class methods
 +(id) contactFromDictionary:(NSDictionary *)aDictionary;
 
-+(id) chpContactWithName:(NSString *)name
-                phones:(NSArray *)phones
-                eMails:(NSArray *)eMails;
-
 // instance methods
--(id) initWithName:(NSString *)name
-             phones:(NSArray *)phones
-             eMails:(NSArray *)eMails;
-
-
 -(id) initFromDictionary:(NSDictionary *)aDictionary;
 
 -(CHPContact *) mergeInfoFromContact:(CHPContact *)otherContact;
