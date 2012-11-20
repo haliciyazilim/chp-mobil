@@ -48,7 +48,7 @@
         return [[self.chpContact phones] count];
     }
     else if(section == 2){
-        return [[self.chpContact cellphones] count];
+        return [[self.chpContact cellPhones] count];
     }
     else if(section == 3){
         return [[self.chpContact eMails] count];
@@ -82,7 +82,7 @@
         ((UILabel *) [cell viewWithTag:2]).textAlignment = NSTextAlignmentLeft;
     }
     else if(indexPath.section == 2){
-        [(UILabel *) [cell viewWithTag:2] setText:[[self.chpContact cellphones] objectAtIndex:indexPath.row]];
+        [(UILabel *) [cell viewWithTag:2] setText:[[self.chpContact cellPhones] objectAtIndex:indexPath.row]];
         [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_cellphone.png"]];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];

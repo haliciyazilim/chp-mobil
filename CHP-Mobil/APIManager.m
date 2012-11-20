@@ -95,7 +95,7 @@ static APIManager *sharedInstance = nil;
                                  forType:@"text/xml"];
     
     [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-        DLog(@"Response: %@", [completedOperation responseString]);
+//        DLog(@"Response: %@", [completedOperation responseString]);
         NSDictionary *responseDictionary = [self getDictionaryFromResponse:[completedOperation responseString]
                                                               forOperation:operationName];
         
@@ -108,7 +108,7 @@ static APIManager *sharedInstance = nil;
         else{
             completionBlock(responseDictionary);
         }
-        DLog(@"%@", responseDictionary);
+//        DLog(@"%@", responseDictionary);
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
         if (error.domain == NSURLErrorDomain && error.code == -1009) {
             NSError *connectionError = [NSError errorWithDomain:@"ConnectionError"
@@ -116,7 +116,7 @@ static APIManager *sharedInstance = nil;
                                                        userInfo:@{NSLocalizedDescriptionKey : @"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz."}];
             errorBlock(connectionError);
         } else {
-            NSLog(@"%@", error);
+//            NSLog(@"%@", error);
             errorBlock(error);
         }
     }];
