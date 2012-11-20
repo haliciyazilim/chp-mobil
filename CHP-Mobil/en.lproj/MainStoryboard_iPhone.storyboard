@@ -164,7 +164,9 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" id="MeF-h9-Q5d"/>
+                    <navigationItem key="navigationItem" id="MeF-h9-Q5d">
+                        <barButtonItem key="backBarButtonItem" title="Geri" id="EwL-dS-qiy"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RR7-9E-9fa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -204,7 +206,9 @@
                             <outlet property="delegate" destination="HF4-DS-VP6" id="oi0-lF-Y7N"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Cxy-V5-prQ"/>
+                    <navigationItem key="navigationItem" id="Cxy-V5-prQ">
+                        <barButtonItem key="backBarButtonItem" title="Geri" id="9Oa-VM-c4Z"/>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </tableViewController>

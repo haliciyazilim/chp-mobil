@@ -71,12 +71,13 @@
 {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
     
-    [headerView setBackgroundColor:[UIColor colorWithRed:0.420 green:0.227 blue:0.227 alpha:0.85]];
+    [headerView setBackgroundColor:[UIColor colorWithRed:0.502 green:0.0 blue:0.0 alpha:0.85]];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 16, tableView.bounds.size.width - 10, 18)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 14, tableView.bounds.size.width - 10, 24)];
     label.text = self.position;
-    label.font = [UIFont fontWithName:@"Futura-Medium" size:16];
+    label.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:18];
     label.textColor = [UIColor whiteColor];
+    label.shadowColor = [UIColor blackColor];
     label.backgroundColor = [UIColor clearColor];
     [headerView addSubview:label];
     
