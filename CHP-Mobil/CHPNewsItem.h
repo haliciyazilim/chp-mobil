@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSString *date;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *content;
-@property (nonatomic, strong) NSURL *imageAddress;
+@property (nonatomic, strong) NSString *imageAddress;
 
 +(id) newsItemFromDictionary:(NSDictionary *)aDictionary;
 

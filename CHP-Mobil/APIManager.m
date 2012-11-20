@@ -166,7 +166,13 @@ static APIManager *sharedInstance = nil;
                                            for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
                                                [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
                                            }
+                                           for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
+                                               [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
+                                           }
                                            
+                                           for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
+                                               [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
+                                           }
                                            for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
                                                [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
                                            }
@@ -175,9 +181,6 @@ static APIManager *sharedInstance = nil;
                                                [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
                                            }
                                            
-                                           for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
-                                               [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
-                                           }
                                            
                                            newsArrayBlock(newsArray);
                                        }
@@ -187,12 +190,12 @@ static APIManager *sharedInstance = nil;
 }
 
 - (MKNetworkOperation *)getAboutInfoForType:(NSString *)type
-                               onCompletion:(CompletionBlock)completionBlock
+                               onCompletion:(StringBlock)completionBlock
                                     onError:(ErrorBlock)errorBlock {
     return [self createNetworkOperationForOperation:@"BizKimizBilgisiGetir"
                                       andParameters:@{@"baslik" : type}
                                        onCompletion:^(NSDictionary *responseDictionary) {
-                                           completionBlock(responseDictionary);
+                                           completionBlock(responseDictionary[@"result"]);
                                        }
                                             onError:^(NSError *error) {
                                                 errorBlock(error);
@@ -244,5 +247,22 @@ static APIManager *sharedInstance = nil;
                                             }];
 };
 
+
+#pragma mark - Getting images
+
+- (MKNetworkOperation *)getImageWithURLString:(NSString *)urlString
+                                 onCompletion:(ImageBlock)completionBlock
+                                      onError:(ErrorBlock)errorBlock {
+    MKNetworkOperation *op = [self operationWithURLString:urlString];
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        completionBlock([completedOperation responseImage]);
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+        errorBlock(error);
+    }];
+    
+    [self enqueueOperation:op];
+    
+    return op;
+}
 
 @end

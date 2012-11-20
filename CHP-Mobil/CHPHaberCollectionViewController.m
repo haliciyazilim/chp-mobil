@@ -72,34 +72,39 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
     CHPNewsItem *item = (CHPNewsItem*)self.newsItemArray[indexPath.row];
-    
-    //set title
-    UILabel* titleLabel = (UILabel*)[cell viewWithTag:1];
-    [titleLabel setText:item.title];
-    
-    NSLog(@"\nObject at index:\n%d\n",indexPath.item);
-    
-    //set image
-    NSURL * imageURL = item.imageAddress;
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage * image = [UIImage imageWithData:imageData];
-    [(UIImageView *)[cell viewWithTag:2] setImage:image];
-    
-    
-    //set background
-    [(UIImageView *)[cell viewWithTag:3] setImage:[UIImage imageNamed:@"news_shadow.png"]];
-    
-    //set font
-    if(indexPath.row == 0){
-        [titleLabel setFont:[titleLabel.font fontWithSize:16]];
-//        [titleLabel set ]
-    }
-    else{
-        [titleLabel setFont:[titleLabel.font fontWithSize:12]];
+    if(item != nil)
+    {
+        //set title
+        UILabel* titleLabel = (UILabel*)[cell viewWithTag:1];
+        [titleLabel setText:item.title];
         
+        NSLog(@"\nObject at index:\n%d\n",indexPath.item);
+        
+        //set image
+        [[APIManager sharedInstance] getImageWithURLString:item.imageAddress
+                                              onCompletion:^(UIImage *resultImage) {
+                                                  [(UIImageView *)[cell viewWithTag:2] setImage:resultImage];
+                                              } onError:^(NSError *error) {
+                                                  
+                                              }];
+        
+        
+        //set background
+        [(UIImageView *)[cell viewWithTag:3] setImage:[UIImage imageNamed:@"news_shadow.png"]];
+        
+        //set font
+        if(indexPath.row == 0){
+            [titleLabel setFont:[titleLabel.font fontWithSize:16]];
+            //        [titleLabel set ]
+        }
+        else{
+            [titleLabel setFont:[titleLabel.font fontWithSize:12]];
+            
+        }
+        
+        
+
     }
-    
-    
     return cell;
 }
 
