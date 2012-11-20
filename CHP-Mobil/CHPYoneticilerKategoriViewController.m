@@ -7,6 +7,8 @@
 //
 
 #import "CHPYoneticilerKategoriViewController.h"
+#import "CHPYoneticilerDetailViewController.h"
+#import "CHPContactManager.h"
 
 @interface CHPYoneticilerKategoriViewController ()
 
@@ -87,6 +89,18 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 40;
+}
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    int pos = [self.tableView indexPathForSelectedRow].row;
+    CHPYoneticilerDetailViewController *chpYoneticilerDetailViewController = [segue destinationViewController];
+    [[CHPContactManager sharedInstance] getContactWithId:[[self.contactsOfAPosition objectAtIndex:pos] contactId]
+                                            andInfoLevel:ContactInfoLevelFull
+                                            onCompletion:^(CHPContact *contact) {
+                                                [chpYoneticilerDetailViewController setChpContact:contact];
+                                            }
+                                                 onError:^(NSError *error) {
+                                                     //
+                                                 }];
 }
 
 -(void)setContactsOfAPosition:(NSArray *)contactsOfAPosition {

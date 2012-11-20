@@ -43,7 +43,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0){
-        return 2;
+        return [[self positionsOfContact] count];
     }
     else if(section == 1){
         return [[self.chpContact phones] count];
@@ -63,7 +63,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(indexPath.section == 0){
-        [(UILabel *) [cell viewWithTag:2] setText:@"Milletvekili   "];
+        [(UILabel *) [cell viewWithTag:2] setText:[self.positionsOfContact objectAtIndex:indexPath.row]];
         [(UIImageView *) [cell viewWithTag:3] setImage:nil];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -192,6 +192,7 @@
 - (void)setChpContact:(CHPContact *)chpContact{
     if (_chpContact != chpContact) {
         _chpContact = chpContact;
+        _positionsOfContact = [self.chpContact getPositionStrings];
     }
     [self configureViews];
 }
@@ -202,16 +203,16 @@
     
     UIImageView *vesikaImage = [[UIImageView alloc] initWithFrame:CGRectMake(97.0, 31.0, 128.0, 167.0)];
     
-    if ([self.chpContact contactImage]) {
+    if ([[self.chpContact contactImage] isEqualToString:@""] || [self.chpContact contactImage] == nil) {
+        vesikaImage.image = [UIImage imageNamed:@"vesika_yok.png"];
+    }
+    else{
         [[APIManager sharedInstance] getImageWithURLString:[self.chpContact contactImage]
                                               onCompletion:^(UIImage *resultImage) {
                                                   [vesikaImage setImage:resultImage];
                                               } onError:^(NSError *error) {
                                                   
                                               }];
-    }
-    else{
-        vesikaImage.image = [UIImage imageNamed:@"vesika_yok.png"];
     }
     
     [tableHeaderView addSubview:vesikaHolder];
