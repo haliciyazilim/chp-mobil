@@ -100,7 +100,7 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(1) {
+    if([[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:indexPath.row]] count] == 1) {
         [self performSegueWithIdentifier:@"DetailSegue" sender:self];
     }
     else{
@@ -111,7 +111,16 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"DetailSegue"]){
-        
+        int pos = [self.tableView indexPathForSelectedRow].row;
+        CHPYoneticilerDetailViewController *chpYoneticilerDetailViewController = [segue destinationViewController];
+        [[CHPContactManager sharedInstance] getContactWithId:[[[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:pos]] objectAtIndex:0] contactId]
+                                                andInfoLevel:ContactInfoLevelFull
+                                                onCompletion:^(CHPContact *contact) {
+                                                    [chpYoneticilerDetailViewController setChpContact:contact];
+                                                }
+                                                     onError:^(NSError *error) {
+                                                         //
+                                                     }];
     }
     else if([[segue identifier] isEqualToString:@"KategoriSegue"]){
         int pos = [self.tableView indexPathForSelectedRow].row;
