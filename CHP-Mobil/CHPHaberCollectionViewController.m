@@ -14,6 +14,8 @@
 
 #import "CHPHaberFlowLayout.h"
 
+#import "CHPHaberDetailTableViewController.h"
+
 @interface CHPHaberCollectionViewController ()
 
 @end
@@ -42,9 +44,9 @@
     
     // Configure layout
     CHPHaberFlowLayout *flowLayout = [[CHPHaberFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(156, 180)];
-    [flowLayout setMinimumInteritemSpacing:8];
-    [flowLayout setMinimumLineSpacing:8];
+    [flowLayout setItemSize:CGSizeMake(158, 180)];
+    [flowLayout setMinimumInteritemSpacing:4];
+    [flowLayout setMinimumLineSpacing:4];
     
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [self.collectionView setCollectionViewLayout:flowLayout];
@@ -72,7 +74,8 @@
     CHPNewsItem *item = (CHPNewsItem*)self.newsItemArray[indexPath.row];
     
     //set title
-    [(UILabel *)[cell viewWithTag:1] setText:item.title];
+    UILabel* titleLabel = (UILabel*)[cell viewWithTag:1];
+    [titleLabel setText:item.title];
     
     NSLog(@"\nObject at index:\n%d\n",indexPath.item);
     
@@ -83,7 +86,17 @@
     [(UIImageView *)[cell viewWithTag:2] setImage:image];
     
     
-//    set background
+    //set background
+    [(UIImageView *)[cell viewWithTag:3] setImage:[UIImage imageNamed:@"news_shadow.png"]];
+    
+    //set font
+    if(indexPath.row == 0){
+        [titleLabel setFont:[titleLabel.font fontWithSize:18]];
+    }
+    else{
+        [titleLabel setFont:[titleLabel.font fontWithSize:14]];
+        
+    }
     
     
     return cell;
@@ -99,6 +112,14 @@
 {
 //    UITableViewCell* cell = (UITableViewCell*) sender;
     
+//    [segue ];
+    
+    int order = ((NSIndexPath*)[self.collectionView.indexPathsForSelectedItems objectAtIndex:0]).row;
+//    NSLog(@"\n\nindex path: %d\n\n",order);
+    
+    CHPHaberDetailTableViewController* view = (CHPHaberDetailTableViewController*)[segue destinationViewController];
+    
+    [view setNewsObject:(CHPNewsItem *)[self.newsItemArray objectAtIndex:order]];
     
     
 }
