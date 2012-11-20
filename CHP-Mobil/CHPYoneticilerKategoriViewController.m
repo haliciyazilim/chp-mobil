@@ -31,6 +31,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,7 +49,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [self.contactsOfAPosition count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -56,18 +57,44 @@
     static NSString *CellIdentifier = @"KategoriCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+    selectedView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+    
+    cell.selectedBackgroundView = selectedView;
+    
+    [[cell textLabel] setText:[[self.contactsOfAPosition objectAtIndex:indexPath.row] name]];
     
     return cell;
 }
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
+    
+    [headerView setBackgroundColor:[UIColor colorWithRed:0.420 green:0.227 blue:0.227 alpha:0.85]];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 16, tableView.bounds.size.width - 10, 18)];
+    label.text = self.position;
+    label.font = [UIFont fontWithName:@"Futura-Medium" size:16];
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    [headerView addSubview:label];
+    
+    return headerView;
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40;
+}
+
+-(void)setContactsOfAPosition:(NSArray *)contactsOfAPosition {
+    _contactsOfAPosition = [[NSArray alloc] initWithArray:contactsOfAPosition];
+    [self.tableView reloadData];
+}
+-(void)setPosition:(NSString *)position{
+    _position = position;
+    [self.tableView reloadData];
+}
 
 @end
