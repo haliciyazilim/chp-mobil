@@ -10,5 +10,6 @@
 
 @interface CHPHaberFlowLayout : UICollectionViewFlowLayout
 
-- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind ;
+
+-(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect;
 @end
