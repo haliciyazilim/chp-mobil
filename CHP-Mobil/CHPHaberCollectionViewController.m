@@ -91,10 +91,11 @@
     
     //set font
     if(indexPath.row == 0){
-        [titleLabel setFont:[titleLabel.font fontWithSize:18]];
+        [titleLabel setFont:[titleLabel.font fontWithSize:16]];
+//        [titleLabel set ]
     }
     else{
-        [titleLabel setFont:[titleLabel.font fontWithSize:14]];
+        [titleLabel setFont:[titleLabel.font fontWithSize:12]];
         
     }
     
