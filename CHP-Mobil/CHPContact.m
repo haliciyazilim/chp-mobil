@@ -54,8 +54,8 @@
             _contactId = nil;
         }
         
-        if (aDictionary[@"FotoURL"] && [aDictionary[@"FotoURL"] isKindOfClass:[NSString class]] && ![aDictionary[@"FotoURL"] isEqualToString:@""]) {
-            _imageURL = [aDictionary objectForKey:@"YoneticiId"];
+        if (aDictionary[@"FotoUrl"] && [aDictionary[@"FotoUrl"] isKindOfClass:[NSString class]] && ![aDictionary[@"FotoUrl"] isEqualToString:@""]) {
+            _imageURL = [aDictionary objectForKey:@"FotoUrl"];
         } else {
             _imageURL = nil;
         }
