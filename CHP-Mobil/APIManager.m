@@ -144,9 +144,14 @@ static APIManager *sharedInstance = nil;
         return @{ @"hataKodu" : @"0",
                     @"result" : responseObject };
     } else {
-        return @{ @"hataKodu" : [responseObject objectForKey:@"hataKodu"],
-            @"hataAciklamasi" : [responseObject objectForKey:@"hataAciklamasi"],
+        if ([responseObject objectForKey:@"hataKodu"]) {
+            return @{ @"hataKodu" : @"1",
+                    @"hataAciklamasi" : [responseObject objectForKey:@"hataAciklamasi"],
                     @"result" : responseObject};
+        } else {
+            return @{ @"hataKodu" : @"0",
+                    @"result" : responseObject};
+        }
     }
 }
 
@@ -237,7 +242,7 @@ static APIManager *sharedInstance = nil;
     return [self createNetworkOperationForOperation:@"YoneticiDetayGetir"
                                       andParameters:@{@"yoneticiId" : contactId}
                                        onCompletion:^(NSDictionary *responseDictionary) {
-                                           CHPContact *contact = [CHPContact contactFromDictionary:[responseDictionary[@"result"] objectAtIndex:0]];
+                                           CHPContact *contact = [CHPContact contactFromDictionary:responseDictionary[@"result"]];
                                            contact.contactId = contactId;
                                            contact.infoLevel = ContactInfoLevelFull;
                                            contactBlock(contact);
