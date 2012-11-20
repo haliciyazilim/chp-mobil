@@ -113,6 +113,8 @@
         if (self.position & power) {
             [stringsArray addObject:positionStrings[i]];
         }
+        
+        power *= 2;
     }
     
     return stringsArray;
