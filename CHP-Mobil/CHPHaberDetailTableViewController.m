@@ -87,10 +87,10 @@
         return  ceil([currentItem.content length] / 40 ) * [self.newsContent font].lineHeight + 20;
         
     }
-    else if(indexPath.row == 1)
-        return 200;
     else if(indexPath.row == 0)
-        return 84;
+        return 200;
+    else if(indexPath.row == 1)
+        return 70;
     
     return 0;
 }
