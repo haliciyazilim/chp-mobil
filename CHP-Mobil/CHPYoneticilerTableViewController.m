@@ -44,9 +44,19 @@
         ];
     }
     
+    self.managerList = [[NSMutableDictionary alloc] initWithCapacity:[self.unvanTitleArray count]];
+    
+    for (int i = 0; i < 10; i++) {
+        [[CHPContactManager sharedInstance] getContactsWithPosition:1<<i
+                                                       onCompletion:^(NSArray *resultArray) {
+                                                           [self.managerList setObject:resultArray forKey:[self.unvanTitleArray objectAtIndex:i]];
+                                                       }
+                                                            onError:^(NSError *error) {
+                                                                //
+                                                            }];
+    }
+    
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -90,7 +100,7 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.row == 0) {
+    if(1) {
         [self performSegueWithIdentifier:@"DetailSegue" sender:self];
     }
     else{
@@ -106,13 +116,8 @@
     else if([[segue identifier] isEqualToString:@"KategoriSegue"]){
         int pos = [self.tableView indexPathForSelectedRow].row;
         CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
-        [[CHPContactManager sharedInstance] getContactsWithPosition:1<<pos
-                                                       onCompletion:^(NSArray *resultArray) {
-                                                           [chpYoneticilerKategoriViewController setContactsOfAPosition:resultArray];
-                                                           [chpYoneticilerKategoriViewController setPosition:[self.unvanTitleArray objectAtIndex:pos]];
-                                                       } onError:^(NSError *error) {
-                                                           
-                                                       }];
+        [chpYoneticilerKategoriViewController setContactsOfAPosition:[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:pos]]];
+        [chpYoneticilerKategoriViewController setPosition:[self.unvanTitleArray objectAtIndex:pos]];
     }
 
 }
