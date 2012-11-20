@@ -228,9 +228,12 @@
     vesikaHolder.image = [UIImage imageNamed:@"vesika_imageholder.png"];
     
     UIImageView *vesikaImage = [[UIImageView alloc] initWithFrame:CGRectMake(97.0, 31.0, 128.0, 167.0)];
+    [vesikaImage setContentMode:UIViewContentModeScaleAspectFill];
+    [vesikaImage setClipsToBounds:YES];
+    vesikaImage.image = [UIImage imageNamed:@"vesika_yok.png"];
     
     if ([[self.chpContact imageURL] isEqualToString:@""] || [self.chpContact imageURL] == nil) {
-        vesikaImage.image = [UIImage imageNamed:@"vesika_yok.png"];
+        
     }
     else{
         [[APIManager sharedInstance] getImageWithURLString:[self.chpContact imageURL]
