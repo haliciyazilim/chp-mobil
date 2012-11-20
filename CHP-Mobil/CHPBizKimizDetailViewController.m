@@ -7,7 +7,7 @@
 //
 
 #import "CHPBizKimizDetailViewController.h"
-
+#import "APIManager.h"
 @interface CHPBizKimizDetailViewController ()
 -(void)configureView;
 @end
@@ -35,6 +35,14 @@ NSString* contentType;
 
 -(void) configureView
 {
+    APIManager* api = [APIManager sharedInstance];
+    
+    [api getAboutInfoForType:contentType
+                onCompletion:^(NSString *result) {
+                    self.textView.text = result;
+                } onError:^(NSError *error) {
+            
+                }];
     
 }
 

@@ -30,6 +30,8 @@
 		05A17949165527A300A6ED90 /* btn_kurumsal_beyaz_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A17946165527A300A6ED90 /* btn_kurumsal_beyaz_@2x.png */; };
 		05A1794A165527A300A6ED90 /* btn_kurumsal_kirmizi_.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A17947165527A300A6ED90 /* btn_kurumsal_kirmizi_.png */; };
 		05A1794B165527A300A6ED90 /* btn_kurumsal_kirmizi_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A17948165527A300A6ED90 /* btn_kurumsal_kirmizi_@2x.png */; };
+		05A28166165BC09C008B49A5 /* vesika_yok.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A28164165BC09C008B49A5 /* vesika_yok.png */; };
+		05A28167165BC09C008B49A5 /* vesika_yok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A28165165BC09C008B49A5 /* vesika_yok@2x.png */; };
 		05B1FDE61653E16F0079FE20 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B1FDE51653E16F0079FE20 /* UIKit.framework */; };
 		05B1FDE81653E16F0079FE20 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B1FDE71653E16F0079FE20 /* Foundation.framework */; };
 		05B1FDEA1653E16F0079FE20 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B1FDE91653E16F0079FE20 /* CoreGraphics.framework */; };
@@ -129,6 +131,8 @@
 		05A17946165527A300A6ED90 /* btn_kurumsal_beyaz_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_kurumsal_beyaz_@2x.png"; sourceTree = "<group>"; };
 		05A17947165527A300A6ED90 /* btn_kurumsal_kirmizi_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_kurumsal_kirmizi_.png; sourceTree = "<group>"; };
 		05A17948165527A300A6ED90 /* btn_kurumsal_kirmizi_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_kurumsal_kirmizi_@2x.png"; sourceTree = "<group>"; };
+		05A28164165BC09C008B49A5 /* vesika_yok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vesika_yok.png; sourceTree = "<group>"; };
+		05A28165165BC09C008B49A5 /* vesika_yok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vesika_yok@2x.png"; sourceTree = "<group>"; };
 		05B1FDE11653E16F0079FE20 /* CHP-Mobil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHP-Mobil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B1FDE51653E16F0079FE20 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		05B1FDE71653E16F0079FE20 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -443,6 +447,8 @@
 				05B83C0F165A2EF400B44FDB /* deneme@2x.jpg */,
 				05B83C13165A30AD00B44FDB /* vesika_imageholder.png */,
 				05B83C14165A30AD00B44FDB /* vesika_imageholder@2x.png */,
+				05A28164165BC09C008B49A5 /* vesika_yok.png */,
+				05A28165165BC09C008B49A5 /* vesika_yok@2x.png */,
 				05C84AFA1654E53D00681CCC /* chp_logo@2x.png */,
 				05C84AEE1654E3A700681CCC /* tab_bg.png */,
 				05C84AEF1654E3A700681CCC /* tab_bg@2x.png */,
@@ -658,6 +664,8 @@
 				05B83C26165A5D0600B44FDB /* seperator_yonetici@2x.png in Resources */,
 				AEFD23AC165B7CDF00A120F3 /* news_shadow.png in Resources */,
 				AEFD23AD165B7CDF00A120F3 /* news_shadow@2x.png in Resources */,
+				05A28166165BC09C008B49A5 /* vesika_yok.png in Resources */,
+				05A28167165BC09C008B49A5 /* vesika_yok@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

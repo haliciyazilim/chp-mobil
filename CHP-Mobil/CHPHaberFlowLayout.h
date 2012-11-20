@@ -11,5 +11,6 @@
 @interface CHPHaberFlowLayout : UICollectionViewFlowLayout
 
 
--(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect;
+- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect;
+- (CGSize)collectionViewContentSize;
 @end
