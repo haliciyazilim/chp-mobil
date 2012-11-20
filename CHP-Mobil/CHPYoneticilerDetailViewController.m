@@ -229,11 +229,11 @@
     
     UIImageView *vesikaImage = [[UIImageView alloc] initWithFrame:CGRectMake(97.0, 31.0, 128.0, 167.0)];
     
-    if ([[self.chpContact contactImage] isEqualToString:@""] || [self.chpContact contactImage] == nil) {
+    if ([[self.chpContact imageURL] isEqualToString:@""] || [self.chpContact imageURL] == nil) {
         vesikaImage.image = [UIImage imageNamed:@"vesika_yok.png"];
     }
     else{
-        [[APIManager sharedInstance] getImageWithURLString:[self.chpContact contactImage]
+        [[APIManager sharedInstance] getImageWithURLString:[self.chpContact imageURL]
                                               onCompletion:^(UIImage *resultImage) {
                                                   [vesikaImage setImage:resultImage];
                                               } onError:^(NSError *error) {

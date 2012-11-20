@@ -35,7 +35,7 @@ typedef enum {
 @property (strong, nonatomic) NSArray *phones;
 @property (strong, nonatomic) NSArray *cellPhones;
 @property (strong, nonatomic) NSArray *eMails;
-@property (strong, nonatomic) NSString *contactImage;
+@property (strong, nonatomic) NSString *imageURL;
 @property (strong, nonatomic) NSString *contactId;
 @property (nonatomic) InfoLevel infoLevel;
 @property (nonatomic) int position;

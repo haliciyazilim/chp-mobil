@@ -54,6 +54,12 @@
             _contactId = nil;
         }
         
+        if (aDictionary[@"FotoURL"] && [aDictionary[@"FotoURL"] isKindOfClass:[NSString class]] && ![aDictionary[@"FotoURL"] isEqualToString:@""]) {
+            _imageURL = [aDictionary objectForKey:@"YoneticiId"];
+        } else {
+            _imageURL = nil;
+        }
+        
         _infoLevel = ContactInfoLevelNone;
         
         return self;
@@ -66,8 +72,16 @@
         self.name = otherContact.name;
     }
     
+    if (otherContact.imageURL) {
+        self.imageURL = otherContact.imageURL;
+    }
+    
     if (otherContact.phones.count > 0) {
         self.phones = otherContact.phones;
+    }
+    
+    if (otherContact.cellPhones.count > 0) {
+        self.cellPhones = otherContact.cellPhones;
     }
     
     if (otherContact.eMails.count > 0) {

@@ -224,7 +224,7 @@ static APIManager *sharedInstance = nil;
                                            
                                            for (NSDictionary *contactDictionary in responseDictionary[@"result"]) {
                                                CHPContact *contact = [CHPContact contactFromDictionary:contactDictionary];
-                                               contact.position = index;
+                                               contact.position = power;
                                                contact.infoLevel = ContactInfoLevelBasic;
                                                [contactArray addObject:contact];
                                            }
