@@ -7,6 +7,7 @@
 //
 
 #import "CHPYoneticilerDetailViewController.h"
+#import "CHPContact.h"
 
 @interface CHPYoneticilerDetailViewController ()
 
@@ -23,30 +24,8 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,320.0,240.0)];
-    UIImageView *vesikaHolder = [[UIImageView alloc] initWithFrame:CGRectMake(82.0, 20.0, 156.0, 198.0)];
-    vesikaHolder.image = [UIImage imageNamed:@"vesika_imageholder.png"];
-
-    UIImageView *vesikaImage = [[UIImageView alloc] initWithFrame:CGRectMake(97.0, 31.0, 128.0, 167.0)];
-    vesikaImage.image = [UIImage imageNamed:@"deneme.jpg"];
-    
-    [tableHeaderView addSubview:vesikaHolder];
-    [tableHeaderView addSubview:vesikaImage];
-    
-    UILabel *managerName = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 210.0, 320.0, 32.0)];
-    managerName.text = @"Mehmet Emrehan HALICI";
-    managerName.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:18];
-    managerName.shadowColor = [UIColor blackColor];
-    managerName.textAlignment = NSTextAlignmentCenter;
-    managerName.backgroundColor = [UIColor clearColor];
-    managerName.textColor = [UIColor whiteColor];
-    
-    [tableHeaderView addSubview:managerName];
-    
-    self.tableView.tableHeaderView = tableHeaderView;
 }
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"here");
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,13 +45,13 @@
         return 2;
     }
     else if(section == 1){
-        return 1;
+        return [[self.chpContact phones] count];
     }
     else if(section == 2){
-        return 1;
+        return [[self.chpContact cellphones] count];
     }
     else if(section == 3){
-        return 1;
+        return [[self.chpContact eMails] count];
     }
     return 0;
 }
@@ -93,7 +72,7 @@
         ((UILabel *) [cell viewWithTag:2]).textAlignment = NSTextAlignmentCenter;
     }
     else if(indexPath.section == 1){
-        [(UILabel *) [cell viewWithTag:2] setText:@"0312-222-22-22"];
+        [(UILabel *) [cell viewWithTag:2] setText:[[self.chpContact phones] objectAtIndex:indexPath.row]];
         [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_phone.png"]];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -103,7 +82,7 @@
         ((UILabel *) [cell viewWithTag:2]).textAlignment = NSTextAlignmentLeft;
     }
     else if(indexPath.section == 2){
-        [(UILabel *) [cell viewWithTag:2] setText:@"0555-555-55-55"];
+        [(UILabel *) [cell viewWithTag:2] setText:[[self.chpContact cellphones] objectAtIndex:indexPath.row]];
         [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_cellphone.png"]];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -113,7 +92,7 @@
         ((UILabel *) [cell viewWithTag:2]).textAlignment = NSTextAlignmentLeft;
     }
     else if(indexPath.section == 3){
-        [(UILabel *) [cell viewWithTag:2] setText:@"emrehan@halici.com.tr"];
+        [(UILabel *) [cell viewWithTag:2] setText:[[self.chpContact eMails] objectAtIndex:indexPath.row]];
         [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_mail.png"]];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -215,10 +194,31 @@
     }
     [self configureViews];
 }
-
 - (void)configureViews{
+    UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0,0.0,320.0,240.0)];
+    UIImageView *vesikaHolder = [[UIImageView alloc] initWithFrame:CGRectMake(82.0, 20.0, 156.0, 198.0)];
+    vesikaHolder.image = [UIImage imageNamed:@"vesika_imageholder.png"];
     
-}
+    UIImageView *vesikaImage = [[UIImageView alloc] initWithFrame:CGRectMake(97.0, 31.0, 128.0, 167.0)];
+    vesikaImage.image = [UIImage imageNamed:@"deneme.jpg"];
+    
+    [tableHeaderView addSubview:vesikaHolder];
+    [tableHeaderView addSubview:vesikaImage];
+    
+    UILabel *managerName = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 210.0, 320.0, 32.0)];
+    managerName.text = @"Mehmet Emrehan HALICI";
+    managerName.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:18];
+    managerName.shadowColor = [UIColor blackColor];
+    managerName.textAlignment = NSTextAlignmentCenter;
+    managerName.backgroundColor = [UIColor clearColor];
+    managerName.textColor = [UIColor whiteColor];
+    
+    [tableHeaderView addSubview:managerName];
+    
+    self.tableView.tableHeaderView = tableHeaderView;
+    
+    [self.tableView reloadData];
 
+}
 
 @end
