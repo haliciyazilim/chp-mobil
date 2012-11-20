@@ -42,7 +42,7 @@
         }
         _cellPhones = cellPhonesArray;
         
-        if (aDictionary[@"Email"] && ![aDictionary[@"Email"] isKindOfClass:[NSNull class]]) {
+        if (aDictionary[@"Email"] && ![aDictionary[@"Email"] isKindOfClass:[NSNull class]] && ![aDictionary[@"Email"] isEqualToString:@""]) {
             _eMails = @[aDictionary[@"Email"]];
         } else {
             _eMails = @[];
