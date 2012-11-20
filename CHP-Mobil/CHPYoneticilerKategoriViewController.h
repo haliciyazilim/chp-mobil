@@ -11,5 +11,6 @@
 @interface CHPYoneticilerKategoriViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *contactsOfAPosition;
+@property (strong, nonatomic) NSString *position;
 
 @end
