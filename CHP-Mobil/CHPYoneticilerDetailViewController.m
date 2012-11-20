@@ -8,6 +8,7 @@
 
 #import "CHPYoneticilerDetailViewController.h"
 #import "CHPContact.h"
+#import "APIManager.h"
 
 @interface CHPYoneticilerDetailViewController ()
 
@@ -42,13 +43,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0){
-        return 2;
+        return [[self positionsOfContact] count];
     }
     else if(section == 1){
         return [[self.chpContact phones] count];
     }
     else if(section == 2){
-        return [[self.chpContact cellphones] count];
+        return [[self.chpContact cellPhones] count];
     }
     else if(section == 3){
         return [[self.chpContact eMails] count];
@@ -58,12 +59,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"detailCell";
+    static NSString *CellIdentifier2 = @"detailUnvanCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell;
+    if(indexPath.section == 0){
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2];
+    }
+    else{
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
     
     if(indexPath.section == 0){
-        [(UILabel *) [cell viewWithTag:2] setText:@"Milletvekili   "];
-        [(UIImageView *) [cell viewWithTag:3] setImage:nil];
+        [(UILabel *) [cell viewWithTag:2] setText:[self.positionsOfContact objectAtIndex:indexPath.row]];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
         ((UILabel *)[cell viewWithTag:2]).highlightedTextColor = [UIColor whiteColor];
@@ -82,7 +89,7 @@
         ((UILabel *) [cell viewWithTag:2]).textAlignment = NSTextAlignmentLeft;
     }
     else if(indexPath.section == 2){
-        [(UILabel *) [cell viewWithTag:2] setText:[[self.chpContact cellphones] objectAtIndex:indexPath.row]];
+        [(UILabel *) [cell viewWithTag:2] setText:[[self.chpContact cellPhones] objectAtIndex:indexPath.row]];
         [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_cellphone.png"]];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -110,21 +117,31 @@
         return nil;
     }
     else if(section == 1){
-        UIView *section1Header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
-        UIImageView *separatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 4.0, 280.0, 1.0)];
-        separatorLine.image = [UIImage imageNamed:@"seperator_yonetici.png"];
-        [section1Header addSubview:separatorLine];
-        return section1Header;
+        if([[self.chpContact phones] count] != 0){
+            UIView *section1Header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+            UIImageView *separatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 4.0, 280.0, 1.0)];
+            separatorLine.image = [UIImage imageNamed:@"seperator_yonetici.png"];
+            [section1Header addSubview:separatorLine];
+            return section1Header;
+        }
+        else{
+            return nil;
+        }
     }
     else if(section == 2){
         return nil;
     }
     else if(section == 3){
-        UIView *section2Header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
-        UIImageView *separatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 4.0, 280.0, 1.0)];
-        separatorLine.image = [UIImage imageNamed:@"seperator_yonetici.png"];
-        [section2Header addSubview:separatorLine];
-        return section2Header;
+        if([[self.chpContact eMails] count] != 0){
+            UIView *section2Header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+            UIImageView *separatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 4.0, 280.0, 1.0)];
+            separatorLine.image = [UIImage imageNamed:@"seperator_yonetici.png"];
+            [section2Header addSubview:separatorLine];
+            return section2Header;
+        }
+        else{
+            return nil;
+        }
     }
     return nil;
 }
@@ -133,13 +150,23 @@
         return 0.0;
     }
     else if(section == 1){
-        return 12.0;
+        if([[self.chpContact phones] count] != 0){
+            return 12.0;
+        }
+        else{
+            return 0.0;
+        }
     }
     else if(section == 2){
         return 0.0;
     }
     else{
-        return 12.0;
+        if([[self.chpContact eMails] count] != 0){
+            return 12.0;
+        }
+        else{
+            return 0.0;
+        }
     }
     return 0.0;
 }
@@ -191,6 +218,7 @@
 - (void)setChpContact:(CHPContact *)chpContact{
     if (_chpContact != chpContact) {
         _chpContact = chpContact;
+        _positionsOfContact = [self.chpContact getPositionStrings];
     }
     [self configureViews];
 }
@@ -200,13 +228,24 @@
     vesikaHolder.image = [UIImage imageNamed:@"vesika_imageholder.png"];
     
     UIImageView *vesikaImage = [[UIImageView alloc] initWithFrame:CGRectMake(97.0, 31.0, 128.0, 167.0)];
-    vesikaImage.image = [UIImage imageNamed:@"deneme.jpg"];
+    
+    if ([[self.chpContact imageURL] isEqualToString:@""] || [self.chpContact imageURL] == nil) {
+        vesikaImage.image = [UIImage imageNamed:@"vesika_yok.png"];
+    }
+    else{
+        [[APIManager sharedInstance] getImageWithURLString:[self.chpContact imageURL]
+                                              onCompletion:^(UIImage *resultImage) {
+                                                  [vesikaImage setImage:resultImage];
+                                              } onError:^(NSError *error) {
+                                                  
+                                              }];
+    }
     
     [tableHeaderView addSubview:vesikaHolder];
     [tableHeaderView addSubview:vesikaImage];
     
     UILabel *managerName = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 210.0, 320.0, 32.0)];
-    managerName.text = @"Mehmet Emrehan HALICI";
+    managerName.text = self.chpContact.name;
     managerName.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:18];
     managerName.shadowColor = [UIColor blackColor];
     managerName.textAlignment = NSTextAlignmentCenter;

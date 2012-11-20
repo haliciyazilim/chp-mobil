@@ -33,9 +33,9 @@ typedef enum {
 // properties
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *phones;
-@property (strong, nonatomic) NSArray *cellphones;
+@property (strong, nonatomic) NSArray *cellPhones;
 @property (strong, nonatomic) NSArray *eMails;
-@property (strong, nonatomic) NSURL *contactImage;
+@property (strong, nonatomic) NSString *imageURL;
 @property (strong, nonatomic) NSString *contactId;
 @property (nonatomic) InfoLevel infoLevel;
 @property (nonatomic) int position;
@@ -49,6 +49,8 @@ typedef enum {
 -(CHPContact *) mergeInfoFromContact:(CHPContact *)otherContact;
 
 -(CHPContact *) addPosition:(CHPPosition)newPosition;
+
+-(NSArray *)getPositionStrings;
 
 
 @end

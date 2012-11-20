@@ -95,7 +95,7 @@ static APIManager *sharedInstance = nil;
                                  forType:@"text/xml"];
     
     [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-        DLog(@"Response: %@", [completedOperation responseString]);
+//        DLog(@"Response: %@", [completedOperation responseString]);
         NSDictionary *responseDictionary = [self getDictionaryFromResponse:[completedOperation responseString]
                                                               forOperation:operationName];
         
@@ -108,7 +108,7 @@ static APIManager *sharedInstance = nil;
         else{
             completionBlock(responseDictionary);
         }
-        DLog(@"%@", responseDictionary);
+//        DLog(@"%@", responseDictionary);
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
         if (error.domain == NSURLErrorDomain && error.code == -1009) {
             NSError *connectionError = [NSError errorWithDomain:@"ConnectionError"
@@ -116,7 +116,7 @@ static APIManager *sharedInstance = nil;
                                                        userInfo:@{NSLocalizedDescriptionKey : @"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz."}];
             errorBlock(connectionError);
         } else {
-            NSLog(@"%@", error);
+//            NSLog(@"%@", error);
             errorBlock(error);
         }
     }];
@@ -144,9 +144,14 @@ static APIManager *sharedInstance = nil;
         return @{ @"hataKodu" : @"0",
                     @"result" : responseObject };
     } else {
-        return @{ @"hataKodu" : [responseObject objectForKey:@"hataKodu"],
-            @"hataAciklamasi" : [responseObject objectForKey:@"hataAciklamasi"],
+        if ([responseObject objectForKey:@"hataKodu"]) {
+            return @{ @"hataKodu" : @"1",
+                    @"hataAciklamasi" : [responseObject objectForKey:@"hataAciklamasi"],
                     @"result" : responseObject};
+        } else {
+            return @{ @"hataKodu" : @"0",
+                    @"result" : responseObject};
+        }
     }
 }
 
@@ -219,7 +224,7 @@ static APIManager *sharedInstance = nil;
                                            
                                            for (NSDictionary *contactDictionary in responseDictionary[@"result"]) {
                                                CHPContact *contact = [CHPContact contactFromDictionary:contactDictionary];
-                                               contact.position = index;
+                                               contact.position = power;
                                                contact.infoLevel = ContactInfoLevelBasic;
                                                [contactArray addObject:contact];
                                            }
@@ -237,7 +242,7 @@ static APIManager *sharedInstance = nil;
     return [self createNetworkOperationForOperation:@"YoneticiDetayGetir"
                                       andParameters:@{@"yoneticiId" : contactId}
                                        onCompletion:^(NSDictionary *responseDictionary) {
-                                           CHPContact *contact = [CHPContact contactFromDictionary:[responseDictionary[@"result"] objectAtIndex:0]];
+                                           CHPContact *contact = [CHPContact contactFromDictionary:responseDictionary[@"result"]];
                                            contact.contactId = contactId;
                                            contact.infoLevel = ContactInfoLevelFull;
                                            contactBlock(contact);

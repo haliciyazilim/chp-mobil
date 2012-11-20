@@ -13,5 +13,6 @@
 @interface CHPYoneticilerDetailViewController : UITableViewController <UITableViewDelegate>
 
 @property (strong, nonatomic) CHPContact *chpContact;
+@property (strong, nonatomic) NSArray *positionsOfContact;
 
 @end

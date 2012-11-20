@@ -14,26 +14,35 @@
     return [[CHPContact alloc] initFromDictionary:aDictionary];
 }
 
-+ (id) chpContactWithName:(NSString *)name phones:(NSArray *)phones eMails:(NSArray *)eMails {
-    return [[CHPContact alloc] initWithName:name
-                                     phones:phones
-                                     eMails:eMails];
-}
-
 - (id) initFromDictionary:(NSDictionary *)aDictionary {
     if (self = [super init]){
         _name = aDictionary[@"AdSoyad"];
         
         NSMutableArray *phonesArray = [NSMutableArray array];
-        if (aDictionary[@"CepTelefonu"] && ![aDictionary[@"CepTelefonu"] isKindOfClass:[NSNull class]]) {
-            [phonesArray addObject:[NSString stringWithFormat:@"+90%@", aDictionary[@"CepTelefonu"]]];
-        }
         if (aDictionary[@"PartiTelefonu"] && ![aDictionary[@"PartiTelefonu"] isKindOfClass:[NSNull class]]) {
-            [phonesArray addObject:[NSString stringWithFormat:@"+90%@", aDictionary[@"PartiTelefonu"]]];
+            if ([aDictionary[@"PartiTelefonu"] isKindOfClass:[NSArray class]]) {
+                for (NSString *phoneString in aDictionary[@"PartiTelefonu"]) {
+                    [phonesArray addObject:[NSString stringWithFormat:@"+90%@", phoneString]];
+                }
+            } else {
+                [phonesArray addObject:[NSString stringWithFormat:@"+90%@", aDictionary[@"PartiTelefonu"]]];
+            }
         }
         _phones = phonesArray;
-
-        if (aDictionary[@"Email"] && ![aDictionary[@"Email"] isKindOfClass:[NSNull class]]) {
+        
+        NSMutableArray *cellPhonesArray = [NSMutableArray array];
+        if (aDictionary[@"CepTelefonu"] && ![aDictionary[@"CepTelefonu"] isKindOfClass:[NSNull class]]) {
+            if ([aDictionary[@"CepTelefonu"] isKindOfClass:[NSArray class]]) {
+                for (NSString *phoneString in aDictionary[@"CepTelefonu"]) {
+                    [cellPhonesArray addObject:[NSString stringWithFormat:@"+90%@", phoneString]];
+                }
+            } else {
+                [cellPhonesArray addObject:[NSString stringWithFormat:@"+90%@", aDictionary[@"CepTelefonu"]]];
+            }
+        }
+        _cellPhones = cellPhonesArray;
+        
+        if (aDictionary[@"Email"] && ![aDictionary[@"Email"] isKindOfClass:[NSNull class]] && ![aDictionary[@"Email"] isEqualToString:@""]) {
             _eMails = @[aDictionary[@"Email"]];
         } else {
             _eMails = @[];
@@ -45,20 +54,14 @@
             _contactId = nil;
         }
         
+        if (aDictionary[@"FotoUrl"] && [aDictionary[@"FotoUrl"] isKindOfClass:[NSString class]] && ![aDictionary[@"FotoUrl"] isEqualToString:@""]) {
+            _imageURL = [aDictionary objectForKey:@"FotoUrl"];
+        } else {
+            _imageURL = nil;
+        }
+        
         _infoLevel = ContactInfoLevelNone;
         
-        return self;
-    }
-    return nil;
-}
-
-- (id) initWithName:(NSString *)name phones:(NSArray *)phones eMails:(NSArray *)eMails {
-    
-    if (self = [super init]){
-        _name = name;
-        _phones = phones;
-        _eMails = eMails;
-        _infoLevel = ContactInfoLevelNone;
         return self;
     }
     return nil;
@@ -69,8 +72,16 @@
         self.name = otherContact.name;
     }
     
+    if (otherContact.imageURL) {
+        self.imageURL = otherContact.imageURL;
+    }
+    
     if (otherContact.phones.count > 0) {
         self.phones = otherContact.phones;
+    }
+    
+    if (otherContact.cellPhones.count > 0) {
+        self.cellPhones = otherContact.cellPhones;
     }
     
     if (otherContact.eMails.count > 0) {
@@ -92,6 +103,35 @@
     self.position = self.position | newPosition;
 
     return self;
+}
+
+-(NSArray *)getPositionStrings {
+    NSMutableArray *stringsArray = [NSMutableArray arrayWithCapacity:5];
+    
+    NSArray * positionStrings = @[
+        @"Genel Başkan",
+        @"MYK Üyesi",
+        @"PM Üyesi",
+        @"YDK Üyesi",
+        @"Milletvekili",
+        @"İl Başkanı",
+        @"İlçe Başkanı",
+        @"Büyükşehir Belediye Başkanı",
+        @"İl Belediye Başkanı",
+        @"İlçe Belediye Başkanı",
+    ];
+    
+    int power = 1;
+    
+    for (int i = 0; i < 10; i++) {
+        if (self.position & power) {
+            [stringsArray addObject:positionStrings[i]];
+        }
+        
+        power *= 2;
+    }
+    
+    return stringsArray;
 }
 
 @end
