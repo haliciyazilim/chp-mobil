@@ -104,10 +104,12 @@
         
     }
     else if([[segue identifier] isEqualToString:@"KategoriSegue"]){
+        int pos = [self.tableView indexPathForSelectedRow].row;
         CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
-        [[CHPContactManager sharedInstance] getContactsWithPosition:1<<5
+        [[CHPContactManager sharedInstance] getContactsWithPosition:1<<pos
                                                        onCompletion:^(NSArray *resultArray) {
-                                                           
+                                                           [chpYoneticilerKategoriViewController setContactsOfAPosition:resultArray];
+                                                           [chpYoneticilerKategoriViewController setPosition:[self.unvanTitleArray objectAtIndex:pos]];
                                                        } onError:^(NSError *error) {
                                                            
                                                        }];
