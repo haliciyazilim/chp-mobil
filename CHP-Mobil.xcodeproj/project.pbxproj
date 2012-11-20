@@ -485,11 +485,11 @@
 			children = (
 				05B1FE1A1653E7200079FE20 /* CHPMainTabBarViewController.h */,
 				05B1FE1B1653E7200079FE20 /* CHPMainTabBarViewController.m */,
+				AE257C7A1656851C007EC17F /* CHPNavigationController.h */,
+				AE257C7B1656851C007EC17F /* CHPNavigationController.m */,
 				05B1FE2D1653EE210079FE20 /* HaberTabControllers */,
 				05B1FE2E1653EE3C0079FE20 /* BizKimizTabControllers */,
 				05B1FE2F1653EE4C0079FE20 /* YoneticilerTabControllers */,
-				AE257C7A1656851C007EC17F /* CHPNavigationController.h */,
-				AE257C7B1656851C007EC17F /* CHPNavigationController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
