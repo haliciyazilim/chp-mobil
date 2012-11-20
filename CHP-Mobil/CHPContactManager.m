@@ -91,8 +91,10 @@ static CHPContactManager *sharedInstance = nil;
                                                              CHPContact *oldContact = [self.contacts objectForKey:newContact.contactId];
                                                              if (oldContact) {
                                                                  [oldContact mergeInfoFromContact:newContact];
+//                                                                 DLog(@"Contact: %@, Position: %d", oldContact.name, oldContact.position);
                                                              } else {
                                                                  [self.contacts setObject:newContact forKey:newContact.contactId];
+//                                                                 DLog(@"Contact: %@, Position: %d", newContact.name, newContact.position);
                                                              }
                                                          }
                                                          
