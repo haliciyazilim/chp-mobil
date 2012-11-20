@@ -8,6 +8,7 @@
 
 #import "CHPYoneticilerDetailViewController.h"
 #import "CHPContact.h"
+#import "APIManager.h"
 
 @interface CHPYoneticilerDetailViewController ()
 
@@ -202,7 +203,12 @@
     UIImageView *vesikaImage = [[UIImageView alloc] initWithFrame:CGRectMake(97.0, 31.0, 128.0, 167.0)];
     
     if ([self.chpContact contactImage]) {
-        vesikaImage.image = [UIImage imageNamed:@"deneme.jpg"];
+        [[APIManager sharedInstance] getImageWithURLString:[self.chpContact contactImage]
+                                              onCompletion:^(UIImage *resultImage) {
+                                                  [vesikaImage setImage:resultImage];
+                                              } onError:^(NSError *error) {
+                                                  
+                                              }];
     }
     else{
         vesikaImage.image = [UIImage imageNamed:@"vesika_yok.png"];
