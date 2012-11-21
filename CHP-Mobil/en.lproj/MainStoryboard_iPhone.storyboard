@@ -257,7 +257,7 @@
                             <tableViewSection id="qFy-RW-86d">
                                 <cells>
                                     <tableViewCell alpha="0.99999999999999989" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="68" id="ih1-kU-Mjo">
-                                        <rect key="frame" x="0.0" y="60" width="320" height="69"/>
+                                        <rect key="frame" x="0.0" y="60" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="67"/>
@@ -290,7 +290,7 @@
                             <tableViewSection id="V5r-zF-jw2">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="68" id="NvM-cN-XPk">
-                                        <rect key="frame" x="0.0" y="149" width="320" height="69"/>
+                                        <rect key="frame" x="0.0" y="149" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="67"/>
@@ -323,7 +323,7 @@
                             <tableViewSection id="049-zH-oMI">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" rowHeight="69" id="HVX-Ff-XgB">
-                                        <rect key="frame" x="0.0" y="238" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="238" width="320" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="68"/>
