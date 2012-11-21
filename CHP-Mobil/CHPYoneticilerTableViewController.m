@@ -57,29 +57,39 @@
     }
     
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+    UIImage *searchIcon = [UIImage imageNamed:@"search_icon.png"];
+    UIImageView *searchIconView = [[UIImageView alloc] initWithImage:searchIcon];
+    [self.searchTextField setLeftView:searchIconView];
+    [self.searchTextField setLeftViewMode:UITextFieldViewModeAlways];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    [self.tableView reloadData];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    // Return the number of rows in the section.
     return 10;
 }
 
@@ -99,6 +109,7 @@
     
     return cell;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if([[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:indexPath.row]] count] == 1) {
         [self performSegueWithIdentifier:@"DetailSegue" sender:self];
@@ -131,4 +142,9 @@
 
 }
 
+- (IBAction)cancelSearchOperation:(id)sender {
+    [self.searchTextField setText:@""];
+    [self.searchTextField resignFirstResponder];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
 @end
