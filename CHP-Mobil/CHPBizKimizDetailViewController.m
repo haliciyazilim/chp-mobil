@@ -28,24 +28,27 @@ NSString* contentType;
 
 -(void) setContent:(NSString*) i
 {
-    NSLog(@"setContent is called with string: %@",i);
+//    NSLog(@"setContent is called with string: %@",i);
     contentType = i;
     
 }
 
 -(void) configureView
 {
-    APIManager* api = [APIManager sharedInstance];
+//    APIManager* api = [APIManager sharedInstance];
+//    
+//    [api getAboutInfoForType:contentType
+//                onCompletion:^(NSString *result) {
+//                    self.textView.text = result;
+//                } onError:^(NSError *error) {
+//            
+//                }];
     
-    [api getAboutInfoForType:contentType
-                onCompletion:^(NSString *result) {
-                    self.textView.text = result;
-                } onError:^(NSError *error) {
-            
-                }];
-    
+    if([contentType compare:@"Tarihçe"] == 0){
+        NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"chp-tarihi" ofType:@"htm" inDirectory:@"chp-tarihi"]];
+        [[self webView] loadRequest:[NSURLRequest requestWithURL:url]];
+    }
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,7 +60,7 @@ NSString* contentType;
 -(void) viewWillAppear:(BOOL)animated
 {
 //    [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    [[self textView] setText:contentType];
+//    [[self textView] setText:contentType];
 //    [self setTitle:contentType];
     
 }
