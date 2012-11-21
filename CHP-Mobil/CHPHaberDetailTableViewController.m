@@ -76,7 +76,7 @@
     CGRect frame = self.newsContent.frame;
     frame.size.height = self.newsContent.contentSize.height;
     self.newsContent.frame = frame;
-    NSLog(@"%@",currentItem.content);
+//    NSLog(@"%@",currentItem.content);
     
     
 }
