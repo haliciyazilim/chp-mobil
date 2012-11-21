@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CHPYoneticilerTableViewController : UITableViewController <UITableViewDelegate>
+@interface CHPYoneticilerTableViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *cancelSearchButton;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+- (IBAction)cancelSearchOperation:(id)sender;
 
 @property (strong, nonatomic) NSArray *unvanTitleArray;
 @property (strong, nonatomic) NSMutableDictionary *managerList;
