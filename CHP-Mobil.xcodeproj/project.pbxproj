@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053AFD87165D2926000E6693 /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 053AFD85165D2926000E6693 /* search_icon.png */; };
+		053AFD88165D2926000E6693 /* search_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 053AFD86165D2926000E6693 /* search_icon@2x.png */; };
+		053AFD8D165D2F3B000E6693 /* search_btn_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 053AFD89165D2F3B000E6693 /* search_btn_highlighted.png */; };
+		053AFD8E165D2F3B000E6693 /* search_btn_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 053AFD8A165D2F3B000E6693 /* search_btn_highlighted@2x.png */; };
+		053AFD8F165D2F3B000E6693 /* search_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 053AFD8B165D2F3B000E6693 /* search_btn.png */; };
+		053AFD90165D2F3B000E6693 /* search_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 053AFD8C165D2F3B000E6693 /* search_btn@2x.png */; };
 		056C07E916554198005D5D5D /* CHPYoneticilerKategoriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C07E816554198005D5D5D /* CHPYoneticilerKategoriViewController.m */; };
 		056C07ED1655487B005D5D5D /* CHPYoneticilerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C07EC1655487B005D5D5D /* CHPYoneticilerDetailViewController.m */; };
 		0578DB631656451A00131BD8 /* chp_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0578DB621656451A00131BD8 /* chp_logo.png */; };
@@ -105,6 +111,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		053AFD85165D2926000E6693 /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = "<group>"; };
+		053AFD86165D2926000E6693 /* search_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_icon@2x.png"; sourceTree = "<group>"; };
+		053AFD89165D2F3B000E6693 /* search_btn_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_btn_highlighted.png; sourceTree = "<group>"; };
+		053AFD8A165D2F3B000E6693 /* search_btn_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_btn_highlighted@2x.png"; sourceTree = "<group>"; };
+		053AFD8B165D2F3B000E6693 /* search_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_btn.png; sourceTree = "<group>"; };
+		053AFD8C165D2F3B000E6693 /* search_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_btn@2x.png"; sourceTree = "<group>"; };
 		056C07E716554198005D5D5D /* CHPYoneticilerKategoriViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPYoneticilerKategoriViewController.h; sourceTree = "<group>"; };
 		056C07E816554198005D5D5D /* CHPYoneticilerKategoriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPYoneticilerKategoriViewController.m; sourceTree = "<group>"; };
 		056C07EB1655487B005D5D5D /* CHPYoneticilerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPYoneticilerDetailViewController.h; sourceTree = "<group>"; };
@@ -441,6 +453,12 @@
 		416A7DE71653E5C60005E9E3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				053AFD85165D2926000E6693 /* search_icon.png */,
+				053AFD86165D2926000E6693 /* search_icon@2x.png */,
+				053AFD89165D2F3B000E6693 /* search_btn_highlighted.png */,
+				053AFD8A165D2F3B000E6693 /* search_btn_highlighted@2x.png */,
+				053AFD8B165D2F3B000E6693 /* search_btn.png */,
+				053AFD8C165D2F3B000E6693 /* search_btn@2x.png */,
 				AEFD23A8165B7CD400A120F3 /* haber */,
 				AE257C44165671AD007EC17F /* biz_kimiz */,
 				05B83C0E165A2EF400B44FDB /* deneme.jpg */,
@@ -666,6 +684,12 @@
 				AEFD23AD165B7CDF00A120F3 /* news_shadow@2x.png in Resources */,
 				05A28166165BC09C008B49A5 /* vesika_yok.png in Resources */,
 				05A28167165BC09C008B49A5 /* vesika_yok@2x.png in Resources */,
+				053AFD87165D2926000E6693 /* search_icon.png in Resources */,
+				053AFD88165D2926000E6693 /* search_icon@2x.png in Resources */,
+				053AFD8D165D2F3B000E6693 /* search_btn_highlighted.png in Resources */,
+				053AFD8E165D2F3B000E6693 /* search_btn_highlighted@2x.png in Resources */,
+				053AFD8F165D2F3B000E6693 /* search_btn.png in Resources */,
+				053AFD90165D2F3B000E6693 /* search_btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
