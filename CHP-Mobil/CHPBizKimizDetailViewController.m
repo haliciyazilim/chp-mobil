@@ -43,11 +43,19 @@ NSString* contentType;
 //                } onError:^(NSError *error) {
 //            
 //                }];
-    
+    [[self webView] setScalesPageToFit:YES];
+    NSString* fileName;
     if([contentType compare:@"Tarihçe"] == 0){
-        NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"chp-tarihi" ofType:@"htm" inDirectory:@"chp-tarihi"]];
-        [[self webView] loadRequest:[NSURLRequest requestWithURL:url]];
+        fileName = @"chp-tarih";
     }
+    else if([contentType compare:@"Program"] == 0){
+        fileName = @"chp-program";
+    }
+    else if([contentType compare:@"Tüzük"]==0){
+        fileName = @"chp-tuzuk";
+    }
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:fileName ofType:@"pdf" inDirectory:nil]];
+    [[self webView] loadRequest:[NSURLRequest requestWithURL:url]];
 }
 - (void)viewDidLoad
 {
