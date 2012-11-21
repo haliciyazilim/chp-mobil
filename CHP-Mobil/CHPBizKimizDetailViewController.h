@@ -10,6 +10,7 @@
 
 @interface CHPBizKimizDetailViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *mainView;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 -(void) setContent:(NSString*) i;
 @end
