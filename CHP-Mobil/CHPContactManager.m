@@ -102,15 +102,18 @@ static CHPContactManager *sharedInstance = nil;
                                                      }];
 }
 
-- (NSArray *)searchContactsWithString:(NSString*)name {
+- (NSArray *)searchContactsWithString:(NSString*)prefix {
+    prefix = [prefix lowercaseString];
     NSMutableArray *contacts = [NSMutableArray arrayWithCapacity:20];
     
     [self.contacts enumerateKeysAndObjectsUsingBlock:^(id key, CHPContact *contact, BOOL *stop) {
         NSArray *namesArray = [contact.name componentsSeparatedByString:@" "];
         
         for (NSString *name in namesArray) {
-            if ([name hasPrefix:name]) {
+            
+            if ([[name lowercaseString] hasPrefix:prefix]) {
                 [contacts addObject:contact];
+                break;
             }
         }
     }];
