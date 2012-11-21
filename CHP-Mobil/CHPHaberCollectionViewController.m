@@ -78,7 +78,7 @@
         UILabel* titleLabel = (UILabel*)[cell viewWithTag:1];
         [titleLabel setText:item.title];
         
-        NSLog(@"\nObject at index:\n%d\n",indexPath.item);
+//        NSLog(@"\nObject at index:\n%d\n",indexPath.item);
         
         //set image
         [[APIManager sharedInstance] getImageWithURLString:item.imageAddress
