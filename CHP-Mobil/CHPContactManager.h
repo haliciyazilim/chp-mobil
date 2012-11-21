@@ -26,4 +26,6 @@
                                    onCompletion:(ArrayBlock)contactArrayBlock
                                         onError:(ErrorBlock)errorBlock;
 
+- (NSArray *)searchContactsWithString:(NSString*)name;
+
 @end

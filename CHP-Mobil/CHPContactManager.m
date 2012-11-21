@@ -91,10 +91,8 @@ static CHPContactManager *sharedInstance = nil;
                                                              CHPContact *oldContact = [self.contacts objectForKey:newContact.contactId];
                                                              if (oldContact) {
                                                                  [oldContact mergeInfoFromContact:newContact];
-//                                                                 DLog(@"Contact: %@, Position: %d", oldContact.name, oldContact.position);
                                                              } else {
                                                                  [self.contacts setObject:newContact forKey:newContact.contactId];
-//                                                                 DLog(@"Contact: %@, Position: %d", newContact.name, newContact.position);
                                                              }
                                                          }
                                                          
@@ -102,6 +100,22 @@ static CHPContactManager *sharedInstance = nil;
                                                      } onError:^(NSError *error) {
                                                          errorBlock(error);
                                                      }];
+}
+
+- (NSArray *)searchContactsWithString:(NSString*)name {
+    NSMutableArray *contacts = [NSMutableArray arrayWithCapacity:20];
+    
+    [self.contacts enumerateKeysAndObjectsUsingBlock:^(id key, CHPContact *contact, BOOL *stop) {
+        NSArray *namesArray = [contact.name componentsSeparatedByString:@" "];
+        
+        for (NSString *name in namesArray) {
+            if ([name hasPrefix:name]) {
+                [contacts addObject:contact];
+            }
+        }
+    }];
+    
+    return contacts;
 }
 
 @end
