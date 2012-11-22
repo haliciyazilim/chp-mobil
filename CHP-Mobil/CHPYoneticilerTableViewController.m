@@ -10,13 +10,16 @@
 #import "CHPYoneticilerDetailViewController.h"
 #import "CHPYoneticilerKategoriViewController.h"
 #import "CHPContactManager.h"
+#import "CHPSearchTableViewController.h"
 
 @interface CHPYoneticilerTableViewController ()
 
 @end
 
 @implementation CHPYoneticilerTableViewController
-
+{
+    CHPSearchTableViewController *searchDelegate;
+}
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -68,15 +71,55 @@
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
     [self.tableView reloadData];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:self.searchTextField];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
+}
+
+- (void)textFieldDidChange:(NSNotification *)notif {
+    [searchDelegate setSearchResult:[[CHPContactManager sharedInstance] searchContactsWithString:self.searchTextField.text]];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    CGFloat heightOfSearchView = ((UIView *)[[self.view subviews] objectAtIndex:[[self.view subviews] count]-3]).frame.size.height;
+    self.searchTable = [[UITableView alloc] initWithFrame:
+                        CGRectMake(
+                                   self.tableView.frame.origin.x,
+                                   self.tableView.frame.origin.y+heightOfSearchView,
+                                   self.tableView.contentSize.width,
+                                   self.tableView.contentSize.height
+                                   )
+                        style:UITableViewStylePlain];
+    
+    searchDelegate = [[CHPSearchTableViewController alloc] init];
+    [self.searchTable registerClass:[UITableViewCell class] forCellReuseIdentifier:@"SearchResultCell"];
+    searchDelegate.tableView = self.searchTable;
+    [self.searchTable setDelegate:searchDelegate];
+    
+    [self.searchTable setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5]];
+    [self.searchTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.searchTable setUserInteractionEnabled:YES];
+    
+    [self.view addSubview:self.searchTable];
+    
+    
+
+}
+
+- (IBAction)cancelSearchOperation:(id)sender {
+    [self.searchTextField setText:@""];
+    [self.searchTextField resignFirstResponder];
+    [self.searchTable removeFromSuperview];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -140,11 +183,5 @@
         [chpYoneticilerKategoriViewController setPosition:[self.unvanTitleArray objectAtIndex:pos]];
     }
 
-}
-
-- (IBAction)cancelSearchOperation:(id)sender {
-    [self.searchTextField setText:@""];
-    [self.searchTextField resignFirstResponder];
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 @end

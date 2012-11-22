@@ -15,5 +15,6 @@
 
 @property (strong, nonatomic) NSArray *unvanTitleArray;
 @property (strong, nonatomic) NSMutableDictionary *managerList;
+@property (strong, nonatomic) UITableView *searchTable;
 
 @end
