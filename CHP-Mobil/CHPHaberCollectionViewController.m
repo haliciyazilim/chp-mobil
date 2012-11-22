@@ -16,7 +16,7 @@
 
 #import "CHPHaberDetailTableViewController.h"
 
-@interface CHPHaberCollectionViewController ()
+@interface CHPHaberCollectionViewController () 
 
 @end
 
@@ -27,6 +27,14 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.loadingAlert = [[UIAlertView alloc] initWithTitle:@"Lütfen Bekleyiniz." message:@"Seçmen bilgileriniz yükleniyor.." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        UIActivityIndicatorView *myIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        myIndicator.hidesWhenStopped = YES;
+        //    myIndicator.color = [UIColor colorWithRed:1.0 green:0 blue:0 alpha:1];
+        [self.loadingAlert addSubview:myIndicator];
+        [self.loadingAlert show];
+        myIndicator.frame = CGRectMake(110, 64, 60, 60);
+        [myIndicator startAnimating];
     }
     return self;
 }
@@ -38,7 +46,9 @@
     [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSArray *newsArray) {
         self.newsItemArray = newsArray;
     } onError:^(NSError *error) {
-        
+        NSLog(@"\n\n\nInternet hatasi\n\n\n");
+        UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+        [myAlert show];
     }];
     
     
@@ -124,6 +134,16 @@
     [view setNewsObject:(CHPNewsItem *)[self.newsItemArray objectAtIndex:order]];
     
     
+}
+
+-(void)dismissLoadingView {
+    [self.loadingAlert dismissWithClickedButtonIndex:11 animated:YES];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0){
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
 }
 
 

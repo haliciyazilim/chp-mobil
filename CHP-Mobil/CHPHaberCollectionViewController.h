@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CHPHaberCollectionViewController : UICollectionViewController
+@interface CHPHaberCollectionViewController : UICollectionViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *newsItemArray;
+
+@property (nonatomic, strong) UIAlertView* loadingAlert;
+
+- (void)dismissLoadingView;
 
 @end
