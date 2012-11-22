@@ -193,7 +193,20 @@
         }
     }
     else if(indexPath.section == 3){
-        
+        if ([MFMailComposeViewController canSendMail]) {
+            // Show the composer
+            MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+            controller.mailComposeDelegate = self;
+            [controller setToRecipients:@[[(UILabel *) [[tableView cellForRowAtIndexPath:indexPath] viewWithTag:2] text]]];
+            
+            if (controller) [self presentViewController:controller
+                                               animated:YES
+                                             completion:^{
+                                                 
+                                             }];
+        } else {
+            // Handle the error
+        }
     }
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 }
@@ -261,6 +274,15 @@
     
     [self.tableView reloadData];
 
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error {
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                                 
+                             }];
 }
 
 @end

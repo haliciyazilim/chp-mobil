@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+#import <MessageUI/MFMailComposeViewController.h>
+
 @class CHPContact;
 
-@interface CHPYoneticilerDetailViewController : UITableViewController <UITableViewDelegate>
+@interface CHPYoneticilerDetailViewController : UITableViewController <UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) CHPContact *chpContact;
 @property (strong, nonatomic) NSArray *positionsOfContact;
+
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error;
 
 @end
