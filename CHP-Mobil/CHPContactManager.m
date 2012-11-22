@@ -102,19 +102,31 @@ static CHPContactManager *sharedInstance = nil;
                                                      }];
 }
 
-- (NSArray *)searchContactsWithString:(NSString*)prefix {
-    prefix = [prefix lowercaseString];
+- (NSArray *)searchContactsWithString:(NSString*)name {
+    NSArray *prefixes = [[name lowercaseString] componentsSeparatedByString:@" "];
+    
+    
     NSMutableArray *contacts = [NSMutableArray arrayWithCapacity:20];
     
     [self.contacts enumerateKeysAndObjectsUsingBlock:^(id key, CHPContact *contact, BOOL *stop) {
-        NSArray *namesArray = [contact.name componentsSeparatedByString:@" "];
-        
-        for (NSString *name in namesArray) {
+        bool match = YES;
+        for (NSString *prefix in prefixes) {
+            bool innerMatch = NO;
+            NSArray *namesArray = [contact.name componentsSeparatedByString:@" "];
             
-            if ([[name lowercaseString] hasPrefix:prefix]) {
-                [contacts addObject:contact];
-                break;
+            for (NSString *name in namesArray) {
+                if ([[name lowercaseString] hasPrefix:prefix]) {
+                    innerMatch = YES;
+                }
             }
+            
+            if (!innerMatch) {
+                match = NO;
+            }
+        }
+        
+        if (match) {
+            [contacts addObject:contact];
         }
     }];
     
