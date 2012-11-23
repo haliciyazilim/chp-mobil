@@ -10,7 +10,7 @@
 #import "CHPYoneticilerDetailViewController.h"
 #import "CHPYoneticilerKategoriViewController.h"
 #import "CHPContactManager.h"
-#import "CHPSearchTableViewController.h"
+#import "CHPSearchTableViewCell.h"
 
 @interface CHPYoneticilerTableViewController ()
 
@@ -65,12 +65,26 @@
     [self.searchTextField setLeftView:searchIconView];
     [self.searchTextField setLeftViewMode:UITextFieldViewModeAlways];
     
+    self.isSearchModeEnabled = NO;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-    [self.tableView reloadData];
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    if(!self.isSearchModeEnabled){
+        if([self.tableView contentOffset].y < 49.0){
+            NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+            [self.tableView reloadData];
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+        }
+        else{
+            [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+        }    
+    }
+    else{
+        [self.searchTable deselectRowAtIndexPath:self.searchTable.indexPathForSelectedRow animated:YES];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:self.searchTextField];
 }
@@ -88,36 +102,60 @@
     return YES;
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    CGFloat heightOfSearchView = ((UIView *)[[self.view subviews] objectAtIndex:[[self.view subviews] count]-3]).frame.size.height;
-    self.searchTable = [[UITableView alloc] initWithFrame:
-                        CGRectMake(
-                                   self.tableView.frame.origin.x,
-                                   self.tableView.frame.origin.y+heightOfSearchView,
-                                   self.tableView.contentSize.width,
-                                   self.tableView.contentSize.height
-                                   )
-                        style:UITableViewStylePlain];
-    
-    searchDelegate = [[CHPSearchTableViewController alloc] init];
-    [self.searchTable registerClass:[UITableViewCell class] forCellReuseIdentifier:@"SearchResultCell"];
-    searchDelegate.tableView = self.searchTable;
-    [self.searchTable setDelegate:searchDelegate];
-    
-    [self.searchTable setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5]];
-    [self.searchTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.searchTable setUserInteractionEnabled:YES];
-    
-    [self.view addSubview:self.searchTable];
-    
-    
+    if(!self.isSearchModeEnabled){
+        CGFloat heightOfSearchView = ((UIView *)[[self.view subviews] objectAtIndex:[[self.view subviews] count]-3]).frame.size.height;
+        self.searchTable = [[UITableView alloc] initWithFrame:
+                            CGRectMake(
+                                       self.tableView.frame.origin.x,
+                                       self.tableView.frame.origin.y+heightOfSearchView,
+                                       self.tableView.contentSize.width,
+                                       self.tableView.contentSize.height
+                                       )
+                            style:UITableViewStylePlain];
+        self.dummyView = [[UIView alloc] initWithFrame:
+                             CGRectMake(
+                                        self.tableView.frame.origin.x,
+                                        self.tableView.frame.origin.y+heightOfSearchView,
+                                        self.tableView.contentSize.width,
+                                        self.tableView.contentSize.height
+                                        )];
+        self.dummyView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
+        
+        searchDelegate = [[CHPSearchTableViewController alloc] init];
+        [self.searchTable registerClass:[CHPSearchTableViewCell class] forCellReuseIdentifier:@"SearchResultCell"];
+        searchDelegate.tableView = self.searchTable;
+        [self.searchTable setDelegate:searchDelegate];
+        searchDelegate.delegate = self;
+        
+        [self.searchTable setBackgroundColor:[UIColor clearColor]];
+        [self.searchTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        [self.searchTable setUserInteractionEnabled:YES];
+        
+        [self.view addSubview:self.dummyView];
+        [self.view addSubview:self.searchTable];
+        
+        [self.tableView setScrollEnabled:NO];
+        self.isSearchModeEnabled = YES;
+    }
+}
 
+
+- (void) searchTableViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.searchTextField resignFirstResponder];
+}
+- (void) contactSelected:(CHPContact *)selectedContact{
+    [[self searchTextField] resignFirstResponder];
+    [self setSelectedContact:selectedContact];
 }
 
 - (IBAction)cancelSearchOperation:(id)sender {
     [self.searchTextField setText:@""];
     [self.searchTextField resignFirstResponder];
     [self.searchTable removeFromSuperview];
+    [self.dummyView removeFromSuperview];
+    [self.tableView setScrollEnabled:YES];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    self.isSearchModeEnabled = NO;
 }
 
 
@@ -155,7 +193,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if([[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:indexPath.row]] count] == 1) {
-        [self performSegueWithIdentifier:@"DetailSegue" sender:self];
+        [self setSelectedContact:[[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:indexPath.row]] objectAtIndex:0]];
     }
     else{
         [self performSegueWithIdentifier:@"KategoriSegue" sender:self];
@@ -165,9 +203,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"DetailSegue"]){
-        int pos = [self.tableView indexPathForSelectedRow].row;
         CHPYoneticilerDetailViewController *chpYoneticilerDetailViewController = [segue destinationViewController];
-        [[CHPContactManager sharedInstance] getContactWithId:[[[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:pos]] objectAtIndex:0] contactId]
+        [[CHPContactManager sharedInstance] getContactWithId:[self.selectedContact contactId]
                                                 andInfoLevel:ContactInfoLevelFull
                                                 onCompletion:^(CHPContact *contact) {
                                                     [chpYoneticilerDetailViewController setChpContact:contact];
@@ -183,5 +220,12 @@
         [chpYoneticilerKategoriViewController setPosition:[self.unvanTitleArray objectAtIndex:pos]];
     }
 
+}
+
+-(void)setSelectedContact:(CHPContact *)selectedContact{
+    if(_selectedContact != selectedContact){
+        _selectedContact = selectedContact;
+    }
+    [self performSegueWithIdentifier:@"DetailSegue" sender:self];
 }
 @end
