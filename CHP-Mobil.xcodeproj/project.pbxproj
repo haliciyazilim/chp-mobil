@@ -14,6 +14,9 @@
 		053AFD8F165D2F3B000E6693 /* search_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 053AFD8B165D2F3B000E6693 /* search_btn.png */; };
 		053AFD90165D2F3B000E6693 /* search_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 053AFD8C165D2F3B000E6693 /* search_btn@2x.png */; };
 		0568007B165E2D560005D3C7 /* CHPSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0568007A165E2D560005D3C7 /* CHPSearchTableViewController.m */; };
+		05680083165E6A2F0005D3C7 /* CHPSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05680082165E6A2F0005D3C7 /* CHPSearchTableViewCell.m */; };
+		05680086165E6F1B0005D3C7 /* search_ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 05680084165E6F1B0005D3C7 /* search_ok.png */; };
+		05680087165E6F1B0005D3C7 /* search_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05680085165E6F1B0005D3C7 /* search_ok@2x.png */; };
 		056C07E916554198005D5D5D /* CHPYoneticilerKategoriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C07E816554198005D5D5D /* CHPYoneticilerKategoriViewController.m */; };
 		056C07ED1655487B005D5D5D /* CHPYoneticilerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C07EC1655487B005D5D5D /* CHPYoneticilerDetailViewController.m */; };
 		0578DB631656451A00131BD8 /* chp_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0578DB621656451A00131BD8 /* chp_logo.png */; };
@@ -124,6 +127,10 @@
 		053AFD8C165D2F3B000E6693 /* search_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_btn@2x.png"; sourceTree = "<group>"; };
 		05680079165E2D560005D3C7 /* CHPSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPSearchTableViewController.h; sourceTree = "<group>"; };
 		0568007A165E2D560005D3C7 /* CHPSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPSearchTableViewController.m; sourceTree = "<group>"; };
+		05680081165E6A2F0005D3C7 /* CHPSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPSearchTableViewCell.h; sourceTree = "<group>"; };
+		05680082165E6A2F0005D3C7 /* CHPSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPSearchTableViewCell.m; sourceTree = "<group>"; };
+		05680084165E6F1B0005D3C7 /* search_ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_ok.png; sourceTree = "<group>"; };
+		05680085165E6F1B0005D3C7 /* search_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_ok@2x.png"; sourceTree = "<group>"; };
 		056C07E716554198005D5D5D /* CHPYoneticilerKategoriViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPYoneticilerKategoriViewController.h; sourceTree = "<group>"; };
 		056C07E816554198005D5D5D /* CHPYoneticilerKategoriViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPYoneticilerKategoriViewController.m; sourceTree = "<group>"; };
 		056C07EB1655487B005D5D5D /* CHPYoneticilerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPYoneticilerDetailViewController.h; sourceTree = "<group>"; };
@@ -420,6 +427,8 @@
 				056C07EC1655487B005D5D5D /* CHPYoneticilerDetailViewController.m */,
 				05680079165E2D560005D3C7 /* CHPSearchTableViewController.h */,
 				0568007A165E2D560005D3C7 /* CHPSearchTableViewController.m */,
+				05680081165E6A2F0005D3C7 /* CHPSearchTableViewCell.h */,
+				05680082165E6A2F0005D3C7 /* CHPSearchTableViewCell.m */,
 			);
 			name = YoneticilerTabControllers;
 			sourceTree = "<group>";
@@ -468,6 +477,8 @@
 		416A7DE71653E5C60005E9E3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				05680084165E6F1B0005D3C7 /* search_ok.png */,
+				05680085165E6F1B0005D3C7 /* search_ok@2x.png */,
 				053AFD85165D2926000E6693 /* search_icon.png */,
 				053AFD86165D2926000E6693 /* search_icon@2x.png */,
 				053AFD89165D2F3B000E6693 /* search_btn_highlighted.png */,
@@ -711,6 +722,8 @@
 				AE120414165CFE340086E7D1 /* chp-program.pdf in Resources */,
 				AE120416165CFE340086E7D1 /* chp-tuzuk.pdf in Resources */,
 				AE120418165CFEBA0086E7D1 /* chp-tarih.pdf in Resources */,
+				05680086165E6F1B0005D3C7 /* search_ok.png in Resources */,
+				05680087165E6F1B0005D3C7 /* search_ok@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,6 +762,7 @@
 				AEBA5344165A5AF80056E596 /* CHPHaberDetailTableViewController.m in Sources */,
 				AEBA5347165A65650056E596 /* CHPHaberFlowLayout.m in Sources */,
 				0568007B165E2D560005D3C7 /* CHPSearchTableViewController.m in Sources */,
+				05680083165E6A2F0005D3C7 /* CHPSearchTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
