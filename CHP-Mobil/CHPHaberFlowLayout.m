@@ -13,10 +13,19 @@
 - (CGSize)collectionViewContentSize
 {
     int count = [[self collectionView] numberOfItemsInSection:0];
-    return CGSizeMake(
+
+    if (count > 3)
+    {
+        return CGSizeMake(
                       [self itemSize].width * 2 + [self minimumInteritemSpacing],
                       [self itemSize].height * (floor(count/2)+1) + floor(count/2)*self.minimumLineSpacing
                       );
+    } else {
+        CGSize layoutSize = [self collectionView].frame.size;
+        layoutSize.height = layoutSize.height + 2;
+        
+        return layoutSize;
+    }
 }
 
 -(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect

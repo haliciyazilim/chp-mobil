@@ -61,6 +61,9 @@
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [self.collectionView setCollectionViewLayout:flowLayout];
 //    flowLayout layoutAttributesForItemAtIndexPath:<#(NSIndexPath *)#>
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -44*0, 320, 44)];
+    [self.collectionView addSubview:refreshControl];
 }
 
 - (void)didReceiveMemoryWarning
