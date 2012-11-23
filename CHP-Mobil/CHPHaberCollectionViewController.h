@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Reachability.h"
 @interface CHPHaberCollectionViewController : UICollectionViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *newsItemArray;
 
 @property (nonatomic, strong) UIAlertView* loadingAlert;
+@property (strong, nonatomic) Reachability *reachability;
 
 - (void)dismissLoadingView;
 
