@@ -17,11 +17,13 @@
 #import "CHPHaberDetailTableViewController.h"
 
 @interface CHPHaberCollectionViewController () 
-
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation CHPHaberCollectionViewController
-
+{
+    bool isRefreshNeeded;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,6 +37,8 @@
         [self.loadingAlert show];
         [myIndicator setFrame: CGRectMake(110, 64, 60, 60)];
         [myIndicator startAnimating];
+        isRefreshNeeded = false;
+        
     }
     return self;
 }
@@ -43,13 +47,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSArray *newsArray) {
-        self.newsItemArray = newsArray;
-    } onError:^(NSError *error) {
-        UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
-        [myAlert show];
-    }];
     
+    [self refreshNews];
     
     // Configure layout
     CHPHaberFlowLayout *flowLayout = [[CHPHaberFlowLayout alloc] init];
@@ -60,8 +59,18 @@
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [self.collectionView setCollectionViewLayout:flowLayout];
 
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -44*0, 320, 44)];
-    [self.collectionView addSubview:refreshControl];
+    //refresh control
+    self.refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -44*0, 320, 44)];
+    [self.collectionView addSubview:self.refreshControl];
+    [self.refreshControl addTarget:self action:@selector(refreshNews) forControlEvents:UIControlEventValueChanged];
+    
+    //reachibility observer
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNetworkChange:)
+                                                 name:kReachabilityChangedNotification object:nil];
+    
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    [self.reachability startNotifier];
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,18 +102,16 @@
         [[APIManager sharedInstance] getImageWithURLString:item.imageAddress
                                               onCompletion:^(UIImage *resultImage) {
                                                   [(UIImageView *)[cell viewWithTag:2] setImage:resultImage];
+//                                                  NSLog(@"image is loaded for row %d",indexPath.row);
                                               } onError:^(NSError *error) {
                                                   
                                               }];
-        
-        
-        //set background
+
         [(UIImageView *)[cell viewWithTag:3] setImage:[UIImage imageNamed:@"news_shadow.png"]];
         
         //set font
         if(indexPath.row == 0){
             [titleLabel setFont:[titleLabel.font fontWithSize:16]];
-            //        [titleLabel set ]
         }
         else{
             [titleLabel setFont:[titleLabel.font fontWithSize:12]];
@@ -123,18 +130,33 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    UITableViewCell* cell = (UITableViewCell*) sender;
-    
-//    [segue ];
-    
     int order = ((NSIndexPath*)[self.collectionView.indexPathsForSelectedItems objectAtIndex:0]).row;
-//    NSLog(@"\n\nindex path: %d\n\n",order);
-    
     CHPHaberDetailTableViewController* view = (CHPHaberDetailTableViewController*)[segue destinationViewController];
-    
     [view setNewsObject:(CHPNewsItem *)[self.newsItemArray objectAtIndex:order]];
-    
-    
+}
+
+-(void)refreshNews
+{
+    [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSArray *newsArray) {
+        self.newsItemArray = newsArray;
+        [self.refreshControl endRefreshing];
+    } onError:^(NSError *error) {
+        UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+        isRefreshNeeded = true;
+        [myAlert show];
+        [self.refreshControl endRefreshing];
+    }];
+}
+
+-(void)handleNetworkChange:(NSNotification *)notice{
+    NetworkStatus status = [self.reachability currentReachabilityStatus];
+//    NSLog(@"network changed");
+    if (status == NotReachable) {
+        //Change to offline Message
+    } else {
+        if(isRefreshNeeded)
+            [self refreshNews];
+    }
 }
 
 -(void)dismissLoadingView {
@@ -146,6 +168,5 @@
         [[self navigationController] popViewControllerAnimated:YES];
     }
 }
-
 
 @end
