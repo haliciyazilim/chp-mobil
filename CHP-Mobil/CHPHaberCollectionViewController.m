@@ -17,7 +17,7 @@
 #import "CHPHaberDetailTableViewController.h"
 
 @interface CHPHaberCollectionViewController () 
-
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation CHPHaberCollectionViewController
@@ -43,13 +43,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSArray *newsArray) {
-        self.newsItemArray = newsArray;
-    } onError:^(NSError *error) {
-        UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
-        [myAlert show];
-    }];
     
+    [self refreshNews];
     
     // Configure layout
     CHPHaberFlowLayout *flowLayout = [[CHPHaberFlowLayout alloc] init];
@@ -60,8 +55,9 @@
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [self.collectionView setCollectionViewLayout:flowLayout];
 
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -44*0, 320, 44)];
-    [self.collectionView addSubview:refreshControl];
+    self.refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -44*0, 320, 44)];
+    [self.collectionView addSubview:self.refreshControl];
+    [self.refreshControl addTarget:self action:@selector(refreshNews) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning
@@ -137,6 +133,18 @@
     
 }
 
+-(void)refreshNews
+{
+    [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSArray *newsArray) {
+        self.newsItemArray = newsArray;
+        [self.refreshControl endRefreshing];
+    } onError:^(NSError *error) {
+        UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+        [myAlert show];
+        [self.refreshControl endRefreshing];
+    }];
+}
+
 -(void)dismissLoadingView {
     [self.loadingAlert dismissWithClickedButtonIndex:11 animated:YES];
 }
@@ -147,5 +155,9 @@
     }
 }
 
+-(void)remoteControlReceivedWithEvent:(UIEvent *)event
+{
+    NSLog(@"event is called");
+}
 
 @end
