@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CHPSearchTableViewController.h"
 #import "CHPContact.h"
+#import "Reachability.h"
 
 @interface CHPYoneticilerTableViewController : UITableViewController <UITableViewDelegate, UITextFieldDelegate, SearchTableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *cancelSearchButton;
@@ -20,6 +21,8 @@
 @property (strong, nonatomic) CHPContact *selectedContact;
 @property (strong, nonatomic) UITableView *searchTable;
 @property (strong, nonatomic) UIView *dummyView;
+@property (strong, nonatomic) Reachability *reachability;
+@property (nonatomic) int isListSet;
 @property (nonatomic) BOOL isSearchModeEnabled;
-
+@property (nonatomic) BOOL isAlertShown;
 @end

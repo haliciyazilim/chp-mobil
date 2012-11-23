@@ -32,6 +32,13 @@
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNetworkChange:)
+                                                 name:kReachabilityChangedNotification object:nil];
+    
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    [self.reachability startNotifier];
+    
     if(self.unvanTitleArray == nil) {
         self.unvanTitleArray = @[
         @"Genel Başkan",
@@ -48,17 +55,26 @@
     }
     
     self.managerList = [[NSMutableDictionary alloc] initWithCapacity:[self.unvanTitleArray count]];
-    
+    self.isAlertShown = NO;
+    self.isListSet = 0;
     for (int i = 0; i < 10; i++) {
         [[CHPContactManager sharedInstance] getContactsWithPosition:1<<i
                                                        onCompletion:^(NSArray *resultArray) {
                                                            [self.managerList setObject:resultArray forKey:[self.unvanTitleArray objectAtIndex:i]];
+                                                           self.isListSet += 1;
                                                        }
                                                             onError:^(NSError *error) {
-                                                                //
+                                                                if(!self.isAlertShown){
+                                                                    UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+                                                                    [myAlert show];
+                                                                    self.isAlertShown = YES;
+                                                                }
                                                             }];
     }
     
+    if(self.isListSet == 10){
+        self.isAlertShown = NO;
+    }
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
     UIImage *searchIcon = [UIImage imageNamed:@"search_icon.png"];
     UIImageView *searchIconView = [[UIImageView alloc] initWithImage:searchIcon];
@@ -88,6 +104,35 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:self.searchTextField];
 }
+
+- (void)handleNetworkChange:(NSNotification *)notice{
+    NetworkStatus status = [self.reachability currentReachabilityStatus];
+    if (status == NotReachable) {
+        //Change to offline Message
+    } else {
+        if(self.isListSet != 10){
+            for (int i = 0; i < 10; i++) {
+                [[CHPContactManager sharedInstance] getContactsWithPosition:1<<i
+                                                               onCompletion:^(NSArray *resultArray) {
+                                                                   [self.managerList setObject:resultArray forKey:[self.unvanTitleArray objectAtIndex:i]];
+                                                                   self.isListSet += 1;
+                                                               }
+                                                                    onError:^(NSError *error) {
+                                                                        if(!self.isAlertShown){
+                                                                            UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+                                                                            [myAlert show];
+                                                                            self.isAlertShown = YES;
+                                                                        }
+                                                                    }];
+            }
+
+        }
+        if(self.isListSet == 10){
+            self.isAlertShown = NO;
+        }
+    }
+}
+
 
 -(void)viewWillDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
@@ -214,6 +259,11 @@
                                                      }];
     }
     else if([[segue identifier] isEqualToString:@"KategoriSegue"]){
+        if(self.isAlertShown){
+            UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+            [myAlert show];
+            [myAlert setCancelButtonIndex:0];
+        }
         int pos = [self.tableView indexPathForSelectedRow].row;
         CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
         [chpYoneticilerKategoriViewController setContactsOfAPosition:[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:pos]]];
@@ -227,5 +277,11 @@
         _selectedContact = selectedContact;
     }
     [self performSegueWithIdentifier:@"DetailSegue" sender:self];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0){
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 @end

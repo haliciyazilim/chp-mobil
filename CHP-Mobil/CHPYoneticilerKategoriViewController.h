@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CHPYoneticilerKategoriViewController : UITableViewController
+@interface CHPYoneticilerKategoriViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSArray *contactsOfAPosition;
 @property (strong, nonatomic) NSString *position;
