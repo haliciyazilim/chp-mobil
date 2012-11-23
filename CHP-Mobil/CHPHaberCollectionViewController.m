@@ -33,7 +33,7 @@
         //    myIndicator.color = [UIColor colorWithRed:1.0 green:0 blue:0 alpha:1];
         [self.loadingAlert addSubview:myIndicator];
         [self.loadingAlert show];
-        myIndicator.frame = CGRectMake(110, 64, 60, 60);
+        [myIndicator setFrame: CGRectMake(110, 64, 60, 60)];
         [myIndicator startAnimating];
     }
     return self;
@@ -46,7 +46,6 @@
     [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSArray *newsArray) {
         self.newsItemArray = newsArray;
     } onError:^(NSError *error) {
-        NSLog(@"\n\n\nInternet hatasi\n\n\n");
         UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
         [myAlert show];
     }];
@@ -60,8 +59,7 @@
     
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [self.collectionView setCollectionViewLayout:flowLayout];
-//    flowLayout layoutAttributesForItemAtIndexPath:<#(NSIndexPath *)#>
-    
+
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -44*0, 320, 44)];
     [self.collectionView addSubview:refreshControl];
 }
