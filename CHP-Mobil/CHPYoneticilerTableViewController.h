@@ -22,7 +22,7 @@
 @property (strong, nonatomic) UITableView *searchTable;
 @property (strong, nonatomic) UIView *dummyView;
 @property (strong, nonatomic) Reachability *reachability;
-@property (nonatomic) int isListSet;
+@property (nonatomic) BOOL isListSet;
 @property (nonatomic) BOOL isSearchModeEnabled;
 @property (nonatomic) BOOL isAlertShown;
 @end
