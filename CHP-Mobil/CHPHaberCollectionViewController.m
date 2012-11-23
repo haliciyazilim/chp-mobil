@@ -139,7 +139,7 @@
         self.newsItemArray = newsArray;
         [self.refreshControl endRefreshing];
     } onError:^(NSError *error) {
-        UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+        UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
         [myAlert show];
         [self.refreshControl endRefreshing];
     }];
