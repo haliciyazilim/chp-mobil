@@ -7,7 +7,8 @@
 //
 
 #import "CHPSearchTableViewController.h"
-#import "CHPContact.h"
+#import "CHPYoneticilerDetailViewController.h"
+#import "CHPContactManager.h"
 
 @interface CHPSearchTableViewController ()
 
@@ -19,7 +20,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -27,21 +28,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+- (void)viewWillAppear:(BOOL)animated{
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -50,42 +44,55 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%d",[self.searchResult count]);
     return [self.searchResult count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"entered cellForRowAt...");
     static NSString *CellIdentifier = @"SearchResultCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    
+    cell.textLabel.font = [UIFont fontWithName:@"Futura-Medium" size:16.0];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Futura-Medium" size:12.0];
     [[cell textLabel] setText:[[self.searchResult objectAtIndex:indexPath.row] name]];
     cell.textLabel.textColor  = [UIColor whiteColor];
-    cell.detailTextLabel.textColor = [UIColor whiteColor];
     NSArray *positions = [[self.searchResult objectAtIndex:indexPath.row] getPositionStrings];
     NSString *positionsOfCurrentContact = [[positions valueForKey:@"description"] componentsJoinedByString:@", "];
-    NSLog(@"%@",positionsOfCurrentContact);
-    [[cell detailTextLabel] setText:positionsOfCurrentContact];
+    if([cell detailTextLabel]){
+        [[cell detailTextLabel] setText:positionsOfCurrentContact];
+    }
     
+    UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+    selectedView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
     
+    cell.selectedBackgroundView = selectedView;
     
-    // Configure the cell...
+    UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search_ok.png"]];
+    cell.accessoryView = accessoryView;
     
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.delegate contactSelected:[self.searchResult objectAtIndex:[self.tableView indexPathForSelectedRow].row]];
+}
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self.delegate searchTableViewWillBeginDragging:(UIScrollView *)scrollView];
+}
 
 -(void)setSearchResult:(NSArray *)searchResult{
-    NSLog(@"entered setSearchResult");
-    NSLog(@"%@", searchResult);
     if(_searchResult != searchResult){
         _searchResult = searchResult;
     }
-    NSLog(@"%@",self.searchResult);
+    if([self.searchResult count] == 0){
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    }
+    else{
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        [self.tableView setSeparatorColor:[UIColor colorWithRed:0.192 green:0.192 blue:0.192 alpha:1.0]];
+    }
     [self.tableView reloadData];
 }
 
