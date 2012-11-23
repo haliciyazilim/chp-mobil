@@ -103,8 +103,17 @@ static CHPContactManager *sharedInstance = nil;
 }
 
 - (NSArray *)searchContactsWithString:(NSString*)name {
-    NSArray *prefixes = [[name lowercaseString] componentsSeparatedByString:@" "];
+    NSMutableArray *prefixes = [NSMutableArray arrayWithCapacity:4];
     
+    for (NSString *prefix in [[name lowercaseString] componentsSeparatedByString:@" "]) {
+        if (![prefix isEqualToString:@""]) {
+            [prefixes addObject:prefix];
+        }
+    }
+    
+    if (prefixes.count == 0) {
+        return @[];
+    }
     
     NSMutableArray *contacts = [NSMutableArray arrayWithCapacity:20];
     
