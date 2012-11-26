@@ -64,6 +64,7 @@
     self.isListSet = NO;
     [self.searchTextField setPlaceholder:@"Arama devredışı"];
     self.searchTextField.enabled = NO;
+    self.searchTextField.backgroundColor = [UIColor colorWithRed:0.651 green:0.302 blue:0.302 alpha:1.0];
     [self getListFromServer];
     
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
@@ -92,6 +93,7 @@
                                    self.isListSet = YES;
                                    [self.searchTextField setPlaceholder:@"Ara"];
                                    self.searchTextField.enabled = YES;
+                                   self.searchTextField.backgroundColor = [UIColor whiteColor];
                                }
                            }
                             onError:^(NSError *error) {
@@ -132,6 +134,7 @@
         if(!self.isListSet){
             [self.searchTextField setPlaceholder:@"Arama devredışı"];
             self.searchTextField.enabled = NO;
+            self.searchTextField.backgroundColor = [UIColor colorWithRed:0.651 green:0.302 blue:0.302 alpha:1.0];
             [self getListFromServer];
         }
     }
