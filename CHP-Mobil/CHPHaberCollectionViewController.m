@@ -166,7 +166,7 @@
          formatter = [[NSDateFormatter alloc] init];
          [formatter setTimeStyle:NSDateFormatterShortStyle];
          [formatter setDateStyle:NSDateFormatterShortStyle];
-         NSString* text = @"En son guncelleme: ";
+         NSString* text = @"En son güncelleme: ";
          text = [text stringByAppendingString:[formatter stringFromDate:now]];
          [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:text]];
     } onError:^(NSError *error) {
