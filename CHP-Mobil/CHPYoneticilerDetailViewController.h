@@ -12,7 +12,7 @@
 
 @class CHPContact;
 
-@interface CHPYoneticilerDetailViewController : UITableViewController <UITableViewDelegate, MFMailComposeViewControllerDelegate>
+@interface CHPYoneticilerDetailViewController : UITableViewController <UITableViewDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) CHPContact *chpContact;
 @property (strong, nonatomic) NSArray *positionsOfContact;

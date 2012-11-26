@@ -98,9 +98,11 @@
                                             onCompletion:^(CHPContact *contact) {
                                                 [chpYoneticilerDetailViewController setChpContact:contact];
                                             }
-                                                 onError:^(NSError *error) {
-                                                     //
-                                                 }];
+                                             onError:^(NSError *error) {
+                                                 UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+                                                 [myAlert show];
+                                                 [myAlert setCancelButtonIndex:0];
+                                             }];
 }
 
 -(void)setContactsOfAPosition:(NSArray *)contactsOfAPosition {
@@ -110,6 +112,11 @@
 -(void)setPosition:(NSString *)position{
     _position = position;
     [self.tableView reloadData];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0){
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

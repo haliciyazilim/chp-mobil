@@ -19,6 +19,7 @@
 @implementation CHPYoneticilerTableViewController
 {
     CHPSearchTableViewController *searchDelegate;
+    int flagsForList[10];
 }
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -39,6 +40,10 @@
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
     
+    for(int i = 0; i < 10; i++ ){
+        flagsForList[i] = 0;
+    }
+    
     if(self.unvanTitleArray == nil) {
         self.unvanTitleArray = @[
         @"Genel Başkan",
@@ -56,25 +61,12 @@
     
     self.managerList = [[NSMutableDictionary alloc] initWithCapacity:[self.unvanTitleArray count]];
     self.isAlertShown = NO;
-    self.isListSet = 0;
-    for (int i = 0; i < 10; i++) {
-        [[CHPContactManager sharedInstance] getContactsWithPosition:1<<i
-                                                       onCompletion:^(NSArray *resultArray) {
-                                                           [self.managerList setObject:resultArray forKey:[self.unvanTitleArray objectAtIndex:i]];
-                                                           self.isListSet += 1;
-                                                       }
-                                                            onError:^(NSError *error) {
-                                                                if(!self.isAlertShown){
-                                                                    UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
-                                                                    [myAlert show];
-                                                                    self.isAlertShown = YES;
-                                                                }
-                                                            }];
-    }
+    self.isListSet = NO;
+    [self.searchTextField setPlaceholder:@"Arama devredışı"];
+    self.searchTextField.enabled = NO;
+    self.searchTextField.backgroundColor = [UIColor colorWithRed:0.651 green:0.302 blue:0.302 alpha:1.0];
+    [self getListFromServer];
     
-    if(self.isListSet == 10){
-        self.isAlertShown = NO;
-    }
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
     UIImage *searchIcon = [UIImage imageNamed:@"search_icon.png"];
     UIImageView *searchIconView = [[UIImageView alloc] initWithImage:searchIcon];
@@ -83,6 +75,36 @@
     
     self.isSearchModeEnabled = NO;
     
+}
+-(void)getListFromServer{
+    for (int i = 0; i < 10; i++) {
+        [[CHPContactManager sharedInstance] getContactsWithPosition:1<<i
+                           onCompletion:^(NSArray *resultArray) {
+                               [self.managerList setObject:resultArray forKey:[self.unvanTitleArray objectAtIndex:i]];
+                               flagsForList[i] = 1;
+                               BOOL areAllSet = YES;
+                               for(int j = 0; j < 10; j++){
+                                   if(flagsForList[i] == 0){
+                                       areAllSet = NO;
+                                       break;
+                                   }
+                               }
+                               if(areAllSet){
+                                   self.isListSet = YES;
+                                   [self.searchTextField setPlaceholder:@"Ara"];
+                                   self.searchTextField.enabled = YES;
+                                   self.searchTextField.backgroundColor = [UIColor whiteColor];
+                               }
+                           }
+                            onError:^(NSError *error) {
+                                if(!self.isAlertShown){
+                                    UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+                                    [myAlert show];
+                                    self.isAlertShown = YES;
+                                    self.isListSet = NO;
+                                }
+                            }];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -108,27 +130,12 @@
 - (void)handleNetworkChange:(NSNotification *)notice{
     NetworkStatus status = [self.reachability currentReachabilityStatus];
     if (status == NotReachable) {
-        //Change to offline Message
     } else {
-        if(self.isListSet != 10){
-            for (int i = 0; i < 10; i++) {
-                [[CHPContactManager sharedInstance] getContactsWithPosition:1<<i
-                                                               onCompletion:^(NSArray *resultArray) {
-                                                                   [self.managerList setObject:resultArray forKey:[self.unvanTitleArray objectAtIndex:i]];
-                                                                   self.isListSet += 1;
-                                                               }
-                                                                    onError:^(NSError *error) {
-                                                                        if(!self.isAlertShown){
-                                                                            UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
-                                                                            [myAlert show];
-                                                                            self.isAlertShown = YES;
-                                                                        }
-                                                                    }];
-            }
-
-        }
-        if(self.isListSet == 10){
-            self.isAlertShown = NO;
+        if(!self.isListSet){
+            [self.searchTextField setPlaceholder:@"Arama devredışı"];
+            self.searchTextField.enabled = NO;
+            self.searchTextField.backgroundColor = [UIColor colorWithRed:0.651 green:0.302 blue:0.302 alpha:1.0];
+            [self getListFromServer];
         }
     }
 }
@@ -254,20 +261,24 @@
                                                 onCompletion:^(CHPContact *contact) {
                                                     [chpYoneticilerDetailViewController setChpContact:contact];
                                                 }
-                                                     onError:^(NSError *error) {
-                                                         //
-                                                     }];
+                                                 onError:^(NSError *error) {
+                                                     UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+                                                     [myAlert show];
+                                                     [myAlert setCancelButtonIndex:0];
+                                                 }];
     }
     else if([[segue identifier] isEqualToString:@"KategoriSegue"]){
-        if(self.isAlertShown){
+        if(!self.isListSet){
             UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:@"İnternet bağlantısı sağlanamadı, lütfen bağlantı ayarlarınızı kontrol ederek tekrar deneyiniz." delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
             [myAlert show];
             [myAlert setCancelButtonIndex:0];
         }
-        int pos = [self.tableView indexPathForSelectedRow].row;
-        CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
-        [chpYoneticilerKategoriViewController setContactsOfAPosition:[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:pos]]];
-        [chpYoneticilerKategoriViewController setPosition:[self.unvanTitleArray objectAtIndex:pos]];
+        else{
+            int pos = [self.tableView indexPathForSelectedRow].row;
+            CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
+            [chpYoneticilerKategoriViewController setContactsOfAPosition:[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:pos]]];
+            [chpYoneticilerKategoriViewController setPosition:[self.unvanTitleArray objectAtIndex:pos]];
+        }
     }
 
 }

@@ -79,7 +79,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Arama" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="YNN-Cm-CGu">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ara" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="YNN-Cm-CGu">
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="MTT-yZ-e1v"/>
                                         <constraint firstAttribute="width" constant="217" id="vxb-vy-ct9"/>
@@ -309,7 +309,7 @@
                             <tableViewSection id="qFy-RW-86d">
                                 <cells>
                                     <tableViewCell alpha="0.99999999999999989" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="68" id="ih1-kU-Mjo">
-                                        <rect key="frame" x="0.0" y="60" width="320" height="69"/>
+                                        <rect key="frame" x="0.0" y="60" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="67"/>
@@ -342,7 +342,7 @@
                             <tableViewSection id="V5r-zF-jw2">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="68" id="NvM-cN-XPk">
-                                        <rect key="frame" x="0.0" y="149" width="320" height="69"/>
+                                        <rect key="frame" x="0.0" y="149" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="67"/>
@@ -375,7 +375,7 @@
                             <tableViewSection id="049-zH-oMI">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" rowHeight="69" id="HVX-Ff-XgB">
-                                        <rect key="frame" x="0.0" y="238" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="238" width="320" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="68"/>
@@ -671,79 +671,6 @@
         <image name="search_btn_highlighted.png" width="70" height="30"/>
         <image name="seperator_yonetici.png" width="280" height="1"/>
     </resources>
-    <classes>
-        <class className="CHPBizKimizDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPBizKimizDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="CHPBizKimizNavigationController" superclassName="CHPNavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPBizKimizNavigationController.h"/>
-        </class>
-        <class className="CHPBizKimizTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPBizKimizTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="programCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="tarihceCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="tuzukCell" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
-        <class className="CHPHaberCollectionViewController" superclassName="UICollectionViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberCollectionViewController.h"/>
-        </class>
-        <class className="CHPHaberDetailTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberDetailTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="newsContent" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="newsContentCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="newsImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="newsTitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CHPHaberNavigationController" superclassName="CHPNavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberNavigationController.h"/>
-        </class>
-        <class className="CHPMainTabBarViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPMainTabBarViewController.h"/>
-        </class>
-        <class className="CHPNavigationController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPNavigationController.h"/>
-        </class>
-        <class className="CHPYoneticilerDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPYoneticilerDetailViewController.h"/>
-        </class>
-        <class className="CHPYoneticilerKategoriViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPYoneticilerKategoriViewController.h"/>
-        </class>
-        <class className="CHPYoneticilerNavigationController" superclassName="CHPNavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPYoneticilerNavigationController.h"/>
-        </class>
-        <class className="CHPYoneticilerTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPYoneticilerTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelSearchOperation:"/>
-                <relationship kind="outlet" name="cancelSearchButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="searchTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -751,6 +678,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="edE-U7-IWX"/>
-        <segue reference="aju-Ss-hiq"/>
+        <segue reference="4wa-Ih-48h"/>
     </inferredMetricsTieBreakers>
 </document>
