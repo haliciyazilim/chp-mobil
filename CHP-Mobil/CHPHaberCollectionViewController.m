@@ -65,7 +65,7 @@
     [self.refreshControl addTarget:self action:@selector(refreshNews) forControlEvents:UIControlEventValueChanged];
     
     [self.refreshControl setTintColor:[UIColor darkGrayColor]];
-    [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"En son guncelleme: "]];
+    [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"En son güncelleme: "]];
     //reachibility observer
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNetworkChange:)
