@@ -64,6 +64,8 @@
     [self.collectionView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self action:@selector(refreshNews) forControlEvents:UIControlEventValueChanged];
     
+    [self.refreshControl setTintColor:[UIColor darkGrayColor]];
+    [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"En son guncelleme: "]];
     //reachibility observer
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNetworkChange:)
@@ -71,6 +73,24 @@
     
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
+    
+    //set timer
+    [self startTimer];
+    
+    
+}
+
+- (void) startTimer {
+    [NSTimer scheduledTimerWithTimeInterval:1800
+                                     target:self
+                                   selector:@selector(tick:)
+                                   userInfo:nil
+                                    repeats:YES];
+}
+
+- (void) tick:(NSTimer *) timer {
+    [self refreshNews];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -137,9 +157,18 @@
 
 -(void)refreshNews
 {
-    [[APIManager sharedInstance] getLatestNewsOnCompletion:^(NSArray *newsArray) {
-        self.newsItemArray = newsArray;
-        [self.refreshControl endRefreshing];
+    [[APIManager sharedInstance]
+     getLatestNewsOnCompletion:^(NSArray *newsArray) {
+         self.newsItemArray = newsArray;
+         [self.refreshControl endRefreshing];
+         NSDate *now = [NSDate date];
+         NSDateFormatter *formatter = nil;
+         formatter = [[NSDateFormatter alloc] init];
+         [formatter setTimeStyle:NSDateFormatterShortStyle];
+         [formatter setDateStyle:NSDateFormatterShortStyle];
+         NSString* text = @"En son guncelleme: ";
+         text = [text stringByAppendingString:[formatter stringFromDate:now]];
+         [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:text]];
     } onError:^(NSError *error) {
         UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
         isRefreshNeeded = true;
