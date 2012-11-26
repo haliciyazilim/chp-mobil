@@ -25,4 +25,6 @@
 @property (nonatomic) BOOL isListSet;
 @property (nonatomic) BOOL isSearchModeEnabled;
 @property (nonatomic) BOOL isAlertShown;
+
+-(void)getListFromServer;
 @end

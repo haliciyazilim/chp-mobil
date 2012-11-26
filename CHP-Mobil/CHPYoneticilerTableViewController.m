@@ -19,6 +19,7 @@
 @implementation CHPYoneticilerTableViewController
 {
     CHPSearchTableViewController *searchDelegate;
+    int flagsForList[10];
 }
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -39,6 +40,10 @@
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
     
+    for(int i = 0; i < 10; i++ ){
+        flagsForList[i] = 0;
+    }
+    
     if(self.unvanTitleArray == nil) {
         self.unvanTitleArray = @[
         @"Genel Başkan",
@@ -56,21 +61,11 @@
     
     self.managerList = [[NSMutableDictionary alloc] initWithCapacity:[self.unvanTitleArray count]];
     self.isAlertShown = NO;
-    self.isListSet = YES;
-    for (int i = 0; i < 10; i++) {
-        [[CHPContactManager sharedInstance] getContactsWithPosition:1<<i
-                                                       onCompletion:^(NSArray *resultArray) {
-                                                           [self.managerList setObject:resultArray forKey:[self.unvanTitleArray objectAtIndex:i]];
-                                                       }
-                                                        onError:^(NSError *error) {
-                                                            if(!self.isAlertShown){
-                                                                UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
-                                                                [myAlert show];
-                                                                self.isAlertShown = YES;
-                                                                self.isListSet = NO;
-                                                            }
-                                                        }];
-    }
+    self.isListSet = NO;
+    [self.searchTextField setPlaceholder:@"Arama devredışı"];
+    self.searchTextField.enabled = NO;
+    [self getListFromServer];
+    
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
     UIImage *searchIcon = [UIImage imageNamed:@"search_icon.png"];
     UIImageView *searchIconView = [[UIImageView alloc] initWithImage:searchIcon];
@@ -79,6 +74,35 @@
     
     self.isSearchModeEnabled = NO;
     
+}
+-(void)getListFromServer{
+    for (int i = 0; i < 10; i++) {
+        [[CHPContactManager sharedInstance] getContactsWithPosition:1<<i
+                           onCompletion:^(NSArray *resultArray) {
+                               [self.managerList setObject:resultArray forKey:[self.unvanTitleArray objectAtIndex:i]];
+                               flagsForList[i] = 1;
+                               BOOL areAllSet = YES;
+                               for(int j = 0; j < 10; j++){
+                                   if(flagsForList[i] == 0){
+                                       areAllSet = NO;
+                                       break;
+                                   }
+                               }
+                               if(areAllSet){
+                                   self.isListSet = YES;
+                                   [self.searchTextField setPlaceholder:@"Ara"];
+                                   self.searchTextField.enabled = YES;
+                               }
+                           }
+                            onError:^(NSError *error) {
+                                if(!self.isAlertShown){
+                                    UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+                                    [myAlert show];
+                                    self.isAlertShown = YES;
+                                    self.isListSet = NO;
+                                }
+                            }];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -104,25 +128,11 @@
 - (void)handleNetworkChange:(NSNotification *)notice{
     NetworkStatus status = [self.reachability currentReachabilityStatus];
     if (status == NotReachable) {
-        //Change to offline Message
     } else {
         if(!self.isListSet){
-            self.isListSet = YES;
-            for (int i = 0; i < 10; i++) {
-                
-                [[CHPContactManager sharedInstance] getContactsWithPosition:1<<i
-                                                               onCompletion:^(NSArray *resultArray) {
-                                                                   [self.managerList setObject:resultArray forKey:[self.unvanTitleArray objectAtIndex:i]];
-                                                               }
-                                                                onError:^(NSError *error) {
-                                                                    if(!self.isAlertShown){
-                                                                        UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
-                                                                        [myAlert show];
-                                                                        self.isAlertShown = YES;
-                                                                        self.isListSet = NO;
-                                                                    }
-                                                                }];
-            }
+            [self.searchTextField setPlaceholder:@"Arama devredışı"];
+            self.searchTextField.enabled = NO;
+            [self getListFromServer];
         }
     }
 }
@@ -248,9 +258,11 @@
                                                 onCompletion:^(CHPContact *contact) {
                                                     [chpYoneticilerDetailViewController setChpContact:contact];
                                                 }
-                                                     onError:^(NSError *error) {
-                                                         //
-                                                     }];
+                                                 onError:^(NSError *error) {
+                                                     UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+                                                     [myAlert show];
+                                                     [myAlert setCancelButtonIndex:0];
+                                                 }];
     }
     else if([[segue identifier] isEqualToString:@"KategoriSegue"]){
         if(!self.isListSet){
