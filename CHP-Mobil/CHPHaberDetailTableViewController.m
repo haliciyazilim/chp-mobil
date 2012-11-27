@@ -12,6 +12,7 @@
 #import "CHPHaberFlowLayout.h"
 
 @interface CHPHaberDetailTableViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITableViewCell *newsContentCell;
 
 @end
@@ -56,6 +57,7 @@
     if(currentItem == nil)
         return;
     [[self newsTitle] setText:currentItem.title];
+    [[self dateLabel] setText:currentItem.date];
     [[self newsContent] setText:currentItem.content];
     [[APIManager sharedInstance] getImageWithURLString:[currentItem imageAddress]
                                           onCompletion:^(UIImage *resultImage) {
@@ -83,13 +85,15 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 2)
+    if(indexPath.row == 3)
     {
 //        [self.newsContent set];
         
         return  ceil([currentItem.content length] / 40 ) * [self.newsContent font].lineHeight + 20;
         
     }
+    else if(indexPath.row == 2)
+        return 25;
     else if(indexPath.row == 0)
         return 200;
     else if(indexPath.row == 1)
