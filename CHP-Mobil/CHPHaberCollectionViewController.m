@@ -118,7 +118,14 @@
         UILabel* titleLabel = (UILabel*)[cell viewWithTag:1];
         [titleLabel setText:item.title];
         
+        
+        
         //set image
+        if(indexPath.row > 0)
+            [(UIImageView *)[cell viewWithTag:2] setImage:[UIImage imageNamed:@"bosh_kucuk.png"]];
+        else
+            [(UIImageView *)[cell viewWithTag:2] setImage:[UIImage imageNamed:@"bosh_buyuk.png"]];
+        
         [[APIManager sharedInstance] getImageWithURLString:item.imageAddress
                                               onCompletion:^(UIImage *resultImage) {
                                                   [(UIImageView *)[cell viewWithTag:2] setImage:resultImage];
