@@ -65,7 +65,7 @@
     [self.refreshControl addTarget:self action:@selector(refreshNews) forControlEvents:UIControlEventValueChanged];
     
     [self.refreshControl setTintColor:[UIColor darkGrayColor]];
-    [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"En son güncelleme: "]];
+    [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Son güncelleme: "]];
     //reachibility observer
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNetworkChange:)
@@ -173,7 +173,7 @@
          formatter = [[NSDateFormatter alloc] init];
          [formatter setTimeStyle:NSDateFormatterShortStyle];
          [formatter setDateStyle:NSDateFormatterShortStyle];
-         NSString* text = @"En son güncelleme: ";
+         NSString* text = @"Son güncelleme: ";
          text = [text stringByAppendingString:[formatter stringFromDate:now]];
          [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:text]];
     } onError:^(NSError *error) {
