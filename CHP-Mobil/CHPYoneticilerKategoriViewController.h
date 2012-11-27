@@ -10,6 +10,7 @@
 
 @interface CHPYoneticilerKategoriViewController : UITableViewController <UIAlertViewDelegate>
 
+@property (nonatomic) int positionOrder;
 @property (strong, nonatomic) NSArray *contactsOfAPosition;
 @property (strong, nonatomic) NSString *position;
 
