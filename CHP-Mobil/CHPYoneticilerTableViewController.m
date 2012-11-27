@@ -47,15 +47,15 @@
     if(self.unvanTitleArray == nil) {
         self.unvanTitleArray = @[
         @"Genel Başkan",
-        @"MYK Üyesi",
-        @"PM Üyesi",
-        @"YDK Üyesi",
-        @"Milletvekili",
-        @"İl Başkanı",
-        @"İlçe Başkanı",
-        @"Büyükşehir Belediye Başkanı",
-        @"İl Belediye Başkanı",
-        @"İlçe Belediye Başkanı",
+        @"MYK Üyeleri",
+        @"PM Üyeleri",
+        @"YDK Üyeleri",
+        @"Milletvekilleri",
+        @"İl Başkanları",
+        @"İlçe Başkanları",
+        @"Büyükşehir Belediye Başkanları",
+        @"İl Belediye Başkanları",
+        @"İlçe Belediye Başkanları",
         ];
     }
     
