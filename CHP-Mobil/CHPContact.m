@@ -16,6 +16,8 @@
 
 - (id) initFromDictionary:(NSDictionary *)aDictionary {
     if (self = [super init]){
+        _positionStrings = [NSMutableDictionary dictionaryWithCapacity:5];
+        
         _name = aDictionary[@"AdSoyad"];
         
         NSMutableArray *phonesArray = [NSMutableArray array];
@@ -92,6 +94,12 @@
         self.infoLevel = otherContact.infoLevel;
     }
     
+    if (otherContact.positionStrings) {
+        [otherContact.positionStrings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            self.positionStrings[key] = obj;
+        }];
+    }
+    
     self.contactId = otherContact.contactId;
     
     self.position = self.position | otherContact.position;
@@ -105,27 +113,14 @@
     return self;
 }
 
--(NSArray *)getPositionStrings {
+-(NSArray *)getPositionStringsArray {
     NSMutableArray *stringsArray = [NSMutableArray arrayWithCapacity:5];
-    
-    NSArray * positionStrings = @[
-        @"Genel Başkan",
-        @"MYK Üyesi",
-        @"PM Üyesi",
-        @"YDK Üyesi",
-        @"Milletvekili",
-        @"İl Başkanı",
-        @"İlçe Başkanı",
-        @"Büyükşehir Belediye Başkanı",
-        @"İl Belediye Başkanı",
-        @"İlçe Belediye Başkanı",
-    ];
     
     int power = 1;
     
     for (int i = 0; i < 10; i++) {
         if (self.position & power) {
-            [stringsArray addObject:positionStrings[i]];
+            [stringsArray addObject:self.positionStrings[[NSString stringWithFormat:@"%i", i]]];
         }
         
         power *= 2;

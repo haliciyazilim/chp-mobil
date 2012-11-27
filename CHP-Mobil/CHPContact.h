@@ -39,6 +39,7 @@ typedef enum {
 @property (strong, nonatomic) NSString *contactId;
 @property (nonatomic) InfoLevel infoLevel;
 @property (nonatomic) int position;
+@property (strong, nonatomic) NSMutableDictionary *positionStrings;
 
 // class methods
 +(id) contactFromDictionary:(NSDictionary *)aDictionary;
@@ -50,7 +51,7 @@ typedef enum {
 
 -(CHPContact *) addPosition:(CHPPosition)newPosition;
 
--(NSArray *)getPositionStrings;
+-(NSArray *)getPositionStringsArray;
 
 
 @end
