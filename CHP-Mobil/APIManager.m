@@ -221,7 +221,7 @@ static APIManager *sharedInstance = nil;
                                            
                                            for (NSDictionary *contactDictionary in responseDictionary[@"result"]) {
                                                CHPContact *contact = [CHPContact contactFromDictionary:contactDictionary];
-                                               [contact.positionStrings setObject:contactDictionary[@"Unvan"] forKey:[NSString stringWithFormat:@"%i", index]];
+                                               [contact.positionStrings setObject:contactDictionary[@"Unvan"] forKey:[NSString stringWithFormat:@"%i", index-1]];
                                                contact.position = power;
                                                contact.infoLevel = ContactInfoLevelBasic;
                                                [contactArray addObject:contact];
