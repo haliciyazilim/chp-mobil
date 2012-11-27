@@ -42,8 +42,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -57,14 +55,26 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"KategoriCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier2 = @"KategoriSubtitleCell";
+    
+    UITableViewCell *cell;
+    
+    if (self.positionOrder < 4) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        
+        [[cell textLabel] setText:[[self.contactsOfAPosition objectAtIndex:indexPath.row] name]];
+    }
+    else {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
+        
+        [[cell textLabel] setText:[[self.contactsOfAPosition objectAtIndex:indexPath.row] name]];
+        [[cell detailTextLabel] setText:[[[self.contactsOfAPosition objectAtIndex:indexPath.row] positionStrings] objectForKey:[NSString stringWithFormat:@"%d",self.positionOrder]]];
+    }
     
     UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
     selectedView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
     
     cell.selectedBackgroundView = selectedView;
-    
-    [[cell textLabel] setText:[[self.contactsOfAPosition objectAtIndex:indexPath.row] name]];
     
     return cell;
 }
