@@ -679,14 +679,12 @@
 				AE120414165CFE340086E7D1 /* chp-program.pdf in Resources */,
 				AE120416165CFE340086E7D1 /* chp-tuzuk.pdf in Resources */,
 				AE120418165CFEBA0086E7D1 /* chp-tarih.pdf in Resources */,
-<<<<<<< HEAD
 				05680086165E6F1B0005D3C7 /* search_ok.png in Resources */,
 				05680087165E6F1B0005D3C7 /* search_ok@2x.png in Resources */,
 				AEDD458E1664B06900B82572 /* bosh_buyuk.png in Resources */,
 				AEDD458F1664B06900B82572 /* bosh_buyuk@2x.png in Resources */,
 				AEDD45901664B06900B82572 /* bosh_kucuk.png in Resources */,
 				AEDD45911664B06900B82572 /* bosh_kucuk@2x.png in Resources */,
-=======
 				05C1F1331664AB9E00EEA727 /* app-icon-57.png in Resources */,
 				05C1F1351664ABA400EEA727 /* app-icon-114.png in Resources */,
 				0516FFAD1664B59600F0F64C /* search_btn_highlighted.png in Resources */,
@@ -737,7 +735,7 @@
 				051600031664B61300F0F64C /* Default-568h@2x.png in Resources */,
 				051600041664B61300F0F64C /* Default.png in Resources */,
 				051600051664B61300F0F64C /* Default@2x.png in Resources */,
->>>>>>> 42b198c588b11066fa39d5ce4804d03dea251d40
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
