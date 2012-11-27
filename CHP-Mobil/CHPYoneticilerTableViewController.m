@@ -276,6 +276,7 @@
         else{
             int pos = [self.tableView indexPathForSelectedRow].row;
             CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
+            chpYoneticilerKategoriViewController.positionOrder = pos;
             [chpYoneticilerKategoriViewController setContactsOfAPosition:[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:pos]]];
             [chpYoneticilerKategoriViewController setPosition:[self.unvanTitleArray objectAtIndex:pos]];
         }
