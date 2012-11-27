@@ -605,6 +605,7 @@
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="308" id="46G-Oa-LaG"/>
+                                                        <constraint firstAttribute="height" constant="1" id="aOz-Nw-LRY"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -667,9 +668,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="search_btn.png" width="70" height="30"/>
-        <image name="search_btn_highlighted.png" width="70" height="30"/>
-        <image name="seperator_yonetici.png" width="280" height="1"/>
+        <image name="search_btn.png" width="16" height="16"/>
+        <image name="search_btn_highlighted.png" width="16" height="16"/>
+        <image name="seperator_yonetici.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

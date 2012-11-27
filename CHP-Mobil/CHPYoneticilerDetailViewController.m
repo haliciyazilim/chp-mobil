@@ -79,7 +79,10 @@
         ((UILabel *) [cell viewWithTag:2]).textAlignment = NSTextAlignmentCenter;
     }
     else if(indexPath.section == 1){
-        [(UILabel *) [cell viewWithTag:2] setText:[[self.chpContact phones] objectAtIndex:indexPath.row]];
+        NSString *phoneString = [[self.chpContact phones] objectAtIndex:indexPath.row];
+        NSString *str = [NSString stringWithFormat:@"%@ (%@) %@ %@ %@", [phoneString substringWithRange:NSMakeRange(0, 3)], [phoneString substringWithRange:NSMakeRange(3,3)], [phoneString substringWithRange:NSMakeRange(6,3)], [phoneString substringWithRange:NSMakeRange(9,2)], [phoneString substringWithRange:NSMakeRange(11,2)]];
+        
+        [(UILabel *) [cell viewWithTag:2] setText:str];
         [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_phone.png"]];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -89,7 +92,10 @@
         ((UILabel *) [cell viewWithTag:2]).textAlignment = NSTextAlignmentLeft;
     }
     else if(indexPath.section == 2){
-        [(UILabel *) [cell viewWithTag:2] setText:[[self.chpContact cellPhones] objectAtIndex:indexPath.row]];
+        NSString *phoneString = [[self.chpContact cellPhones] objectAtIndex:indexPath.row];
+        NSString *str = [NSString stringWithFormat:@"%@ (%@) %@ %@ %@", [phoneString substringWithRange:NSMakeRange(0, 3)], [phoneString substringWithRange:NSMakeRange(3,3)], [phoneString substringWithRange:NSMakeRange(6,3)], [phoneString substringWithRange:NSMakeRange(9,2)], [phoneString substringWithRange:NSMakeRange(11,2)]];
+        
+        [(UILabel *) [cell viewWithTag:2] setText:str];
         [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_cellphone.png"]];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -179,20 +185,15 @@
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 1 || indexPath.section == 2){
-        UIDevice *device = [UIDevice currentDevice];
-        if ([[device model] isEqualToString:@"iPhone Simulator"] ) {
-            NSString *phoneNumber = [(UILabel*)[[tableView cellForRowAtIndexPath:indexPath] viewWithTag:2] text];
-            NSString *phoneUrl = [NSString stringWithFormat:@"tel:%@",phoneNumber];
-            NSLog(@"%@",phoneNumber);
-            NSLog(@"%@",phoneUrl);
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneUrl]];
-        } else {
-            UIAlertView *Notpermitted=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Your device doesn't support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [Notpermitted show];
-        }
-    }
-    else if(indexPath.section == 3){
+    if(indexPath.section == 1) {
+        NSString *phoneNumber = [[self.chpContact phones] objectAtIndex:indexPath.row];
+        NSString *phoneUrl = [NSString stringWithFormat:@"tel:%@",phoneNumber];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneUrl]];
+    } else if (indexPath.section == 2) {
+        NSString *phoneNumber = [[self.chpContact cellPhones] objectAtIndex:indexPath.row];
+        NSString *phoneUrl = [NSString stringWithFormat:@"tel:%@",phoneNumber];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneUrl]];
+    } else if(indexPath.section == 3) {
         if ([MFMailComposeViewController canSendMail]) {
             // Show the composer
             MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
