@@ -47,15 +47,15 @@
     if(self.unvanTitleArray == nil) {
         self.unvanTitleArray = @[
         @"Genel Başkan",
-        @"MYK Üyesi",
-        @"PM Üyesi",
-        @"YDK Üyesi",
-        @"Milletvekili",
-        @"İl Başkanı",
-        @"İlçe Başkanı",
-        @"Büyükşehir Belediye Başkanı",
-        @"İl Belediye Başkanı",
-        @"İlçe Belediye Başkanı",
+        @"MYK Üyeleri",
+        @"PM Üyeleri",
+        @"YDK Üyeleri",
+        @"Milletvekilleri",
+        @"İl Başkanları",
+        @"İlçe Başkanları",
+        @"Büyükşehir Belediye Başkanları",
+        @"İl Belediye Başkanları",
+        @"İlçe Belediye Başkanları",
         ];
     }
     
@@ -276,6 +276,7 @@
         else{
             int pos = [self.tableView indexPathForSelectedRow].row;
             CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
+            chpYoneticilerKategoriViewController.positionOrder = pos;
             [chpYoneticilerKategoriViewController setContactsOfAPosition:[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:pos]]];
             [chpYoneticilerKategoriViewController setPosition:[self.unvanTitleArray objectAtIndex:pos]];
         }

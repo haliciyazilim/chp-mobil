@@ -232,7 +232,7 @@
 - (void)setChpContact:(CHPContact *)chpContact{
     if (_chpContact != chpContact) {
         _chpContact = chpContact;
-        _positionsOfContact = [self.chpContact getPositionStrings];
+        _positionsOfContact = [self.chpContact getPositionStringsArray];
     }
     [self configureViews];
 }
