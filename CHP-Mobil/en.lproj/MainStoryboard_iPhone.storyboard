@@ -554,7 +554,7 @@
         <scene sceneID="mU7-a2-LqN">
             <objects>
                 <tableViewController id="kAB-Za-3So" customClass="CHPHaberDetailTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Gok-Aa-Gsf">
+                    <tableView key="view" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Gok-Aa-Gsf">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -642,17 +642,17 @@
                                             <constraint firstItem="wFM-g1-8Jm" firstAttribute="leading" secondItem="xgU-t7-9HG" secondAttribute="leading" constant="7" type="user" id="VdZ-Qt-mgQ"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell autoresizesSubviews="NO" contentMode="scaleAspectFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="81" id="jAl-VS-Xlp">
+                                    <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="81" id="jAl-VS-Xlp">
                                         <rect key="frame" x="0.0" y="318" width="320" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQP-Lo-aYE">
+                                                <textView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQP-Lo-aYE">
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="81" id="twg-4a-3bZ"/>
+                                                        <constraint firstAttribute="height" constant="81" type="user" id="PaD-4t-fnB"/>
                                                     </constraints>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -684,6 +684,7 @@
                         <outlet property="dateLabel" destination="wFM-g1-8Jm" id="TYf-bT-UYV"/>
                         <outlet property="newsContent" destination="wQP-Lo-aYE" id="ekg-HO-NdD"/>
                         <outlet property="newsContentCell" destination="jAl-VS-Xlp" id="eqz-lM-ctD"/>
+                        <outlet property="newsContentHeight" destination="PaD-4t-fnB" id="OJR-QZ-lGg"/>
                         <outlet property="newsImage" destination="cKY-wk-9lq" id="M7Z-QW-w8E"/>
                         <outlet property="newsTitle" destination="Jxv-n4-RZm" id="FbP-hK-2vs"/>
                     </connections>
@@ -726,6 +727,7 @@
                 <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="newsContent" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="newsContentCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="newsContentHeight" candidateClass="NSLayoutConstraint"/>
                 <relationship kind="outlet" name="newsImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="newsTitle" candidateClass="UILabel"/>
             </relationships>
@@ -770,9 +772,6 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

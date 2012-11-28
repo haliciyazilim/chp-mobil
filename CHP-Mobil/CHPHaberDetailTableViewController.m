@@ -65,21 +65,6 @@
                                           } onError:^(NSError *error) {
                                               
                                           }];
-
-    
-//    NSLog(@"\n\nheight: %f\nwidth: %f\n\n",[[self newsContent] contentSize].height,[[self newsContent] contentSize].width);
-//    self.newsContentCell.frame.origin.
-    [[self newsContentCell] setAccessibilityFrame:CGRectMake(
-                                                self.newsContentCell.frame.origin.x,
-                                                self.newsContentCell.frame.origin.y,
-                                                self.newsContentCell.frame.size.width,
-                                                self.newsContent.contentSize.height)];
-//    [[self newsContentCell] set]
-    CGRect frame = self.newsContent.frame;
-    frame.size.height = self.newsContent.contentSize.height;
-    self.newsContent.frame = frame;
-//    NSLog(@"%@",currentItem.content);
-    
     
 }
 
@@ -87,9 +72,14 @@
 {
     if(indexPath.row == 3)
     {
-//        [self.newsContent set];
         
-        return  ceil([currentItem.content length] / 40 ) * [self.newsContent font].lineHeight + 20;
+        
+        NSMutableString* string = [NSMutableString stringWithString:self.newsContent.text];
+        int nCount = [string replaceOccurrencesOfString:@"\n" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [string length])];
+        CGFloat height = floor([self.newsContent.text length]/42 + nCount) * self.newsContent.font.lineHeight+30;
+        [self.newsContentHeight setConstant:height];
+        
+        return height;
         
     }
     else if(indexPath.row == 2)
