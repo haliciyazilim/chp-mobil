@@ -79,7 +79,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ara" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="YNN-Cm-CGu">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ara" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YNN-Cm-CGu">
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="MTT-yZ-e1v"/>
                                         <constraint firstAttribute="width" constant="217" id="vxb-vy-ct9"/>
@@ -798,6 +798,9 @@
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
         </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -806,6 +809,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="edE-U7-IWX"/>
-        <segue reference="aju-Ss-hiq"/>
+        <segue reference="4wa-Ih-48h"/>
     </inferredMetricsTieBreakers>
 </document>
