@@ -72,22 +72,25 @@
 {
     if(indexPath.row == 3)
     {
-        
-        
         NSMutableString* string = [NSMutableString stringWithString:self.newsContent.text];
-        int nCount = [string replaceOccurrencesOfString:@"\n" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [string length])];
-        CGFloat height = floor([self.newsContent.text length]/42 + nCount) * self.newsContent.font.lineHeight+30;
-        [self.newsContentHeight setConstant:height];
-        
-        return height;
+        CGSize maximumSize = CGSizeMake(300,9999);
+        CGSize expectedSize = [string sizeWithFont:self.newsContent.font
+                                    constrainedToSize:maximumSize
+                                    lineBreakMode:NSLineBreakByClipping];
+        [self.newsContentHeight setConstant:expectedSize.height+30];
+        return expectedSize.height+30;
         
     }
     else if(indexPath.row == 2)
         return 25;
     else if(indexPath.row == 0)
         return 200;
-    else if(indexPath.row == 1)
-        return 70;
+    else if(indexPath.row == 1){
+        CGFloat height = ceil([self.newsTitle.text length]/38.0) * self.newsTitle.font.lineHeight + 30.0;
+        [self.newsTitleHeight setConstant:height];
+        
+        return height;
+    }
     
     return 0;
 }
