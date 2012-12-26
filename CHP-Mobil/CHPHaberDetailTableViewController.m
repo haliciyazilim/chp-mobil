@@ -52,6 +52,10 @@
     }
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [self removeFromParentViewController];
+}
+
 -(void) configureUI
 {
     if(currentItem == nil)
