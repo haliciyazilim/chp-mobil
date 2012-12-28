@@ -66,6 +66,7 @@
     
     [self.refreshControl setTintColor:[UIColor darkGrayColor]];
     [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Son güncelleme: "]];
+    
     //reachibility observer
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNetworkChange:)
