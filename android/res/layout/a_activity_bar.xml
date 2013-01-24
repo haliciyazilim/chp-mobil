@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ActivityBar"
+    style="@style/ActivityBarStyle"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/tab_bg" >
+	
+	<Button
+	    android:id="@+id/btnHaber"
+	    style="@style/ActivityButtonStyle"
+	    android:background="@android:color/transparent"
+	    android:drawableTop="@drawable/haber"
+	    android:paddingTop="5dp"
+	    android:text="Haberler" />
+
+	<Button
+	    android:id="@+id/btnKurumsal"
+	    style="@style/ActivityButtonStyle"
+	    android:background="@android:color/transparent"
+	    android:drawableTop="@drawable/kurumsal"
+	    android:paddingTop="5dp"
+	    android:text="Kurumsal" />
+
+	<Button
+	    android:id="@+id/btnYonetim"
+	    style="@style/ActivityButtonStyle"
+	    android:layout_height="wrap_content"
+	    android:background="@android:color/transparent"
+	    android:drawableTop="@drawable/yonetim"
+	    android:paddingTop="5dp"
+	    android:text="Yönetim" />
+		
+</LinearLayout>
+
