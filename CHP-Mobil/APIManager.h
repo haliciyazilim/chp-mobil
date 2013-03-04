@@ -9,6 +9,7 @@
 #import "MKNetworkEngine.h"
 
 #import "CHPContact.h"
+#import "CHPList.h"
 
 typedef void (^CompletionBlock) (NSDictionary *responseDictionary);
 typedef void (^ErrorBlock) (NSError *error);
@@ -17,6 +18,7 @@ typedef void (^ArrayBlock) (NSArray *resultArray);
 typedef void (^ContactBlock) (CHPContact *resultContact);
 typedef void (^StringBlock) (NSString *resultString);
 typedef void (^ImageBlock) (UIImage *resultImage);
+typedef void (^ListBlock) (CHPList *resultList);
 
 @interface APIManager : MKNetworkEngine
 
@@ -42,5 +44,7 @@ typedef void (^ImageBlock) (UIImage *resultImage);
                                  onCompletion:(ImageBlock)completionBlock
                                       onError:(ErrorBlock)errorBlock;
 
+- (MKNetworkOperation *)getContactListOnCompletion:(ListBlock)completionBlock
+                                           onError:(ErrorBlock)errorBlock;
 
 @end

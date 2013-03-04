@@ -191,6 +191,17 @@ static APIManager *sharedInstance = nil;
                                             }];
 }
 
+- (MKNetworkOperation *)getContactListOnCompletion:(ListBlock)completionBlock
+                                           onError:(ErrorBlock)errorBlock {
+    return [self createNetworkOperationForOperation:@"YoneticiListesiGetir_V2"
+                                      andParameters:nil
+                                       onCompletion:^(NSDictionary *responseDictionary) {
+                                           
+                                    } onError:^(NSError *error) {
+                                        ;
+                                    }];
+}
+
 - (MKNetworkOperation *)getAboutInfoForType:(NSString *)type
                                onCompletion:(StringBlock)completionBlock
                                     onError:(ErrorBlock)errorBlock {
