@@ -44,6 +44,10 @@ typedef enum {
 // class methods
 +(id) contactFromDictionary:(NSDictionary *)aDictionary;
 
++(CHPContact *)getContactWithId:(NSString *)contactId;
+
++(CHPContact *)addContact:(CHPContact *)contact;
+
 // instance methods
 -(id) initFromDictionary:(NSDictionary *)aDictionary;
 
@@ -52,6 +56,5 @@ typedef enum {
 -(CHPContact *) addPosition:(CHPPosition)newPosition;
 
 -(NSArray *)getPositionStringsArray;
-
 
 @end

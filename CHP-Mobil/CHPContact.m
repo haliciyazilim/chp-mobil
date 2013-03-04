@@ -8,7 +8,28 @@
 
 #import "CHPContact.h"
 
+static NSMutableArray* wholeContacts;
+
 @implementation CHPContact
+
++(CHPContact *)getContactWithId:(NSString *)contactId {
+    for (CHPContact* contact in wholeContacts) {
+        if ([contact.contactId isEqualToString:contactId]) {
+            return contact;
+        }
+    }
+    return nil;
+}
+
++(CHPContact *)addContact:(CHPContact *)contact {
+//    if (!wholeContacts) {
+//        wholeContacts = [[NSMutableArray alloc] initWithCapacity:10];
+//    }
+//    
+//    [wholeContacts addObject:contact];
+    
+    return nil;
+}
 
 + (id) contactFromDictionary:(NSDictionary *)aDictionary {
     return [[CHPContact alloc] initFromDictionary:aDictionary];
