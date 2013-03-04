@@ -77,6 +77,9 @@
 		05B1FE381653F1490079FE20 /* CHPBizKimizNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FE371653F1490079FE20 /* CHPBizKimizNavigationController.m */; };
 		05C1F1331664AB9E00EEA727 /* app-icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C1F1321664AB9E00EEA727 /* app-icon-57.png */; };
 		05C1F1351664ABA400EEA727 /* app-icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 05C1F1341664ABA400EEA727 /* app-icon-114.png */; };
+		05E329E616E4D418002CD4AB /* CHPList.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E329E116E4D418002CD4AB /* CHPList.m */; };
+		05E329E716E4D418002CD4AB /* CHPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E329E316E4D418002CD4AB /* CHPObject.m */; };
+		05E329E816E4D418002CD4AB /* CHPPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E329E516E4D418002CD4AB /* CHPPerson.m */; };
 		413305A3165D2C41000E34F3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413305A2165D2C41000E34F3 /* MessageUI.framework */; };
 		416A7DD51653E47C0005E9E3 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DC31653E47C0005E9E3 /* NSData+Base64.m */; };
 		416A7DD61653E47C0005E9E3 /* NSDate+RFC1123.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DC51653E47C0005E9E3 /* NSDate+RFC1123.m */; };
@@ -206,6 +209,12 @@
 		05B1FE371653F1490079FE20 /* CHPBizKimizNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPBizKimizNavigationController.m; sourceTree = "<group>"; };
 		05C1F1321664AB9E00EEA727 /* app-icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-57.png"; sourceTree = "<group>"; };
 		05C1F1341664ABA400EEA727 /* app-icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-114.png"; sourceTree = "<group>"; };
+		05E329E016E4D418002CD4AB /* CHPList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPList.h; sourceTree = "<group>"; };
+		05E329E116E4D418002CD4AB /* CHPList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPList.m; sourceTree = "<group>"; };
+		05E329E216E4D418002CD4AB /* CHPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPObject.h; sourceTree = "<group>"; };
+		05E329E316E4D418002CD4AB /* CHPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPObject.m; sourceTree = "<group>"; };
+		05E329E416E4D418002CD4AB /* CHPPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPPerson.h; sourceTree = "<group>"; };
+		05E329E516E4D418002CD4AB /* CHPPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPPerson.m; sourceTree = "<group>"; };
 		413305A2165D2C41000E34F3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		416A7DC21653E47C0005E9E3 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		416A7DC31653E47C0005E9E3 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
@@ -560,6 +569,12 @@
 				0578DB6D165668F400131BD8 /* CHPContact.m */,
 				AEBA5345165A65650056E596 /* CHPHaberFlowLayout.h */,
 				AEBA5346165A65650056E596 /* CHPHaberFlowLayout.m */,
+				05E329E016E4D418002CD4AB /* CHPList.h */,
+				05E329E116E4D418002CD4AB /* CHPList.m */,
+				05E329E216E4D418002CD4AB /* CHPObject.h */,
+				05E329E316E4D418002CD4AB /* CHPObject.m */,
+				05E329E416E4D418002CD4AB /* CHPPerson.h */,
+				05E329E516E4D418002CD4AB /* CHPPerson.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -772,6 +787,9 @@
 				AEBA5347165A65650056E596 /* CHPHaberFlowLayout.m in Sources */,
 				0568007B165E2D560005D3C7 /* CHPSearchTableViewController.m in Sources */,
 				05680083165E6A2F0005D3C7 /* CHPSearchTableViewCell.m in Sources */,
+				05E329E616E4D418002CD4AB /* CHPList.m in Sources */,
+				05E329E716E4D418002CD4AB /* CHPObject.m in Sources */,
+				05E329E816E4D418002CD4AB /* CHPPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
