@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		050D0F0E16E0C7D900363DCB /* CHPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 050D0F0D16E0C7D900363DCB /* CHPObject.m */; };
-		050D0F1116E0C7FC00363DCB /* CHPList.m in Sources */ = {isa = PBXBuildFile; fileRef = 050D0F1016E0C7FC00363DCB /* CHPList.m */; };
-		050D0F1416E0C80900363DCB /* CHPPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 050D0F1316E0C80900363DCB /* CHPPerson.m */; };
 		051600031664B61300F0F64C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 051600001664B61300F0F64C /* Default-568h@2x.png */; };
 		051600041664B61300F0F64C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 051600011664B61300F0F64C /* Default.png */; };
 		051600051664B61300F0F64C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 051600021664B61300F0F64C /* Default@2x.png */; };
@@ -123,12 +120,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		050D0F0C16E0C7D900363DCB /* CHPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPObject.h; sourceTree = "<group>"; };
-		050D0F0D16E0C7D900363DCB /* CHPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPObject.m; sourceTree = "<group>"; };
-		050D0F0F16E0C7FC00363DCB /* CHPList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPList.h; sourceTree = "<group>"; };
-		050D0F1016E0C7FC00363DCB /* CHPList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPList.m; sourceTree = "<group>"; };
-		050D0F1216E0C80900363DCB /* CHPPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPPerson.h; sourceTree = "<group>"; };
-		050D0F1316E0C80900363DCB /* CHPPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPPerson.m; sourceTree = "<group>"; };
 		051600001664B61300F0F64C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "splash_screen_images/Default-568h@2x.png"; sourceTree = "<group>"; };
 		051600011664B61300F0F64C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = splash_screen_images/Default.png; sourceTree = "<group>"; };
 		051600021664B61300F0F64C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "splash_screen_images/Default@2x.png"; sourceTree = "<group>"; };
@@ -569,12 +560,6 @@
 				0578DB6D165668F400131BD8 /* CHPContact.m */,
 				AEBA5345165A65650056E596 /* CHPHaberFlowLayout.h */,
 				AEBA5346165A65650056E596 /* CHPHaberFlowLayout.m */,
-				050D0F0C16E0C7D900363DCB /* CHPObject.h */,
-				050D0F0D16E0C7D900363DCB /* CHPObject.m */,
-				050D0F0F16E0C7FC00363DCB /* CHPList.h */,
-				050D0F1016E0C7FC00363DCB /* CHPList.m */,
-				050D0F1216E0C80900363DCB /* CHPPerson.h */,
-				050D0F1316E0C80900363DCB /* CHPPerson.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -787,9 +772,6 @@
 				AEBA5347165A65650056E596 /* CHPHaberFlowLayout.m in Sources */,
 				0568007B165E2D560005D3C7 /* CHPSearchTableViewController.m in Sources */,
 				05680083165E6A2F0005D3C7 /* CHPSearchTableViewCell.m in Sources */,
-				050D0F0E16E0C7D900363DCB /* CHPObject.m in Sources */,
-				050D0F1116E0C7FC00363DCB /* CHPList.m in Sources */,
-				050D0F1416E0C80900363DCB /* CHPPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
