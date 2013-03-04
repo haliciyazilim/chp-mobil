@@ -48,7 +48,7 @@ public class Resim {
 			return findImage(url).image;
 		}
 		else
-			System.out.println("Resim bulunamadÄ±.: "+stringUrl);
+			System.out.println("Resim bulunamadý.: "+stringUrl);
 			
 		
 		URLConnection baglanti=url.openConnection();
@@ -80,3 +80,5 @@ class URLImage{
 		this.image = image;
 	}
 }
+
+

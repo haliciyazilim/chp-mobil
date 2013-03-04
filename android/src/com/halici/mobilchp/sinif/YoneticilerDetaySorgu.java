@@ -27,6 +27,7 @@ public class YoneticilerDetaySorgu {
 	final static String URL = "http://bilisim.chp.org.tr/MobilService.asmx";
 	
 	
+	
 	public String baglan(){
 		String sonuc = null;
 		// soap nesnesi
@@ -49,7 +50,7 @@ public class YoneticilerDetaySorgu {
 		aht.debug=true;
 					
 		try {
-			System.out.println("try iÃ§indeiym.");
+			System.out.println("try içindeiym.");
 			
 			// Ve son olarak isteï¿½imizi gï¿½nderiyoruz.
 			aht.call(SOAP_ACTION, soapEnvelope);
@@ -65,19 +66,24 @@ public class YoneticilerDetaySorgu {
 			sonuc=sonucSoap.toString();
 					
 				
-			//System.out.println("Gelen Veri: ");
-			//System.out.println(sonuc);
+			System.out.println("YöneticiDetaySorgu.java Gelen Veri: ");
+			System.out.println(sonuc);
 			
 					
-			//System.out.println("try sonu");
+			System.out.println("try sonu");
+			
+			return sonuc;
 		} 
 		catch (Exception e) {
 			Log.i("hata",e.toString());
-				e.printStackTrace();
+
 		} 
+		finally{
+			
+			return sonuc;
+		}
 		
 		
-		return sonuc;
 	}
 
 }

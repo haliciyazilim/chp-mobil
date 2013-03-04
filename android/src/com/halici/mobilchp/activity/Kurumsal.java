@@ -102,7 +102,7 @@ public class Kurumsal extends Activity{
 			e1.printStackTrace();
 		}
 		catch (ActivityNotFoundException e) {
-             Toast.makeText(Kurumsal.this, "CihazÄ±nÄ±zda PDF okuyucu bulunmamaktadÄ±r; lÃ¼tfen yÃ¼kleniyiniz.", Toast.LENGTH_LONG).show();
+             Toast.makeText(Kurumsal.this, "Cihazýnýzda PDF okuyucu bulunmamaktadýr; lütfen yükleniyiniz.", Toast.LENGTH_LONG).show();
             }
 
 		

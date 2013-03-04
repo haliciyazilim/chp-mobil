@@ -7,15 +7,13 @@ import java.util.HashMap;
 public class KisiListesi {
 	
 	//private static ArrayList<KisiBilgileri> bilgiler = new ArrayList<KisiBilgileri>();
-	
 	private static HashMap<Integer, KisiBilgileri> bilgiler= new HashMap<Integer, KisiBilgileri>();
 	
-	
-	//String: kategori, Hashmap: yoneticiId, Ä°sim 
+	//String: kategori, Hashmap: yoneticiId, Ýsim 
 	private static HashMap<String, HashMap<Integer,String>> yoneticiListesi=new HashMap<String, HashMap<Integer,String>>();
 	
+	private static CHPListe chpAgac;
 	private static ArrayList<String> aramaListesi=new ArrayList<String>();
-	
 	
 	
 	public static ArrayList<String> getAramaListesi() {
@@ -109,16 +107,9 @@ public class KisiListesi {
 		yoneticiListesi.put(unvan, kisilistesi);
 	}
 	
-
-	
-	
-
 	public static HashMap<Integer, KisiBilgileri> getBilgiler() {
 		return bilgiler;
 	}
-
-
-	
 
 	public static HashMap<String, HashMap<Integer, String>> getYoneticiListesi() {
 		return yoneticiListesi;
@@ -131,7 +122,7 @@ public class KisiListesi {
 
 	public static ArrayList<String> kisiGuncelle(ArrayList<String> eski, ArrayList<String> yeni ){
 		
-		//System.out.println("gÃ¼ncellenecek array:"+eski);
+		//System.out.println("güncellenecek array:"+eski);
 		//System.out.println("eklenecek array:"+yeni);
 		if(eski==null)
 			eski=new ArrayList<String>();
@@ -167,5 +158,14 @@ public class KisiListesi {
 		return yeniBilgi;
 	}
 
+	public static CHPListe getChpAgac() {
+		return chpAgac;
+	}
+
+	public static void setChpAgac(CHPListe chpAgac) {
+		KisiListesi.chpAgac = chpAgac;
+	}
+
+	
 	
 }
