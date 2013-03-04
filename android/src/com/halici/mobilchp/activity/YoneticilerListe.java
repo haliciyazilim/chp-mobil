@@ -32,6 +32,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -80,7 +81,8 @@ public class YoneticilerListe extends Activity{
 		
 		
 		baslik=(TextView)findViewById(R.id.tvBaslik);
-		baslik.setText(gelenVeri.getName());
+		baslik.setText(gelenVeri.getName().toString().trim());
+		baslik.setGravity(Gravity.CENTER);
 
 //		if(KisiListesi.getYoneticiListesi().size()==0)
 //			System.out.println("YöneticilerListe 0");

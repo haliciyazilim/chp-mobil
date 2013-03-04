@@ -112,7 +112,7 @@ public class Yoneticiler extends Activity{
 			if(baglantiKuntrolu()==true){
 				System.out.println(" Yonetici.java Ýstek: "+istek);
 				new Servis().execute(istek);
-		    	veriAlindi=true; // bunu daha sonra Servis sýnýfýnýn sonuna alacaðýz.
+		    	
 			 }
 			 
 		 }
@@ -183,7 +183,7 @@ public class Yoneticiler extends Activity{
 					System.out.println("Girdik aramaya: "+s);
 					System.out.println("Tüm liste: "+aramaListe.size());
 					if(s.length()==0){
-						//kategoriListesiniDoldur();
+						kategoriListesiniDoldur("liste",KisiListesi.getChpAgac().getContent());
 					}
 					else{
 					
@@ -383,7 +383,7 @@ public class Yoneticiler extends Activity{
 	
 	// Kiþi Listeleri Alýnýyor. Kiþi Listesi dolduruluyor. 
 	public class Servis extends AsyncTask<Integer, Void, String>{
-//		private ProgressDialog dialog = new ProgressDialog(Yoneticiler.this);
+		private ProgressDialog dialog = new ProgressDialog(Yoneticiler.this);
 		 //EditText editSorgu=(EditText) findViewById(R.id.editSorgu);
 		
 		
@@ -447,7 +447,7 @@ public class Yoneticiler extends Activity{
 
 		@Override
 		protected void onPostExecute(String string) {
-//			dialog.dismiss();
+			dialog.dismiss();
 			
 			
 			aramaListe=KisiListesi.getAramaListesi();
@@ -467,6 +467,7 @@ public class Yoneticiler extends Activity{
 			System.out.println("Kategoriler doluyor.");
 			kategoriListesiniDoldur("liste",KisiListesi.getChpAgac().getContent());
 			rootList=KisiListesi.getChpAgac();
+			veriAlindi=true;
 //			System.out.println("Arama LÝstesi");
 //			for(int i=0;i<KisiListesi.getAramaListesi().size();i++)
 //				System.out.println(KisiListesi.getAramaListesi().get(i));
@@ -475,12 +476,14 @@ public class Yoneticiler extends Activity{
 
 		@Override
 		protected void onPreExecute() {
-//			dialog=ProgressDialog.show(Yoneticiler.this, "Baslik", "Mesaj-Calculating",true);
-//			
-//			dialog.setMessage("LÃ¼tfen bekleyiniz; bilgiler yÃ¼kleniyor.");
-//			dialog.show();
+			dialog=ProgressDialog.show(Yoneticiler.this, "Lütfen Bekleyin!", "Mesaj-Calculating",true);
+			
+			dialog.setMessage("Bilgiler birkaç saniye içinde yüklenecektir. Bu süre internet baðlantýnýza göre deðiþebilir. ");
+			TextView text=(TextView) dialog.findViewById(android.R.id.message);
+			text.setTextSize(17);
+			dialog.show();
 
-			Toast.makeText(getApplicationContext(), "Lütfen bekleyiniz; bilgiler yükleniyor.", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(getApplicationContext(), "Lütfen bekleyiniz; bilgiler yükleniyor.", Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
