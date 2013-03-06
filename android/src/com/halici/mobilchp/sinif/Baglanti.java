@@ -43,7 +43,7 @@ public class Baglanti extends BroadcastReceiver
 		    if(available==true){
 		    	new Servis().execute();
 		    	
-		    	System.out.println("BaÄŸlantÄ± bilgileri yÃ¼klÃ¼yor.");
+		    	System.out.println("Baðlantý bilgileri yüklüyor.");
 		    }
     	}
     	
@@ -70,7 +70,7 @@ public class Baglanti extends BroadcastReceiver
 	public class Servis extends AsyncTask<Integer, Void, String>{
 //		private ProgressDialog dialog = new ProgressDialog(Yoneticiler.this);
 		 //EditText editSorgu=(EditText) findViewById(R.id.editSorgu);
-		ArrayList<String> unvanlar=Unvanlar.getUnvanlar();
+		//ArrayList<String> unvanlar=Unvanlar.getUnvanlar();
 		
 		@Override
 		protected String doInBackground(Integer... params) {
@@ -88,24 +88,33 @@ public class Baglanti extends BroadcastReceiver
 			//if(KisiListesi.getYoneticiListesi().get(unvanlar.get(n-1))==null || KisiListesi.getYoneticiListesi().get(unvanlar.get(n-1)).size()==0){
 			//System.out.println("Ä°fe girdim");
 			//System.out.println("Boyut: "+KisiListesi.getYoneticiBilgileri().get(unvanlar.get(n-1)).size());
-			
-			for(int n=1; n<=10;n++){
-				// YÃ¶neticiler LÄ°stesi geliyor
-				YoneticilerListeSorgu sorgu=new YoneticilerListeSorgu(n);
-				sonuc=sorgu.baglan();
-				ArrayList<KisiBilgileri> kisiler=KisiBilgileri.veriAl(sonuc,"liste");
+			try{
 				
-				HashMap<Integer, String> idIsim=new HashMap<Integer, String>();
-				for(int i=0; i<kisiler.size();i++){
-					KisiListesi.ekle(kisiler.get(i));
+					// YÃ¶neticiler LÄ°stesi geliyor
+					YoneticilerListeSorgu sorgu=new YoneticilerListeSorgu();
+					sonuc=sorgu.baglan();
+					ArrayList<KisiBilgileri> kisiler=new KisiBilgileri().veriAl(sonuc,"liste");
 					
-					idIsim.put(kisiler.get(i).getId(),kisiler.get(i).getIsim());
-					KisiListesi.aramaListesineEkle(kisiler.get(i).getIsim());
+					HashMap<Integer, String> idIsim=new HashMap<Integer, String>();
+					for(int i=0; i<kisiler.size();i++){
+						KisiListesi.ekle(kisiler.get(i));
+						
+						idIsim.put(kisiler.get(i).getId(),kisiler.get(i).getIsim());
+						KisiListesi.aramaListesineEkle(kisiler.get(i).getIsim());
+						System.out.println("Veriler alýnýyor.");
+						
 					
+					//KisiListesi.ekle(unvanlar.get(n-1), idIsim);
 				}
-				KisiListesi.ekle(unvanlar.get(n-1), idIsim);
+				return sonuc;
 			}
+			catch (Exception e) {
+					System.out.println("Hata: Baðlantý: "+e);
 
+			}
+			finally{
+				return null;
+			}
 				//System.out.println("Yoneticiler sayfasÄ± KiÅŸi bilgileri: "+KisiListesi.getYoneticiBilgileri().get(unvanlar.get(1)).get(0).getIsim());
 				//System.out.println("Kisi Listesi Unvan: "+KisiListesi.getBilgiler().get(0).getIsim()+", "+KisiListesi.getBilgiler().get(0).getId());
 				//System.out.println("Kisi Listesi Unvan: "+KisiListesi.getBilgiler().get(1).getIsim()+", "+KisiListesi.getBilgiler().get(1).getId());
@@ -117,13 +126,15 @@ public class Baglanti extends BroadcastReceiver
 				
 				//System.out.println("Sonuclar sonuc: "+sonuc);
 			//}
-			return sonuc;
+			
 		}
 
 		@Override
 		protected void onPostExecute(String string) {
-			Yoneticiler.setVeriAlindi(true);
-			
+			if(string!=null){
+				Yoneticiler.setVeriAlindi(true);
+				System.out.println("Veriler alýndý.**************");
+			}
 
 		}
 

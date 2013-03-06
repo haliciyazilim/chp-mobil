@@ -7,6 +7,10 @@ import java.util.HashMap;
 
 
 import com.halici.mobilchp.sinif.ActivityBar;
+import com.halici.mobilchp.sinif.CHPListAdapter;
+import com.halici.mobilchp.sinif.CHPListe;
+import com.halici.mobilchp.sinif.CHPObject;
+import com.halici.mobilchp.sinif.CHPPerson;
 import com.halici.mobilchp.sinif.KisiBilgileri;
 import com.halici.mobilchp.sinif.KisiListesi;
 import com.halici.mobilchp.sinif.Unvanlar;
@@ -28,6 +32,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,7 +47,7 @@ public class YoneticilerListe extends Activity{
 	ListView liste;
 	View view;
 	int istenenYoneticiId;
-	ArrayList<String> unvanlar=Unvanlar.getUnvanlar();
+	ArrayList<String> unvanlar;
 	private static ArrayList<Integer> alinanDetay=new ArrayList<Integer>(); 
 	private HashMap<Integer, String> yoneticiler;
 	private Object[] listeId;
@@ -50,6 +55,8 @@ public class YoneticilerListe extends Activity{
 	int istek;
 	int tiklanan;
 	Builder builder;
+	
+	CHPObject rootList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +68,21 @@ public class YoneticilerListe extends Activity{
 		
 		Intent intent=getIntent();
 		Bundle args=intent.getExtras();
-		istek=args.getInt("istek");
+		//istek=args.getInt("istek");
+		istek=0;
 		
-		System.out.println("YÃ¶neticiListeGelen"+istek);
+		CHPListe gelenVeri=(CHPListe)args.getSerializable("gelenListe");
+		
+		rootList=gelenVeri;
+		
+		System.out.println("GElenListe: "+gelenVeri.getName());
+		
+		System.out.println("YöneticiListeGelen"+istek);
 		
 		
 		baslik=(TextView)findViewById(R.id.tvBaslik);
-		baslik.setText(unvanlar.get(istek));
+		baslik.setText(gelenVeri.getName().toString().trim());
+		baslik.setGravity(Gravity.CENTER);
 
 //		if(KisiListesi.getYoneticiListesi().size()==0)
 //			System.out.println("YÃ¶neticilerListe 0");
@@ -76,7 +91,7 @@ public class YoneticilerListe extends Activity{
 		
 		
 		try{
-		
+		/*
 			yoneticiler=KisiListesi.getYoneticiListesi().get(unvanlar.get(istek));
 			listeId=yoneticiler.keySet().toArray();
 		
@@ -95,25 +110,25 @@ public class YoneticilerListe extends Activity{
 				
 				String aranacakUnvan = null;
 				
-				if(istek>=3){
+				if(istek>3){
 				switch (istek) {
 				case 4:
 					aranacakUnvan="Milletvekili";
 					break;
 				case 5:
-					aranacakUnvan="Ä°l BaÅŸkanÄ±";
+					aranacakUnvan="Ýl Baþkaný";
 					break;
 				case 6:
-					aranacakUnvan="Ä°lÃ§e BaÅŸkanÄ±";
+					aranacakUnvan="Ýlçe Baþkaný";
 					break;
 				case 7:
-					aranacakUnvan="BÃ¼yÃ¼kÅŸehir Belediye BaÅŸkanÄ±";
+					aranacakUnvan="Büyükþehir Belediye Baþkaný";
 					break;
 				case 8:
-					aranacakUnvan="Ä°l Belediye BaÅŸkanÄ±";
+					aranacakUnvan="Ýl Belediye Baþkaný";
 					break;
 				case 9:
-					aranacakUnvan="Ä°lÃ§e Belediye BaÅŸkanÄ±";
+					aranacakUnvan="Ýlçe Belediye Baþkaný";
 					break;
 				default:
 					break;
@@ -146,35 +161,59 @@ public class YoneticilerListe extends Activity{
 				
 				
 			}
+			
+			*/
 		
-		System.out.println("KayÄ±t edilmiÅŸ listenin boyutu: "+yoneticiKayitlari.size());
+		//System.out.println("Kayýt edilmiþ listenin boyutu: "+yoneticiKayitlari.size());
 		liste=(ListView)findViewById(R.id.lvListeYL);
 		
-		ArrayAdapter<String> adapter=new ArrayAdapter<String>(YoneticilerListe.this,R.layout.yonticiler_sablon,R.id.tvUnvanlar, sadeceIsimlerListesi);
 		
-		YoneticiBilgileriAdapter adapterUnvanli=new YoneticiBilgileriAdapter(this,android.R.layout.simple_list_item_1,yoneticiKayitlari);
+		CHPListAdapter adapter=new CHPListAdapter(this,R.layout.yonticiler_sablon,R.id.tvUnvanlar, gelenVeri.getContent());
+		liste.setAdapter(adapter);
 		
-		if(istek<=3)
-			liste.setAdapter(adapter);
-		else
-			liste.setAdapter(adapterUnvanli);
 		
-		System.out.println("Adapter oluÅŸturuldu: "+yoneticiKayitlari.size());
+//		ArrayAdapter<String> adapter=new ArrayAdapter<String>(YoneticilerListe.this,R.layout.yonticiler_sablon,R.id.tvUnvanlar, sadeceIsimlerListesi);
+//		
+//		YoneticiBilgileriAdapter adapterUnvanli=new YoneticiBilgileriAdapter(this,android.R.layout.simple_list_item_1,yoneticiKayitlari);
+		
+//		if(istek<=3)
+//			liste.setAdapter(adapter);
+//		else
+//			liste.setAdapter(adapterUnvanli);
+//		
+		//System.out.println("Adapter oluþturuldu: "+yoneticiKayitlari.size());
 		liste.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				
-				tiklanan=arg2;
-				istenenYoneticiId=(Integer) listeId[tiklanan];
 				
-				//System.out.println("Args: "+tiklanan);
+				if(((CHPListe)rootList).getContent().get(arg2).getType().equals("list")){
+				
+				Intent i=new Intent(YoneticilerListe.this, YoneticilerListe.class);  // this; yonlendirmenin yapýldýðý activity. 
+				i.putExtra("gelenListe", ((CHPListe)rootList).getContent().get(arg2));
+				
+				startActivityForResult(i, 0);
+				//startActivity(i);
 				
 				
-					// Listeleri dolduruyoruz.
-				
-
+				}
+				else{
+					istenenYoneticiId=((CHPPerson)((CHPListe)rootList).getContent().get(arg2)).getId();
+					
+					System.out.println("YöneticiLÝste týklanan Yönetici ID: "+istenenYoneticiId);
 					new Servis().execute(istenenYoneticiId);
+				}
+//				tiklanan=arg2;
+//				istenenYoneticiId=(Integer) listeId[tiklanan];
+//				
+//				//System.out.println("Args: "+tiklanan);
+//				
+//				
+//					// Listeleri dolduruyoruz.
+//				
+//
+//					new Servis().execute(istenenYoneticiId);
 				
 			
 			}
@@ -183,11 +222,11 @@ public class YoneticilerListe extends Activity{
 		
 		}
 		catch(Exception e){
-			System.out.println("HAta YÃ¶neticilerListe size"+e.toString());
+			System.out.println("Hata YöneticilerListe size"+e.toString());
 			builder = new AlertDialog.Builder(this);
 			
-						builder.setTitle("Bilgiler daha alÄ±namadÄ±");
-						builder.setMessage("Ä°ÅŸlem tamamlanmadÄ±.");
+						builder.setTitle("Bilgiler daha alýnamadý");
+						builder.setMessage("Ýþlem tamamlanmadý.");
 			
 						builder.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
 			
@@ -247,7 +286,7 @@ public class YoneticilerListe extends Activity{
 			String sonuc=null;
 			
 			int n=params[0];
-			System.out.println("DetayÄ± istenen: "+n+", "+istenenYoneticiId);
+			System.out.println("Detayý istenen: "+n+", "+istenenYoneticiId);
 			
 			int index=alinanDetay.indexOf(istenenYoneticiId);
 			//System.out.println("index: "+index);
@@ -255,7 +294,7 @@ public class YoneticilerListe extends Activity{
 				
 				
 				if(baglantiKuntrolu()==true){
-					// YÃ¶netici Detay
+					// Yönetici Detay
 					YoneticilerDetaySorgu sorgu=new YoneticilerDetaySorgu(n);
 					sonuc=sorgu.baglan();
 					
@@ -263,17 +302,17 @@ public class YoneticilerListe extends Activity{
 					
 					//System.out.println("Detay sonuc: "+sonuc);
 						
-					ArrayList<KisiBilgileri> kisi=KisiBilgileri.veriAl(sonuc, "detay");
+					KisiBilgileri.veriAl(sonuc, "detay");
 					
 					//System.out.println("KiÅŸi Array: ");
 					
-					KisiBilgileri k=kisi.get(0);
-					//System.out.println("YÃ¶neticiler LÄ°ste 118: "+k.getId()+"\n"+k.getIsim()+"\n"+k.getUnvan()+"\n"+k.getIl()+"\n"+k.getIlce()+"\n"+k.getCeptel()+"\n"+k.getPartiTel()+"\n"+k.getMail()+"\n");
-					//System.out.println("YÃ¶neticiler LÄ°ste 119: "+k.toString());
-					KisiListesi.ekle(k);
-					//KisiListesi.ekle(unvanlar.get(n-1), kisi);
-					System.out.println("Detaylar YÃ¶netcilerListe: "+k.isDetaylar());
-					alinanDetay.add(istenenYoneticiId);
+//					KisiBilgileri k=kisi.get(0);
+//					//System.out.println("YÃ¶neticiler LÄ°ste 118: "+k.getId()+"\n"+k.getIsim()+"\n"+k.getUnvan()+"\n"+k.getIl()+"\n"+k.getIlce()+"\n"+k.getCeptel()+"\n"+k.getPartiTel()+"\n"+k.getMail()+"\n");
+//					//System.out.println("YÃ¶neticiler LÄ°ste 119: "+k.toString());
+//					KisiListesi.ekle(k);
+//					//KisiListesi.ekle(unvanlar.get(n-1), kisi);
+//					System.out.println("Detaylar YönetcilerListe: "+k.isDetaylar());
+//					alinanDetay.add(istenenYoneticiId);
 				}
 			}
 			return sonuc;
@@ -286,7 +325,7 @@ public class YoneticilerListe extends Activity{
 //			dialog.dismiss();
 		
 			
-			Intent i=new Intent(YoneticilerListe.this, YoneticiDetay.class);  // this; yonlendirmenin yapÄ±ldÄ±ÄŸÄ± activity. 
+			Intent i=new Intent(YoneticilerListe.this, YoneticiDetay.class);  // this; yonlendirmenin yapýldýðý activity. 
 			i.putExtra("yoneticiId", istenenYoneticiId);
 			
 			startActivityForResult(i, 0);
@@ -303,7 +342,7 @@ public class YoneticilerListe extends Activity{
 //			dialog.show();
 			
 
-			Toast.makeText(getApplicationContext(), "LÃ¼tfen bekleyiniz; bilgiler yÃ¼kleniyor.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "Lütfen bekleyiniz; bilgiler yükleniyor.", Toast.LENGTH_SHORT).show();
 		}
 
 		@Override

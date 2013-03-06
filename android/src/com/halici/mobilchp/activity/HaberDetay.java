@@ -13,7 +13,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,8 @@ public class HaberDetay extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy); 
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.haber_detay);
@@ -39,40 +43,48 @@ public class HaberDetay extends Activity{
 		String strBaslik=gelenVeri.getString("baslik");
 		txtBaslik.setText(strBaslik);
 		
-		new Resim();
-		BitmapDrawable gelenResim=Resim.resimGetir(gelenVeri.getString("resim"));
+		TextView txtTarih=(TextView) findViewById(R.id.tvTarih);
 		
-		ImageView resim=(ImageView) findViewById(R.id.resim);
-		resim.setImageDrawable(gelenResim);
+		String strTarih=gelenVeri.getString("tarih");
+		txtTarih.setText(strTarih);
+		
+		
+		new NetworkTask().execute(gelenVeri.getString("resim"));
+		
+//		ImageView resim=(ImageView) findViewById(R.id.resim);
+//		resim.setImageDrawable(gelenResim);
 		
 		ActivityBar.getInstance().connectToActivity(this);
 		
 	}
 	
-	protected BitmapDrawable resimGetir(String string){
-		BitmapDrawable arkaplan=new BitmapDrawable();
-		try {
-			
-//			URL url = new URL(string);
-//			URLConnection baglanti=url.openConnection();
-//			baglanti.connect();
-//			
-//			Bitmap resim=BitmapFactory.decodeStream(url.openConnection().getInputStream());
-			Bitmap resim = Resim.getImage(string);
-			arkaplan=new BitmapDrawable(resim);
-			
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return arkaplan;
+	
+	private class NetworkTask extends AsyncTask<String, Void, BitmapDrawable> {
 
+	      @Override
+	      protected BitmapDrawable doInBackground(String... params) {
+			
+	    	  BitmapDrawable gelenResim=Resim.resimGetir(params[0]);
+	    	  return gelenResim;
+	          
+	      }      
+
+	      @Override
+	      protected void onPostExecute(BitmapDrawable result) { 
+	    	  ImageView resim=(ImageView) findViewById(R.id.resim);
+	  			resim.setImageDrawable(result);
+	      }
+
+	      @Override
+	      protected void onPreExecute() {
+	         // show progress dialog if any, and other initialization (not required, runs in UI thread)
+	      }
+
+	      @Override
+	      protected void onProgressUpdate(Void... values) {
+	// update progress, and other initialization (not required, runs in UI thread)
+	      }
 	}
-
+	
 }
+

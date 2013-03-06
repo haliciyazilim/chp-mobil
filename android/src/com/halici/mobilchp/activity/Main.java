@@ -20,6 +20,8 @@ public class Main extends Activity {
 	        
 	        //HACK, for now just start the trail running activity
 	        ab.pressButtonById(R.id.btnHaber, true);			//Manually press the airports button
+	        
+	        System.out.println("MAÝN: "+this);
 	}
 
 	

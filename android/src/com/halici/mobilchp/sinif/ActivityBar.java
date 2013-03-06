@@ -97,7 +97,7 @@ public class ActivityBar {
 					drawableTop=m_currentActivity.getResources().getDrawable(R.drawable.icon_haber_selected);
 				else if(bt.getText().equals("Kurumsal"))
 					drawableTop=m_currentActivity.getResources().getDrawable(R.drawable.icon_kurumsal_selected);
-				if(bt.getText().equals("YÃ¶netim"))
+				if(bt.getText().equals("Yönetim"))
 					drawableTop=m_currentActivity.getResources().getDrawable(R.drawable.icon_yonetim_selected);
 				
 				bt.setCompoundDrawablesWithIntrinsicBounds(null, drawableTop, null, null);

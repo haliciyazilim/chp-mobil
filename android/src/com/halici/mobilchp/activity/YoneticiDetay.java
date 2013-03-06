@@ -32,7 +32,7 @@ import android.widget.Toast;
 public class YoneticiDetay extends Activity {
 	TextView baslik;
 	
-	ArrayList<String> unvanlar=Unvanlar.getUnvanlar();
+	//ArrayList<String> unvanlar=Unvanlar.getUnvanlar();
 	ArrayList<String> goruntulenecekListe=new ArrayList<String>();
 	KisiBilgileri kisiDetay;
 	BitmapDrawable gelenResim;
@@ -76,8 +76,8 @@ public class YoneticiDetay extends Activity {
 			System.out.print("detay Falsedeyim");
 			builder = new AlertDialog.Builder(this);
 
-			builder.setTitle("BaÄŸlantÄ±?");
-			builder.setMessage("LÃ¼tfen internet baÄŸlantÄ±nÄ±zÄ± kontrol edin.");
+			builder.setTitle("Baðlantý?");
+			builder.setMessage("Lütfen internet baðlantýnýzý kontrol edin.");
 
 			builder.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
 
@@ -136,7 +136,10 @@ public class YoneticiDetay extends Activity {
 				}
 			});
 			
-			mail.setText(ArrayToString(kisiDetay.getMail()));
+			if(ArrayToString(kisiDetay.getMail()).equals("null"))
+				mail.setText("");
+			else
+				mail.setText(ArrayToString(kisiDetay.getMail()));
 			mail.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -147,7 +150,7 @@ public class YoneticiDetay extends Activity {
 					/* intent iÃ§eriÄŸi */
 					emailIntent.setType("plain/text");
 					emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{mail.getText().toString()});
-					startActivity(Intent.createChooser(emailIntent, "e-mail gÃ¶nder..."));
+					startActivity(Intent.createChooser(emailIntent, "e-mail gönder..."));
 					
 					
 				}
