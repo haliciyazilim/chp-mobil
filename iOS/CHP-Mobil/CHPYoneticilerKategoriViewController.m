@@ -9,6 +9,7 @@
 #import "CHPYoneticilerKategoriViewController.h"
 #import "CHPYoneticilerDetailViewController.h"
 #import "CHPContactManager.h"
+#import "CHPPerson.h"
 
 @interface CHPYoneticilerKategoriViewController ()
 
@@ -41,7 +42,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)setCurrentObject:(CHPList *)currentObject {
+    _currentObject = currentObject;
+    [self.tableView reloadData];
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -49,33 +53,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.contactsOfAPosition count];
+    return [[self.currentObject content] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"KategoriCell";
-    static NSString *CellIdentifier2 = @"KategoriSubtitleCell";
     
-    UITableViewCell *cell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    CHPObject *curObj = [[self.currentObject content] objectAtIndex:indexPath.row];
     
-    if (self.positionOrder < 4) {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        
-        [[cell textLabel] setText:[[self.contactsOfAPosition objectAtIndex:indexPath.row] name]];
+    if ([curObj isKindOfClass:[CHPList class]]) {
+        [[cell textLabel] setText:[(CHPList *)curObj name]];
+    } else {
+        [[cell textLabel] setText:[[(CHPPerson *)curObj contact] name]];
     }
-    else {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
-        
-        [[cell textLabel] setText:[[self.contactsOfAPosition objectAtIndex:indexPath.row] name]];
-        [[cell detailTextLabel] setText:[[[self.contactsOfAPosition objectAtIndex:indexPath.row] positionStrings] objectForKey:[NSString stringWithFormat:@"%d",self.positionOrder]]];
-    }
-    
+
     UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
     selectedView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
     
     cell.selectedBackgroundView = selectedView;
-    
+
     return cell;
 }
 
@@ -86,7 +84,11 @@
     [headerView setBackgroundColor:[UIColor colorWithRed:0.502 green:0.0 blue:0.0 alpha:0.85]];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 14, tableView.bounds.size.width - 10, 24)];
-    label.text = self.position;
+    if (![self.currentObject header]) {
+        label.text = [self.currentObject name];
+    } else {
+        label.text = [self.currentObject header];
+    }
     label.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:18];
     label.textColor = [UIColor whiteColor];
     label.shadowColor = [UIColor blackColor];
@@ -95,34 +97,47 @@
     
     return headerView;
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    id myObj = [[self.currentObject content] objectAtIndex:indexPath.row];
+    if ([myObj isKindOfClass:[CHPList class]]) {
+        
+        // chp list will open -> kategori view
+        if ([[[(CHPList *)myObj content] objectAtIndex:0] isKindOfClass:[CHPPerson class]] && [[(CHPList *)myObj content] count] == 1) {
+            self.selectedContact = [[[myObj content] objectAtIndex:0] contact];
+            [self performSegueWithIdentifier:@"KategoriToDetailSegue" sender:self];
+        } else {
+            [self performSegueWithIdentifier:@"KategoriToKategoriSegue" sender:self];
+        }
+    } else if ([[[self.currentObject content] objectAtIndex:indexPath.row] isKindOfClass:[CHPPerson class]]){
+        self.selectedContact = [[[self.currentObject content] objectAtIndex:indexPath.row] contact];
+        [self performSegueWithIdentifier:@"KategoriToDetailSegue" sender:self];
+    }
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 40;
 }
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    int pos = [self.tableView indexPathForSelectedRow].row;
-    CHPYoneticilerDetailViewController *chpYoneticilerDetailViewController = [segue destinationViewController];
-    [[CHPContactManager sharedInstance] getContactWithId:[[self.contactsOfAPosition objectAtIndex:pos] contactId]
-                                            andInfoLevel:ContactInfoLevelFull
-                                            onCompletion:^(CHPContact *contact) {
-                                                [chpYoneticilerDetailViewController setChpContact:contact];
-                                            }
-                                             onError:^(NSError *error) {
-                                                 UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
-                                                 [myAlert show];
-                                                 [myAlert setCancelButtonIndex:0];
-                                             }];
+    if([[segue identifier] isEqualToString:@"KategoriToDetailSegue"]){
+        CHPYoneticilerDetailViewController *chpYoneticilerDetailViewController = [segue destinationViewController];
+        [[CHPContactManager sharedInstance] getContactWithId:[self.selectedContact contactId]
+                                                andInfoLevel:ContactInfoLevelFull
+                                                onCompletion:^(CHPContact *contact) {
+                                                    [chpYoneticilerDetailViewController setChpContact:contact];
+                                                }
+                                                     onError:^(NSError *error) {
+                                                         UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+                                                         [myAlert show];
+                                                         [myAlert setCancelButtonIndex:0];
+                                                     }];
+    }
+    else if([[segue identifier] isEqualToString:@"KategoriToKategoriSegue"]){
+        int pos = [self.tableView indexPathForSelectedRow].row;
+        CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
+        [chpYoneticilerKategoriViewController setCurrentObject:[[self.currentObject content] objectAtIndex:pos]];
+    }
 }
 
--(void)setContactsOfAPosition:(NSArray *)contactsOfAPosition {
-    _contactsOfAPosition = [[NSArray alloc] initWithArray:contactsOfAPosition];
-    [self.tableView reloadData];
-}
--(void)setPosition:(NSString *)position{
-    _position = position;
-    [self.tableView reloadData];
-}
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0){
         [self.navigationController popViewControllerAnimated:YES];

@@ -10,6 +10,7 @@
 
 #import "CHPNewsItem.h"
 #import "CHPContact.h"
+#import "CHPObject.h"
 
 @implementation APIManager
 
@@ -191,16 +192,7 @@ static APIManager *sharedInstance = nil;
                                             }];
 }
 
-- (MKNetworkOperation *)getContactListOnCompletion:(ListBlock)completionBlock
-                                           onError:(ErrorBlock)errorBlock {
-    return [self createNetworkOperationForOperation:@"YoneticiListesiGetir_V2"
-                                      andParameters:nil
-                                       onCompletion:^(NSDictionary *responseDictionary) {
-                                           
-                                    } onError:^(NSError *error) {
-                                        ;
-                                    }];
-}
+
 
 - (MKNetworkOperation *)getAboutInfoForType:(NSString *)type
                                onCompletion:(StringBlock)completionBlock
@@ -214,37 +206,16 @@ static APIManager *sharedInstance = nil;
                                                 errorBlock(error);
                                             }];
 }
-
-- (MKNetworkOperation *)getContactListForPosition:(CHPPosition)position
-                                     onCompletion:(ArrayBlock)contactArrayBlock
-                                          onError:(ErrorBlock)errorBlock {
-    int index = 1;
-    int power = 1;
-    while (!(position & power)) {
-        power *= 2;
-        index++;
-    }
-    
-    return [self createNetworkOperationForOperation:@"YoneticiListesiGetir"
-                                      andParameters:@{@"unvanId" : [NSString stringWithFormat:@"%d", index]}
+- (MKNetworkOperation *)getContactListOnCompletion:(CHPObjectBlock)completionBlock
+                                           onError:(ErrorBlock)errorBlock {
+    return [self createNetworkOperationForOperation:@"YoneticiListesiGetir_V2"
+                                      andParameters:nil
                                        onCompletion:^(NSDictionary *responseDictionary) {
-                                           NSMutableArray *contactArray = [NSMutableArray arrayWithCapacity:10];
-                                           
-                                           for (NSDictionary *contactDictionary in responseDictionary[@"result"]) {
-                                               CHPContact *contact = [CHPContact contactFromDictionary:contactDictionary];
-                                               [contact.positionStrings setObject:contactDictionary[@"Unvan"] forKey:[NSString stringWithFormat:@"%i", index-1]];
-                                               contact.position = power;
-                                               contact.infoLevel = ContactInfoLevelBasic;
-                                               [contactArray addObject:contact];
-                                           }
-                                           
-                                           contactArrayBlock(contactArray);
-                                       }
-                                            onError:^(NSError *error) {
-                                                errorBlock(error);
-                                            }];
+                                           completionBlock([CHPObject CHPObjectWithDictionary:responseDictionary[@"result"]]);
+                                       } onError:^(NSError *error) {
+                                           errorBlock(error);
+                                       }];
 }
-
 - (MKNetworkOperation *)getContactWithId:(NSString *)contactId
                             onCompletion:(ContactBlock)contactBlock
                                  onError:(ErrorBlock)errorBlock {

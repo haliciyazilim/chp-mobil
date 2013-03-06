@@ -43,7 +43,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0){
-        return [[self positionsOfContact] count];
+        return [[self.chpContact positions] count];
     }
     else if(section == 1){
         return [[self.chpContact phones] count];
@@ -70,7 +70,7 @@
     }
     
     if(indexPath.section == 0){
-        [(UILabel *) [cell viewWithTag:2] setText:[self.positionsOfContact objectAtIndex:indexPath.row]];
+        [(UILabel *) [cell viewWithTag:2] setText:[self.chpContact.positions objectAtIndex:indexPath.row]];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
         ((UILabel *)[cell viewWithTag:2]).highlightedTextColor = [UIColor whiteColor];
@@ -232,7 +232,7 @@
 - (void)setChpContact:(CHPContact *)chpContact{
     if (_chpContact != chpContact) {
         _chpContact = chpContact;
-        _positionsOfContact = [self.chpContact getPositionStringsArray];
+//        _positionsOfContact = [self.chpContact getPositionStringsArray];
     }
     [self configureViews];
 }

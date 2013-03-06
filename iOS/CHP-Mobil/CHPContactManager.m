@@ -59,50 +59,57 @@ static CHPContactManager *sharedInstance = nil;
     
     if (contact) {
         if (infoLevel > contact.infoLevel) {
-            return [[APIManager sharedInstance] getContactWithId:contactId
-                                                    onCompletion:^(CHPContact *newContact) {
-                                                        [contact mergeInfoFromContact:newContact];
-                                                        contactBlock(contact);
-                                                    } onError:^(NSError *error) {
-                                                        errorBlock(error);
-                                                    }];
+            return [[APIManager sharedInstance] getContactWithId:contactId onCompletion:^(CHPContact *resultContact) {
+                contactBlock([CHPContact addContact:resultContact]);
+            } onError:^(NSError *error) {
+                errorBlock(error);
+            }];
         } else {
             contactBlock(contact);
             return nil;
         }
 
     } else {    
-        return [[APIManager sharedInstance] getContactWithId:contactId
-                                                onCompletion:^(CHPContact *newContact) {
-                                                    [self.contacts setObject:newContact forKey:newContact.contactId];
-                                                    contactBlock(newContact);
-                                                } onError:^(NSError *error) {
-                                                    errorBlock(error);
-                                                }];
+        return [[APIManager sharedInstance] getContactWithId:contactId onCompletion:^(CHPContact *resultContact) {
+            contactBlock([CHPContact addContact:resultContact]);
+        } onError:^(NSError *error) {
+            errorBlock(error);
+        }];
     }
+    
 }
 
-- (MKNetworkOperation *)getContactsWithPosition:(CHPPosition)position
-                                   onCompletion:(ArrayBlock)contactArrayBlock
-                                        onError:(ErrorBlock)errorBlock {
-    return [[APIManager sharedInstance] getContactListForPosition:position
-                                                     onCompletion:^(NSArray *resultArray) {
-                                                         for (CHPContact *newContact in resultArray) {
-                                                             CHPContact *oldContact = [self.contacts objectForKey:newContact.contactId];
-                                                             if (oldContact) {
-                                                                 [oldContact mergeInfoFromContact:newContact];
-                                                             } else {
-                                                                 [self.contacts setObject:newContact forKey:newContact.contactId];
-                                                             }
-                                                         }
-                                                         
-                                                         contactArrayBlock(resultArray);
-                                                     } onError:^(NSError *error) {
-                                                         errorBlock(error);
-                                                     }];
+//- (MKNetworkOperation *)getContactsWithPosition:(CHPPosition)position
+//                                   onCompletion:(ArrayBlock)contactArrayBlock
+//                                        onError:(ErrorBlock)errorBlock {
+//    return [[APIManager sharedInstance] getContactListForPosition:position
+//                                                     onCompletion:^(NSArray *resultArray) {
+//                                                         for (CHPContact *newContact in resultArray) {
+//                                                             CHPContact *oldContact = [self.contacts objectForKey:newContact.contactId];
+//                                                             if (oldContact) {
+//                                                                 [oldContact mergeInfoFromContact:newContact];
+//                                                             } else {
+//                                                                 [self.contacts setObject:newContact forKey:newContact.contactId];
+//                                                             }
+//                                                         }
+//                                                         
+//                                                         contactArrayBlock(resultArray);
+//                                                     } onError:^(NSError *error) {
+//                                                         errorBlock(error);
+//                                                     }];
+//}
+
+- (MKNetworkOperation *)getWholeContactsOnCompletion:(CHPObjectBlock)completionBlock
+                                             onError:(ErrorBlock)errorBlock {
+    return [[APIManager sharedInstance] getContactListOnCompletion:^(CHPObject *resultList) {
+        completionBlock(resultList);
+    } onError:^(NSError *error) {
+        errorBlock(error);
+    }];
 }
 
 - (NSArray *)searchContactsWithString:(NSString*)name {
+    NSLog(@"entered searchContact");
     NSMutableArray *prefixes = [NSMutableArray arrayWithCapacity:4];
     
     for (NSString *prefix in [[name lowercaseString] componentsSeparatedByString:@" "]) {
@@ -114,6 +121,8 @@ static CHPContactManager *sharedInstance = nil;
     if (prefixes.count == 0) {
         return @[];
     }
+    
+    NSLog(@"prefixesCount: %d",prefixes.count);
     
     NSMutableArray *contacts = [NSMutableArray arrayWithCapacity:20];
     
@@ -138,6 +147,8 @@ static CHPContactManager *sharedInstance = nil;
             [contacts addObject:contact];
         }
     }];
+    
+    NSLog(@"returned contacts: %@",contacts);
     
     return contacts;
 }

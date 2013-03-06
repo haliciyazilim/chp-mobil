@@ -7,28 +7,23 @@
 //
 
 #import "CHPContact.h"
-
-static NSMutableArray* wholeContacts;
+#import "CHPContactManager.h"
 
 @implementation CHPContact
 
 +(CHPContact *)getContactWithId:(NSString *)contactId {
-    for (CHPContact* contact in wholeContacts) {
-        if ([contact.contactId isEqualToString:contactId]) {
-            return contact;
-        }
-    }
-    return nil;
+    return [[[CHPContactManager sharedInstance] contacts] objectForKey:contactId];
 }
 
 +(CHPContact *)addContact:(CHPContact *)contact {
-//    if (!wholeContacts) {
-//        wholeContacts = [[NSMutableArray alloc] initWithCapacity:10];
-//    }
-//    
-//    [wholeContacts addObject:contact];
+    CHPContact *existedContact = [CHPContact getContactWithId:contact.contactId];
     
-    return nil;
+    if (!existedContact) {
+        [[[CHPContactManager sharedInstance] contacts] setObject:contact forKey:contact.contactId];
+        return contact;
+    } else {
+        return [existedContact mergeInfoFromContact:contact];
+    }
 }
 
 + (id) contactFromDictionary:(NSDictionary *)aDictionary {
@@ -37,7 +32,11 @@ static NSMutableArray* wholeContacts;
 
 - (id) initFromDictionary:(NSDictionary *)aDictionary {
     if (self = [super init]){
-        _positionStrings = [NSMutableDictionary dictionaryWithCapacity:5];
+        _positions = [NSMutableArray arrayWithCapacity:5];
+        if (aDictionary[@"Unvan"]) {
+            [_positions addObject:aDictionary[@"Unvan"]];
+        }
+
         
         _name = aDictionary[@"AdSoyad"];
         
@@ -83,7 +82,7 @@ static NSMutableArray* wholeContacts;
             _imageURL = nil;
         }
         
-        _infoLevel = ContactInfoLevelNone;
+        _infoLevel = ContactInfoLevelBasic;
         
         return self;
     }
@@ -115,39 +114,25 @@ static NSMutableArray* wholeContacts;
         self.infoLevel = otherContact.infoLevel;
     }
     
-    if (otherContact.positionStrings) {
-        [otherContact.positionStrings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            self.positionStrings[key] = obj;
-        }];
+    for (NSString *position in otherContact.positions) {
+        if (![self doesPositionAlreadyExist:position]) {
+            [self.positions addObject:position];
+        }
     }
     
     self.contactId = otherContact.contactId;
     
-    self.position = self.position | otherContact.position;
-    
     return self;
 }
-
--(CHPContact *) addPosition:(CHPPosition)newPosition {
-    self.position = self.position | newPosition;
-
-    return self;
-}
-
--(NSArray *)getPositionStringsArray {
-    NSMutableArray *stringsArray = [NSMutableArray arrayWithCapacity:5];
-    
-    int power = 1;
-    
-    for (int i = 0; i < 10; i++) {
-        if (self.position & power) {
-            [stringsArray addObject:self.positionStrings[[NSString stringWithFormat:@"%i", i]]];
+-(BOOL) doesPositionAlreadyExist:(NSString *)newPosition {
+    for (NSString* position in self.positions) {
+        if ([position isEqualToString:newPosition]) {
+            return YES;
         }
-        
-        power *= 2;
     }
-    
-    return stringsArray;
+    return NO;
 }
-
+-(NSString *) getAllPositionsString {
+    return [self.positions componentsJoinedByString:@", "];
+}
 @end

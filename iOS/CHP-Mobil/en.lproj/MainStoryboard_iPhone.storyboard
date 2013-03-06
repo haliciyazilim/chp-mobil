@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Main Tab Bar View Controller-->
@@ -154,6 +154,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <connections>
                         <outlet property="cancelSearchButton" destination="m3u-o2-MYT" id="IPP-oO-5w0"/>
+                        <outlet property="searchFieldView" destination="JbW-qP-NJ1" id="9BK-8w-MeG"/>
                         <outlet property="searchTextField" destination="YNN-Cm-CGu" id="0WL-gS-mgl"/>
                         <segue destination="HF4-DS-VP6" kind="push" identifier="KategoriSegue" id="lSJ-Sw-LeM"/>
                         <segue destination="CaI-fR-uCG" kind="push" identifier="DetailSegue" id="4wa-Ih-48h"/>
@@ -250,7 +251,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="8Dy-yj-8h0">
-                            <rect key="frame" x="0.0" y="110" width="320" height="24"/>
+                            <rect key="frame" x="0.0" y="66" width="320" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
@@ -270,34 +271,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <segue destination="CaI-fR-uCG" kind="push" identifier="KategoriToDetailSegue" id="aju-Ss-hiq"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KategoriSubtitleCell" textLabel="vb1-KF-0mj" detailTextLabel="vPG-4e-CFp" style="IBUITableViewCellStyleSubtitle" id="zX3-vo-Huw">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vb1-KF-0mj">
-                                            <rect key="frame" x="10" y="0.0" width="31" height="24"/>
-                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPG-4e-CFp">
-                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <connections>
-                                    <segue destination="CaI-fR-uCG" kind="push" id="yn4-SS-h4c"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -310,10 +283,14 @@
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <connections>
+                        <segue destination="qce-3O-1Qx" kind="push" identifier="KategoriToKategoriSegue" id="OrD-OW-TEX"/>
+                        <segue destination="CaI-fR-uCG" kind="push" identifier="KategoriToDetailSegue" id="D11-TT-QLh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vDd-QK-emr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="648" y="881"/>
+            <point key="canvasLocation" x="812" y="881"/>
         </scene>
         <!--Biz Kimiz Table View Controller - Biz Kimiz-->
         <scene sceneID="oL8-bj-TkA">
@@ -334,7 +311,7 @@
                             <tableViewSection id="qFy-RW-86d">
                                 <cells>
                                     <tableViewCell alpha="0.99999999999999989" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="68" id="ih1-kU-Mjo">
-                                        <rect key="frame" x="0.0" y="60" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="60" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="67"/>
@@ -367,7 +344,7 @@
                             <tableViewSection id="V5r-zF-jw2">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="68" id="NvM-cN-XPk">
-                                        <rect key="frame" x="0.0" y="149" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="149" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="67"/>
@@ -400,7 +377,7 @@
                             <tableViewSection id="049-zH-oMI">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" rowHeight="69" id="HVX-Ff-XgB">
-                                        <rect key="frame" x="0.0" y="238" width="320" height="71"/>
+                                        <rect key="frame" x="0.0" y="238" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="68"/>
@@ -718,91 +695,63 @@
             </objects>
             <point key="canvasLocation" x="634" y="-570"/>
         </scene>
+        <!--Yoneticiler Kategori View Controller-->
+        <scene sceneID="19o-Sh-gUR">
+            <objects>
+                <tableViewController id="qce-3O-1Qx" customClass="CHPYoneticilerKategoriViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="KwO-2z-NBx">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="i4d-89-ueG">
+                            <rect key="frame" x="0.0" y="66" width="320" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KategoriCell" textLabel="Qkj-xe-adc" style="IBUITableViewCellStyleDefault" id="Yt8-Zn-bQM">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qkj-xe-adc">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qce-3O-1Qx" id="xO6-4s-xTM"/>
+                            <outlet property="delegate" destination="qce-3O-1Qx" id="4UK-iG-csu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="9mb-eb-Q1k">
+                        <barButtonItem key="backBarButtonItem" title="Geri" id="nau-J1-vx2"/>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <connections>
+                        <segue destination="HF4-DS-VP6" kind="push" identifier="KategoriToKategoriSegue" id="8nF-rI-1AD"/>
+                        <segue destination="CaI-fR-uCG" kind="push" identifier="KategoriToDetailSegue" id="VO8-Qh-HIZ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uw5-Ha-8Ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1337" y="881"/>
+        </scene>
     </scenes>
     <resources>
         <image name="search_btn.png" width="70" height="30"/>
         <image name="search_btn_highlighted.png" width="70" height="30"/>
         <image name="seperator_yonetici.png" width="280" height="1"/>
     </resources>
-    <classes>
-        <class className="CHPBizKimizDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPBizKimizDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mainView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="CHPBizKimizNavigationController" superclassName="CHPNavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPBizKimizNavigationController.h"/>
-        </class>
-        <class className="CHPBizKimizTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPBizKimizTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="programCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="tarihceCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="tuzukCell" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
-        <class className="CHPHaberCollectionViewController" superclassName="UICollectionViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberCollectionViewController.h"/>
-        </class>
-        <class className="CHPHaberDetailTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberDetailTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="newsContent" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="newsContentCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="newsContentHeight" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="newsImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="newsTitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="newsTitleHeight" candidateClass="NSLayoutConstraint"/>
-            </relationships>
-        </class>
-        <class className="CHPHaberNavigationController" superclassName="CHPNavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPHaberNavigationController.h"/>
-        </class>
-        <class className="CHPMainTabBarViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPMainTabBarViewController.h"/>
-        </class>
-        <class className="CHPNavigationController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPNavigationController.h"/>
-        </class>
-        <class className="CHPYoneticilerDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPYoneticilerDetailViewController.h"/>
-        </class>
-        <class className="CHPYoneticilerKategoriViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPYoneticilerKategoriViewController.h"/>
-        </class>
-        <class className="CHPYoneticilerNavigationController" superclassName="CHPNavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPYoneticilerNavigationController.h"/>
-        </class>
-        <class className="CHPYoneticilerTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CHPYoneticilerTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelSearchOperation:"/>
-                <relationship kind="outlet" name="cancelSearchButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="searchTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -811,5 +760,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="edE-U7-IWX"/>
         <segue reference="4wa-Ih-48h"/>
+        <segue reference="lSJ-Sw-LeM"/>
     </inferredMetricsTieBreakers>
 </document>

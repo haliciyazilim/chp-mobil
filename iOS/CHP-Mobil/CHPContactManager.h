@@ -22,10 +22,8 @@
                             onCompletion:(ContactBlock)contactBlock
                                  onError:(ErrorBlock)errorBlock;
 
-- (MKNetworkOperation *)getContactsWithPosition:(CHPPosition)position
-                                   onCompletion:(ArrayBlock)contactArrayBlock
-                                        onError:(ErrorBlock)errorBlock;
-
+- (MKNetworkOperation *)getWholeContactsOnCompletion:(CHPObjectBlock)completionBlock
+                                           onError:(ErrorBlock)errorBlock;
 - (NSArray *)searchContactsWithString:(NSString*)name;
 
 @end

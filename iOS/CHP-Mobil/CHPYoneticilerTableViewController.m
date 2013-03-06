@@ -11,6 +11,7 @@
 #import "CHPYoneticilerKategoriViewController.h"
 #import "CHPContactManager.h"
 #import "CHPSearchTableViewCell.h"
+#import "CHPPerson.h"
 
 @interface CHPYoneticilerTableViewController ()
 
@@ -19,7 +20,9 @@
 @implementation CHPYoneticilerTableViewController
 {
     CHPSearchTableViewController *searchDelegate;
-    int flagsForList[10];
+    UILabel *loadingLabel;
+    UIActivityIndicatorView *activity;
+    BOOL isDummyHolderAdded;
 }
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,32 +43,14 @@
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
     
-    for(int i = 0; i < 10; i++ ){
-        flagsForList[i] = 0;
-    }
-    
-    if(self.unvanTitleArray == nil) {
-        self.unvanTitleArray = @[
-        @"Genel Başkan",
-        @"MYK Üyeleri",
-        @"PM Üyeleri",
-        @"YDK Üyeleri",
-        @"Milletvekilleri",
-        @"İl Başkanları",
-        @"İlçe Başkanları",
-        @"Büyükşehir Belediye Başkanları",
-        @"İl Belediye Başkanları",
-        @"İlçe Belediye Başkanları",
-        ];
-    }
-    
-    self.managerList = [[NSMutableDictionary alloc] initWithCapacity:[self.unvanTitleArray count]];
     self.isAlertShown = NO;
     self.isListSet = NO;
     [self.searchTextField setPlaceholder:@"Arama devredışı"];
     self.searchTextField.enabled = NO;
     self.searchTextField.backgroundColor = [UIColor colorWithRed:0.651 green:0.302 blue:0.302 alpha:1.0];
-    [self getListFromServer];
+//    if ([self.reachability currentReachabilityStatus] != NotReachable) {
+        [self getListFromServer];
+//    }
     
     self.tableView.separatorColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
     UIImage *searchIcon = [UIImage imageNamed:@"search_icon.png"];
@@ -74,41 +59,68 @@
     [self.searchTextField setLeftViewMode:UITextFieldViewModeAlways];
     
     self.isSearchModeEnabled = NO;
+    self.searchFieldView.alpha = 0.0;
     
 }
 -(void)getListFromServer{
-    for (int i = 0; i < 10; i++) {
-        [[CHPContactManager sharedInstance] getContactsWithPosition:1<<i
-                           onCompletion:^(NSArray *resultArray) {
-                               [self.managerList setObject:resultArray forKey:[self.unvanTitleArray objectAtIndex:i]];
-                               flagsForList[i] = 1;
-                               BOOL areAllSet = YES;
-                               for(int j = 0; j < 10; j++){
-                                   if(flagsForList[i] == 0){
-                                       areAllSet = NO;
-                                       break;
-                                   }
-                               }
-                               if(areAllSet){
-                                   self.isListSet = YES;
-                                   [self.searchTextField setPlaceholder:@"Ara"];
-                                   self.searchTextField.enabled = YES;
-                                   self.searchTextField.backgroundColor = [UIColor whiteColor];
-                               }
-                           }
-                            onError:^(NSError *error) {
-                                if(!self.isAlertShown){
-                                    UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
-                                    [myAlert show];
-                                    self.isAlertShown = YES;
-                                    self.isListSet = NO;
-                                }
-                            }];
+    
+    [[CHPContactManager sharedInstance] getWholeContactsOnCompletion:^(CHPObject *resultList) {
+        NSLog(@"entered completionblock");
+        self.rootList = (CHPList *)resultList;
+        self.isListSet = YES;
+        [self.searchTextField setPlaceholder:@"Ara"];
+        self.searchTextField.enabled = YES;
+        self.searchTextField.backgroundColor = [UIColor whiteColor];
+        [self removeDummyHolder];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        self.searchFieldView.alpha = 1.0;
+    } onError:^(NSError *error) {
+        if(!self.isAlertShown){
+            UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
+            [myAlert show];
+            self.isAlertShown = YES;
+            self.isListSet = NO;
+            [self removeDummyHolder];
+        }
+    }];
+    [self addDummyHolder];
+}
+- (void)addDummyHolder {
+    if (!isDummyHolderAdded) {
+        isDummyHolderAdded = YES;
+        
+        loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, self.view.frame.size.height*0.5-80.0, self.view.frame.size.width-40.0, 100.0)];
+        [loadingLabel setBackgroundColor:[UIColor clearColor]];
+        [loadingLabel setText:@"Bilgiler yükleniyor! \nLütfen bekleyiniz."];
+        [loadingLabel setNumberOfLines:3];
+        [loadingLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:18.0]];
+        [loadingLabel setTextAlignment:NSTextAlignmentCenter];
+        [loadingLabel setTextColor:[UIColor whiteColor]];
+        
+        activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [activity setHidesWhenStopped:YES];
+        activity.frame = CGRectMake(self.view.frame.size.width*0.5-30.0, self.view.frame.size.height*0.5-140.0, 60.0, 60.0);
+        [activity startAnimating];
+        
+        [self.view addSubview:activity];
+        [self.view addSubview:loadingLabel];
+        
     }
 }
-
+- (void)removeDummyHolder {
+    [activity stopAnimating];
+    [activity removeFromSuperview];
+    activity = nil;
+    [loadingLabel removeFromSuperview];
+    loadingLabel = nil;
+    isDummyHolderAdded = NO;
+}
+- (void)setRootList:(CHPList *)rootList {
+    _rootList = rootList;
+    [self.tableView reloadData];
+}
 -(void)viewWillAppear:(BOOL)animated{
-    if(!self.isSearchModeEnabled){
+    if(!self.isSearchModeEnabled && self.rootList){
         if([self.tableView contentOffset].y < 49.0){
             NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
             [self.tableView reloadData];
@@ -139,7 +151,6 @@
         }
     }
 }
-
 
 -(void)viewWillDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
@@ -223,7 +234,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [[self.rootList content] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -232,7 +243,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    [[cell textLabel] setText:[self.unvanTitleArray objectAtIndex:indexPath.row]];
+    [[cell textLabel] setText:[[[self.rootList content] objectAtIndex:indexPath.row] name]];
     [[cell textLabel] setShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
     
     UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
@@ -244,13 +255,19 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if([[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:indexPath.row]] count] == 1) {
-        [self setSelectedContact:[[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:indexPath.row]] objectAtIndex:0]];
-    }
-    else{
+    if ([[[self.rootList content] objectAtIndex:indexPath.row] isKindOfClass:[CHPList class]]) {
+        // chp list will open -> kategori view
         [self performSegueWithIdentifier:@"KategoriSegue" sender:self];
+    } else if ([[[self.rootList content] objectAtIndex:indexPath.row] isKindOfClass:[CHPPerson class]]){
+        if ([[self.rootList content] count] == 1) {
+            // there is only one person in selected list, so detail view will open
+            self.selectedContact = [[[self.rootList content] objectAtIndex:indexPath.row] contact];
+            [self performSegueWithIdentifier:@"DetailSegue" sender:self];
+        } else {
+            // show list of person, there are more than one person
+            [self performSegueWithIdentifier:@"KategoriSegue" sender:self];
+        }
     }
-
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -276,9 +293,7 @@
         else{
             int pos = [self.tableView indexPathForSelectedRow].row;
             CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
-            chpYoneticilerKategoriViewController.positionOrder = pos;
-            [chpYoneticilerKategoriViewController setContactsOfAPosition:[self.managerList objectForKey:[self.unvanTitleArray objectAtIndex:pos]]];
-            [chpYoneticilerKategoriViewController setPosition:[self.unvanTitleArray objectAtIndex:pos]];
+            [chpYoneticilerKategoriViewController setCurrentObject:[[self.rootList content] objectAtIndex:pos]];
         }
     }
 

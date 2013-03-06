@@ -14,20 +14,6 @@ typedef enum {
     ContactInfoLevelFull = 2
 } InfoLevel;
 
-
-typedef enum {
-    CHPPositionGenelBaskan = 1<<0,
-    CHPPositionMYKUyesi = 1<<1,
-    CHPPositionPMUyesi = 1<<2,
-    CHPPositionYDKUyesi = 1<<3,
-    CHPPositionMilletvekili = 1<<4,
-    CHPPositionIlBaskani = 1<<5,
-    CHPPositionIlceBaskani = 1<<6,
-    CHPPositionBuyuksehirBelediyeBaskani = 1<<7,
-    CHPPositionIlBelediyeBaskani = 1<<8,
-    CHPPositionIlceBelediyeBaskani = 1<<9,
-} CHPPosition;
-
 @interface CHPContact : NSObject
 
 // properties
@@ -38,8 +24,7 @@ typedef enum {
 @property (strong, nonatomic) NSString *imageURL;
 @property (strong, nonatomic) NSString *contactId;
 @property (nonatomic) InfoLevel infoLevel;
-@property (nonatomic) int position;
-@property (strong, nonatomic) NSMutableDictionary *positionStrings;
+@property (strong, nonatomic) NSMutableArray *positions;
 
 // class methods
 +(id) contactFromDictionary:(NSDictionary *)aDictionary;
@@ -53,8 +38,6 @@ typedef enum {
 
 -(CHPContact *) mergeInfoFromContact:(CHPContact *)otherContact;
 
--(CHPContact *) addPosition:(CHPPosition)newPosition;
-
--(NSArray *)getPositionStringsArray;
+-(NSString *) getAllPositionsString;
 
 @end

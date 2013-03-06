@@ -10,8 +10,9 @@
 
 @interface CHPList : CHPObject
 
-@property NSString* name;
-@property NSMutableArray* content;
+@property (nonatomic) NSString* name;
+@property (nonatomic) NSMutableArray* content;
+@property (nonatomic) NSString* header;
 
 + (CHPList *)CHPListFromDictionary:(NSDictionary *)listDictionary;
 

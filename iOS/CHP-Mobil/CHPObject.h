@@ -14,15 +14,7 @@ typedef enum {
     CHPObjectTypeNone = 2
 } CHPObjectType;
 
-CHPObjectType TypeFromString(NSString* type){
-    if ([type isEqualToString:@"list"]) {
-        return CHPObjectTypeList;
-    } else if ([type isEqualToString:@"person"]) {
-        return CHPObjectTypePerson;
-    } else {
-        return CHPObjectTypeNone;
-    }
-}
+CHPObjectType TypeFromString(NSString* type);
 
 @interface CHPObject : NSObject
 

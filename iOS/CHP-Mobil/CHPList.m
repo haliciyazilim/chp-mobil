@@ -17,6 +17,7 @@
 - (id) initFromDictionary:(NSDictionary *)listDictionary {
     if (self = [super init]) {
         self.name = [listDictionary objectForKey:@"Name"];
+        self.header = [listDictionary objectForKey:@"Header"];
         self.content = [[NSMutableArray alloc] initWithCapacity:3];
         for (NSDictionary* dict in [listDictionary objectForKey:@"Content"]) {
             [self.content addObject:[CHPObject CHPObjectWithDictionary:dict]];

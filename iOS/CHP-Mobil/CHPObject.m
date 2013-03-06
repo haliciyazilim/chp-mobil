@@ -10,16 +10,28 @@
 #import "CHPList.h"
 #import "CHPPerson.h"
 
+CHPObjectType TypeFromString(NSString* type){
+    if ([type isEqualToString:@"list"]) {
+        return CHPObjectTypeList;
+    } else if ([type isEqualToString:@"person"]) {
+        return CHPObjectTypePerson;
+    } else {
+        return CHPObjectTypeNone;
+    }
+}
+
 @implementation CHPObject
 
 + (CHPObject *)CHPObjectWithDictionary:(NSDictionary *)dictionary
 {
-    CHPObjectType type = TypeFromString([dictionary objectForKey:@"type"]);
+    CHPObjectType type = TypeFromString([dictionary objectForKey:@"Type"]);
     
     if (type == CHPObjectTypeList) {
-        return [CHPList CHPListFromDictionary:dictionary];
+        CHPList *list = [CHPList CHPListFromDictionary:dictionary];
+        return list;
     } else if (type == CHPObjectTypePerson) {
-        return [CHPPerson CHPPersonFromDictionary:dictionary];
+        CHPPerson *person = [CHPPerson CHPPersonFromDictionary:dictionary];
+        return person;
     } else {
         return nil;
     }

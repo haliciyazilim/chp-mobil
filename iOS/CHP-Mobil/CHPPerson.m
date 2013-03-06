@@ -24,4 +24,8 @@
     return self;
 }
 
+- (void) content {
+    NSLog(@"I'm here");
+}
+
 @end
