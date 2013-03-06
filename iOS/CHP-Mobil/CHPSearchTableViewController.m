@@ -14,7 +14,9 @@
 
 @end
 
-@implementation CHPSearchTableViewController
+@implementation CHPSearchTableViewController{
+    CGSize cellSize;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -72,6 +74,8 @@
     
     UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search_ok.png"]];
     cell.accessoryView = accessoryView;
+    
+    cellSize = CGSizeMake(cell.frame.size.width, cell.frame.size.height);
     
     return cell;
 }

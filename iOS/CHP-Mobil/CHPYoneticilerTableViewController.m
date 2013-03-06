@@ -31,11 +31,21 @@
     }
     return self;
 }
+- (id)init {
 
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:self.searchTextField];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNetworkChange:)
                                                  name:kReachabilityChangedNotification object:nil];
@@ -120,6 +130,7 @@
     [self.tableView reloadData];
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     if(!self.isSearchModeEnabled && self.rootList){
         if([self.tableView contentOffset].y < 49.0){
             NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
@@ -135,8 +146,6 @@
     else{
         [self.searchTable deselectRowAtIndexPath:self.searchTable.indexPathForSelectedRow animated:YES];
     }
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:self.searchTextField];
 }
 
 - (void)handleNetworkChange:(NSNotification *)notice{
@@ -153,7 +162,8 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
+    [super viewWillDisappear:animated];
 }
 
 - (void)textFieldDidChange:(NSNotification *)notif {
@@ -171,8 +181,8 @@
                             CGRectMake(
                                        self.tableView.frame.origin.x,
                                        self.tableView.frame.origin.y+heightOfSearchView,
-                                       self.tableView.contentSize.width,
-                                       self.tableView.contentSize.height
+                                       self.tableView.frame.size.width,
+                                       self.tableView.frame.size.height-heightOfSearchView
                                        )
                             style:UITableViewStylePlain];
         self.dummyView = [[UIView alloc] initWithFrame:
@@ -219,6 +229,7 @@
     [self.tableView setScrollEnabled:YES];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     self.isSearchModeEnabled = NO;
+    self.searchTable = nil;
 }
 
 
