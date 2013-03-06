@@ -109,7 +109,6 @@ static CHPContactManager *sharedInstance = nil;
 }
 
 - (NSArray *)searchContactsWithString:(NSString*)name {
-    NSLog(@"entered searchContact");
     NSMutableArray *prefixes = [NSMutableArray arrayWithCapacity:4];
     
     for (NSString *prefix in [[name lowercaseString] componentsSeparatedByString:@" "]) {
@@ -121,8 +120,6 @@ static CHPContactManager *sharedInstance = nil;
     if (prefixes.count == 0) {
         return @[];
     }
-    
-    NSLog(@"prefixesCount: %d",prefixes.count);
     
     NSMutableArray *contacts = [NSMutableArray arrayWithCapacity:20];
     
@@ -147,8 +144,9 @@ static CHPContactManager *sharedInstance = nil;
             [contacts addObject:contact];
         }
     }];
-    
-    NSLog(@"returned contacts: %@",contacts);
+    [contacts sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [[obj1 name] compare:[obj2 name]];
+    }];
     
     return contacts;
 }
