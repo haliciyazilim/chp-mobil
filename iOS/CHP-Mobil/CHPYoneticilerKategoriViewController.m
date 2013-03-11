@@ -15,7 +15,9 @@
 
 @end
 
-@implementation CHPYoneticilerKategoriViewController
+@implementation CHPYoneticilerKategoriViewController{
+    BOOL shouldEmptyTable;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,6 +37,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    shouldEmptyTable = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,7 +56,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.currentObject content] count];
+//    if (![self.currentObject content]) {
+//        return 0;
+//    } else {
+        return [[self.currentObject content] count];
+//    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,15 +105,23 @@
     return headerView;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if ([[[[self.currentObject content] objectAtIndex:indexPath.row] content] count] == 0) {
+//        shouldEmptyTable = YES;
+//
+//    }
     id myObj = [[self.currentObject content] objectAtIndex:indexPath.row];
     if ([myObj isKindOfClass:[CHPList class]]) {
-        
         // chp list will open -> kategori view
-        if ([[[(CHPList *)myObj content] objectAtIndex:0] isKindOfClass:[CHPPerson class]] && [[(CHPList *)myObj content] count] == 1) {
-            self.selectedContact = [[[myObj content] objectAtIndex:0] contact];
-            [self performSegueWithIdentifier:@"KategoriToDetailSegue" sender:self];
-        } else {
+        if ([[myObj content] count] == 0) {
+            shouldEmptyTable = YES;
             [self performSegueWithIdentifier:@"KategoriToKategoriSegue" sender:self];
+        } else {
+            if ([[[(CHPList *)myObj content] objectAtIndex:0] isKindOfClass:[CHPPerson class]] && [[(CHPList *)myObj content] count] == 1) {
+                self.selectedContact = [[[myObj content] objectAtIndex:0] contact];
+                [self performSegueWithIdentifier:@"KategoriToDetailSegue" sender:self];
+            } else {
+                [self performSegueWithIdentifier:@"KategoriToKategoriSegue" sender:self];
+            }
         }
     } else if ([[[self.currentObject content] objectAtIndex:indexPath.row] isKindOfClass:[CHPPerson class]]){
         self.selectedContact = [[[self.currentObject content] objectAtIndex:indexPath.row] contact];
@@ -134,7 +149,9 @@
     else if([[segue identifier] isEqualToString:@"KategoriToKategoriSegue"]){
         int pos = [self.tableView indexPathForSelectedRow].row;
         CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
-        [chpYoneticilerKategoriViewController setCurrentObject:[[self.currentObject content] objectAtIndex:pos]];
+        if (!shouldEmptyTable) {
+            [chpYoneticilerKategoriViewController setCurrentObject:[[self.currentObject content] objectAtIndex:pos]];
+        }
     }
 }
 

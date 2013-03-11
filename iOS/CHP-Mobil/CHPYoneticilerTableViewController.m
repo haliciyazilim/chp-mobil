@@ -266,17 +266,22 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([[[self.rootList content] objectAtIndex:indexPath.row] isKindOfClass:[CHPList class]]) {
-        // chp list will open -> kategori view
+    if ([[self.rootList content] count] == 0) {
         [self performSegueWithIdentifier:@"KategoriSegue" sender:self];
-    } else if ([[[self.rootList content] objectAtIndex:indexPath.row] isKindOfClass:[CHPPerson class]]){
-        if ([[self.rootList content] count] == 1) {
-            // there is only one person in selected list, so detail view will open
-            self.selectedContact = [[[self.rootList content] objectAtIndex:indexPath.row] contact];
-            [self performSegueWithIdentifier:@"DetailSegue" sender:self];
-        } else {
-            // show list of person, there are more than one person
+    }
+    else{
+        if ([[[self.rootList content] objectAtIndex:indexPath.row] isKindOfClass:[CHPList class]]) {
+            // chp list will open -> kategori view
             [self performSegueWithIdentifier:@"KategoriSegue" sender:self];
+        } else if ([[[self.rootList content] objectAtIndex:indexPath.row] isKindOfClass:[CHPPerson class]]){
+            if ([[self.rootList content] count] == 1) {
+                // there is only one person in selected list, so detail view will open
+                self.selectedContact = [[[self.rootList content] objectAtIndex:indexPath.row] contact];
+                [self performSegueWithIdentifier:@"DetailSegue" sender:self];
+            } else {
+                // show list of person, there are more than one person
+                [self performSegueWithIdentifier:@"KategoriSegue" sender:self];
+            }
         }
     }
 }
