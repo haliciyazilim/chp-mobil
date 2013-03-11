@@ -15,9 +15,7 @@
 
 @end
 
-@implementation CHPYoneticilerKategoriViewController{
-    BOOL shouldEmptyTable;
-}
+@implementation CHPYoneticilerKategoriViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,7 +35,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-    shouldEmptyTable = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,11 +53,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (![self.currentObject content]) {
-//        return 0;
-//    } else {
-        return [[self.currentObject content] count];
-//    }
+    return [[self.currentObject content] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,15 +98,10 @@
     return headerView;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if ([[[[self.currentObject content] objectAtIndex:indexPath.row] content] count] == 0) {
-//        shouldEmptyTable = YES;
-//
-//    }
     id myObj = [[self.currentObject content] objectAtIndex:indexPath.row];
     if ([myObj isKindOfClass:[CHPList class]]) {
         // chp list will open -> kategori view
         if ([[myObj content] count] == 0) {
-            shouldEmptyTable = YES;
             [self performSegueWithIdentifier:@"KategoriToKategoriSegue" sender:self];
         } else {
             if ([[[(CHPList *)myObj content] objectAtIndex:0] isKindOfClass:[CHPPerson class]] && [[(CHPList *)myObj content] count] == 1) {
@@ -149,9 +137,7 @@
     else if([[segue identifier] isEqualToString:@"KategoriToKategoriSegue"]){
         int pos = [self.tableView indexPathForSelectedRow].row;
         CHPYoneticilerKategoriViewController *chpYoneticilerKategoriViewController = [segue destinationViewController];
-        if (!shouldEmptyTable) {
-            [chpYoneticilerKategoriViewController setCurrentObject:[[self.currentObject content] objectAtIndex:pos]];
-        }
+        [chpYoneticilerKategoriViewController setCurrentObject:[[self.currentObject content] objectAtIndex:pos]];
     }
 }
 
