@@ -13,3 +13,15 @@ Command-line arguments:  -data C:\Users\Abdullah\Documents\GitHub\chp-mobil -os 
 
 !ENTRY com.android.ide.eclipse.ddms 4 0 2013-03-04 15:33:32.209
 !MESSAGE DDMS files not found: C:\adt-bundle-windows-x86_64\eclipse\platform-tools\adb.exe C:\adt-bundle-windows-x86_64\eclipse\tools\hprof-conv.exe C:\adt-bundle-windows-x86_64\eclipse\tools\traceview.bat 
+!SESSION 2013-03-05 17:00:25.464 -----------------------------------------------
+eclipse.buildId=v21.1.0-569685
+java.version=1.7.0_11
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=tr_TR
+Framework arguments:  -product com.android.ide.eclipse.adt.package.product
+Command-line arguments:  -data C:\Users\Abdullah\Documents\GitHub\chp-mobil -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.product
+
+!ENTRY org.eclipse.ui 2 0 2013-03-05 17:00:26.879
+!MESSAGE Warnings while parsing the key bindings from the 'org.eclipse.ui.commands' extension point
+!SUBENTRY 1 org.eclipse.ui 2 0 2013-03-05 17:00:26.879
+!MESSAGE Could not parse key sequence: plug-in='org.eclipse.cdt.make.ui', id='org.eclipse.cdt.make.ui.targetBuildCommand', keySequence='Shift+F9'

@@ -211,19 +211,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int main_bg=0x7f02001e;
         public static final int program=0x7f02001f;
         public static final int search_icon=0x7f020020;
-        public static final int splash_logo=0x7f020021;
-        public static final int tab_bg=0x7f020022;
-        public static final int tarihce=0x7f020023;
-        public static final int tuzuk=0x7f020024;
-        public static final int vesika_golge=0x7f020025;
-        public static final int vesika_yok=0x7f020026;
-        public static final int yonetim=0x7f020027;
+        public static final int seperator=0x7f020021;
+        public static final int splash_logo=0x7f020022;
+        public static final int tab_bg=0x7f020023;
+        public static final int tarihce=0x7f020024;
+        public static final int tuzuk=0x7f020025;
+        public static final int vesika_golge=0x7f020026;
+        public static final int vesika_yok=0x7f020027;
+        public static final int yonetim=0x7f020028;
     }
     public static final class id {
         public static final int ActivityBar=0x7f06000c;
         public static final int LYDetayListesi=0x7f060033;
         public static final int LinearLayout1=0x7f060013;
-        public static final int RLYoneticiler=0x7f06003f;
+        public static final int RLYoneticiler=0x7f060037;
         public static final int RelativeLayout1=0x7f060018;
         public static final int RelativeLayout2=0x7f06002a;
         public static final int amblem=0x7f060032;
@@ -236,6 +237,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btnHaber=0x7f06000d;
         public static final int btnKurumsal=0x7f06000e;
         public static final int btnYonetim=0x7f06000f;
+        public static final int detayTableLayout=0x7f060036;
         public static final int disabled=0x7f060000;
         public static final int flip=0x7f060008;
         public static final int gridview=0x7f060009;
@@ -246,8 +248,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int haberUst=0x7f06001c;
         public static final int imageView1=0x7f060011;
         public static final int imageView2=0x7f06001d;
-        public static final int imageView3=0x7f060039;
-        public static final int imageView4=0x7f06003b;
         public static final int imageView5=0x7f060034;
         public static final int imgFoto=0x7f060035;
         public static final int include1=0x7f06001a;
@@ -255,12 +255,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int layoutAlt2=0x7f060025;
         public static final int layoutAltKisim=0x7f06001f;
         public static final int layoutAnaKisim=0x7f06001b;
-        public static final int lvListe=0x7f060041;
-        public static final int lvListeYL=0x7f060044;
-        public static final int lyArama=0x7f060042;
-        public static final int lySayfaBasi=0x7f060040;
+        public static final int lvListe=0x7f060039;
+        public static final int lvListeYL=0x7f06003c;
+        public static final int lyArama=0x7f06003a;
+        public static final int lySayfaBasi=0x7f060038;
         public static final int manualOnly=0x7f060004;
-        public static final int menu_settings=0x7f060047;
+        public static final int menu_settings=0x7f06003f;
         public static final int pullDownFromTop=0x7f060005;
         public static final int pullFromEnd=0x7f060002;
         public static final int pullFromStart=0x7f060001;
@@ -276,21 +276,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int scrollView1=0x7f060012;
         public static final int scrollview=0x7f06000b;
         public static final int tvBaslik=0x7f060015;
-        public static final int tvCepTel=0x7f060038;
         public static final int tvIcerik=0x7f060017;
-        public static final int tvIl=0x7f06003d;
-        public static final int tvIlce=0x7f06003e;
-        public static final int tvIsim=0x7f060036;
-        public static final int tvIsimler=0x7f060045;
-        public static final int tvMail=0x7f06003c;
-        public static final int tvPartiTel=0x7f06003a;
+        public static final int tvIsimler=0x7f06003d;
         public static final int tvProgram=0x7f06002c;
         public static final int tvTarih=0x7f060016;
         public static final int tvTuzuk=0x7f06002b;
-        public static final int tvUnvan=0x7f060037;
-        public static final int tvUnvanlar=0x7f060046;
+        public static final int tvUnvanlar=0x7f06003e;
         public static final int tvUpdateTime=0x7f060031;
-        public static final int txtArama=0x7f060043;
+        public static final int txtArama=0x7f06003b;
         public static final int webview=0x7f06000a;
     }
     public static final class layout {

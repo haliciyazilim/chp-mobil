@@ -478,7 +478,7 @@ public class Yoneticiler extends Activity{
 		protected void onPreExecute() {
 			dialog=ProgressDialog.show(Yoneticiler.this, "Lütfen Bekleyin!", "Mesaj-Calculating",true);
 			
-			dialog.setMessage("Bilgiler birkaç saniye içinde yüklenecektir. Bu süre internet baðlantýnýza göre deðiþebilir. ");
+			dialog.setMessage("Bilgiler yükleniyor! Lütfen bekleyiniz.");
 			TextView text=(TextView) dialog.findViewById(android.R.id.message);
 			text.setTextSize(17);
 			dialog.show();
