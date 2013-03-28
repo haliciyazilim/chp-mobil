@@ -37,12 +37,15 @@
         android:layout_above="@+id/include1"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/lyArama"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@android:color/transparent"
         android:cacheColorHint="@android:color/transparent"
         android:scrollbarAlwaysDrawVerticalTrack="false"
         android:textColor="#ffffff" >
+
     </ListView>
 
     <RelativeLayout

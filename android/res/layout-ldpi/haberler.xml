@@ -34,14 +34,14 @@
 
         <LinearLayout
             android:id="@+id/layoutAnaKisim"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="center"
             android:orientation="vertical" >
 
             <RelativeLayout
                 android:id="@+id/haberUst"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="300dp"
                 android:layout_gravity="top"
                 android:layout_margin="2dp"
@@ -53,12 +53,11 @@
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentRight="true"
-                    android:scaleType="fitXY"
+                   
+                    
                     android:src="@drawable/buyuk_golge" />
 
                 <TextView

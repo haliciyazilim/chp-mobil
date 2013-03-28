@@ -189,13 +189,20 @@ public class YoneticilerListe extends Activity{
 				
 				
 				if(((CHPListe)rootList).getContent().get(arg2).getType().equals("list")){
+					
+					//System.out.println("********TYPE"+(((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().get(0).getType()));
+					
+					if(((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().size()!=1 ){
+						Intent i=new Intent(YoneticilerListe.this, YoneticilerListe.class);  // this; yonlendirmenin yapýldýðý activity. 
+						i.putExtra("gelenListe", ((CHPListe)rootList).getContent().get(arg2));
 				
-				Intent i=new Intent(YoneticilerListe.this, YoneticilerListe.class);  // this; yonlendirmenin yapýldýðý activity. 
-				i.putExtra("gelenListe", ((CHPListe)rootList).getContent().get(arg2));
-				
-				startActivityForResult(i, 0);
-				//startActivity(i);
-				
+						startActivityForResult(i, 0);
+						//startActivity(i);
+					}
+					else if(((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().size()==1 && (((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().get(0).getType().equals("person"))){
+						istenenYoneticiId=((CHPPerson)((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().get(0)).getId();
+						new Servis().execute(istenenYoneticiId);
+					}
 				
 				}
 				else{

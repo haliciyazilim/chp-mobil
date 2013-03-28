@@ -34,7 +34,7 @@ public class CHPListAdapter extends ArrayAdapter<CHPObject>{
 
         CHPObject item = items.get(position);
         if (item!= null) {
-            // My layout has only one TextView
+            
             TextView itemView = (TextView) view.findViewById(this.textViewResourceId);
             if (itemView != null) {
                 
@@ -46,6 +46,9 @@ public class CHPListAdapter extends ArrayAdapter<CHPObject>{
             	}
             }
          }
+        else{
+        	
+        }
 
         return view;
     }

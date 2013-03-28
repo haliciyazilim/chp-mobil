@@ -10,8 +10,6 @@ import com.halici.mobilchp.sinif.KisiListesi;
 import com.halici.mobilchp.sinif.Resim;
 import com.halici.mobilchp.sinif.Unvanlar;
 
-
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -23,13 +21,20 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.widget.TableLayout;
+import android.widget.TableRow;
+
 public class YoneticiDetay extends Activity {
+	TableLayout tablo;
 	TextView baslik;
 	
 	//ArrayList<String> unvanlar=Unvanlar.getUnvanlar();
@@ -38,6 +43,7 @@ public class YoneticiDetay extends Activity {
 	BitmapDrawable gelenResim;
 	ImageView foto;
 	Builder builder;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,19 +64,8 @@ public class YoneticiDetay extends Activity {
 		
 		kisiDetay=KisiListesi.getBilgiler().get(yoneticiId);
 		
-		TextView isim=(TextView)findViewById(R.id.tvIsim);
-		TextView unvan=(TextView)findViewById(R.id.tvUnvan);
-		TextView il=(TextView)findViewById(R.id.tvIl);
-		TextView ilce=(TextView)findViewById(R.id.tvIlce);
-		final TextView cepTel=(TextView)findViewById(R.id.tvCepTel);
-		
-		final TextView partiTel=(TextView)findViewById(R.id.tvPartiTel);
-		final TextView mail=(TextView)findViewById(R.id.tvMail);
-		
-		
-		
 		boolean detay=kisiDetay.isDetaylar();
-		System.out.println("Kişi detayı: "+detay);
+		System.out.println("Ki�i detay�: "+detay);
 		
 		if(detay==false){
 			System.out.print("detay Falsedeyim");
@@ -95,11 +90,158 @@ public class YoneticiDetay extends Activity {
 			
 		}
 		else{
+			
+			DisplayMetrics metrics=getResources().getDisplayMetrics();
+			System.out.println("DPI: "+metrics.density);
+			float dpi=metrics.density;
+
+			tablo=(TableLayout) findViewById(R.id.detayTableLayout);
+			
+			
+			ImageView imgSeperator= new ImageView(this);
+			imgSeperator.setImageResource(R.drawable.seperator);
+			imgSeperator.setPadding(0, (int)(10*dpi), 0, (int)(10*dpi));
 		
 			
+			
+			TextView isim =new TextView(this);
 			isim.setText(kisiDetay.getIsim());
+			isim.setGravity(Gravity.CENTER);
+			isim.setTextSize(20);
+			//satir.addView(isim);
+			tablo.addView(isim);
 			
 			
+			tablo.addView(imgSeperator);
+			
+			
+			// Unvanlar ekleniyor
+			for(int i=0; i<kisiDetay.getUnvan().size();i++){
+				TextView unvan=new TextView(this);
+				unvan.setText(kisiDetay.getUnvan().get(i));
+				unvan.setGravity(Gravity.CENTER);
+				//satir.addView(unvan);
+				tablo.addView(unvan);
+				
+				if(kisiDetay.getUnvan().size()-1==i){
+					ImageView imgSeperator2= new ImageView(this);
+					imgSeperator2.setImageResource(R.drawable.seperator);
+					imgSeperator2.setPadding(0, (int)(10*dpi), 0, (int)(10*dpi));
+					tablo.addView(imgSeperator2);
+				}
+				
+					
+			}
+			
+			// Cep telefonu ekleniyor
+			if(kisiDetay.getCeptel().size()>0)
+				for(int i=0; i<kisiDetay.getCeptel().size();i++){
+					TableRow satir=new TableRow(this);
+					ImageView imgCep=new ImageView(this);
+					imgCep.setImageResource(R.drawable.icon_cellphone);
+					imgCep.setPadding((int)(50*dpi), 0, (int)(10*dpi), 0);
+					final TextView cepTel=new TextView(this);
+					final String strCepTel=kisiDetay.getCeptel().get(i)!="null"?"0"+kisiDetay.getCeptel().get(0):"";
+					cepTel.setText(strCepTel);
+					cepTel.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							if(strCepTel.length()!=0){
+									String tel="tel:+9"+cepTel.getText();
+									Intent intent=new Intent(Intent.ACTION_CALL,Uri.parse(tel));
+									startActivity(intent);
+								}
+						}
+					});
+					
+					satir.addView(imgCep);
+					satir.addView(cepTel);
+					tablo.addView(satir);
+					
+					if(kisiDetay.getCeptel().size()-1==i){
+						ImageView imgSeperator3= new ImageView(this);
+						imgSeperator3.setImageResource(R.drawable.seperator);
+						imgSeperator3.setPadding(0, (int)(10*dpi), 0, (int)(10*dpi));
+						
+						tablo.addView(imgSeperator3);
+					}
+					
+				}
+			
+			// telefon ekleniyor
+			if(kisiDetay.getPartiTel().size()>0)
+				for(int i=0; i<kisiDetay.getPartiTel().size();i++){
+					TableRow satir=new TableRow(this);
+					ImageView imgCep=new ImageView(this);
+					imgCep.setImageResource(R.drawable.icon_phone);
+					imgCep.setPadding((int)(50*dpi), 0, (int)(10*dpi), 0);
+					final TextView cepTel=new TextView(this);
+					final String strCepTel=kisiDetay.getPartiTel().get(i)!="null"?"0"+kisiDetay.getPartiTel().get(0):"";
+					cepTel.setText(strCepTel);
+					cepTel.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							if(strCepTel.length()!=0){
+									String tel="tel:+9"+cepTel.getText();
+									Intent intent=new Intent(Intent.ACTION_CALL,Uri.parse(tel));
+									startActivity(intent);
+								}
+						}
+					});
+					
+					satir.addView(imgCep);
+					satir.addView(cepTel);
+					tablo.addView(satir);
+					
+					
+					if(kisiDetay.getPartiTel().size()-1==i){
+						ImageView imgSeperator4= new ImageView(this);
+						imgSeperator4.setImageResource(R.drawable.seperator);
+						imgSeperator4.setPadding(0, (int)(10*dpi), 0, (int)(10*dpi));
+						tablo.addView(imgSeperator4);
+					}
+					
+				}
+			
+
+			// mail ekleniyor
+			if(kisiDetay.getMail().size()>0)
+				for(int i=0; i<kisiDetay.getMail().size();i++){
+					TableRow satir=new TableRow(this);
+					ImageView imgMail=new ImageView(this);
+					imgMail.setImageResource(R.drawable.icon_mail);
+					imgMail.setPadding((int)(50*dpi), 0, (int)(10*dpi), 0);
+					final TextView mail=new TextView(this);
+					mail.setText(kisiDetay.getMail().get(i));
+					mail.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// mail intenti
+							final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+							
+							// intent içeriği 
+							emailIntent.setType("plain/text");
+							emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{mail.getText().toString()});
+							startActivity(Intent.createChooser(emailIntent, "e-mail g�nder..."));
+							
+							
+						}
+					
+					});
+					
+					satir.addView(imgMail);
+					satir.addView(mail);
+					tablo.addView(satir);
+					
+//					if(kisiDetay.getMail().size()-1==i)
+//						tablo.addView(bosluk);
+				}
+			
+			
+			/*
 			unvan.setText(ArrayToString(kisiDetay.getUnvan()));
 			
 			String strIl=kisiDetay.getIl()!="null"?kisiDetay.getIl():"";
@@ -144,17 +286,19 @@ public class YoneticiDetay extends Activity {
 				
 				@Override
 				public void onClick(View v) {
-					/* mail intenti */
+					// mail intenti
 					final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 					
-					/* intent içeriği */
+					// intent içeriği 
 					emailIntent.setType("plain/text");
 					emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{mail.getText().toString()});
 					startActivity(Intent.createChooser(emailIntent, "e-mail g�nder..."));
 					
 					
 				}
-			});
+			
+	});
+	*/
 			
 			foto=(ImageView) findViewById(R.id.imgFoto);
 			if(!kisiDetay.getFotoUrl().get(0).equals("null"))

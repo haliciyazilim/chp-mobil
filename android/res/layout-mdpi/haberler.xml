@@ -41,9 +41,10 @@
 
             <RelativeLayout
                 android:id="@+id/haberUst"
-                android:layout_width="fill_parent"
+                android:layout_width="500dp"
                 android:layout_height="300dp"
-                android:layout_gravity="top"
+                android:layout_gravity="top|center_horizontal"
+                 
                 android:layout_margin="2dp"
                 android:background="@drawable/bosh_buyuk"
                 android:clickable="false"
@@ -78,8 +79,9 @@
 
             <RelativeLayout
                 android:id="@+id/haberAlt1Sol"
-                android:layout_width="match_parent"
+               android:layout_width="500dp"
                 android:layout_height="300dp"
+                 android:layout_gravity="top|center_horizontal"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginTop="10dp"
@@ -112,8 +114,9 @@
 
             <RelativeLayout
                 android:id="@+id/haberAlt1Sag"
-                android:layout_width="fill_parent"
+                android:layout_width="500dp"
                 android:layout_height="300dp"
+                 android:layout_gravity="top|center_horizontal"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginTop="10dp"
@@ -145,8 +148,9 @@
 
             <RelativeLayout
                 android:id="@+id/haberAlt2Sol"
-                android:layout_width="match_parent"
+               android:layout_width="500dp"
                 android:layout_height="300dp"
+                 android:layout_gravity="top|center_horizontal"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
 				android:layout_marginTop="10dp"
@@ -179,9 +183,10 @@
 
             <RelativeLayout
                 android:id="@+id/haberAlt2sag"
-                android:layout_width="match_parent"
+                android:layout_width="500dp"
                 android:layout_height="300dp"
-                android:layout_gravity="left"
+                 android:layout_gravity="top|center_horizontal"
+               
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginTop="10dp"
