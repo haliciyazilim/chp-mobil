@@ -79,26 +79,6 @@ static CHPContactManager *sharedInstance = nil;
     
 }
 
-//- (MKNetworkOperation *)getContactsWithPosition:(CHPPosition)position
-//                                   onCompletion:(ArrayBlock)contactArrayBlock
-//                                        onError:(ErrorBlock)errorBlock {
-//    return [[APIManager sharedInstance] getContactListForPosition:position
-//                                                     onCompletion:^(NSArray *resultArray) {
-//                                                         for (CHPContact *newContact in resultArray) {
-//                                                             CHPContact *oldContact = [self.contacts objectForKey:newContact.contactId];
-//                                                             if (oldContact) {
-//                                                                 [oldContact mergeInfoFromContact:newContact];
-//                                                             } else {
-//                                                                 [self.contacts setObject:newContact forKey:newContact.contactId];
-//                                                             }
-//                                                         }
-//                                                         
-//                                                         contactArrayBlock(resultArray);
-//                                                     } onError:^(NSError *error) {
-//                                                         errorBlock(error);
-//                                                     }];
-//}
-
 - (MKNetworkOperation *)getWholeContactsOnCompletion:(CHPObjectBlock)completionBlock
                                              onError:(ErrorBlock)errorBlock {
     return [[APIManager sharedInstance] getContactListOnCompletion:^(CHPObject *resultList) {

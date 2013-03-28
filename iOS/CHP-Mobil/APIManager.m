@@ -165,25 +165,6 @@ static APIManager *sharedInstance = nil;
                                            for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
                                                [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
                                            }
-//                                           
-//                                           for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
-//                                               [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
-//                                           }
-//                                           for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
-//                                               [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
-//                                           }
-//                                           
-//                                           for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
-//                                               [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
-//                                           }
-//                                           for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
-//                                               [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
-//                                           }
-//                                           
-//                                           for (NSDictionary *newsItemDictionary in responseDictionary[@"result"]) {
-//                                               [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
-//                                           }
-                                           
                                            
                                            newsArrayBlock(newsArray);
                                        }
