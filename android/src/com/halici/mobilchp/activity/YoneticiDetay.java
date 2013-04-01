@@ -134,7 +134,7 @@ public class YoneticiDetay extends Activity {
 			}
 			
 			// Cep telefonu ekleniyor
-			if(kisiDetay.getCeptel().size()>0)
+			if(kisiDetay.getCeptel().size()>0 && !kisiDetay.getCeptel().get(0).equals("null"))
 				for(int i=0; i<kisiDetay.getCeptel().size();i++){
 					TableRow satir=new TableRow(this);
 					ImageView imgCep=new ImageView(this);
@@ -170,7 +170,7 @@ public class YoneticiDetay extends Activity {
 				}
 			
 			// telefon ekleniyor
-			if(kisiDetay.getPartiTel().size()>0)
+			if(kisiDetay.getPartiTel().size()>0 && !kisiDetay.getPartiTel().get(0).equals("null"))
 				for(int i=0; i<kisiDetay.getPartiTel().size();i++){
 					TableRow satir=new TableRow(this);
 					ImageView imgCep=new ImageView(this);
@@ -207,7 +207,7 @@ public class YoneticiDetay extends Activity {
 			
 
 			// mail ekleniyor
-			if(kisiDetay.getMail().size()>0)
+			if(kisiDetay.getMail().size()>0 && !kisiDetay.getMail().get(0).equals("null"))
 				for(int i=0; i<kisiDetay.getMail().size();i++){
 					TableRow satir=new TableRow(this);
 					ImageView imgMail=new ImageView(this);
@@ -302,7 +302,7 @@ public class YoneticiDetay extends Activity {
 			
 			foto=(ImageView) findViewById(R.id.imgFoto);
 			if(!kisiDetay.getFotoUrl().get(0).equals("null"))
-			new ResimIndirme().execute();
+				new ResimIndirme().execute();
 			
 	//		new Resim();
 	//		BitmapDrawable gelenResim=Resim.resimGetir(ArrayToString(kisiDetay.getFotoUrl()));

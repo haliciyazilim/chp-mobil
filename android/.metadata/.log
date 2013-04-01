@@ -37,3 +37,15 @@ Command-line arguments:  -data C:\Users\Abdullah\Documents\GitHub\chp-mobil\andr
 !MESSAGE Warnings while parsing the key bindings from the 'org.eclipse.ui.commands' extension point
 !SUBENTRY 1 org.eclipse.ui 2 0 2013-03-05 17:00:08.692
 !MESSAGE Could not parse key sequence: plug-in='org.eclipse.cdt.make.ui', id='org.eclipse.cdt.make.ui.targetBuildCommand', keySequence='Shift+F9'
+!SESSION 2013-03-22 17:40:31.479 -----------------------------------------------
+eclipse.buildId=v21.1.0-569685
+java.version=1.7.0_11
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=tr_TR
+Framework arguments:  -product com.android.ide.eclipse.adt.package.product
+Command-line arguments:  -data C:\Users\Abdullah\Documents\GitHub\chp-mobil\android -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.product
+
+!ENTRY org.eclipse.ui 2 0 2013-03-22 17:40:32.911
+!MESSAGE Warnings while parsing the key bindings from the 'org.eclipse.ui.commands' extension point
+!SUBENTRY 1 org.eclipse.ui 2 0 2013-03-22 17:40:32.911
+!MESSAGE Could not parse key sequence: plug-in='org.eclipse.cdt.make.ui', id='org.eclipse.cdt.make.ui.targetBuildCommand', keySequence='Shift+F9'

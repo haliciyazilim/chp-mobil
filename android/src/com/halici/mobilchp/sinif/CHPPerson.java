@@ -10,8 +10,6 @@ import org.json.JSONObject;
 public class CHPPerson extends CHPObject{
 
 	private String isim;
-	private String il;
-	private String ilce;
 	private String unvan;
 	private int id;
 	
@@ -21,22 +19,6 @@ public class CHPPerson extends CHPObject{
 
 	public void setIsim(String isim) {
 		this.isim = isim;
-	}
-
-	public String getIl() {
-		return il;
-	}
-
-	public void setIl(String il) {
-		this.il = il;
-	}
-
-	public String getIlce() {
-		return ilce;
-	}
-
-	public void setIlce(String ilce) {
-		this.ilce = ilce;
 	}
 
 	public String getUnvan() {
@@ -50,7 +32,6 @@ public class CHPPerson extends CHPObject{
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -80,14 +61,8 @@ public class CHPPerson extends CHPObject{
 		try {
 			person.setType("person");
 			person.setIsim(json.getString("AdSoyad"));
-			person.setIl(json.getString("IlAdi"));
-			person.setIlce(json.getString("IlceAdi"));
 			person.setId(json.getInt("YoneticiId"));
-			
-			if(json.getString("Unvan").equals("Milletvekili"))
-				person.setUnvan(person.getIl()+" "+json.getString("Unvan"));
-			else
-				person.setUnvan(json.getString("Unvan"));
+			person.setUnvan(json.getString("Unvan"));
 			
 //			System.out.println("CHPPerson.."+person.getUnvan()+": "+person.getIsim());
 			
