@@ -75,7 +75,6 @@
 -(void)getListFromServer{
     
     [[CHPContactManager sharedInstance] getWholeContactsOnCompletion:^(CHPObject *resultList) {
-        NSLog(@"entered completionblock");
         self.rootList = (CHPList *)resultList;
         self.isListSet = YES;
         [self.searchTextField setPlaceholder:@"Ara"];
@@ -266,23 +265,25 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([[self.rootList content] count] == 0) {
-        [self performSegueWithIdentifier:@"KategoriSegue" sender:self];
-    }
-    else{
-        if ([[[self.rootList content] objectAtIndex:indexPath.row] isKindOfClass:[CHPList class]]) {
-            // chp list will open -> kategori view
+    id myObj = [[self.rootList content] objectAtIndex:indexPath.row];
+    if ([myObj isKindOfClass:[CHPList class]]) {
+        // chp list will open -> kategori view
+        if ([[myObj content] count] == 0) {
             [self performSegueWithIdentifier:@"KategoriSegue" sender:self];
-        } else if ([[[self.rootList content] objectAtIndex:indexPath.row] isKindOfClass:[CHPPerson class]]){
-            if ([[self.rootList content] count] == 1) {
-                // there is only one person in selected list, so detail view will open
-                self.selectedContact = [[[self.rootList content] objectAtIndex:indexPath.row] contact];
+        }
+        else {
+            if ([[[(CHPList *)myObj content] objectAtIndex:0] isKindOfClass:[CHPPerson class]] && [[(CHPList *)myObj content] count] == 1) {
+                self.selectedContact = [[[myObj content] objectAtIndex:0] contact];
                 [self performSegueWithIdentifier:@"DetailSegue" sender:self];
-            } else {
-                // show list of person, there are more than one person
+            }
+            else {
                 [self performSegueWithIdentifier:@"KategoriSegue" sender:self];
             }
         }
+    }
+    else if ([myObj isKindOfClass:[CHPPerson class]]) {
+        self.selectedContact = [myObj contact];
+        [self performSegueWithIdentifier:@"DetailSegue" sender:self];
     }
 }
 
@@ -319,7 +320,7 @@
     if(_selectedContact != selectedContact){
         _selectedContact = selectedContact;
     }
-    [self performSegueWithIdentifier:@"DetailSegue" sender:self];
+//    [self performSegueWithIdentifier:@"DetailSegue" sender:self];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
