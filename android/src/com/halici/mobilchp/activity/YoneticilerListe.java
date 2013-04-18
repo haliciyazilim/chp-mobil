@@ -81,7 +81,11 @@ public class YoneticilerListe extends Activity{
 		
 		
 		baslik=(TextView)findViewById(R.id.tvBaslik);
-		baslik.setText(gelenVeri.getName().toString().trim());
+		if(gelenVeri.getHeader().equals("null"))
+			baslik.setText(gelenVeri.getName().toString().trim());
+		else
+			baslik.setText(gelenVeri.getHeader().toString().trim());
+		
 		baslik.setGravity(Gravity.CENTER);
 
 //		if(KisiListesi.getYoneticiListesi().size()==0)
@@ -191,7 +195,7 @@ public class YoneticilerListe extends Activity{
 				if(((CHPListe)rootList).getContent().get(arg2).getType().equals("list")){
 					
 					//System.out.println("********TYPE"+(((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().get(0).getType()));
-					
+					System.out.print("****Týklanan listenin uzunluðu: "+((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().size());
 					if(((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().size()!=1 ){
 						Intent i=new Intent(YoneticilerListe.this, YoneticilerListe.class);  // this; yonlendirmenin yapýldýðý activity. 
 						i.putExtra("gelenListe", ((CHPListe)rootList).getContent().get(arg2));

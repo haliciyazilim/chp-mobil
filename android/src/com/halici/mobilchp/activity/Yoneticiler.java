@@ -1,8 +1,12 @@
 package com.halici.mobilchp.activity;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.halici.mobilchp.activity.YoneticilerListe.Servis;
 import com.halici.mobilchp.sinif.ActivityBar;
 import com.halici.mobilchp.sinif.CHPListAdapter;
 import com.halici.mobilchp.sinif.CHPListe;
@@ -26,6 +30,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
@@ -336,11 +341,24 @@ public class Yoneticiler extends Activity{
 //					System.out.println("istek MEtin: "+t.getText().toString());
 					CHPListe tiklananListe=((CHPListe)rootList);
 					System.out.println("GElen Ýstek:: "+tiklananListe.getContent().get(istek).getType());
-					
+					System.out.println("****Yoneticiler Týklanan listenin uzunluðu: "+((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().size());
 					if(tiklananListe.getContent().get(istek).getType().equals("list")){
-						Intent i=new Intent(Yoneticiler.this, YoneticilerListe.class);
-						i.putExtra("gelenListe", tiklananListe.getContent().get(istek));
-						startActivity(i);
+//						Intent i=new Intent(Yoneticiler.this, YoneticilerListe.class);
+//						i.putExtra("gelenListe", tiklananListe.getContent().get(istek));
+//						startActivity(i);
+						
+						if(((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().size()!=1 ){
+							Intent i=new Intent(Yoneticiler.this, YoneticilerListe.class);  // this; yonlendirmenin yapýldýðý activity. 
+							i.putExtra("gelenListe", tiklananListe.getContent().get(istek));
+					
+							startActivityForResult(i, 0);
+							//startActivity(i);
+						}
+						else if(((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().size()==1 && (((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().get(0).getType().equals("person"))){
+							istenenYoneticiId=((CHPPerson)((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().get(0)).getId();
+							new ServisDetay().execute(istenenYoneticiId);
+						}
+						
 						
 					}
 					
@@ -428,7 +446,20 @@ public class Yoneticiler extends Activity{
 					}
 					*/
 					
+					// gelen veriyi dosyaya yazdýrýyoruz.
+					try{
+					File file=new File(Environment.getExternalStorageDirectory().getPath(),"cevap.txt");
+					file.createNewFile();
 					
+					FileOutputStream fOut=new FileOutputStream(file);
+					OutputStreamWriter writter= new OutputStreamWriter(fOut);
+					writter.append(sonuc.toString());
+					writter.close();
+					fOut.close();
+					System.out.println("Yadýrma iþlemi tamam@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+				    } catch (Exception e) {
+				    	System.out.println("Yadýrma iþlemi Hata@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"+e.toString());
+				     }
 				}
 			
 				//System.out.println("Yoneticiler sayfasý Kiþi bilgileri: "+KisiListesi.getYoneticiBilgileri().get(unvanlar.get(1)).get(0).getIsim());
