@@ -115,6 +115,12 @@ static CHPContactManager *sharedInstance = nil;
                 }
             }
             
+            for (NSString *position in contact.positions) {
+                if ([[position lowercaseString] hasPrefix:prefix]) {
+                    innerMatch = YES;
+                }
+            }
+            
             if (!innerMatch) {
                 match = NO;
             }

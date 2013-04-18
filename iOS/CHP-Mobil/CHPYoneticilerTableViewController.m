@@ -320,7 +320,7 @@
     if(_selectedContact != selectedContact){
         _selectedContact = selectedContact;
     }
-//    [self performSegueWithIdentifier:@"DetailSegue" sender:self];
+    [self performSegueWithIdentifier:@"DetailSegue" sender:self];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
