@@ -77,7 +77,7 @@ public class YoneticilerListe extends Activity{
 		
 		System.out.println("GElenListe: "+gelenVeri.getName());
 		
-		System.out.println("YöneticiListeGelen"+istek);
+		System.out.println("YÃ¶neticiListeGelen"+istek);
 		
 		
 		baslik=(TextView)findViewById(R.id.tvBaslik);
@@ -120,19 +120,19 @@ public class YoneticilerListe extends Activity{
 					aranacakUnvan="Milletvekili";
 					break;
 				case 5:
-					aranacakUnvan="Ýl Baþkaný";
+					aranacakUnvan="ï¿½l Baï¿½kanï¿½";
 					break;
 				case 6:
-					aranacakUnvan="Ýlçe Baþkaný";
+					aranacakUnvan="ï¿½lï¿½e Baï¿½kanï¿½";
 					break;
 				case 7:
-					aranacakUnvan="Büyükþehir Belediye Baþkaný";
+					aranacakUnvan="Bï¿½yï¿½kï¿½ehir Belediye Baï¿½kanï¿½";
 					break;
 				case 8:
-					aranacakUnvan="Ýl Belediye Baþkaný";
+					aranacakUnvan="ï¿½l Belediye Baï¿½kanï¿½";
 					break;
 				case 9:
-					aranacakUnvan="Ýlçe Belediye Baþkaný";
+					aranacakUnvan="ï¿½lï¿½e Belediye Baï¿½kanï¿½";
 					break;
 				default:
 					break;
@@ -168,7 +168,7 @@ public class YoneticilerListe extends Activity{
 			
 			*/
 		
-		//System.out.println("Kayýt edilmiþ listenin boyutu: "+yoneticiKayitlari.size());
+		//System.out.println("Kayï¿½t edilmiï¿½ listenin boyutu: "+yoneticiKayitlari.size());
 		liste=(ListView)findViewById(R.id.lvListeYL);
 		
 		
@@ -185,7 +185,7 @@ public class YoneticilerListe extends Activity{
 //		else
 //			liste.setAdapter(adapterUnvanli);
 //		
-		//System.out.println("Adapter oluþturuldu: "+yoneticiKayitlari.size());
+		//System.out.println("Adapter oluï¿½turuldu: "+yoneticiKayitlari.size());
 		liste.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
@@ -195,9 +195,9 @@ public class YoneticilerListe extends Activity{
 				if(((CHPListe)rootList).getContent().get(arg2).getType().equals("list")){
 					
 					//System.out.println("********TYPE"+(((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().get(0).getType()));
-					System.out.print("****Týklanan listenin uzunluðu: "+((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().size());
+					System.out.print("****TÄ±klanan listenin uzunluÄŸu: "+((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().size());
 					if(((CHPListe)((CHPListe)rootList).getContent().get(arg2)).getContent().size()!=1 ){
-						Intent i=new Intent(YoneticilerListe.this, YoneticilerListe.class);  // this; yonlendirmenin yapýldýðý activity. 
+						Intent i=new Intent(YoneticilerListe.this, YoneticilerListe.class);  // this; yonlendirmenin yapï¿½ldï¿½ï¿½ï¿½ activity. 
 						i.putExtra("gelenListe", ((CHPListe)rootList).getContent().get(arg2));
 				
 						startActivityForResult(i, 0);
@@ -212,7 +212,7 @@ public class YoneticilerListe extends Activity{
 				else{
 					istenenYoneticiId=((CHPPerson)((CHPListe)rootList).getContent().get(arg2)).getId();
 					
-					System.out.println("YöneticiLÝste týklanan Yönetici ID: "+istenenYoneticiId);
+					System.out.println("YÃ¶neticiListe tÄ±klanan YÃ¶netici ID: "+istenenYoneticiId);
 					new Servis().execute(istenenYoneticiId);
 				}
 //				tiklanan=arg2;
@@ -233,11 +233,11 @@ public class YoneticilerListe extends Activity{
 		
 		}
 		catch(Exception e){
-			System.out.println("Hata YöneticilerListe size"+e.toString());
+			System.out.println("Hata YÃ¶neticilerListe size"+e.toString());
 			builder = new AlertDialog.Builder(this);
 			
-						builder.setTitle("Bilgiler daha alýnamadý");
-						builder.setMessage("Ýþlem tamamlanmadý.");
+						builder.setTitle("Bilgiler daha alÄ±namadÄ±");
+						builder.setMessage("Ä°ÅŸlem tamamlanmadÄ±.");
 			
 						builder.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
 			
@@ -297,7 +297,7 @@ public class YoneticilerListe extends Activity{
 			String sonuc=null;
 			
 			int n=params[0];
-			System.out.println("Detayý istenen: "+n+", "+istenenYoneticiId);
+			System.out.println("DetayÄ± istenen: "+n+", "+istenenYoneticiId);
 			
 			int index=alinanDetay.indexOf(istenenYoneticiId);
 			//System.out.println("index: "+index);
@@ -305,7 +305,7 @@ public class YoneticilerListe extends Activity{
 				
 				
 				if(baglantiKuntrolu()==true){
-					// Yönetici Detay
+					// Yï¿½netici Detay
 					YoneticilerDetaySorgu sorgu=new YoneticilerDetaySorgu(n);
 					sonuc=sorgu.baglan();
 					
@@ -322,7 +322,7 @@ public class YoneticilerListe extends Activity{
 //					//System.out.println("YÃ¶neticiler LÄ°ste 119: "+k.toString());
 //					KisiListesi.ekle(k);
 //					//KisiListesi.ekle(unvanlar.get(n-1), kisi);
-//					System.out.println("Detaylar YönetcilerListe: "+k.isDetaylar());
+//					System.out.println("Detaylar Yï¿½netcilerListe: "+k.isDetaylar());
 //					alinanDetay.add(istenenYoneticiId);
 				}
 			}
@@ -336,7 +336,7 @@ public class YoneticilerListe extends Activity{
 //			dialog.dismiss();
 		
 			
-			Intent i=new Intent(YoneticilerListe.this, YoneticiDetay.class);  // this; yonlendirmenin yapýldýðý activity. 
+			Intent i=new Intent(YoneticilerListe.this, YoneticiDetay.class);  // this; yonlendirmenin yapï¿½ldï¿½ï¿½ï¿½ activity. 
 			i.putExtra("yoneticiId", istenenYoneticiId);
 			
 			startActivityForResult(i, 0);
@@ -353,7 +353,7 @@ public class YoneticilerListe extends Activity{
 //			dialog.show();
 			
 
-			Toast.makeText(getApplicationContext(), "Lütfen bekleyiniz; bilgiler yükleniyor.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "LÃ¼tfen bekleyiniz; bilgiler yÃ¼kleniyor.", Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
