@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 import org.kobjects.util.Util;
 
-
 import com.halici.mobilchp.activity.HaberDetay;
 import com.halici.mobilchp.activity.Haberler.ResimIndirme;
 import com.halici.mobilchp.activity.Haberler.Servis;
@@ -17,6 +16,7 @@ import com.halici.mobilchp.sinif.ActivityBar;
 import com.halici.mobilchp.sinif.Baglanti;
 import com.halici.mobilchp.sinif.Haber;
 import com.halici.mobilchp.sinif.HaberSorgu;
+import com.halici.mobilchp.sinif.ListenerManager;
 import com.halici.mobilchp.sinif.Resim;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -39,8 +39,18 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Haberler extends Activity{
+public class Haberler extends Activity implements ListenerManager.Listener{
 
+	private ListenerManager listenerManager;
+	private Servis servis;
+	private ResimIndirme rIndirme1;
+	private ResimIndirme rIndirme2;
+	private ResimIndirme rIndirme3;
+	private ResimIndirme rIndirme4;
+	private ResimIndirme rIndirme5;
+	
+	
+	
 	RelativeLayout lUstKisim, lAlt1Sag, lAlt1Sol,lAlt2Sag, lAlt2Sol;
 	BitmapDrawable resim1, resim2, resim3, resim4, resim5;
 	ArrayList<HashMap<String, String>> liste= new ArrayList<HashMap<String,String>>();
@@ -48,6 +58,8 @@ public class Haberler extends Activity{
 	PullToRefreshScrollView mPullRefreshScrollView;
 	ScrollView mScrollView;
 	static String guncellemeZamani=null;
+	
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +69,17 @@ public class Haberler extends Activity{
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.haberler);
+		
+		listenerManager= new ListenerManager();
+		listenerManager.registerListener(this);
+		servis=new Servis();
+		
+		rIndirme1=new ResimIndirme();
+		rIndirme2=new ResimIndirme();
+		rIndirme3=new ResimIndirme();
+		rIndirme4=new ResimIndirme();
+		rIndirme5=new ResimIndirme();
+		
 		
 		mPullRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.pull_refresh_scrollview);
 		mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
@@ -70,18 +93,19 @@ public class Haberler extends Activity{
 					SimpleDateFormat df=new SimpleDateFormat("dd MM yyyy - HH:MM:ss");
 					String formatliZaman=df.format(zaman.getTime());
 					
-					guncellemeZamani="Son güncelleme: "+formatliZaman;
+					guncellemeZamani="Son gï¿½ncelleme: "+formatliZaman;
 					
 					TextView txtGuncelleme=(TextView) findViewById(R.id.tvUpdateTime);
 					txtGuncelleme.setText(guncellemeZamani);
 					
-					
-					
-					
-					new Servis().execute();
+					if(servis!=null){
+						servis=null;
+					}
+					servis=new Servis();
+					servis.execute();
 				}
 				else
-					Toast.makeText( Haberler.this, "Lütfen internet baðlantýnýzý kontrol ediniz.", Toast.LENGTH_LONG ).show();
+					Toast.makeText( Haberler.this, "LÃ¼tfen internet baÄŸlantÄ±nÄ±zÄ± kontrol ediniz.", Toast.LENGTH_LONG ).show();
 			}
 		});
 
@@ -93,25 +117,94 @@ public class Haberler extends Activity{
 		lAlt2Sol=(RelativeLayout) findViewById(R.id.haberAlt2Sol);
 		lAlt2Sag=(RelativeLayout) findViewById(R.id.haberAlt2sag);
 	
-		if(baglantiKuntrolu()==true)
-			new Servis().execute();
-		else
-			Toast.makeText( this, "Lütfen internet baðlantýnýzý kontrol ediniz.", Toast.LENGTH_LONG ).show();
+		
 		
 		ActivityBar.getInstance().connectToActivity(this);
 		
 	}
 	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		
+		System.out.println("App is onStart()");
+		
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		System.out.println("App is onResume()");
+		
+		listenerManager.setIsBackground(false);
+		
+		if(baglantiKuntrolu()==true){
+			if(servis!=null){
+				servis=null;
+			}
+			servis=new Servis();
+			servis.execute();
+		}
+		else
+			Toast.makeText( this, "LÃ¼tfen internet baÄŸlantÄ±nÄ±zÄ± kontrol ediniz.", Toast.LENGTH_LONG ).show();
+		
+		
+	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		System.out.println("App is onPause()");
+		listenerManager.setIsBackground(true);
+	}
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		System.out.println("App is onStop()");
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		System.out.println("App is onDestroy()");
+	}
+
+	
 	public boolean baglantiKuntrolu() {
         final ConnectivityManager conMgr = (ConnectivityManager) getSystemService (Context.CONNECTIVITY_SERVICE);
         if (conMgr.getActiveNetworkInfo() != null && conMgr.getActiveNetworkInfo().isAvailable() &&    conMgr.getActiveNetworkInfo().isConnected()) {
-        	System.out.println("Ýnternet Baðlantýsý var");
+        	System.out.println("Ä°nternet BaÄŸlantÄ±sÄ± var");
         	return true;
         } else {
-              System.out.println("Ýnternet Baðlantýsý yok");
+              System.out.println("Ä°nternet BaÄŸlantÄ±sÄ± yok");
             return false;
         }
      }
+	
+	@Override
+	public void onStateChange(boolean state) {
+		if(state){
+			try{
+			servis.cancel(true);
+			rIndirme1.cancel(true);
+			rIndirme2.cancel(true);
+			rIndirme3.cancel(true);
+			rIndirme4.cancel(true);
+			rIndirme5.cancel(true);
+			}
+			catch(Exception e){
+				
+			}
+		}
+//		else
+//			servis.execute();
+//		
+	}
 	
 	/*
 	public class Servis extends AsyncTask<String, Void, String>{
@@ -128,8 +221,8 @@ public class Haberler extends Activity{
 				//System.out.println("Sonuclar sonuc: "+sonuc);
 			return sonuc;
 			}catch (Exception e) {
-				System.out.println("Haberler Alýnamýyor.");
-				return "Haber alýnýrken hata oluþtu; lütfen internet baðlantýnýzýn olduðundan emin olun.";
+				System.out.println("Haberler Alï¿½namï¿½yor.");
+				return "Haber alï¿½nï¿½rken hata oluï¿½tu; lï¿½tfen internet baï¿½lantï¿½nï¿½zï¿½n olduï¿½undan emin olun.";
 			}
 		}
 
@@ -244,7 +337,7 @@ public class Haberler extends Activity{
 		
 		public void haberDinleme(View v) {
 			if(lUstKisim == v){
-				System.out.println("Týklandý: "+v);
+				System.out.println("Tï¿½klandï¿½: "+v);
 				
 				Intent i=new Intent(Haberler.this, HaberDetay.class);
 				i.putExtra("id", liste.get(0).get("id"));
@@ -256,7 +349,7 @@ public class Haberler extends Activity{
 				
 			}
 			else if(lAlt1Sol == v){
-				System.out.println("Týklandý: "+v);
+				System.out.println("Tï¿½klandï¿½: "+v);
 				
 				Intent i=new Intent(Haberler.this, HaberDetay.class);
 				i.putExtra("id", liste.get(1).get("id"));
@@ -267,7 +360,7 @@ public class Haberler extends Activity{
 				startActivity(i);
 			}
 			else if(lAlt1Sag == v){
-				System.out.println("Týklandý: "+v);
+				System.out.println("Tï¿½klandï¿½: "+v);
 				
 				Intent i=new Intent(Haberler.this, HaberDetay.class);
 				i.putExtra("id", liste.get(2).get("id"));
@@ -278,7 +371,7 @@ public class Haberler extends Activity{
 				startActivity(i);
 			}
 			else if(lAlt2Sol == v){
-				System.out.println("Týklandý: "+v);
+				System.out.println("Tï¿½klandï¿½: "+v);
 				
 				Intent i=new Intent(Haberler.this, HaberDetay.class);
 				i.putExtra("id", liste.get(3).get("id"));
@@ -289,7 +382,7 @@ public class Haberler extends Activity{
 				startActivity(i);
 			}
 			else if(lAlt2Sag == v){
-				System.out.println("Týklandý: "+v);
+				System.out.println("Tï¿½klandï¿½: "+v);
 				
 				Intent i=new Intent(Haberler.this, HaberDetay.class);
 				i.putExtra("id", liste.get(4).get("id"));
@@ -318,10 +411,15 @@ public class Haberler extends Activity{
 	public class Servis extends AsyncTask<String, Void, String>{
 		//private ProgressDialog dialog = new ProgressDialog(Sorgu.this);
 		 //EditText editSorgu=(EditText) findViewById(R.id.editSorgu);
+		
+		
 		@Override
 		protected String doInBackground(String... params) {
 			//Sorgulama sorgu=new Sorgulama(params[0]);
 			//String sonuc=sorgu.baglan();
+			
+			System.out.println("********* Servis baÅŸladÄ±.");
+			
 			String sonuc=null;
 			try{
 			HaberSorgu sorgu=new HaberSorgu();
@@ -349,12 +447,30 @@ public class Haberler extends Activity{
 				String resim4=liste.get(3).get("resim");
 				String resim5=liste.get(4).get("resim");
 				
+				if(rIndirme1!=null)
+					rIndirme1=null;
+				rIndirme1=new ResimIndirme();
+				rIndirme1.execute(resim1,"1");
+
+				if(rIndirme2!=null)
+					rIndirme2=null;
+				rIndirme2=new ResimIndirme();
+				rIndirme2.execute(resim2,"2");
 				
-				new ResimIndirme().execute(resim1,"1");
-				new ResimIndirme().execute(resim2,"2");
-				new ResimIndirme().execute(resim3,"3");
-				new ResimIndirme().execute(resim4,"4");
-				new ResimIndirme().execute(resim5,"5");
+				if(rIndirme3!=null)
+					rIndirme3=null;
+				rIndirme3=new ResimIndirme();
+				rIndirme3.execute(resim3,"3");
+				
+				if(rIndirme4!=null)
+					rIndirme4=null;
+				rIndirme4=new ResimIndirme();
+				rIndirme4.execute(resim4,"4");
+				
+				if(rIndirme5!=null)
+					rIndirme5=null;
+				rIndirme5=new ResimIndirme();
+				rIndirme5.execute(resim5,"5");
 				
 				
 				
@@ -425,7 +541,7 @@ public class Haberler extends Activity{
 				});
 			}
 			else
-				Toast.makeText( Haberler.this, "Veriler alýnamýyor lütfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG ).show();
+				Toast.makeText( Haberler.this, "Veriler alÄ±namÄ±yor lÃ¼tfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG ).show();
 
 		}
 
@@ -563,6 +679,8 @@ public class Haberler extends Activity{
 		//finish();
 		moveTaskToBack(true);
 	}
+
+
 
 	
 }

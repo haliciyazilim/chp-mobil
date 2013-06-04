@@ -83,7 +83,7 @@ public class KisiBilgileri {
 	}
 	@Override
 	public String toString() {
-//		System.out.println("Id: "+this.getId()+"\nÝsim: "+this.getIsim()+"\nUnvan: "+this.getUnvan()+
+//		System.out.println("Id: "+this.getId()+"\nï¿½sim: "+this.getIsim()+"\nUnvan: "+this.getUnvan()+
 //				"\nIl: "+this.getIl()+"\nIlce: "+this.getIlce()+"\nceptel: "+this.getCeptel()+"\nPartiTel: "
 //				+this.getPartiTel()+"\nMail: "+this.getMail()+"\n Foto"+this.getFotoUrl());
 //		return super.toString();
@@ -101,7 +101,7 @@ public class KisiBilgileri {
 				JSONArray array = new JSONArray(obje.getString("Content"));
 				
 				for(int i=0;i<array.length();i++){
-					System.out.println("chpLÝsteDoldur");
+					System.out.println("chpListeDoldur");
 					CHPListe icListe=new CHPListe();
 					icListe.setName(array.getJSONObject(i).getString("Name"));
 					icListe.setType("list");
@@ -148,7 +148,7 @@ public class KisiBilgileri {
 		String MAIL="Email";
 		String FOTOURL="FotoUrl";
 		
-			//System.out.println("Kiþi Gez"+obje.getString("AdSoyad")+", "+obje.getString("Unvan"));
+			//System.out.println("Kiï¿½i Gez"+obje.getString("AdSoyad")+", "+obje.getString("Unvan"));
 			
 			KisiBilgileri kisi= new KisiBilgileri();
 			
@@ -218,7 +218,7 @@ public static ArrayList<KisiBilgileri> veriAl(String gelenVeri, String tur){
 		System.out.println("Kisi Bilgileri veri al");
 		
 		if(tur.equals("liste")){			
-			System.out.println("Kisi Bilgileri veri al LÝSTE");
+			System.out.println("Kisi Bilgileri veri al Lï¿½STE");
 			
 			JSONObject gelenVeriJSON=new JSONObject(gelenVeri);
 			KisiListesi.setChpAgac(CHPListe.fromJSON(gelenVeriJSON));
