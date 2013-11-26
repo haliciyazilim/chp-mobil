@@ -125,20 +125,20 @@ public class Yoneticiler extends Activity implements ListenerManager.Listener{
 		
 		 
 		 
-		
-		if(veriAlindi==false){
-			if(baglantiKuntrolu()==true){
-				System.out.println(" Yonetici.java istek: "+istek);
-				if(servis!=null)
-					servis=new Servis();
-				servis.execute(istek);
-		    	
-			 }
-			 
-		 }
-		else{
-			kategoriListesiniDoldur("liste",KisiListesi.getChpAgac().getContent());
-		}
+//
+//		if(veriAlindi==false){
+//			if(baglantiKuntrolu()==true){
+//				System.out.println(" Yonetici.java istek: "+istek);
+//
+//			    servis=new Servis();
+//				servis.execute(istek);
+//
+//			 }
+//
+//		 }
+//		else{
+//			kategoriListesiniDoldur("liste",KisiListesi.getChpAgac().getContent());
+//		}
 		
 		//kategoriListesiniDoldur();
 		
@@ -209,7 +209,7 @@ public class Yoneticiler extends Activity implements ListenerManager.Listener{
 					
 						final ArrayList<String> sonucListesi=new ArrayList<String>();
 						final ArrayList<YoneticiKayit> kayitlar= new ArrayList<YoneticiKayit>();
-						String[] aranan=s.toString().split(" ");
+						String[] aranan=s.toString().toLowerCase().split(" ");
 						
 						System.out.println("Tüm liste: "+aramaListe.size());
 						
@@ -293,8 +293,9 @@ public class Yoneticiler extends Activity implements ListenerManager.Listener{
 		//							
 		//							startActivity(i);
 								
-								if(servisDetay!=null)
-									servisDetay=new ServisDetay();
+
+								servisDetay=new ServisDetay();
+                                System.out.println("istenen yönetici id: "+istenenYoneticiId);
 								servisDetay.execute(istenenYoneticiId);
 								
 							
@@ -343,9 +344,7 @@ public class Yoneticiler extends Activity implements ListenerManager.Listener{
 		
 		if(baglantiKuntrolu()==true){
 			if(veriAlindi==false){
-				if(servis!=null){
-					servis=null;
-				}
+
 				servis=new Servis();
 				servis.execute();
 			}
@@ -636,10 +635,10 @@ public class Yoneticiler extends Activity implements ListenerManager.Listener{
 			String sonuc=null;
 			
 			int n=params[0];
-			//System.out.println("Detayı istenen: "+n);
+			System.out.println("Detayı istenen: "+n);
 			
 			int index=alinanDetay.indexOf(istenenYoneticiId);
-			//System.out.println("index: "+index);
+			System.out.println("index: "+index);
 			if(index==-1){			
 				// Yönetici Detay
 				
