@@ -65,14 +65,14 @@ public class YoneticiDetay extends Activity {
 		kisiDetay=KisiListesi.getBilgiler().get(yoneticiId);
 		
 		boolean detay=kisiDetay.isDetaylar();
-		System.out.println("Kiþi detayý: "+detay);
+		System.out.println("KiÅŸi detayÄ±: "+detay);
 		
 		if(detay==false){
 			System.out.print("detay Falsedeyim");
 			builder = new AlertDialog.Builder(this);
 
-			builder.setTitle("Baðlantý?");
-			builder.setMessage("Lütfen internet baðlantýnýzý kontrol edin.");
+			builder.setTitle("BaÄŸlantÄ±?");
+			builder.setMessage("LÃ¼tfen internet baÄŸlantÄ±nÄ±zÄ± kontrol edin.");
 
 			builder.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
 
@@ -225,7 +225,7 @@ public class YoneticiDetay extends Activity {
 							// intent iÃ§eriÄŸi 
 							emailIntent.setType("plain/text");
 							emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{mail.getText().toString()});
-							startActivity(Intent.createChooser(emailIntent, "e-mail gönder..."));
+							startActivity(Intent.createChooser(emailIntent, "e-mail gÃ¶nder..."));
 							
 							
 						}
@@ -235,79 +235,12 @@ public class YoneticiDetay extends Activity {
 					satir.addView(imgMail);
 					satir.addView(mail);
 					tablo.addView(satir);
-					
-//					if(kisiDetay.getMail().size()-1==i)
-//						tablo.addView(bosluk);
+
 				}
-			
-			
-			/*
-			unvan.setText(ArrayToString(kisiDetay.getUnvan()));
-			
-			String strIl=kisiDetay.getIl()!="null"?kisiDetay.getIl():"";
-			il.setText(strIl);
-			
-			String strIlce=kisiDetay.getIlce()!="null"?kisiDetay.getIlce():"";
-			ilce.setText(strIlce);
-			
-			final String strCepTel=kisiDetay.getCeptel().get(0)!="null"?"0"+kisiDetay.getCeptel().get(0):"";
-			cepTel.setText(strCepTel);
-			cepTel.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					if(strCepTel.length()!=0){
-							String tel="tel:+9"+cepTel.getText();
-							Intent intent=new Intent(Intent.ACTION_CALL,Uri.parse(tel));
-							startActivity(intent);
-						}
-				}
-			});
-			
-			final String strPartiTel=kisiDetay.getPartiTel().get(0)!="null"?"0"+kisiDetay.getPartiTel().get(0):"";
-			partiTel.setText(strPartiTel);
-			partiTel.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					if(strPartiTel.length()!=0){
-						String tel="tel:+9"+partiTel.getText();
-						Intent intent=new Intent(Intent.ACTION_CALL,Uri.parse(tel));
-						startActivity(intent);
-					}
-				}
-			});
-			
-			if(ArrayToString(kisiDetay.getMail()).equals("null"))
-				mail.setText("");
-			else
-				mail.setText(ArrayToString(kisiDetay.getMail()));
-			mail.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// mail intenti
-					final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-					
-					// intent iÃ§eriÄŸi 
-					emailIntent.setType("plain/text");
-					emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{mail.getText().toString()});
-					startActivity(Intent.createChooser(emailIntent, "e-mail gönder..."));
-					
-					
-				}
-			
-	});
-	*/
 			
 			foto=(ImageView) findViewById(R.id.imgFoto);
 			if(!kisiDetay.getFotoUrl().get(0).equals("null"))
 				new ResimIndirme().execute();
-			
-	//		new Resim();
-	//		BitmapDrawable gelenResim=Resim.resimGetir(ArrayToString(kisiDetay.getFotoUrl()));
-	//		foto.setImageDrawable(gelenResim);
-			
 		}	
 	}
 	

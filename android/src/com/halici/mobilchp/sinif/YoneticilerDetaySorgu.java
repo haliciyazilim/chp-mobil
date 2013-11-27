@@ -50,7 +50,7 @@ public class YoneticilerDetaySorgu {
 		aht.debug=true;
 					
 		try {
-			System.out.println("try içindeiym.");
+			System.out.println("try iÃ§indeiym.");
 			
 			// Ve son olarak isteï¿½imizi gï¿½nderiyoruz.
 			aht.call(SOAP_ACTION, soapEnvelope);
@@ -66,7 +66,7 @@ public class YoneticilerDetaySorgu {
 			sonuc=sonucSoap.toString();
 					
 				
-			System.out.println("YöneticiDetaySorgu.java Gelen Veri: ");
+			System.out.println("YÃ¶neticiDetaySorgu.java Gelen Veri: ");
 			System.out.println(sonuc);
 			
 					
