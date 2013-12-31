@@ -9,12 +9,7 @@ import org.json.JSONObject;
 
 public class Unvanlar {
 	private  static ArrayList<String> unvanlar;
-	/*
-	private static ArrayList<String> unvanlar=new ArrayList<String>(Arrays.asList(
-			"Genel Baþkan", "MYK Üyeleri", "PM Üyeleri", 
-			"YDK Üyeleri", "Milletvekilleri", "Ýl Baþkanlarý", "Ýlçe Baþkanlarý",
-			"Büyükþehir Belediye Baþkanlarý", "Ýl Belediye Baþkanlarý", "Ýlçe Belediye Baþkanlarý"));
-*/
+
 	public static void setUnvanlar(String gelenVeri){
 		System.out.println("Unvanlar Geliyor ");
 		ArrayList<String> gelenUnvanlar=new ArrayList<String>();
@@ -27,7 +22,7 @@ public class Unvanlar {
 			for (int i = 0; i < array.length(); i++) {
 				
 				JSONObject obje = array.getJSONObject(i);
-				System.out.println("Alýnan kategori: "+obje.get("Name"));
+				System.out.println("AlÄ±nan kategori: "+obje.get("Name"));
 				gelenUnvanlar.add(obje.get("Name").toString());
 			}
 			Unvanlar.unvanlar=gelenUnvanlar;

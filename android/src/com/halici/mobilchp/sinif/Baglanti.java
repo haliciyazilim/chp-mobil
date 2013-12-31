@@ -43,7 +43,7 @@ public class Baglanti extends BroadcastReceiver
 		    if(available==true){
 		    	new Servis().execute();
 		    	
-		    	System.out.println("Baðlantý bilgileri yüklüyor.");
+		    	System.out.println("BaÄŸlantÄ± bilgileri yÃ¼kleniyor.");
 		    }
     	}
     	
@@ -101,7 +101,7 @@ public class Baglanti extends BroadcastReceiver
 						
 						idIsim.put(kisiler.get(i).getId(),kisiler.get(i).getIsim());
 						KisiListesi.aramaListesineEkle(kisiler.get(i).getIsim());
-						System.out.println("Veriler alýnýyor.");
+						System.out.println("Veriler alÄ±nÄ±yor.");
 						
 					
 					//KisiListesi.ekle(unvanlar.get(n-1), idIsim);
@@ -109,7 +109,7 @@ public class Baglanti extends BroadcastReceiver
 				return sonuc;
 			}
 			catch (Exception e) {
-					System.out.println("Hata: Baðlantý: "+e);
+					System.out.println("Hata: BaÄŸlantÄ±: "+e);
 
 			}
 			finally{
@@ -133,7 +133,7 @@ public class Baglanti extends BroadcastReceiver
 		protected void onPostExecute(String string) {
 			if(string!=null){
 				Yoneticiler.setVeriAlindi(true);
-				System.out.println("Veriler alýndý.**************");
+				System.out.println("Veriler alÄ±ndÄ±.**************");
 			}
 
 		}

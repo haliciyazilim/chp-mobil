@@ -70,11 +70,11 @@ public class CHPListe extends CHPObject{
 
 	@Override
 	public void yazdir() {
-		System.out.println("CHPListe yazdýr()..ContenSize: "+content.size()+", "+this.getName());
+		System.out.println("CHPListe yazdÄ±r()..ContenSize: "+content.size()+", "+this.getName());
 		
 		for(int i=0; i<content.size();i++){
 			if(this.content.get(i) instanceof CHPListe)
-				System.out.println("CHPListe yazdýr()..: "+((CHPListe)this.content.get(i)).getName());
+				System.out.println("CHPListe yazdÄ±r()..: "+((CHPListe)this.content.get(i)).getName());
 			else if(this.content.get(i) instanceof CHPPerson)
 				((CHPPerson)this.content.get(i)).yazdir();
 			
@@ -104,7 +104,7 @@ public class CHPListe extends CHPObject{
 			for(int i=0; i<array.length();i++){
 				if(array.getJSONObject(i).getString("Type").equals("list")){
 					liste.addObject(CHPListe.fromJSON(array.getJSONObject(i)));
-					//System.out.println("CHPLÝste.."+array.getJSONObject(i));
+					//System.out.println("CHPListe.."+array.getJSONObject(i));
 					
 				}
 				
