@@ -7,10 +7,9 @@
 //
 
 #import "CHPHaberNavigationController.h"
-
-#import "APIManager.h"
-
 #import "CHPHaberCollectionViewController.h"
+#import "APIManager.h"
+#import "CHPCommons.h"
 
 @interface CHPHaberNavigationController ()
 
@@ -31,7 +30,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self.navigationBar setTranslucent:NO];
+    if (IS_IOS_7) {
+        [self.navigationBar setTranslucent:NO];
+    }
     
 }
 

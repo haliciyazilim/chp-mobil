@@ -7,6 +7,7 @@
 //
 
 #import "CHPYoneticilerNavigationController.h"
+#import "CHPCommons.h"
 
 @interface CHPYoneticilerNavigationController ()
 
@@ -26,7 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self.navigationBar setTranslucent:NO];
+	if (IS_IOS_7) {
+        [self.navigationBar setTranslucent:NO];
+    }
     
 }
 -(void)viewWillAppear:(BOOL)animated {

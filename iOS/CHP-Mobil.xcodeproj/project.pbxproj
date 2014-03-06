@@ -181,6 +181,7 @@
 		056C07EC1655487B005D5D5D /* CHPYoneticilerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPYoneticilerDetailViewController.m; sourceTree = "<group>"; };
 		0578DB6C165668F400131BD8 /* CHPContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPContact.h; sourceTree = "<group>"; };
 		0578DB6D165668F400131BD8 /* CHPContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPContact.m; sourceTree = "<group>"; };
+		05B0A41718C8D112007D607E /* CHPCommons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPCommons.h; sourceTree = "<group>"; };
 		05B1FDE11653E16F0079FE20 /* CHP-Mobil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHP-Mobil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B1FDE51653E16F0079FE20 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		05B1FDE71653E16F0079FE20 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -392,6 +393,7 @@
 				05B1FDF51653E16F0079FE20 /* CHPAppDelegate.m */,
 				05B1FDFD1653E16F0079FE20 /* MainStoryboard_iPhone.storyboard */,
 				05B1FE001653E16F0079FE20 /* MainStoryboard_iPad.storyboard */,
+				05B0A41718C8D112007D607E /* CHPCommons.h */,
 				05B1FDEC1653E16F0079FE20 /* Supporting Files */,
 			);
 			path = "CHP-Mobil";
