@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    [self.navigationBar setTranslucent:NO];
 }
 
 - (void)didReceiveMemoryWarning

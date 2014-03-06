@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+	[self.navigationBar setTranslucent:NO];
     
 }
 -(void)viewWillAppear:(BOOL)animated {
