@@ -28,9 +28,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    if (IS_IOS_7) {
-        [self.navigationBar setTranslucent:NO];
-    }
+//    if (IS_IOS_7) {
+//        [self.navigationBar setTranslucent:NO];
+//    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -27,9 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	if (IS_IOS_7) {
-        [self.navigationBar setTranslucent:NO];
-    }
+//	if (IS_IOS_7) {
+//        [self.navigationBar setTranslucent:NO];
+//    }
     
 }
 -(void)viewWillAppear:(BOOL)animated {
