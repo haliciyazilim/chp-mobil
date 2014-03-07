@@ -88,7 +88,14 @@
       [UIColor blackColor], UITextAttributeTextShadowColor,
       nil] forState:UIControlStateSelected];
 }
-
+//- (NSUInteger) supportedInterfaceOrientations
+//{
+//    return UIInterfaceOrientationPortrait;
+//}
+- (BOOL) shouldAutorotate
+{
+    return NO;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
