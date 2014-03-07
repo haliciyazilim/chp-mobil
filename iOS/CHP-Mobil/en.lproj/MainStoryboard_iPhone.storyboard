@@ -32,7 +32,8 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="tRY-uc-3IZ" customClass="CHPBizKimizNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Kurumsal" id="XTS-ik-SD5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="vId-1i-BVq">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="vId-1i-BVq">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -49,9 +50,9 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="fF0-x2-wHq" customClass="CHPYoneticilerNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Yoneticiler" id="rpV-BB-Hkt"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <navigationBar key="navigationBar" autoresizesSubviews="NO" alpha="0.99999999999999989" contentMode="scaleToFill" translucent="NO" id="wmg-i0-XNw">
+                    <navigationBar key="navigationBar" autoresizesSubviews="NO" alpha="0.99999999999999989" contentMode="scaleToFill" barStyle="black" translucent="NO" id="wmg-i0-XNw">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -170,7 +171,9 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="obX-K5-Wb4" customClass="CHPWebTVNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="WebTV" id="MC8-tp-th8"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OvJ-eZ-d96">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="OvJ-eZ-d96">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -454,7 +457,6 @@
                     <navigationItem key="navigationItem" id="pz6-G4-VP9">
                         <barButtonItem key="backBarButtonItem" title="Geri" id="2OM-cA-bc5"/>
                     </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="programCell" destination="NvM-cN-XPk" id="adx-Mu-PXD"/>
                         <outlet property="tarihceCell" destination="ih1-kU-Mjo" id="UJ8-nG-U7z"/>
@@ -489,7 +491,6 @@
                     <navigationItem key="navigationItem" id="jIo-H6-6j3">
                         <barButtonItem key="backBarButtonItem" title="Geri" id="NRh-he-kkQ"/>
                     </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="mainView" destination="CD3-Em-hDt" id="xgj-hr-eXK"/>
                         <outlet property="navigationItem" destination="jIo-H6-6j3" id="83v-Qu-FQf"/>
@@ -505,7 +506,8 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="Fw2-yr-2PD" customClass="CHPHaberNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Haberler" id="g2m-pO-idC"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="tzB-on-eBv">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="tzB-on-eBv">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -804,8 +806,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="D11-TT-QLh"/>
-        <segue reference="lSJ-Sw-LeM"/>
+        <segue reference="4wa-Ih-48h"/>
         <segue reference="edE-U7-IWX"/>
+        <segue reference="lSJ-Sw-LeM"/>
     </inferredMetricsTieBreakers>
 </document>
