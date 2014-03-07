@@ -55,6 +55,12 @@
 		0516FFFC1664B5DB00F0F64C /* main_bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0516FFF91664B5DB00F0F64C /* main_bg-568h@2x.png */; };
 		0516FFFD1664B5DB00F0F64C /* main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0516FFFA1664B5DB00F0F64C /* main_bg.png */; };
 		0516FFFE1664B5DB00F0F64C /* main_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0516FFFB1664B5DB00F0F64C /* main_bg@2x.png */; };
+		055C6E8218C9B2050065B6A8 /* btn_webtv_beyaz_.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E7E18C9B2050065B6A8 /* btn_webtv_beyaz_.png */; };
+		055C6E8318C9B2050065B6A8 /* btn_webtv_beyaz_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E7F18C9B2050065B6A8 /* btn_webtv_beyaz_@2x.png */; };
+		055C6E8418C9B2050065B6A8 /* btn_webtv_kirmizi_.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E8018C9B2050065B6A8 /* btn_webtv_kirmizi_.png */; };
+		055C6E8518C9B2050065B6A8 /* btn_webtv_kirmizi_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E8118C9B2050065B6A8 /* btn_webtv_kirmizi_@2x.png */; };
+		055C6E8918C9B4B50065B6A8 /* CHPWebTVNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C6E8818C9B4B50065B6A8 /* CHPWebTVNavigationController.m */; };
+		055C6E8C18C9B5130065B6A8 /* CHPWebTVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C6E8B18C9B5130065B6A8 /* CHPWebTVViewController.m */; };
 		0568007B165E2D560005D3C7 /* CHPSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0568007A165E2D560005D3C7 /* CHPSearchTableViewController.m */; };
 		05680083165E6A2F0005D3C7 /* CHPSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05680082165E6A2F0005D3C7 /* CHPSearchTableViewCell.m */; };
 		056C07E916554198005D5D5D /* CHPYoneticilerKategoriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C07E816554198005D5D5D /* CHPYoneticilerKategoriViewController.m */; };
@@ -171,6 +177,14 @@
 		0516FFF91664B5DB00F0F64C /* main_bg-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "main_bg-568h@2x.png"; path = "background_images/main_bg-568h@2x.png"; sourceTree = "<group>"; };
 		0516FFFA1664B5DB00F0F64C /* main_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main_bg.png; path = background_images/main_bg.png; sourceTree = "<group>"; };
 		0516FFFB1664B5DB00F0F64C /* main_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "main_bg@2x.png"; path = "background_images/main_bg@2x.png"; sourceTree = "<group>"; };
+		055C6E7E18C9B2050065B6A8 /* btn_webtv_beyaz_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_webtv_beyaz_.png; path = tabBar_images/btn_webtv_beyaz_.png; sourceTree = "<group>"; };
+		055C6E7F18C9B2050065B6A8 /* btn_webtv_beyaz_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_webtv_beyaz_@2x.png"; path = "tabBar_images/btn_webtv_beyaz_@2x.png"; sourceTree = "<group>"; };
+		055C6E8018C9B2050065B6A8 /* btn_webtv_kirmizi_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_webtv_kirmizi_.png; path = tabBar_images/btn_webtv_kirmizi_.png; sourceTree = "<group>"; };
+		055C6E8118C9B2050065B6A8 /* btn_webtv_kirmizi_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_webtv_kirmizi_@2x.png"; path = "tabBar_images/btn_webtv_kirmizi_@2x.png"; sourceTree = "<group>"; };
+		055C6E8718C9B4B50065B6A8 /* CHPWebTVNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPWebTVNavigationController.h; sourceTree = "<group>"; };
+		055C6E8818C9B4B50065B6A8 /* CHPWebTVNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPWebTVNavigationController.m; sourceTree = "<group>"; };
+		055C6E8A18C9B5130065B6A8 /* CHPWebTVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPWebTVViewController.h; sourceTree = "<group>"; };
+		055C6E8B18C9B5130065B6A8 /* CHPWebTVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPWebTVViewController.m; sourceTree = "<group>"; };
 		05680079165E2D560005D3C7 /* CHPSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPSearchTableViewController.h; sourceTree = "<group>"; };
 		0568007A165E2D560005D3C7 /* CHPSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPSearchTableViewController.m; sourceTree = "<group>"; };
 		05680081165E6A2F0005D3C7 /* CHPSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPSearchTableViewCell.h; sourceTree = "<group>"; };
@@ -302,6 +316,17 @@
 			name = splash_screen_images;
 			sourceTree = "<group>";
 		};
+		055C6E8618C9B4900065B6A8 /* WebTVTabControllers */ = {
+			isa = PBXGroup;
+			children = (
+				055C6E8718C9B4B50065B6A8 /* CHPWebTVNavigationController.h */,
+				055C6E8818C9B4B50065B6A8 /* CHPWebTVNavigationController.m */,
+				055C6E8A18C9B5130065B6A8 /* CHPWebTVViewController.h */,
+				055C6E8B18C9B5130065B6A8 /* CHPWebTVViewController.m */,
+			);
+			name = WebTVTabControllers;
+			sourceTree = "<group>";
+		};
 		0578DB6F1656726C00131BD8 /* navigationBar_images */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +351,10 @@
 				0516FFD21664B5BC00F0F64C /* btn_kurumsal_beyaz_@2x.png */,
 				0516FFD31664B5BC00F0F64C /* btn_kurumsal_kirmizi_.png */,
 				0516FFD41664B5BC00F0F64C /* btn_kurumsal_kirmizi_@2x.png */,
+				055C6E7E18C9B2050065B6A8 /* btn_webtv_beyaz_.png */,
+				055C6E7F18C9B2050065B6A8 /* btn_webtv_beyaz_@2x.png */,
+				055C6E8018C9B2050065B6A8 /* btn_webtv_kirmizi_.png */,
+				055C6E8118C9B2050065B6A8 /* btn_webtv_kirmizi_@2x.png */,
 				0516FFD51664B5BC00F0F64C /* btn_yonetim_beyaz_.png */,
 				0516FFD61664B5BC00F0F64C /* btn_yonetim_beyaz_@2x.png */,
 				0516FFD71664B5BC00F0F64C /* btn_yonetim_kirmizi_.png */,
@@ -555,6 +584,7 @@
 				05B1FE2D1653EE210079FE20 /* HaberTabControllers */,
 				05B1FE2E1653EE3C0079FE20 /* BizKimizTabControllers */,
 				05B1FE2F1653EE4C0079FE20 /* YoneticilerTabControllers */,
+				055C6E8618C9B4900065B6A8 /* WebTVTabControllers */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -678,6 +708,8 @@
 			files = (
 				05B1FDF01653E16F0079FE20 /* InfoPlist.strings in Resources */,
 				05B1FDFF1653E16F0079FE20 /* MainStoryboard_iPhone.storyboard in Resources */,
+				055C6E8218C9B2050065B6A8 /* btn_webtv_beyaz_.png in Resources */,
+				055C6E8418C9B2050065B6A8 /* btn_webtv_kirmizi_.png in Resources */,
 				05B1FE021653E16F0079FE20 /* MainStoryboard_iPad.storyboard in Resources */,
 				AE257C69165672A2007EC17F /* program_btn_selected.png in Resources */,
 				AE257C6A165672A2007EC17F /* program_btn_selected@2x.png in Resources */,
@@ -704,6 +736,7 @@
 				05C1F1351664ABA400EEA727 /* app-icon-114.png in Resources */,
 				0516FFAD1664B59600F0F64C /* search_btn_highlighted.png in Resources */,
 				0516FFAE1664B59600F0F64C /* search_btn_highlighted@2x.png in Resources */,
+				055C6E8518C9B2050065B6A8 /* btn_webtv_kirmizi_@2x.png in Resources */,
 				0516FFAF1664B59600F0F64C /* search_btn.png in Resources */,
 				0516FFB01664B59600F0F64C /* search_btn@2x.png in Resources */,
 				0516FFB11664B59600F0F64C /* search_icon.png in Resources */,
@@ -723,6 +756,7 @@
 				0516FFCB1664B5AB00F0F64C /* vesika_yok.png in Resources */,
 				0516FFCC1664B5AB00F0F64C /* vesika_yok@2x.png in Resources */,
 				0516FFDD1664B5BC00F0F64C /* btn_haber_beyaz_.png in Resources */,
+				055C6E8318C9B2050065B6A8 /* btn_webtv_beyaz_@2x.png in Resources */,
 				0516FFDE1664B5BC00F0F64C /* btn_haber_beyaz_@2x.png in Resources */,
 				0516FFDF1664B5BC00F0F64C /* btn_haber_kirmizi_.png in Resources */,
 				0516FFE01664B5BC00F0F64C /* btn_haber_kirmizi_@2x.png in Resources */,
@@ -768,6 +802,7 @@
 				416A7DD81653E47C0005E9E3 /* NSString+MKNetworkKitAdditions.m in Sources */,
 				416A7DD91653E47C0005E9E3 /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
 				416A7DDA1653E47C0005E9E3 /* MKNetworkEngine.m in Sources */,
+				055C6E8918C9B4B50065B6A8 /* CHPWebTVNavigationController.m in Sources */,
 				416A7DDB1653E47C0005E9E3 /* MKNetworkOperation.m in Sources */,
 				416A7DDC1653E47C0005E9E3 /* Reachability.m in Sources */,
 				416A7DE61653E56E0005E9E3 /* APIManager.m in Sources */,
@@ -778,6 +813,7 @@
 				05B1FE321653EF040079FE20 /* CHPHaberNavigationController.m in Sources */,
 				05B1FE351653EF810079FE20 /* CHPYoneticilerNavigationController.m in Sources */,
 				05B1FE381653F1490079FE20 /* CHPBizKimizNavigationController.m in Sources */,
+				055C6E8C18C9B5130065B6A8 /* CHPWebTVViewController.m in Sources */,
 				AE95D7ED1654D8DA000AE76A /* CHPBizKimizDetailViewController.m in Sources */,
 				41BFE50B165533FF00EB2EA0 /* CHPNewsItem.m in Sources */,
 				056C07E916554198005D5D5D /* CHPYoneticilerKategoriViewController.m in Sources */,
