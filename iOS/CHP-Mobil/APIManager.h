@@ -27,6 +27,9 @@ typedef void (^CHPObjectBlock) (CHPObject *resultList);
 - (MKNetworkOperation *)getLatestNewsOnCompletion:(ArrayBlock)completionBlock
                                           onError:(ErrorBlock)errorBlock;
 
+- (MKNetworkOperation *)getWebTVUrlOnCompletion:(CompletionBlock)completionBlock
+                                        onError:(ErrorBlock)errorBlock;
+
 - (MKNetworkOperation *)getAboutInfoForType:(NSString *)type
                                onCompletion:(StringBlock)completionBlock
                                     onError:(ErrorBlock)errorBlock;

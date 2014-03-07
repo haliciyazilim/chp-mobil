@@ -126,6 +126,7 @@ static APIManager *sharedInstance = nil;
 
 - (NSDictionary *) getDictionaryFromResponse:(NSString *)response
                                 forOperation:(NSString *)operation {
+
     NSRange range1 = [response rangeOfString:[NSString stringWithFormat:@"<%@Result>", operation]];
     NSRange range2 = [response rangeOfString:[NSString stringWithFormat:@"</%@Result>", operation]];
     NSRange range = {NSMaxRange(range1), range2.location-range1.location-range2.length+1};
@@ -166,13 +167,34 @@ static APIManager *sharedInstance = nil;
                                                [newsArray addObject:[CHPNewsItem newsItemFromDictionary:newsItemDictionary]];
                                            }
                                            
-                                           newsArrayBlock(newsArray);
+                                           if (newsArrayBlock != nil) {
+                                               newsArrayBlock(newsArray);
+                                           }
                                        }
                                             onError:^(NSError *error) {
+                                                if (errorBlock != nil) {
+                                                    errorBlock(error);
+                                                }
                                                 errorBlock(error);
                                             }];
 }
 
+- (MKNetworkOperation *)getWebTVUrlOnCompletion:(CompletionBlock)completionBlock
+                                        onError:(ErrorBlock)errorBlock
+{
+    return [self createNetworkOperationForOperation:@"getWebTvUrl"
+                                      andParameters:nil
+                                       onCompletion:^(NSDictionary *responseDictionary) {
+                                           if (completionBlock != nil) {
+                                               completionBlock(responseDictionary);
+                                           }
+                                       }
+                                            onError:^(NSError *error) {
+                                                if (errorBlock != nil) {
+                                                    errorBlock(error);
+                                                }
+                                            }];
+}
 
 
 - (MKNetworkOperation *)getAboutInfoForType:(NSString *)type
