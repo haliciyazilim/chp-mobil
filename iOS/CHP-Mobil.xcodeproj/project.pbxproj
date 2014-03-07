@@ -61,6 +61,14 @@
 		055C6E8518C9B2050065B6A8 /* btn_webtv_kirmizi_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E8118C9B2050065B6A8 /* btn_webtv_kirmizi_@2x.png */; };
 		055C6E8918C9B4B50065B6A8 /* CHPWebTVNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C6E8818C9B4B50065B6A8 /* CHPWebTVNavigationController.m */; };
 		055C6E8C18C9B5130065B6A8 /* CHPWebTVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C6E8B18C9B5130065B6A8 /* CHPWebTVViewController.m */; };
+		055C6E9518C9FD150065B6A8 /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E8D18C9FD140065B6A8 /* AppIcon29x29.png */; };
+		055C6E9618C9FD150065B6A8 /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E8E18C9FD140065B6A8 /* AppIcon29x29@2x.png */; };
+		055C6E9718C9FD150065B6A8 /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E8F18C9FD140065B6A8 /* AppIcon40x40.png */; };
+		055C6E9818C9FD150065B6A8 /* AppIcon40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E9018C9FD140065B6A8 /* AppIcon40x40@2x.png */; };
+		055C6E9918C9FD150065B6A8 /* AppIcon60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E9118C9FD140065B6A8 /* AppIcon60x60.png */; };
+		055C6E9A18C9FD150065B6A8 /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E9218C9FD140065B6A8 /* AppIcon60x60@2x.png */; };
+		055C6E9B18C9FD150065B6A8 /* AppIcon76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E9318C9FD140065B6A8 /* AppIcon76x76.png */; };
+		055C6E9C18C9FD150065B6A8 /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 055C6E9418C9FD140065B6A8 /* AppIcon76x76@2x.png */; };
 		0568007B165E2D560005D3C7 /* CHPSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0568007A165E2D560005D3C7 /* CHPSearchTableViewController.m */; };
 		05680083165E6A2F0005D3C7 /* CHPSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05680082165E6A2F0005D3C7 /* CHPSearchTableViewCell.m */; };
 		056C07E916554198005D5D5D /* CHPYoneticilerKategoriViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C07E816554198005D5D5D /* CHPYoneticilerKategoriViewController.m */; };
@@ -185,6 +193,14 @@
 		055C6E8818C9B4B50065B6A8 /* CHPWebTVNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPWebTVNavigationController.m; sourceTree = "<group>"; };
 		055C6E8A18C9B5130065B6A8 /* CHPWebTVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPWebTVViewController.h; sourceTree = "<group>"; };
 		055C6E8B18C9B5130065B6A8 /* CHPWebTVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPWebTVViewController.m; sourceTree = "<group>"; };
+		055C6E8D18C9FD140065B6A8 /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
+		055C6E8E18C9FD140065B6A8 /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
+		055C6E8F18C9FD140065B6A8 /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
+		055C6E9018C9FD140065B6A8 /* AppIcon40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon40x40@2x.png"; sourceTree = "<group>"; };
+		055C6E9118C9FD140065B6A8 /* AppIcon60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon60x60.png; sourceTree = "<group>"; };
+		055C6E9218C9FD140065B6A8 /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
+		055C6E9318C9FD140065B6A8 /* AppIcon76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon76x76.png; sourceTree = "<group>"; };
+		055C6E9418C9FD140065B6A8 /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon76x76@2x.png"; sourceTree = "<group>"; };
 		05680079165E2D560005D3C7 /* CHPSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPSearchTableViewController.h; sourceTree = "<group>"; };
 		0568007A165E2D560005D3C7 /* CHPSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPSearchTableViewController.m; sourceTree = "<group>"; };
 		05680081165E6A2F0005D3C7 /* CHPSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPSearchTableViewCell.h; sourceTree = "<group>"; };
@@ -382,6 +398,14 @@
 			children = (
 				05C1F1341664ABA400EEA727 /* app-icon-114.png */,
 				05C1F1321664AB9E00EEA727 /* app-icon-57.png */,
+				055C6E8D18C9FD140065B6A8 /* AppIcon29x29.png */,
+				055C6E8E18C9FD140065B6A8 /* AppIcon29x29@2x.png */,
+				055C6E8F18C9FD140065B6A8 /* AppIcon40x40.png */,
+				055C6E9018C9FD140065B6A8 /* AppIcon40x40@2x.png */,
+				055C6E9118C9FD140065B6A8 /* AppIcon60x60.png */,
+				055C6E9218C9FD140065B6A8 /* AppIcon60x60@2x.png */,
+				055C6E9318C9FD140065B6A8 /* AppIcon76x76.png */,
+				055C6E9418C9FD140065B6A8 /* AppIcon76x76@2x.png */,
 				05B1FDEB1653E16F0079FE20 /* CHP-Mobil */,
 				05B1FDE41653E16F0079FE20 /* Frameworks */,
 				05B1FDE21653E16F0079FE20 /* Products */,
@@ -710,12 +734,15 @@
 				05B1FDFF1653E16F0079FE20 /* MainStoryboard_iPhone.storyboard in Resources */,
 				055C6E8218C9B2050065B6A8 /* btn_webtv_beyaz_.png in Resources */,
 				055C6E8418C9B2050065B6A8 /* btn_webtv_kirmizi_.png in Resources */,
+				055C6E9B18C9FD150065B6A8 /* AppIcon76x76.png in Resources */,
 				05B1FE021653E16F0079FE20 /* MainStoryboard_iPad.storyboard in Resources */,
 				AE257C69165672A2007EC17F /* program_btn_selected.png in Resources */,
 				AE257C6A165672A2007EC17F /* program_btn_selected@2x.png in Resources */,
 				AE257C6B165672A2007EC17F /* program_btn.png in Resources */,
 				AE257C6C165672A2007EC17F /* program_btn@2x.png in Resources */,
 				AE257C6D165672A2007EC17F /* tarihce_btn_selected.png in Resources */,
+				055C6E9A18C9FD150065B6A8 /* AppIcon60x60@2x.png in Resources */,
+				055C6E9718C9FD150065B6A8 /* AppIcon40x40.png in Resources */,
 				AE257C6E165672A2007EC17F /* tarihce_btn_selected@2x.png in Resources */,
 				AE257C6F165672A2007EC17F /* tarihce_btn.png in Resources */,
 				AE257C70165672A2007EC17F /* tarihce_btn@2x.png in Resources */,
@@ -727,6 +754,7 @@
 				AEFD23AD165B7CDF00A120F3 /* news_shadow@2x.png in Resources */,
 				AE120414165CFE340086E7D1 /* chp-program.pdf in Resources */,
 				AE120416165CFE340086E7D1 /* chp-tuzuk.pdf in Resources */,
+				055C6E9918C9FD150065B6A8 /* AppIcon60x60.png in Resources */,
 				AE120418165CFEBA0086E7D1 /* chp-tarih.pdf in Resources */,
 				AEDD458E1664B06900B82572 /* bosh_buyuk.png in Resources */,
 				AEDD458F1664B06900B82572 /* bosh_buyuk@2x.png in Resources */,
@@ -736,6 +764,7 @@
 				05C1F1351664ABA400EEA727 /* app-icon-114.png in Resources */,
 				0516FFAD1664B59600F0F64C /* search_btn_highlighted.png in Resources */,
 				0516FFAE1664B59600F0F64C /* search_btn_highlighted@2x.png in Resources */,
+				055C6E9518C9FD150065B6A8 /* AppIcon29x29.png in Resources */,
 				055C6E8518C9B2050065B6A8 /* btn_webtv_kirmizi_@2x.png in Resources */,
 				0516FFAF1664B59600F0F64C /* search_btn.png in Resources */,
 				0516FFB01664B59600F0F64C /* search_btn@2x.png in Resources */,
@@ -761,6 +790,7 @@
 				0516FFDF1664B5BC00F0F64C /* btn_haber_kirmizi_.png in Resources */,
 				0516FFE01664B5BC00F0F64C /* btn_haber_kirmizi_@2x.png in Resources */,
 				0516FFE11664B5BC00F0F64C /* btn_kurumsal_beyaz_.png in Resources */,
+				055C6E9618C9FD150065B6A8 /* AppIcon29x29@2x.png in Resources */,
 				0516FFE21664B5BC00F0F64C /* btn_kurumsal_beyaz_@2x.png in Resources */,
 				0516FFE31664B5BC00F0F64C /* btn_kurumsal_kirmizi_.png in Resources */,
 				0516FFE41664B5BC00F0F64C /* btn_kurumsal_kirmizi_@2x.png in Resources */,
@@ -770,6 +800,7 @@
 				0516FFE81664B5BC00F0F64C /* btn_yonetim_kirmizi_@2x.png in Resources */,
 				0516FFE91664B5BC00F0F64C /* tab_bg.png in Resources */,
 				0516FFEA1664B5BC00F0F64C /* tab_bg@2x.png in Resources */,
+				055C6E9C18C9FD150065B6A8 /* AppIcon76x76@2x.png in Resources */,
 				0516FFEB1664B5BC00F0F64C /* tab_shadow.png in Resources */,
 				0516FFEC1664B5BC00F0F64C /* tab_shadow@2x.png in Resources */,
 				0516FFF31664B5C800F0F64C /* chp_logo.png in Resources */,
@@ -777,6 +808,7 @@
 				0516FFF51664B5C800F0F64C /* header_bg.png in Resources */,
 				0516FFF61664B5C800F0F64C /* header_bg@2x.png in Resources */,
 				0516FFF71664B5C800F0F64C /* header_shadow.png in Resources */,
+				055C6E9818C9FD150065B6A8 /* AppIcon40x40@2x.png in Resources */,
 				0516FFF81664B5C800F0F64C /* header_shadow@2x.png in Resources */,
 				0516FFFC1664B5DB00F0F64C /* main_bg-568h@2x.png in Resources */,
 				0516FFFD1664B5DB00F0F64C /* main_bg.png in Resources */,
