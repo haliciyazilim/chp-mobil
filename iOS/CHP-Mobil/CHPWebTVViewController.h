@@ -10,7 +10,7 @@
 
 #define WEB_TV_URL @"http://www.chp.org.tr/custom-scripts/webtv.html"
 
-@interface CHPWebTVViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>
+@interface CHPWebTVViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property UIWebView* webView;
 
