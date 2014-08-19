@@ -14,13 +14,13 @@ public class YoneticilerListeSorgu {
 	// webServisin yeri
 	final static String NAMESPACE="http://tempuri.org/";
 			 
-	// kullanÄ±lan metot
+	// kullanýlan metot
 	final static String METHOD_NAME="YoneticiListesiGetir";
 			 
 	// soap_action
 	final static String SOAP_ACTION="http://tempuri.org/YoneticiListesiGetir_V2";
 			 
-	// webservise ait url tanÄ±mlamasÄ±
+	// webservise ait url tanýmlamasý
 	final static String URL = "http://bilisim.chp.org.tr/MobilService.asmx";
 	
 	
@@ -29,32 +29,32 @@ public class YoneticilerListeSorgu {
 		// soap nesnesi
 		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 					
-		// requeste bilgi ekleniyor. V2'de gerek kalmadÄ±.
+		// requeste bilgi ekleniyor. V2'de gerek kalmadý.
 		//request.addProperty("unvanId", 1);
 					
 		//Web servisin versiyonunu bildiriyoruz.
 		SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 					
-		//dot.net ile hazÄ±rlandÄ±ÄŸÄ± iÃ§in
+		//dot.net ile hazýrlandýðý için
 		soapEnvelope.dotNet = true;
 					
 		//requesti zarfa koyuoyoruz.
 		soapEnvelope.setOutputSoapObject(request);
 					
-		//transfer deÄŸeri oluÅŸturuyoruz
+		//transfer deðeri oluþturuyoruz
 		HttpTransportSE aht = new HttpTransportSE(URL);
 		aht.debug=true;
 					
 		try {
-			System.out.println("try iÃ§indeiym.");
+			System.out.println("try içindeiym.");
 			
-			// Ve son olarak istediÄŸimizi gÃ¶nderiyoruz.
+			// Ve son olarak istediðimizi gönderiyoruz.
 			aht.call(SOAP_ACTION, soapEnvelope);
 			aht.setXmlVersionTag("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 			aht.debug=true;
 			
-			// Cevap olarak basit bir veri tipi beklediÄŸimiz iÃ§in,
-			// cevabÄ± SoapPrimitive nesnesi olarak alÄ±yoruz.
+			// Cevap olarak basit bir veri tipi beklediðimiz için,
+			// cevabý SoapPrimitive nesnesi olarak alýyoruz.
 			SoapPrimitive sonucSoap = (SoapPrimitive) soapEnvelope.getResponse();
 			
 			
@@ -62,7 +62,7 @@ public class YoneticilerListeSorgu {
 			sonuc=sonucSoap.toString();
 					
 				
-//			System.out.println("YÃ¶neticiler sorgu Gelen Veri: ");
+//			System.out.println("Yöneticiler sorgu Gelen Veri: ");
 //			System.out.println(sonuc);
 			
 					

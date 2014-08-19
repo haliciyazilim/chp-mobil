@@ -93,7 +93,7 @@ public class Haberler extends Activity implements ListenerManager.Listener{
 					SimpleDateFormat df=new SimpleDateFormat("dd MM yyyy - HH:MM:ss");
 					String formatliZaman=df.format(zaman.getTime());
 					
-					guncellemeZamani="Son g�ncelleme: "+formatliZaman;
+					guncellemeZamani="Son güncelleme: "+formatliZaman;
 					
 					TextView txtGuncelleme=(TextView) findViewById(R.id.tvUpdateTime);
 					txtGuncelleme.setText(guncellemeZamani);

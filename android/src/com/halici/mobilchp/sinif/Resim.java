@@ -48,7 +48,7 @@ public class Resim {
 			return findImage(url).image;
 		}
 		else
-			System.out.println("Resim bulunamadi.: "+stringUrl);
+			System.out.println("Resim bulunamadı.: "+stringUrl);
 			
 		
 		URLConnection baglanti=url.openConnection();

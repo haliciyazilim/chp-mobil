@@ -1,9 +1,7 @@
 package com.halici.mobilchp.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 
@@ -21,21 +19,17 @@ public class Splash extends Activity {
                     sleep(1500);
                 } catch (Exception e) {
                 }
-              
-                new Thread() {
-                    public void run() {
-                   
-                   Intent anaSayfa=new Intent(Splash.this, Main.class);
-                   startActivity(anaSayfa);
-                   
-                    }
-                }.start();
+
+                Intent anaSayfa=new Intent(Splash.this, Main.class);
+                startActivity(anaSayfa);
             }
-        }.start();  
-	    
-	   
+        }.start();
 	}
 
-	
-	
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent anaSayfa=new Intent(Splash.this, Main.class);
+        startActivity(anaSayfa);
+    }
 }

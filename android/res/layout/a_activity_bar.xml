@@ -29,6 +29,14 @@
 	    android:drawableTop="@drawable/yonetim"
 	    android:paddingTop="5dp"
 	    android:text="Yönetim" />
-		
+
+    <Button
+        android:id="@+id/btnWebTv"
+        style="@style/ActivityButtonStyle"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/webtv"
+        android:paddingTop="5dp"
+        android:text="Web Tv"
+        />
 </LinearLayout>
 

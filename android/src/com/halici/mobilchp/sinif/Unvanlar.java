@@ -9,7 +9,12 @@ import org.json.JSONObject;
 
 public class Unvanlar {
 	private  static ArrayList<String> unvanlar;
-
+	/*
+	private static ArrayList<String> unvanlar=new ArrayList<String>(Arrays.asList(
+			"Genel Ba�kan", "MYK �yeleri", "PM �yeleri", 
+			"YDK �yeleri", "Milletvekilleri", "�l Ba�kanlar�", "�l�e Ba�kanlar�",
+			"B�y�k�ehir Belediye Ba�kanlar�", "�l Belediye Ba�kanlar�", "�l�e Belediye Ba�kanlar�"));
+*/
 	public static void setUnvanlar(String gelenVeri){
 		System.out.println("Unvanlar Geliyor ");
 		ArrayList<String> gelenUnvanlar=new ArrayList<String>();

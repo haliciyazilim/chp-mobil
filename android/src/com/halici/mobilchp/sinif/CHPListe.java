@@ -104,7 +104,7 @@ public class CHPListe extends CHPObject{
 			for(int i=0; i<array.length();i++){
 				if(array.getJSONObject(i).getString("Type").equals("list")){
 					liste.addObject(CHPListe.fromJSON(array.getJSONObject(i)));
-					//System.out.println("CHPListe.."+array.getJSONObject(i));
+					//System.out.println("CHPL�ste.."+array.getJSONObject(i));
 					
 				}
 				

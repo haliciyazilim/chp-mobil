@@ -218,7 +218,7 @@ public static ArrayList<KisiBilgileri> veriAl(String gelenVeri, String tur){
 		System.out.println("Kisi Bilgileri veri al");
 		
 		if(tur.equals("liste")){			
-			System.out.println("Kisi Bilgileri veri al L�STE");
+			System.out.println("Kisi Bilgileri veri al LİSTE");
 			
 			JSONObject gelenVeriJSON=new JSONObject(gelenVeri);
 			KisiListesi.setChpAgac(CHPListe.fromJSON(gelenVeriJSON));

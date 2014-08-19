@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/android/bin/dexedLibs/android-support-v4-3fd7cee425fbcaaaeccfc4b938c790f3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/android/bin/dexedLibs/ksoap2-android-assembly-2.5.7-jar-with-dependencies-4e4791941dd558300742c04a9060a088.jar!/" />
+      <root url="jar://$PROJECT_DIR$/android/bin/dexedLibs/android-support-v4-a936b712347c751f8550adc138cccf95.jar!/" />
+      <root url="jar://$PROJECT_DIR$/android/bin/dexedLibs/android-support-v4-260a84b97a4469c0133178cb94b7b9da.jar!/" />
+      <root url="jar://$PROJECT_DIR$/android/bin/dexedLibs/ksoap2-android-assembly-2.5.7-jar-with-dependencies-01338a20d2dd3f2085558ab0cd7535e8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/android/bin/dexedLibs/ksoap2-android-assembly-2.5.7-jar-with-dependencies-63db540c572801163fa8bd2d61dccc47.jar!/" />
+      <root url="jar://$PROJECT_DIR$/android/bin/dexedLibs/android-support-v4-b68e77a802d6684e566c1188f61c9232.jar!/" />
+      <root url="jar://$PROJECT_DIR$/android/bin/dexedLibs/ksoap2-android-assembly-2.5.7-jar-with-dependencies-867cbda742bfaaeff982d614e3d5a633.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

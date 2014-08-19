@@ -1,27 +1,5 @@
 package com.halici.mobilchp.activity;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import com.halici.mobilchp.activity.Haberler.Servis;
-import com.halici.mobilchp.sinif.ActivityBar;
-import com.halici.mobilchp.sinif.CHPListAdapter;
-import com.halici.mobilchp.sinif.CHPListe;
-import com.halici.mobilchp.sinif.CHPObject;
-import com.halici.mobilchp.sinif.CHPPerson;
-import com.halici.mobilchp.sinif.KisiBilgileri;
-import com.halici.mobilchp.sinif.KisiListesi;
-import com.halici.mobilchp.sinif.ListenerManager;
-import com.halici.mobilchp.sinif.Unvanlar;
-import com.halici.mobilchp.sinif.YoneticilerDetaySorgu;
-import com.halici.mobilchp.sinif.YoneticilerListeSorgu;
-
-
-
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -31,31 +9,35 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
-import android.widget.AnalogClock;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.halici.mobilchp.sinif.ActivityBar;
+import com.halici.mobilchp.sinif.CHPListAdapter;
+import com.halici.mobilchp.sinif.CHPListe;
+import com.halici.mobilchp.sinif.CHPObject;
+import com.halici.mobilchp.sinif.CHPPerson;
+import com.halici.mobilchp.sinif.KisiBilgileri;
+import com.halici.mobilchp.sinif.KisiListesi;
+import com.halici.mobilchp.sinif.ListenerManager;
+import com.halici.mobilchp.sinif.YoneticilerDetaySorgu;
+import com.halici.mobilchp.sinif.YoneticilerListeSorgu;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Yoneticiler extends Activity implements ListenerManager.Listener{
 	
@@ -125,20 +107,20 @@ public class Yoneticiler extends Activity implements ListenerManager.Listener{
 		
 		 
 		 
-//
-//		if(veriAlindi==false){
-//			if(baglantiKuntrolu()==true){
-//				System.out.println(" Yonetici.java istek: "+istek);
-//
-//			    servis=new Servis();
-//				servis.execute(istek);
-//
-//			 }
-//
-//		 }
-//		else{
-//			kategoriListesiniDoldur("liste",KisiListesi.getChpAgac().getContent());
-//		}
+		
+		if(veriAlindi==false){
+			if(baglantiKuntrolu()==true){
+				System.out.println(" Yonetici.java istek: "+istek);
+				if(servis!=null)
+					servis=new Servis();
+				servis.execute(istek);
+		    	
+			 }
+			 
+		 }
+		else{
+			kategoriListesiniDoldur("liste",KisiListesi.getChpAgac().getContent());
+		}
 		
 		//kategoriListesiniDoldur();
 		
@@ -209,7 +191,7 @@ public class Yoneticiler extends Activity implements ListenerManager.Listener{
 					
 						final ArrayList<String> sonucListesi=new ArrayList<String>();
 						final ArrayList<YoneticiKayit> kayitlar= new ArrayList<YoneticiKayit>();
-						String[] aranan=s.toString().toLowerCase().split(" ");
+						String[] aranan=s.toString().split(" ");
 						
 						System.out.println("Tüm liste: "+aramaListe.size());
 						
@@ -293,9 +275,8 @@ public class Yoneticiler extends Activity implements ListenerManager.Listener{
 		//							
 		//							startActivity(i);
 								
-
-								servisDetay=new ServisDetay();
-                                System.out.println("istenen yönetici id: "+istenenYoneticiId);
+								if(servisDetay!=null)
+									servisDetay=new ServisDetay();
 								servisDetay.execute(istenenYoneticiId);
 								
 							
@@ -344,7 +325,9 @@ public class Yoneticiler extends Activity implements ListenerManager.Listener{
 		
 		if(baglantiKuntrolu()==true){
 			if(veriAlindi==false){
-
+				if(servis!=null){
+					servis=null;
+				}
 				servis=new Servis();
 				servis.execute();
 			}
@@ -504,75 +487,19 @@ public class Yoneticiler extends Activity implements ListenerManager.Listener{
 		
 		@Override
 		protected String doInBackground(Integer... params) {
-			//Sorgulama sorgu=new Sorgulama(params[0]);
-			//String sonuc=sorgu.baglan();
 			String sonuc=null;
 			
-			//int n=params[0]+1;
-			//System.out.println("n: "+n);
-			//System.out.println("Servis param: "+params[0]);
-			
-			
-			//System.out.println("Boyut: "+KisiListesi.getYoneticiBilgileri().get(unvanlar.get(n-1)).size());
-			
-			//if(KisiListesi.getYoneticiListesi().get(unvanlar.get(n-1))==null || KisiListesi.getYoneticiListesi().get(unvanlar.get(n-1)).size()==0){
-			//System.out.println("İfe girdim");
-			//System.out.println("Boyut: "+KisiListesi.getYoneticiBilgileri().get(unvanlar.get(n-1)).size());
-			
-				// Y�neticiler Listesi geliyor
-				
-				if(baglantiKuntrolu()==true){
-				
-					// Sorgu Al�n�yor. Listeler geliyor.
-					YoneticilerListeSorgu sorgu=new YoneticilerListeSorgu();
-					sonuc=sorgu.baglan();
-					
-//					ArrayList<KisiBilgileri> kisiler=KisiBilgileri.veriAl(sonuc,"liste");
-					KisiBilgileri.veriAl(sonuc,"liste");
-					//System.out.println("Ki�iler Array");
-					//System.out.println(kisiler);
-					
-					/*
-					HashMap<Integer, String> idIsim=new HashMap<Integer, String>();
-					for(int i=0; i<kisiler.size();i++){
-						KisiListesi.ekle(kisiler.get(i));
-						
-						idIsim.put(kisiler.get(i).getId(),kisiler.get(i).getIsim());
-						KisiListesi.aramaListesineEkle(kisiler.get(i).getIsim());
-						
-					}
-					*/
-					
-					// gelen veriyi dosyaya yazd�r�yoruz.
-					/*
-					try{
-					File file=new File(Environment.getExternalStorageDirectory().getPath(),"cevap.txt");
-					file.createNewFile();
-					
-					FileOutputStream fOut=new FileOutputStream(file);
-					OutputStreamWriter writter= new OutputStreamWriter(fOut);
-					writter.append(sonuc.toString());
-					writter.close();
-					fOut.close();
-					System.out.println("Yad�rma i�lemi tamam@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-				    } catch (Exception e) {
-				    	System.out.println("Yad�rma i�lemi Hata@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"+e.toString());
-				     }
-				     */
-				}
-			
-				//System.out.println("Yoneticiler sayfas� Ki�i bilgileri: "+KisiListesi.getYoneticiBilgileri().get(unvanlar.get(1)).get(0).getIsim());
-				//System.out.println("Kisi Listesi Unvan: "+KisiListesi.getBilgiler().get(0).getIsim()+", "+KisiListesi.getBilgiler().get(0).getId());
-				//System.out.println("Kisi Listesi Unvan: "+KisiListesi.getBilgiler().get(1).getIsim()+", "+KisiListesi.getBilgiler().get(1).getId());
-				//System.out.println("Listeler: "+KisiListesi.getYoneticiBilgileri().get(unvanlar.get(1)).size());
-				
-				// Yönetici Detay
-	//			YoneticilerDetaySorgu sorgu=new YoneticilerDetaySorgu(2);
-	//			String sonuc=sorgu.baglan();
-				
-				//System.out.println("Sonuclar sonuc: "+sonuc);
-			//}
-			return sonuc;
+            // Y�neticiler Listesi geliyor
+            if(baglantiKuntrolu()==true){
+
+                // Sorgu Al�n�yor. Listeler geliyor.
+                YoneticilerListeSorgu sorgu=new YoneticilerListeSorgu();
+                sonuc=sorgu.baglan();
+
+                KisiBilgileri.veriAl(sonuc,"liste");
+            }
+
+        return sonuc;
 		}
 
 		@Override
@@ -635,10 +562,10 @@ public class Yoneticiler extends Activity implements ListenerManager.Listener{
 			String sonuc=null;
 			
 			int n=params[0];
-			System.out.println("Detayı istenen: "+n);
+			//System.out.println("Detayı istenen: "+n);
 			
 			int index=alinanDetay.indexOf(istenenYoneticiId);
-			System.out.println("index: "+index);
+			//System.out.println("index: "+index);
 			if(index==-1){			
 				// Yönetici Detay
 				

@@ -43,7 +43,7 @@ public class Baglanti extends BroadcastReceiver
 		    if(available==true){
 		    	new Servis().execute();
 		    	
-		    	System.out.println("Bağlantı bilgileri yükleniyor.");
+		    	System.out.println("Bağlantı bilgileri yüklüyor.");
 		    }
     	}
     	
