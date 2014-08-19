@@ -26,8 +26,8 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 }
-- (void)viewWillAppear:(BOOL)animated {
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//}
 
 - (void)didReceiveMemoryWarning
 {
