@@ -109,9 +109,6 @@
 		416A7DE61653E56E0005E9E3 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DE51653E56E0005E9E3 /* APIManager.m */; };
 		41BFE50B165533FF00EB2EA0 /* CHPNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BFE50A165533FF00EB2EA0 /* CHPNewsItem.m */; };
 		41BFE53E16568BB900EB2EA0 /* CHPContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BFE53D16568BB900EB2EA0 /* CHPContactManager.m */; };
-		AE120414165CFE340086E7D1 /* chp-program.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AE120411165CFE340086E7D1 /* chp-program.pdf */; };
-		AE120416165CFE340086E7D1 /* chp-tuzuk.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AE120413165CFE340086E7D1 /* chp-tuzuk.pdf */; };
-		AE120418165CFEBA0086E7D1 /* chp-tarih.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AE120417165CFEBA0086E7D1 /* chp-tarih.pdf */; };
 		AE257C69165672A2007EC17F /* program_btn_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = AE257C5D165672A2007EC17F /* program_btn_selected.png */; };
 		AE257C6A165672A2007EC17F /* program_btn_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE257C5E165672A2007EC17F /* program_btn_selected@2x.png */; };
 		AE257C6B165672A2007EC17F /* program_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = AE257C5F165672A2007EC17F /* program_btn.png */; };
@@ -273,9 +270,6 @@
 		41BFE50A165533FF00EB2EA0 /* CHPNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPNewsItem.m; sourceTree = "<group>"; };
 		41BFE53C16568BB900EB2EA0 /* CHPContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPContactManager.h; sourceTree = "<group>"; };
 		41BFE53D16568BB900EB2EA0 /* CHPContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPContactManager.m; sourceTree = "<group>"; };
-		AE120411165CFE340086E7D1 /* chp-program.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "chp-program.pdf"; path = "biz_kimiz/chp-program.pdf"; sourceTree = "<group>"; };
-		AE120413165CFE340086E7D1 /* chp-tuzuk.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "chp-tuzuk.pdf"; path = "biz_kimiz/chp-tuzuk.pdf"; sourceTree = "<group>"; };
-		AE120417165CFEBA0086E7D1 /* chp-tarih.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "chp-tarih.pdf"; path = "biz_kimiz/chp-tarih.pdf"; sourceTree = "<group>"; };
 		AE257C5D165672A2007EC17F /* program_btn_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = program_btn_selected.png; path = biz_kimiz_images/program_btn_selected.png; sourceTree = "<group>"; };
 		AE257C5E165672A2007EC17F /* program_btn_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "program_btn_selected@2x.png"; path = "biz_kimiz_images/program_btn_selected@2x.png"; sourceTree = "<group>"; };
 		AE257C5F165672A2007EC17F /* program_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = program_btn.png; path = biz_kimiz_images/program_btn.png; sourceTree = "<group>"; };
@@ -616,9 +610,6 @@
 		41BFE507165533D900EB2EA0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AE120411165CFE340086E7D1 /* chp-program.pdf */,
-				AE120417165CFEBA0086E7D1 /* chp-tarih.pdf */,
-				AE120413165CFE340086E7D1 /* chp-tuzuk.pdf */,
 				41BFE509165533FF00EB2EA0 /* CHPNewsItem.h */,
 				41BFE50A165533FF00EB2EA0 /* CHPNewsItem.m */,
 				0578DB6C165668F400131BD8 /* CHPContact.h */,
@@ -752,10 +743,7 @@
 				AE257C74165672A2007EC17F /* tuzuk_btn@2x.png in Resources */,
 				AEFD23AC165B7CDF00A120F3 /* news_shadow.png in Resources */,
 				AEFD23AD165B7CDF00A120F3 /* news_shadow@2x.png in Resources */,
-				AE120414165CFE340086E7D1 /* chp-program.pdf in Resources */,
-				AE120416165CFE340086E7D1 /* chp-tuzuk.pdf in Resources */,
 				055C6E9918C9FD150065B6A8 /* AppIcon60x60.png in Resources */,
-				AE120418165CFEBA0086E7D1 /* chp-tarih.pdf in Resources */,
 				AEDD458E1664B06900B82572 /* bosh_buyuk.png in Resources */,
 				AEDD458F1664B06900B82572 /* bosh_buyuk@2x.png in Resources */,
 				AEDD45901664B06900B82572 /* bosh_kucuk.png in Resources */,
