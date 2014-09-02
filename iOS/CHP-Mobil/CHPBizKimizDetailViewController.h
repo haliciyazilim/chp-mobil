@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CHPBizKimizDetailViewController : UIViewController
+@interface CHPBizKimizDetailViewController : UIViewController <UIWebViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;

@@ -13,9 +13,15 @@
 @end
 
 @implementation CHPBizKimizDetailViewController
-
+{
+    UIActivityIndicatorView* activity;
+}
 NSString* contentType;
 
+- (CGRect) webViewFrame
+{
+    return self.webView.frame;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -28,39 +34,54 @@ NSString* contentType;
 
 -(void) setContent:(NSString*) i
 {
-//    NSLog(@"setContent is called with string: %@",i);
     contentType = i;
-    
 }
 
 -(void) configureView
 {
-//    APIManager* api = [APIManager sharedInstance];
-//    
-//    [api getAboutInfoForType:contentType
-//                onCompletion:^(NSString *result) {
-//                    self.textView.text = result;
-//                } onError:^(NSError *error) {
-//            
-//                }];
     [[self webView] setScalesPageToFit:YES];
-    NSString* fileName;
+//    NSString* fileName;
+    NSString* fileUrl;
     if([contentType compare:@"Tarihçe"] == 0){
-        fileName = @"chp-tarih";
+//        fileName = @"chp-tarih";
+        fileUrl = @"http://www.chp.org.tr/wp-content/uploads/chp-tarihi.pdf";
     }
     else if([contentType compare:@"Program"] == 0){
-        fileName = @"chp-program";
+//        fileName = @"chp-program";
+        fileUrl = @"http://www.chp.org.tr/wp-content/uploads/chpprogram.pdf";
     }
     else if([contentType compare:@"Tüzük"]==0){
-        fileName = @"chp-tuzuk";
+//        fileName = @"chp-tuzuk";
+        fileUrl = @"http://www.chp.org.tr/wp-content/uploads/2014/08/tuzuk-son-baski.pdf";
     }
-    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:fileName ofType:@"pdf" inDirectory:nil]];
+    NSURL* url = [NSURL URLWithString:fileUrl];
+//    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:fileName ofType:@"pdf" inDirectory:nil]];
     [[self webView] loadRequest:[NSURLRequest requestWithURL:url]];
 }
-- (void)viewDidLoad
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [activity stopAnimating];
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    if (activity == nil) {
+        activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        CGRect webViewFrame = [self webViewFrame];
+        [activity setFrame:CGRectMake(0.0,0.0,webViewFrame.size.width,webViewFrame.size.height)];
+        [self.webView addSubview:activity];
+        [activity setHidesWhenStopped:YES];
+    }
+    [activity startAnimating];
+}
+- (void) webViewDidFinishLoad:(UIWebView *)webView
+{
+    [activity stopAnimating];
+}
+- (void) viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.webView.delegate = self;
     [self configureView];
     
 }
