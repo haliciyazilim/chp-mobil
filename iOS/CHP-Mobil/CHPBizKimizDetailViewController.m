@@ -88,6 +88,7 @@ NSString* contentType;
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
 //    [[self navigationController] setNavigationBarHidden:NO animated:YES];
 //    [[self textView] setText:contentType];
 //    [self setTitle:contentType];
