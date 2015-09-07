@@ -33,12 +33,15 @@
     
     self.tuzukCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tuzuk_btn.png"]];
     self.tuzukCell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tuzuk_btn_selected.png"]];
+    self.tuzukCell.backgroundColor = [UIColor clearColor];
     
     self.tarihceCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tarihce_btn.png"]];
     self.tarihceCell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tarihce_btn_selected.png"]];
+    self.tarihceCell.backgroundColor = [UIColor clearColor];
     
     self.programCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"program_btn.png"]];
     self.programCell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"program_btn_selected.png"]];
+    self.programCell.backgroundColor = [UIColor clearColor];
 }
 
 -(void)viewWillAppear:(BOOL)animated
