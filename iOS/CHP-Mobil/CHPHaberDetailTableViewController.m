@@ -52,10 +52,23 @@
     }
 }
 
--(void)viewDidDisappear:(BOOL)animated{
-    [self removeFromParentViewController];
+//-(void)viewDidDisappear:(BOOL)animated{
+//    [self removeFromParentViewController];
+//}
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.tableView.alpha = 1.0;
+    }];
 }
-
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        self.tableView.alpha = 0.0;
+    }];
+    [super viewWillDisappear:animated];
+}
 -(void) configureUI
 {
     if(currentItem == nil)
@@ -71,7 +84,12 @@
                                           }];
     
 }
-
+- (void)tableView:(UITableView *)tableView
+  willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell setBackgroundColor:[UIColor clearColor]];
+}
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row == 3)
