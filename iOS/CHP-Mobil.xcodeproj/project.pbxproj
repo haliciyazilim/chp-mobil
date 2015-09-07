@@ -109,6 +109,7 @@
 		416A7DE61653E56E0005E9E3 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A7DE51653E56E0005E9E3 /* APIManager.m */; };
 		41BFE50B165533FF00EB2EA0 /* CHPNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BFE50A165533FF00EB2EA0 /* CHPNewsItem.m */; };
 		41BFE53E16568BB900EB2EA0 /* CHPContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BFE53D16568BB900EB2EA0 /* CHPContactManager.m */; };
+		84CF82971B9984C700104FF9 /* CHPHaberCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CF82961B9984C700104FF9 /* CHPHaberCollectionViewCell.m */; };
 		AE120414165CFE340086E7D1 /* chp-program.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AE120411165CFE340086E7D1 /* chp-program.pdf */; };
 		AE120416165CFE340086E7D1 /* chp-tuzuk.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AE120413165CFE340086E7D1 /* chp-tuzuk.pdf */; };
 		AE120418165CFEBA0086E7D1 /* chp-tarih.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AE120417165CFEBA0086E7D1 /* chp-tarih.pdf */; };
@@ -273,6 +274,8 @@
 		41BFE50A165533FF00EB2EA0 /* CHPNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPNewsItem.m; sourceTree = "<group>"; };
 		41BFE53C16568BB900EB2EA0 /* CHPContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPContactManager.h; sourceTree = "<group>"; };
 		41BFE53D16568BB900EB2EA0 /* CHPContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPContactManager.m; sourceTree = "<group>"; };
+		84CF82951B9984C700104FF9 /* CHPHaberCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHPHaberCollectionViewCell.h; sourceTree = "<group>"; };
+		84CF82961B9984C700104FF9 /* CHPHaberCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHPHaberCollectionViewCell.m; sourceTree = "<group>"; };
 		AE120411165CFE340086E7D1 /* chp-program.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "chp-program.pdf"; path = "biz_kimiz/chp-program.pdf"; sourceTree = "<group>"; };
 		AE120413165CFE340086E7D1 /* chp-tuzuk.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "chp-tuzuk.pdf"; path = "biz_kimiz/chp-tuzuk.pdf"; sourceTree = "<group>"; };
 		AE120417165CFEBA0086E7D1 /* chp-tarih.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "chp-tarih.pdf"; path = "biz_kimiz/chp-tarih.pdf"; sourceTree = "<group>"; };
@@ -472,6 +475,8 @@
 				05B1FE2B1653EADE0079FE20 /* CHPHaberCollectionViewController.m */,
 				AEBA5342165A5AF80056E596 /* CHPHaberDetailTableViewController.h */,
 				AEBA5343165A5AF80056E596 /* CHPHaberDetailTableViewController.m */,
+				84CF82951B9984C700104FF9 /* CHPHaberCollectionViewCell.h */,
+				84CF82961B9984C700104FF9 /* CHPHaberCollectionViewCell.m */,
 			);
 			name = HaberTabControllers;
 			sourceTree = "<group>";
@@ -845,6 +850,7 @@
 				05B1FE321653EF040079FE20 /* CHPHaberNavigationController.m in Sources */,
 				05B1FE351653EF810079FE20 /* CHPYoneticilerNavigationController.m in Sources */,
 				05B1FE381653F1490079FE20 /* CHPBizKimizNavigationController.m in Sources */,
+				84CF82971B9984C700104FF9 /* CHPHaberCollectionViewCell.m in Sources */,
 				055C6E8C18C9B5130065B6A8 /* CHPWebTVViewController.m in Sources */,
 				AE95D7ED1654D8DA000AE76A /* CHPBizKimizDetailViewController.m in Sources */,
 				41BFE50B165533FF00EB2EA0 /* CHPNewsItem.m in Sources */,
@@ -958,7 +964,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos6.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -978,7 +984,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos6.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
