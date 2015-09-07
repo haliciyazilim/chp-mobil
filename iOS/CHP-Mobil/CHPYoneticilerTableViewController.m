@@ -71,6 +71,10 @@
     self.isSearchModeEnabled = NO;
     self.searchFieldView.alpha = 0.0;
     
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
 }
 -(void)getListFromServer{
     
@@ -145,6 +149,9 @@
     else{
         [self.searchTable deselectRowAtIndexPath:self.searchTable.indexPathForSelectedRow animated:YES];
     }
+    [UIView animateWithDuration:0.2 animations:^{
+        self.tableView.alpha = 1.0;
+    }];
 }
 
 - (void)handleNetworkChange:(NSNotification *)notice{
@@ -162,6 +169,9 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.tableView.alpha = 0.0;
+    }];
     [super viewWillDisappear:animated];
 }
 
@@ -176,18 +186,20 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     if(!self.isSearchModeEnabled){
         CGFloat heightOfSearchView = ((UIView *)[[self.view subviews] objectAtIndex:[[self.view subviews] count]-3]).frame.size.height;
+        CGFloat yOffset = self.navigationController.navigationBar.frame.size.height + heightOfSearchView;
+        
         self.searchTable = [[UITableView alloc] initWithFrame:
                             CGRectMake(
                                        self.tableView.frame.origin.x,
-                                       self.tableView.frame.origin.y+heightOfSearchView,
+                                       self.tableView.frame.origin.y-20.0,
                                        self.tableView.frame.size.width,
-                                       self.tableView.frame.size.height-heightOfSearchView
+                                       self.tableView.frame.size.height-yOffset
                                        )
                             style:UITableViewStylePlain];
         self.dummyView = [[UIView alloc] initWithFrame:
                              CGRectMake(
                                         self.tableView.frame.origin.x,
-                                        self.tableView.frame.origin.y+heightOfSearchView,
+                                        self.tableView.frame.origin.y-20.0,
                                         self.tableView.contentSize.width,
                                         self.tableView.contentSize.height
                                         )];
@@ -246,7 +258,12 @@
 {
     return [[self.rootList content] count];
 }
-
+- (void)tableView:(UITableView *)tableView
+  willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell setBackgroundColor:[UIColor clearColor]];
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"UnvanCell";
