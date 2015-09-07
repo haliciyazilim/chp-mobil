@@ -32,9 +32,9 @@
 //    }
     
 }
--(void)viewWillAppear:(BOOL)animated {
-    
-}
+//-(void)viewWillAppear:(BOOL)animated {
+//    
+//}
 
 - (void)didReceiveMemoryWarning
 {
