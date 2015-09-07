@@ -25,10 +25,24 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
 }
-//- (void)viewWillAppear:(BOOL)animated {
-//}
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.tableView.alpha = 1.0;
+    }];
+}
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        self.tableView.alpha = 0.0;
+    }];
+    [super viewWillDisappear:animated];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -80,8 +94,14 @@
     }
     else if(indexPath.section == 1){
         NSString *phoneString = [[self.chpContact phones] objectAtIndex:indexPath.row];
-        NSString *str = [NSString stringWithFormat:@"%@ (%@) %@ %@ %@", [phoneString substringWithRange:NSMakeRange(0, 3)], [phoneString substringWithRange:NSMakeRange(3,3)], [phoneString substringWithRange:NSMakeRange(6,3)], [phoneString substringWithRange:NSMakeRange(9,2)], [phoneString substringWithRange:NSMakeRange(11,2)]];
-        
+        NSString* str;
+        if (phoneString.length < 11) {
+            str = @" - ";
+        } else {
+            str = [NSString stringWithFormat:@"%@ (%@) %@ %@ %@", [phoneString substringWithRange:NSMakeRange(0, 3)], [phoneString substringWithRange:NSMakeRange(3,3)], [phoneString substringWithRange:NSMakeRange(6,3)], [phoneString substringWithRange:NSMakeRange(9,2)], [phoneString substringWithRange:NSMakeRange(11,2)]];
+            
+            
+        }
         [(UILabel *) [cell viewWithTag:2] setText:str];
         [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_phone.png"]];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
@@ -93,7 +113,12 @@
     }
     else if(indexPath.section == 2){
         NSString *phoneString = [[self.chpContact cellPhones] objectAtIndex:indexPath.row];
-        NSString *str = [NSString stringWithFormat:@"%@ (%@) %@ %@ %@", [phoneString substringWithRange:NSMakeRange(0, 3)], [phoneString substringWithRange:NSMakeRange(3,3)], [phoneString substringWithRange:NSMakeRange(6,3)], [phoneString substringWithRange:NSMakeRange(9,2)], [phoneString substringWithRange:NSMakeRange(11,2)]];
+        NSString* str;
+        if (phoneString.length < 11) {
+            str = @" - ";
+        } else {
+            str = [NSString stringWithFormat:@"%@ (%@) %@ %@ %@", [phoneString substringWithRange:NSMakeRange(0, 3)], [phoneString substringWithRange:NSMakeRange(3,3)], [phoneString substringWithRange:NSMakeRange(6,3)], [phoneString substringWithRange:NSMakeRange(9,2)], [phoneString substringWithRange:NSMakeRange(11,2)]];
+        }
         
         [(UILabel *) [cell viewWithTag:2] setText:str];
         [(UIImageView *) [cell viewWithTag:3] setImage:[UIImage imageNamed:@"icon_cellphone.png"]];
