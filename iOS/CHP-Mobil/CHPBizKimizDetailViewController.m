@@ -44,15 +44,15 @@ NSString* contentType;
     NSString* fileUrl;
     if([contentType compare:@"Tarihçe"] == 0){
 //        fileName = @"chp-tarih";
-        fileUrl = @"http://www.chp.org.tr/wp-content/uploads/chp-tarihi.pdf";
+        fileUrl = @"http://www.chp.org.tr/Haberler/0/chp_tarihi-54.aspx";
     }
     else if([contentType compare:@"Program"] == 0){
 //        fileName = @"chp-program";
-        fileUrl = @"http://www.chp.org.tr/wp-content/uploads/chpprogram.pdf";
+        fileUrl = @"http://www.chp.org.tr/Assets/dosya/chp-program-2015-01-12.pdf";
     }
     else if([contentType compare:@"Tüzük"]==0){
 //        fileName = @"chp-tuzuk";
-        fileUrl = @"http://www.chp.org.tr/wp-content/uploads/2014/08/tuzuk-son-baski.pdf";
+        fileUrl = @"http://www.chp.org.tr/Assets/dosya/chp-tuzugu-2015-01-12.pdf";
     }
     NSURL* url = [NSURL URLWithString:fileUrl];
 //    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:fileName ofType:@"pdf" inDirectory:nil]];
