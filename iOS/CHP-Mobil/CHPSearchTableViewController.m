@@ -61,10 +61,9 @@
     cell.detailTextLabel.font = [UIFont fontWithName:@"Futura-Medium" size:12.0];
     [[cell textLabel] setText:[[self.searchResult objectAtIndex:indexPath.row] name]];
     cell.textLabel.textColor  = [UIColor whiteColor];
-//    NSArray *positions = [[self.searchResult objectAtIndex:indexPath.row] getPositionStringsArray];
-//    NSString *positionsOfCurrentContact = [[positions valueForKey:@"description"] componentsJoinedByString:@", "];
     if([cell detailTextLabel]){
         [[cell detailTextLabel] setText:[[self.searchResult objectAtIndex:indexPath.row] getAllPositionsString]];
+        cell.detailTextLabel.textColor = [UIColor whiteColor];
     }
     
     UIView *selectedView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
