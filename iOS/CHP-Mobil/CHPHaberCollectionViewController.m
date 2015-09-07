@@ -7,14 +7,11 @@
 //
 
 #import "CHPHaberCollectionViewController.h"
-
 #import "CHPNewsItem.h"
-
 #import "APIManager.h"
-
 #import "CHPHaberFlowLayout.h"
-
 #import "CHPHaberDetailTableViewController.h"
+#import "CHPHaberCollectionViewCell.h"
 
 @interface CHPHaberCollectionViewController () 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -50,6 +47,7 @@
     
     [self refreshNews];
     
+    
     // Configure layout
     CHPHaberFlowLayout *flowLayout = [[CHPHaberFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(158, 180)];
@@ -58,14 +56,16 @@
     
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [self.collectionView setCollectionViewLayout:flowLayout];
+    [self.collectionView registerClass:[CHPHaberCollectionViewCell class] forCellWithReuseIdentifier:@"CHPHaberCell"];
 
     //refresh control
     self.refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, -44*0, 320, 44)];
-    [self.collectionView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self action:@selector(refreshNews) forControlEvents:UIControlEventValueChanged];
     
-    [self.refreshControl setTintColor:[UIColor darkGrayColor]];
-    [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Son güncelleme: "]];
+    [self.refreshControl setTintColor:[UIColor whiteColor]];
+//    [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Son güncelleme: "]];
+    [self.collectionView addSubview:self.refreshControl];
+    self.collectionView.alwaysBounceVertical = YES;
     
     //reachibility observer
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -80,7 +80,20 @@
     
     
 }
-
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.collectionView.alpha = 1.0;
+    }];
+}
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        self.collectionView.alpha = 0.0;
+    }];
+    [super viewWillDisappear:animated];
+}
 - (void) startTimer {
     [NSTimer scheduledTimerWithTimeInterval:1800
                                      target:self
@@ -109,45 +122,47 @@
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"NewsItemCell";
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    static NSString *cellIdentifier = @"CHPHaberCell";
+    CHPHaberCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
     CHPNewsItem *item = (CHPNewsItem*)self.newsItemArray[indexPath.row];
     if(item != nil)
     {
         //set title
-        UILabel* titleLabel = (UILabel*)[cell viewWithTag:1];
-        [titleLabel setText:item.title];
-        
+        cell.titleLabel.text = item.title;
+        //set font
+        if(indexPath.row == 0){
+            cell.titleLabel.font = [cell.titleLabel.font fontWithSize:16];
+        }
+        else{
+            cell.titleLabel.font = [cell.titleLabel.font fontWithSize:12];
+        }
         
         
         //set image
-        if(indexPath.row > 0)
-            [(UIImageView *)[cell viewWithTag:2] setImage:[UIImage imageNamed:@"bosh_kucuk.png"]];
-        else
-            [(UIImageView *)[cell viewWithTag:2] setImage:[UIImage imageNamed:@"bosh_buyuk.png"]];
+        if(indexPath.row > 0) {
+            cell.imageView.image = [UIImage imageNamed:@"bosh_kucuk.png"];
+        }
+        else{
+            cell.imageView.image = [UIImage imageNamed:@"bosh_buyuk.png"];
+        }
         
         [[APIManager sharedInstance] getImageWithURLString:item.imageAddress
                                               onCompletion:^(UIImage *resultImage) {
-                                                  [(UIImageView *)[cell viewWithTag:2] setImage:resultImage];
-//                                                  NSLog(@"image is loaded for row %d",indexPath.row);
+                                                  cell.imageView.image = resultImage;
                                               } onError:^(NSError *error) {
                                                   
                                               }];
-
-        [(UIImageView *)[cell viewWithTag:3] setImage:[UIImage imageNamed:@"news_shadow.png"]];
         
-        //set font
-        if(indexPath.row == 0){
-            [titleLabel setFont:[titleLabel.font fontWithSize:16]];
-        }
-        else{
-            [titleLabel setFont:[titleLabel.font fontWithSize:12]];
-            
-        }
+        
         
     }
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"HaberDetaySegue" sender:self];
 }
 
 - (void)setNewsItemArray:(NSArray *)newsItemArray {
@@ -169,14 +184,14 @@
      getLatestNewsOnCompletion:^(NSArray *newsArray) {
          self.newsItemArray = newsArray;
          [self.refreshControl endRefreshing];
-         NSDate *now = [NSDate date];
-         NSDateFormatter *formatter = nil;
-         formatter = [[NSDateFormatter alloc] init];
-         [formatter setTimeStyle:NSDateFormatterShortStyle];
-         [formatter setDateStyle:NSDateFormatterShortStyle];
-         NSString* text = @"Son güncelleme: ";
-         text = [text stringByAppendingString:[formatter stringFromDate:now]];
-         [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:text]];
+//         NSDate *now = [NSDate date];
+//         NSDateFormatter *formatter = nil;
+//         formatter = [[NSDateFormatter alloc] init];
+//         [formatter setTimeStyle:NSDateFormatterShortStyle];
+//         [formatter setDateStyle:NSDateFormatterShortStyle];
+//         NSString* text = @"Son güncelleme: ";
+//         text = [text stringByAppendingString:[formatter stringFromDate:now]];
+//         [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:text]];
     } onError:^(NSError *error) {
         UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Hata" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Tamam" otherButtonTitles:nil, nil];
         isRefreshNeeded = true;
