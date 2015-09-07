@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define WEB_TV_URL @"http://www.chp.org.tr/custom-scripts/webtv.html"
+#define WEB_TV_URL @"http://www.chp.org.tr/ChpWebTv.aspx"
 
 @interface CHPWebTVViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
