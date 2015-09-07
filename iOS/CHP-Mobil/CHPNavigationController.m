@@ -37,6 +37,11 @@
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chp_logo.png"]];
     logoView.frame = CGRectMake(62,20,196,55);
     [self.navigationBar.superview addSubview:logoView];
+    
+    if ([self.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
+        self.navigationBar.barTintColor = [UIColor whiteColor];
+    }
+    self.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning
